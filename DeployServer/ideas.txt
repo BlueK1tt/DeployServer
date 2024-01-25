@@ -1,0 +1,13 @@
+p2m cluster mode should work same as "basic" node clustering code
+just execute code in pm2 cluster mode.
+
+test out if can generate and read in the same code pm2 logs
+so, pm2 start server, -> pm2 generates log file for the session -> after while in code, read the log file generated
+(could be something like, code reads all files in designated folder).
+
+Need to make websockets for servers, servers send out data and comannds to eachother
+For example have "main" server and discord bot server running on same pm2, -> if discord bot gets some command, 
+process the command and send needed information through websocket to "main" server.
+
+"Main" server could have running frontend website, with command input "form" available
+Need to create seperate api that "main" server uses, and use React with ajax framework to inject and update the html page with new data
