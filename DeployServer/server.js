@@ -26,12 +26,13 @@ server.on('request', async(req, res) => {
     
     res.statusCode = 200;
     res.setHeader('Content-type', 'text/plain');
-    res.end('Hello World\n');
+
 
     //shutdown on command
     if (msg == 'shutdown') {
         console.log('Shutting down the server...')
         setTimeout(function() {
+            res.end('Shutting down...\n');
             console.log('Shutting down.')
             process.exit(0)
         }, 1500)
@@ -39,6 +40,7 @@ server.on('request', async(req, res) => {
 
     else{ //if nothing matches
         res.statuscode = 204;
+        res.end('Hello World\n');
         console.log(msg);
         //204 no content available
     }
