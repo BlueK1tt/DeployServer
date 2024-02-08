@@ -20,13 +20,26 @@ const server = http.createServer()
 server.on('request', async(req, res) => {
     
     message = req.url;
+    msg = message.slice(1); //cutting the / out of message
+    
 
-    //cutting the / out of message
-    msg = message.slice(1);
+
+
     
     res.statusCode = 200;
     res.setHeader('Content-type', 'text/plain');
 
+    //restart on command
+    if (msg == 'restart') {
+        console.log('Restarting the server...')
+        setTimeout(function() {
+            res.end('Restarting...\n');
+            console.log('Restarting')
+            process.exit(128)
+        }, 1500)
+    }
+
+    
 
     //shutdown on command
     if (msg == 'shutdown') {
