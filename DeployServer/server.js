@@ -3,10 +3,6 @@ const fs = require('fs'); //filesystem
 const path = require('path');
 
 const config = require('./config.json'); //custom configurations file for secret info
-const { measureMemory } = require('node:vm');
-const { text } = require('stream/consumers');
-const { errorMonitor } = require('node:events');
-const { stringify } = require('node:querystring');
 const serverCommands = fs.readdirSync('./commands'); //folder to create commands in
 
 const hostname = config.hostname;
@@ -46,13 +42,15 @@ server.on('request', async(request, response, callback) => {
     message = request.url;
     msg = message.slice(1); //cutting the / out of message
     
+    //need to be able to use filenames from commands folder as url end such as shutdown, restart etc
+    //if message includes filename from commands, call that file
 
 
 
     
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
-
+    //get current available "special commands", other words, filenames in commands folder
     if (msg == 'commands') {
         var files = fs.readdirSync('./commands/');
         let original = files
