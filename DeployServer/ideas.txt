@@ -37,3 +37,10 @@ Response include -> Result(Completed, Failed(err), canceled), Path of file, dura
 Jorma (Discord bot)
 Acts as "default" bot in discord servers. Has basic bot functions.
 When interracting in DM´s, have interface panel created to make it easier to control everything.
+
+cluster master = http server
+inside running http.server.on call command for forking new clsuters
+no cluster slaves are deployed until required. 
+When request comes, server waits continuing until free cluster/slave is available
+When free cluster/slave, pass the request to to cluster/slave.
+Max cpu's = maxcpu(10), if currentcluster (0-10) < maxcpu (10), create and fork new cluster
