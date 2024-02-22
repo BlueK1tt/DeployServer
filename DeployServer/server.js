@@ -1,13 +1,17 @@
 const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
 const path = require('path');
+const cluster = require('cluster');
+const os = require('os');
 
 const config = require('./config.json'); //custom configurations file for secret info
+const { machine } = require('node:os');
 const serverCommands = fs.readdirSync('./commands'); //folder to create commands in
 
 const hostname = config.hostname;
 const port = config.netport;
 const timenow = new Date();
+const maxCPU = os.cpus().length;
 
 var currentWork = 0; //current processes the server is working on, default 0
 
@@ -41,6 +45,7 @@ server.on('request', async(request, response, callback) => {
     
     message = request.url;
     msg = message.slice(1); //cutting the / out of message
+    console.log(">" + msg);
     
     //need to be able to use filenames from commands folder as url end such as shutdown, restart etc
     //if message includes filename from commands, call that file
@@ -84,12 +89,13 @@ server.on('request', async(request, response, callback) => {
 
     else { //if nothing matches
         response.statuscode = 204;
-        console.log(msg);
+
         response.end("");
         //204 no content available
     }
     return;
 });
+
 
 server.listen(port, hostname, () => {
     console.log("Server staring up at: " + timenow)
