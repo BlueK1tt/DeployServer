@@ -14,6 +14,7 @@ const timenow = new Date();
 const maxCPU = os.cpus().length;
 
 var currentWork = 0; //current processes the server is working on, default 0
+//used with javascript cluster to see current clusters
 
 const isFile = fileName => {
     return fs.lstatSync(fileName).isFile();
@@ -46,13 +47,32 @@ server.on('request', async(request, response, callback) => {
     message = request.url;
     msg = message.slice(1); //cutting the / out of message
     console.log(">" + msg);
-    
+
+    //slicing the incoming message if it starts with /command, meaning its command from commands folder
+    if (msg.includes(commands) == true){
+        commandmsg = msg.slice(8);
+        console.log(commandmsg);
+    }
     //need to be able to use filenames from commands folder as url end such as shutdown, restart etc
     //if message includes filename from commands, call that file
 
 
-
+    //if curl message/command matches any of commands from command folder 
+    if ([commandmsg].indexOf(serverCommands) > -1) {
+        console.log("command matches");
+    } 
     
+    //here code to read and write txt or json file
+    //needed to save current saved and edited codes and their versions and sizes
+    //on startup , compare saved information of git and infomation of gits on github
+    //if differ, push notification that "theres update(s) available"
+
+    //read and write gotgits json file
+    //its required to keep track of versions and updates
+
+    //use module export callback arg functionality
+    
+
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     //get current available "special commands", other words, filenames in commands folder
@@ -65,6 +85,9 @@ server.on('request', async(request, response, callback) => {
         stringCMD = result.toString();
         response.end(stringCMD);
     }
+
+    //here import using command call the correct command file
+    //include things to send as variables to file as part of command
 
     //restart on command
     if (msg == 'restart') {
@@ -100,5 +123,4 @@ server.on('request', async(request, response, callback) => {
 server.listen(port, hostname, () => {
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
-
 });
