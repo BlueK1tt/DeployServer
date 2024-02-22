@@ -16,9 +16,11 @@ const maxCPU = os.cpus().length;
 var currentWork = 0; //current processes the server is working on, default 0
 //used with javascript cluster to see current clusters
 
+
 const isFile = fileName => {
     return fs.lstatSync(fileName).isFile();
 };
+
 
 function readFiles(dir, processfile) {
     fs.readdir(dir, (error, fileNames) => {
@@ -40,6 +42,7 @@ function readFiles(dir, processfile) {
         });
     });
 };
+
 
 const server = http.createServer()
 server.on('request', async(request, response, callback) => {
@@ -73,6 +76,8 @@ server.on('request', async(request, response, callback) => {
     //use module export callback arg functionality
     
 
+
+
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     //get current available "special commands", other words, filenames in commands folder
@@ -89,6 +94,8 @@ server.on('request', async(request, response, callback) => {
     //here import using command call the correct command file
     //include things to send as variables to file as part of command
 
+
+    
     //restart on command
     if (msg == 'restart') {
         console.log('Restarting the server...')
