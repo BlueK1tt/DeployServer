@@ -44,6 +44,17 @@ function readFiles(dir, processfile) {
 };
 
 
+function commandz() {
+    var files = fs.readdirSync('./commands/');
+    let original = files
+    result = original.map(function(d) {
+        return d.replace('.js', '');
+    });
+    stringCMD = result.toString();
+    return stringCMD;
+};
+
+
 const server = http.createServer()
 server.on('request', async(request, response, callback) => {
     
@@ -52,18 +63,23 @@ server.on('request', async(request, response, callback) => {
     console.log(">" + msg);
 
     //slicing the incoming message if it starts with /command, meaning its command from commands folder
-    if (msg.includes(commands) == true){
-        commandmsg = msg.slice(8);
-        console.log(commandmsg);
+    if (msg.includes('commands') == true){
+        commandmsg = msg.slice(9);
+        //console.log("commandmsg:"+commandmsg);
+
     }
     //need to be able to use filenames from commands folder as url end such as shutdown, restart etc
     //if message includes filename from commands, call that file
 
-
+    serverCmd = commandz();
+    cmdinclude = serverCmd.indexOf(commandmsg);
+    //console.log(cmdinclude); //index/position of found word
+    
     //if curl message/command matches any of commands from command folder 
-    if ([commandmsg].indexOf(serverCommands) > -1) {
+    if (serverCmd.indexOf(commandmsg) > -1 && commandmsg != "") {
         console.log("command matches");
     } 
+
     
     //here code to read and write txt or json file
     //needed to save current saved and edited codes and their versions and sizes
@@ -82,13 +98,8 @@ server.on('request', async(request, response, callback) => {
     response.setHeader('Content-type', 'text/plain');
     //get current available "special commands", other words, filenames in commands folder
     if (msg == 'commands') {
-        var files = fs.readdirSync('./commands/');
-        let original = files
-        result = original.map(function(d) {
-            return d.replace('.js', '');
-        });
-        stringCMD = result.toString();
-        response.end(stringCMD);
+        gotlist = commandz();
+        response.end(gotlist);
     }
 
     //here import using command call the correct command file
