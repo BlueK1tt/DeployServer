@@ -17,31 +17,12 @@ var currentWork = 0; //current processes the server is working on, default 0
 //used with javascript cluster to see current clusters
 
 
+
+
 const isFile = fileName => {
     return fs.lstatSync(fileName).isFile();
 };
 
-
-function readFiles(dir, processfile) {
-    fs.readdir(dir, (error, fileNames) => {
-        if (error) throw error;
-
-        fileNames.forEach(filename => {
-            const name = path.parse(filename).name;
-            const ext = path.parse(filename).ext;
-            const filepath = path.resolve(dir, filename);
-
-            fs.stat(filepath, function(error, stat) {
-                if (error) throw error;
-                const isFile = stat.isFile();
-                
-                if (isFile) {
-                    processfile(filepath, name, ext, stat);
-                }
-            });
-        });
-    });
-};
 
 
 function commandz() {
@@ -59,7 +40,7 @@ const server = http.createServer()
 server.on('request', async(request, response, callback) => {
     
     message = request.url;
-    msg = message.slice(1); //cutting the / out of message
+    msg = message.slice(1); //cutting the first / out of message
     console.log(">" + msg);
 
     //slicing the incoming message if it starts with /command, meaning its command from commands folder
@@ -72,15 +53,15 @@ server.on('request', async(request, response, callback) => {
     //if message includes filename from commands, call that file
 
     serverCmd = commandz();
-    cmdinclude = serverCmd.indexOf(commandmsg);
+    //cmdinclude = serverCmd.indexOf(commandmsg);
     //console.log(cmdinclude); //index/position of found word
     
     //if curl message/command matches any of commands from command folder 
     if (serverCmd.indexOf(commandmsg) > -1 && commandmsg != "") {
-        console.log("command matches");
+        console.log("command matches:"+ commandmsg);
+        
     } 
 
-    
     //here code to read and write txt or json file
     //needed to save current saved and edited codes and their versions and sizes
     //on startup , compare saved information of git and infomation of gits on github
@@ -91,9 +72,6 @@ server.on('request', async(request, response, callback) => {
 
     //use module export callback arg functionality
     
-
-
-
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     //get current available "special commands", other words, filenames in commands folder
