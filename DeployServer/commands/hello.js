@@ -1,4 +1,4 @@
 module.exports = {
-    msg: "hello",
-    value1: "yo"
-}
+	value1: "hello",
+    msg: "yo"
+};

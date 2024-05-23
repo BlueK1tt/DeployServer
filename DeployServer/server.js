@@ -6,6 +6,7 @@ const os = require('os');
 
 const config = require('./config.json'); //custom configurations file for secret info
 const { machine } = require('node:os');
+const { error } = require('node:console');
 const serverCommands = fs.readdirSync('./commands'); //folder to create commands in
 
 const hostname = config.hostname;
@@ -13,16 +14,15 @@ const port = config.netport;
 const timenow = new Date();
 const maxCPU = os.cpus().length;
 
+
 var currentWork = 0; //current processes the server is working on, default 0
 //used with javascript cluster to see current clusters
-
 
 
 
 const isFile = fileName => {
     return fs.lstatSync(fileName).isFile();
 };
-
 
 
 function commandz() {
@@ -32,8 +32,36 @@ function commandz() {
         return d.replace('.js', '');
     });
     stringCMD = result.toString();
+    fs.close;
     return stringCMD;
 };
+
+function commandscollection() {
+    var files = fs.readdirSync('./commands/');
+    let original = files
+    result = original.map(function(d) {
+        return d.replace('.js', "");
+    });
+    fs.close;
+    return result;
+}
+
+function getfile() {
+    var files = fs.readdirSync('./commands/');
+    let original = files
+    strip = original.map(function(d){
+        return d.replace('.js', "");
+    });
+    match = strip.indexOf(commandmsg)
+    const position = Number(match)
+    result = files[position];
+    fs.close;
+    return result
+}
+
+function valuesToArray(obj) {
+    return Object.keys(obj).map(function (key) { return obj[key];});
+}
 
 
 const server = http.createServer()
@@ -41,8 +69,8 @@ server.on('request', async(request, response, callback) => {
     
     message = request.url;
     msg = message.slice(1); //cutting the first / out of message
-    console.log(">" + msg);
-
+    console.log("> " + msg);
+    commandmsg = null;
     //slicing the incoming message if it starts with /command, meaning its command from commands folder
     if (msg.includes('commands') == true){
         commandmsg = msg.slice(9);
@@ -60,7 +88,7 @@ server.on('request', async(request, response, callback) => {
     if (serverCmd.indexOf(commandmsg) > -1 && commandmsg != "") {
         console.log("command matches:"+ commandmsg);
         
-    } 
+    }
 
     //here code to read and write txt or json file
     //needed to save current saved and edited codes and their versions and sizes
@@ -79,12 +107,30 @@ server.on('request', async(request, response, callback) => {
         gotlist = commandz();
         response.end(gotlist);
     }
-
     //here import using command call the correct command file
     //include things to send as variables to file as part of command
 
 
+
+    if(serverCmd.indexOf(commandmsg) > -1 && commandmsg != ""){
+        getfile(commandmsg);
+        const data = require(`./commands/${commandmsg}`);
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        console.log(asmessage);
+        try {
+            response.statusCode = 200;
+            response.end(asmessage);
+        } catch (error) {
+            console.error(error);
+            response.write(`cathced error in program: ${commandmsg}`);
+            response.end("");
+        }
+        // response.end(sendMessage);
+    }
     
+    //default commmands 
+
     //restart on command
     if (msg == 'restart') {
         console.log('Restarting the server...')
@@ -108,8 +154,6 @@ server.on('request', async(request, response, callback) => {
 
     else { //if nothing matches
         response.statuscode = 204;
-
-        response.end("");
         //204 no content available
     }
     return;
