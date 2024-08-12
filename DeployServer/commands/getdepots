@@ -1,10 +1,10 @@
 const fs = require('fs'); //filesystem
 
 module.exports = {
-    data: update()
+    data: getdepots()
 };
 
-function update() {
+function getdepots() {
     var files = fs.readdirSync('./Depositories/');
     let original = files
     result = original.map(function(d) {
