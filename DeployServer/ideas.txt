@@ -44,3 +44,17 @@ no cluster slaves are deployed until required.
 When request comes, server waits continuing until free cluster/slave is available
 When free cluster/slave, pass the request to to cluster/slave.
 Max cpu's = maxcpu(10), if currentcluster (0-10) < maxcpu (10), create and fork new cluster
+
+it needs to be 
+
+packages 
+variables
+functions
+cluster master
+    server on/start
+        declaring functions and their needs
+        waitlist for forks
+            cluster fork
+            fork return
+        function return
+        cluster worker shutdown

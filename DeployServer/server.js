@@ -13,18 +13,18 @@ const isFile = fileName => {
 };
 
 
-function commandz() {
-    var files = fs.readdirSync('./commands/');
+function commandz() { //get all current commands that have js file aka repsonse
+    files = fs.readdirSync('./commands', );
     let original = files
     result = original.map(function(d) {
         return d.replace('.js', '');
     });
-    stringCMD = result.toString();
+    var stringCMD = result.toString();
     fs.close;
     return stringCMD;
 };
 
-function commandscollection() {
+/*function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
     let original = files
     result = original.map(function(d) {
@@ -32,7 +32,7 @@ function commandscollection() {
     });
     fs.close;
     return result;
-}
+}*/
 
 function getfile() {
     var files = fs.readdirSync('./commands/');
@@ -66,14 +66,14 @@ const requestListener = function(request, response){
     if (msg.includes('commands') == true){
         commandmsg = msg.slice(9);
 
-    }
+    };
+    
     serverCmd = commandz();
 
     //get current available "special commands", other words, filenames in commands folder
     if (msg == "commands" || commandmsg == "") {
-        gotlist = commandz();
-        console.log(gotlist);
-        response.write(stringCMD);
+        console.log(serverCmd);
+        response.write(serverCmd);
 
     }
 
@@ -82,7 +82,7 @@ const requestListener = function(request, response){
         
     }
 
-    if (serverCmd.indexOf(commandmsg) == -1 && msg != "restart" && msg != "shutdown" || commandmsg == " ") {
+    if (serverCmd.indexOf(commandmsg) == -1 && msg != "restart" && msg != "gotgits" && msg != "shutdown" || commandmsg == " ") {
         console.log("Command not found");
         response.end("command not found");
     }
@@ -94,6 +94,7 @@ const requestListener = function(request, response){
 
     //read and write gotgits json file
     //its required to keep track of versions and updates
+    
 
     //include things to send as variables to file as part of command
 
@@ -112,6 +113,19 @@ const requestListener = function(request, response){
             response.finish;
         }
     }
+
+    if (msg == 'gotgits') {
+        fname = msg + ".json";
+        console.log(isFile(fname));
+        if(isFile("gotgits.json") == true){
+            fetch('fname').then().then().catch();
+
+        }
+        else {
+            console.log("error")
+        }
+        
+    };
     
     //restart on command
     if (msg == 'restart') {

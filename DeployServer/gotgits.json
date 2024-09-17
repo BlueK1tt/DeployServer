@@ -1,9 +1,4 @@
 {
-    "gits": [
-        {
-            "name": "DeployServer",
-            "lastlog": "none",
-            "url": "https://github.com/BlueK1tt/DeployServer"
-        }
-    ]
+    "name": "DeployServer",
+    "lastlog": "none"
 }
