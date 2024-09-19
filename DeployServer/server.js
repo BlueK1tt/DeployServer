@@ -65,7 +65,7 @@ const requestListener = function(request, response){
 
     if (msg.includes('commands') == true){
         commandmsg = msg.slice(9);
-
+        
     };
     
     serverCmd = commandz();
@@ -74,11 +74,12 @@ const requestListener = function(request, response){
     if (msg == "commands" || commandmsg == "") {
         console.log(serverCmd);
         response.write(serverCmd);
-
+        
     }
 
     if (serverCmd.indexOf(commandmsg) > -1 && commandmsg != " ") {
         console.log("command matches:"+ commandmsg);
+        
         
     }
 
@@ -112,6 +113,7 @@ const requestListener = function(request, response){
             response.end(`cathced error in program: ${commandmsg}`);
             response.finish;
         }
+        return;
     }
 
     if (msg == 'gotgits') {
@@ -119,12 +121,19 @@ const requestListener = function(request, response){
         console.log(isFile(fname));
         if(isFile("gotgits.json") == true){
             fetch('fname').then().then().catch();
-
+            return;
         }
         else {
             console.log("error")
+            return; 
         }
         
+    if (msg == "refresh") {
+        //refresh filesystem
+        commandz();
+        getfile();
+        console.log("commands refreshed")
+        return;
     };
     
     //restart on command
@@ -155,7 +164,7 @@ const requestListener = function(request, response){
         return;
     }
     return;
-};
+}};
 
 const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
