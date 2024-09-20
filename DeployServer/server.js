@@ -1,6 +1,7 @@
 const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
 const os = require('os');
+const pm2 = require('pm2');
 
 const config = require('./config.json'); //custom configurations file for secret info
 
@@ -14,8 +15,8 @@ const isFile = fileName => {
 
 
 function commandz() { //get all current commands that have js file aka repsonse
-    files = fs.readdirSync('./commands', );
-    let original = files
+    var filez = fs.readdirSync("./commands/");
+    let original = filez
     result = original.map(function(d) {
         return d.replace('.js', '');
     });
@@ -51,6 +52,15 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];});
 }
 
+function pm2start(){ //start specific server on command, need to check available ports
+
+};
+
+function pm2stop(){ //need to stop specific server gracefully,
+
+};
+
+
 const requestListener = function(request, response){
 //const server = http.createServer()
 //server.on('request', async(request, response, callback) => {
@@ -67,6 +77,8 @@ const requestListener = function(request, response){
         commandmsg = msg.slice(9);
         
     };
+    
+    
     
     serverCmd = commandz();
 
@@ -121,7 +133,7 @@ const requestListener = function(request, response){
         console.log(isFile(fname));
         if(isFile("gotgits.json") == true){
             fetch('fname').then().then().catch();
-            return;
+            
         }
         else {
             console.log("error")
