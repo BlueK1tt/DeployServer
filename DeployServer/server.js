@@ -52,6 +52,18 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];});
 }
 
+function getdepots(){ //function to get current depositories and create array out of them
+    var files = fs.readFileSync("./Depositories/DepositoriesList.txt");
+    if (files == ""){
+        console.log("no current depositories")
+    }
+    else {
+        let depots = files
+        return depots;
+    }
+    fs.close;    
+}
+
 function pm2start(){ //start specific server on command, need to check available ports
 
 };
@@ -76,10 +88,7 @@ const requestListener = function(request, response){
     if (msg.includes('commands') == true){
         commandmsg = msg.slice(9);
         
-    };
-    
-    
-    
+    };    
     serverCmd = commandz();
 
     //get current available "special commands", other words, filenames in commands folder
@@ -95,7 +104,7 @@ const requestListener = function(request, response){
         
     }
 
-    if (serverCmd.indexOf(commandmsg) == -1 && msg != "restart" && msg != "gotgits" && msg != "shutdown" || commandmsg == " ") {
+    if (serverCmd.indexOf(commandmsg) == -1 && msg != "restart" && msg != "getdepots" && msg != "refresh" && msg != "gotgits" && msg != "shutdown" || commandmsg == " ") {
         console.log("Command not found");
         response.end("command not found");
     }
@@ -128,7 +137,7 @@ const requestListener = function(request, response){
         return;
     }
 
-    if (msg == 'gotgits') {
+    /*if (msg == 'gotgits') { //currently problem with this command
         fname = msg + ".json";
         console.log(isFile(fname));
         if(isFile("gotgits.json") == true){
@@ -138,13 +147,21 @@ const requestListener = function(request, response){
         else {
             console.log("error")
             return; 
-        }
-        
+        }*/
+    if (msg == "getdepots"){
+        sendlist = getdepots();
+        console.log("sendlist: " + sendlist);
+        response.end(sendlist)
+        return;
+    }
+
+
     if (msg == "refresh") {
         //refresh filesystem
         commandz();
         getfile();
         console.log("commands refreshed")
+        response.end("commands refreshed");
         return;
     };
     
@@ -176,7 +193,7 @@ const requestListener = function(request, response){
         return;
     }
     return;
-}};
+};
 
 const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
