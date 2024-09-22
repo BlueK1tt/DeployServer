@@ -2,19 +2,15 @@ const fs = require('fs'); //filesystem
 
 module.exports = {
     data: getdepots()
-};
-
-function getdepots() {
-    var files = fs.readdirSync('./Depositories/');
-    let original = files
-    result = original.map(function(d) {
-        return d.replace('DepositoriesList.txt', '');
-    });
-    if (result == '') {
-        data = "You haven't added any programs"
-    } else { 
-        data = result.toString();
-    } 
-    fs.close;
-    return data;
+}
+function getdepots(){ //function to get current depositories and create array out of them
+    var files = fs.readFileSync("./Depositories/DepositoriesList.txt");
+    if (files == ""){
+        console.log("no current depositories")
+    }
+    else {
+        let depots = files
+        return depots;
+    }
+    fs.close;    
 }

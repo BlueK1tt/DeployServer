@@ -58,3 +58,8 @@ cluster master
             fork return
         function return
         cluster worker shutdown
+
+For testing purposes, most likely need to create Docker environment 
+Need to create exact boilerplate plant for the testing so can wipe and start again when i mess up
+
+need nested function for the commands calling

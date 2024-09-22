@@ -52,7 +52,7 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];});
 }
 
-function getdepots(){ //function to get current depositories and create array out of them
+/*function getdepots(){ //function to get current depositories and create array out of them
     var files = fs.readFileSync("./Depositories/DepositoriesList.txt");
     if (files == ""){
         console.log("no current depositories")
@@ -62,7 +62,9 @@ function getdepots(){ //function to get current depositories and create array ou
         return depots;
     }
     fs.close;    
-}
+}*/
+
+
 
 function pm2start(){ //start specific server on command, need to check available ports
 
@@ -72,6 +74,30 @@ function pm2stop(){ //need to stop specific server gracefully,
 
 };
 
+
+function commandconstructor(c){ //c = different incoming msg
+    console.log("commandconstuctor");
+    getfile(commandmsg);
+    const data = require(`./commands/${commandmsg}`);
+    var sentData = valuesToArray(data); 
+    asmessage = sentData[0];
+    console.log(asmessage);
+    try {
+        response.statusCode = 200;
+        response.end(asmessage);
+    } catch (error) {
+        console.error(error);
+        response.end(`cathced error in program: ${commandmsg}`);
+        response.finish;
+    }
+    if( c == asmessage){
+        console.log("constructor true")
+    }
+    else{
+        console.log("if false")
+    }
+
+}
 
 const requestListener = function(request, response){
 //const server = http.createServer()
@@ -100,6 +126,8 @@ const requestListener = function(request, response){
 
     if (serverCmd.indexOf(commandmsg) > -1 && commandmsg != " ") {
         console.log("command matches:"+ commandmsg);
+        commandconstructor(msg);
+        console.log("after func")
         
         
     }
