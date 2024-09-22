@@ -13,7 +13,8 @@ const isFile = fileName => {
     return fs.lstatSync(fileName).isFile();
 };
 
-var basecommands = ['commands','shutdown','restart','refresh']
+var basecommands = ['shutdown','restart','refresh'];
+var direction = ['start', 'stop'];
 
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
@@ -43,21 +44,28 @@ function getfile() {
 }
 
 function valuesToArray(obj) {
-    return Object.keys(obj).map(function (key) { return obj[key];});
+    return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 }
 
-function commandconstructor(c){ //c = different incoming msg
-    //console.log("commandconstuctor");
+function msgidentify(c){ //c = different incoming msg
     if(basecommands.includes(c)){
         console.log("base command");
-        }
+        return msg;
+    }
+    if (c.startsWith("start", "stop") || direction.includes(c, -2)){
+        console.log("direction: ")
+        
+        console.log("direction");
+        return " ";
+    }
     else{
         console.log("custom");
+        //need to slice message
         command = getfile(msg); 
         const data = require(`./commands/`+ `${command}`);
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
-        //console.log(asmessage);
+
         try {
             return asmessage;
         } catch (error) {
@@ -65,11 +73,12 @@ function commandconstructor(c){ //c = different incoming msg
 
         }
     }
-    return true;
 }
 
 function pm2start(){ //start specific server on command, need to check available ports
-
+    //curl 3000/start=BluBot
+    //direction = start/stop
+    //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
 };
 
 function pm2stop(){ //need to stop specific server gracefully,
@@ -78,8 +87,6 @@ function pm2stop(){ //need to stop specific server gracefully,
 
 
 const requestListener = function(request, response){
-//const server = http.createServer()
-//server.on('request', async(request, response, callback) => {
 
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
@@ -87,7 +94,7 @@ const requestListener = function(request, response){
     message = request.url;
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
-    needcommand = commandconstructor(msg)
+    needcommand = msgidentify(msg) 
     console.log(needcommand)
     response.write(needcommand);
     //here code to read and write txt or json file
