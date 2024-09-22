@@ -66,3 +66,6 @@ need nested function for the commands calling
 
 need function out of loop to check internet connectivity every 30 secs
 if not connected to internet, hold every command sent and execute them once connected, unless server restarted in which the buffer is emptied
+
+Need to create more error checks and general cheks within code, so if code doesnt work, it gives error code but the server doesnt stop
+Will be so perfect in the future when dealing with more that one service and outside devices
