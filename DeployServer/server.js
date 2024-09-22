@@ -89,6 +89,7 @@ const requestListener = function(request, response){
     console.log("> " + msg);
     needcommand = commandconstructor(msg)
     console.log(needcommand)
+    response.write(needcommand);
     //here code to read and write txt or json file
     //needed to save current saved and edited codes and their versions and sizes
     //on startup , compare saved information of git and infomation of gits on github
