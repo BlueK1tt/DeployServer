@@ -4,7 +4,7 @@ module.exports = {
     data: getdepots()
 }
 function getdepots(){ //function to get current depositories and create array out of them
-    var files = fs.readFileSync("./Depositories/DepositoriesList.txt");
+    var files = fs.readFileSync("./Depositories/DepositoriesList.txt", "UTF-8");
     if (files == ""){
         console.log("no current depositories")
     }

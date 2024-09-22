@@ -13,38 +13,32 @@ const isFile = fileName => {
     return fs.lstatSync(fileName).isFile();
 };
 
+var basecommands = ['commands','shutdown','restart','refresh']
 
-function commandz() { //get all current commands that have js file aka repsonse
-    var filez = fs.readdirSync("./commands/");
-    let original = filez
-    result = original.map(function(d) {
-        return d.replace('.js', '');
-    });
-    var stringCMD = result.toString();
-    fs.close;
-    return stringCMD;
-};
-
-/*function commandscollection() { //currently not in use, using the above commands command
+function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
     let original = files
+    fs.close;
     result = original.map(function(d) {
         return d.replace('.js', "");
     });
-    fs.close;
-    return result;
-}*/
+    var stringCMD = result.toString();
+    console.log("collention" + result);
+    return stringCMD;
+}
 
 function getfile() {
+    console.log("getfile")
     var files = fs.readdirSync('./commands/');
     let original = files
+    fs.close;
     strip = original.map(function(d){
         return d.replace('.js', "");
     });
-    match = strip.indexOf(commandmsg)
+    match = strip.indexOf(msg)
     const position = Number(match)
     result = files[position];
-    fs.close;
+    console.log("getfile" + result);
     return result
 }
 
@@ -52,19 +46,27 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];});
 }
 
-/*function getdepots(){ //function to get current depositories and create array out of them
-    var files = fs.readFileSync("./Depositories/DepositoriesList.txt");
-    if (files == ""){
-        console.log("no current depositories")
-    }
-    else {
-        let depots = files
-        return depots;
-    }
-    fs.close;    
-}*/
+function commandconstructor(c){ //c = different incoming msg
+    //console.log("commandconstuctor");
+    if(basecommands.includes(c)){
+        console.log("base command");
+        }
+    else{
+        console.log("custom");
+        command = getfile(msg); 
+        const data = require(`./commands/`+ `${command}`);
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        //console.log(asmessage);
+        try {
+            return asmessage;
+        } catch (error) {
+            return error;
 
-
+        }
+    }
+    return true;
+}
 
 function pm2start(){ //start specific server on command, need to check available ports
 
@@ -74,30 +76,6 @@ function pm2stop(){ //need to stop specific server gracefully,
 
 };
 
-
-function commandconstructor(c){ //c = different incoming msg
-    console.log("commandconstuctor");
-    getfile(commandmsg);
-    const data = require(`./commands/${commandmsg}`);
-    var sentData = valuesToArray(data); 
-    asmessage = sentData[0];
-    console.log(asmessage);
-    try {
-        response.statusCode = 200;
-        response.end(asmessage);
-    } catch (error) {
-        console.error(error);
-        response.end(`cathced error in program: ${commandmsg}`);
-        response.finish;
-    }
-    if( c == asmessage){
-        console.log("constructor true")
-    }
-    else{
-        console.log("if false")
-    }
-
-}
 
 const requestListener = function(request, response){
 //const server = http.createServer()
@@ -109,34 +87,8 @@ const requestListener = function(request, response){
     message = request.url;
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
-    commandmsg = null;
-
-    if (msg.includes('commands') == true){
-        commandmsg = msg.slice(9);
-        
-    };    
-    serverCmd = commandz();
-
-    //get current available "special commands", other words, filenames in commands folder
-    if (msg == "commands" || commandmsg == "") {
-        console.log(serverCmd);
-        response.write(serverCmd);
-        
-    }
-
-    if (serverCmd.indexOf(commandmsg) > -1 && commandmsg != " ") {
-        console.log("command matches:"+ commandmsg);
-        commandconstructor(msg);
-        console.log("after func")
-        
-        
-    }
-
-    if (serverCmd.indexOf(commandmsg) == -1 && msg != "restart" && msg != "getdepots" && msg != "refresh" && msg != "gotgits" && msg != "shutdown" || commandmsg == " ") {
-        console.log("Command not found");
-        response.end("command not found");
-    }
-
+    needcommand = commandconstructor(msg)
+    console.log(needcommand)
     //here code to read and write txt or json file
     //needed to save current saved and edited codes and their versions and sizes
     //on startup , compare saved information of git and infomation of gits on github
@@ -148,45 +100,9 @@ const requestListener = function(request, response){
 
     //include things to send as variables to file as part of command
 
-    if(serverCmd.indexOf(commandmsg) > -1 && commandmsg != ""){
-        getfile(commandmsg);
-        const data = require(`./commands/${commandmsg}`);
-        var sentData = valuesToArray(data); 
-        asmessage = sentData[0];
-        console.log(asmessage);
-        try {
-            response.statusCode = 200;
-            response.end(asmessage);
-        } catch (error) {
-            console.error(error);
-            response.end(`cathced error in program: ${commandmsg}`);
-            response.finish;
-        }
-        return;
-    }
-
-    /*if (msg == 'gotgits') { //currently problem with this command
-        fname = msg + ".json";
-        console.log(isFile(fname));
-        if(isFile("gotgits.json") == true){
-            fetch('fname').then().then().catch();
-            
-        }
-        else {
-            console.log("error")
-            return; 
-        }*/
-    if (msg == "getdepots"){
-        sendlist = getdepots();
-        console.log("sendlist: " + sendlist);
-        response.end(sendlist)
-        return;
-    }
-
-
     if (msg == "refresh") {
         //refresh filesystem
-        commandz();
+        commandscollection();
         getfile();
         console.log("commands refreshed")
         response.end("commands refreshed");
