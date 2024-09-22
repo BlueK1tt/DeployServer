@@ -63,3 +63,6 @@ For testing purposes, most likely need to create Docker environment
 Need to create exact boilerplate plant for the testing so can wipe and start again when i mess up
 
 need nested function for the commands calling
+
+need function out of loop to check internet connectivity every 30 secs
+if not connected to internet, hold every command sent and execute them once connected, unless server restarted in which the buffer is emptied
