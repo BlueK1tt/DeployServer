@@ -2,6 +2,7 @@ const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
 const os = require('os');
 const pm2 = require('pm2');
+const { Buffer } = require('node:buffer');
 
 const config = require('./config.json'); //custom configurations file for secret info
 
@@ -91,10 +92,13 @@ function msgidentify(c){ //c = different incoming msg
 
 function pm2start(startfile){ //start specific server on command, need to check available ports
     //curl 3000/start=BluBot
+    //depositories need to have path to server file
     //direction = start/stop
     //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
     console.log("pm2"  + startfile);
-    
+    pm2.start
+
+
 
 };
 
@@ -111,9 +115,12 @@ const requestListener = function(request, response){
     message = request.url;
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
-    needcommand = msgidentify(msg) 
-    console.log(needcommand)
-    response.write(needcommand);
+    needcommand = msgidentify(msg)
+
+    console.log(needcommand);
+    response.write(JSON.stringify(needcommand));
+    
+    
     //here code to read and write txt or json file
     //needed to save current saved and edited codes and their versions and sizes
     //on startup , compare saved information of git and infomation of gits on github

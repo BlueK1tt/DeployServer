@@ -1,0 +1,11 @@
+{"depositories": {
+        "BluBot":{
+            "name":"BluBot",
+            "startfile":"server.js"
+        },    
+        "Jorma":{
+            "name":"Jorma",
+            "startfile":"server.js"
+        }
+    }
+}
