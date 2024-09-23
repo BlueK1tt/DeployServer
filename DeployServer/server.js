@@ -52,10 +52,24 @@ function msgidentify(c){ //c = different incoming msg
         console.log("base command");
         return msg;
     }
-    if (c.startsWith("start", "stop") || direction.includes(c, -2)){
-        console.log("direction: ")
-        
-        console.log("direction");
+    if (c.startsWith("start") || c.startsWith("stop") || direction.includes(c, -2)){
+        console.log("start or stop");
+        //need to take msg and slice it before =
+        if(c.startsWith("start")){
+            filename = c.slice(6);
+            startfile = filename + ".js";
+            pm2start(startfile);
+            return "start " + startfile;
+        };
+        if(c.startsWith("stop")){
+            filename = c.slice(5);
+            stopfile = filename + ".js";
+            pm2stop(stopfile);
+            return "stop " + stopfile;
+        }
+        else{
+            return "error with statement";
+        }
         return " ";
     }
     else{
@@ -75,14 +89,17 @@ function msgidentify(c){ //c = different incoming msg
     }
 }
 
-function pm2start(){ //start specific server on command, need to check available ports
+function pm2start(startfile){ //start specific server on command, need to check available ports
     //curl 3000/start=BluBot
     //direction = start/stop
     //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
+    console.log("pm2"  + startfile);
+    
+
 };
 
-function pm2stop(){ //need to stop specific server gracefully,
-
+function pm2stop(stopfile){ //need to stop specific server gracefully,
+    console.log("pm2"  + stopfilefile);
 };
 
 
