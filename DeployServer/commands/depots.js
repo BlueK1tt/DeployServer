@@ -14,12 +14,13 @@ function depots(msg){ //function to get current depositories and create array ou
         else {
             //need to make json output into array, and with msg specification can search correct object
             if(msg = ""){
-
+                console.log("error");
             }
             //if(msg = somevariable)
-            json = json.depositories;
+            json = typeof(json.depositories);
             let depots = JSON.stringify(json);
+
+
             return depots;
-        }
-        
+        };
     };
