@@ -1,9 +1,9 @@
 const fs = require('fs'); //filesystem
 
 module.exports = {
-    data: getdepots()
+    data: depots()
 }
-function getdepots(msg){ //function to get current depositories and create array out of them
+function depots(msg){ //function to get current depositories and create array out of them
     //const data = fs.readFile("./Depositories/DepositoriesList.json");
     let rawdata = fs.readFileSync('./Depositories/DepositoriesList.json')
     let json = JSON.parse(rawdata);
@@ -16,7 +16,7 @@ function getdepots(msg){ //function to get current depositories and create array
             if(msg = ""){
 
             }
-            if(msg = somevariable)
+            //if(msg = somevariable)
             json = json.depositories;
             let depots = JSON.stringify(json);
             return depots;
