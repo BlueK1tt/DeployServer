@@ -30,7 +30,7 @@ function commandscollection() { //currently not in use, using the above commands
 }
 
 function getfile(msg) {
-    console.log("getfile")
+    //console.log("getfile")
     let files = fs.readdirSync('./commands/');
     let original = files
     strip = original.map(function(d){
@@ -39,7 +39,7 @@ function getfile(msg) {
     match = strip.indexOf(msg)
     const position = Number(match)
     result = files[position];
-    console.log("getfile" + result);
+    //console.log("getfile" + result);
     fs.close;
     return result
 }
