@@ -3,7 +3,7 @@ const fs = require('fs'); //filesystem
 module.exports = {
     data: depots()
 }
-function depots(){ //function to get current depositories and create array out of them
+function depots(msg){ //function to get current depositories and create array out of them
     //const data = fs.readFile("./Depositories/DepositoriesList.json");
     let rawdata = fs.readFileSync('./Depositories/DepositoriesList.json')
     let json = JSON.parse(rawdata);

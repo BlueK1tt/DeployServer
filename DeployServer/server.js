@@ -31,7 +31,7 @@ function commandscollection() { //currently not in use, using the above commands
 
 function getfile(msg) {
     console.log("getfile")
-    var files = fs.readdirSync('./commands/');
+    let files = fs.readdirSync('./commands/');
     let original = files
     strip = original.map(function(d){
         return d.replace('.js', "");
@@ -48,22 +48,22 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 }
 
-function msgidentify(c){ //c = different incoming msg
-    if(basecommands.includes(c)){
+function msgidentify(msg){ //c = different incoming msg
+    if(basecommands.includes(msg)){
         console.log("base command");
         return msg;
     }
-    if (c.startsWith("start") || c.startsWith("stop") || direction.includes(c, -2)){
+    if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
         console.log("start or stop");
         //need to take msg and slice it before =
-        if(c.startsWith("start")){
-            filename = c.slice(6);
+        if(msg.startsWith("start")){
+            filename = msg.slice(6);
             startfile = filename + ".js";
             pm2start(startfile);
             return "start " + startfile;
         };
         if(c.startsWith("stop")){
-            filename = c.slice(5);
+            filename = msg.slice(5);
             stopfile = filename + ".js";
             pm2stop(stopfile);
             return "stop " + stopfile;
@@ -113,7 +113,7 @@ const requestListener = function(request, response){
     response.setHeader('Content-type', 'text/plain');
 
     message = request.url;
-    msg = message.slice(1); //cutting the first / out of message
+    let msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
     needcommand = msgidentify(msg)
 
