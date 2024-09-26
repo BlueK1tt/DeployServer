@@ -10,12 +10,45 @@ const hostname = config.hostname;
 const port = config.netport;
 const timenow = new Date();
 
-const isFile = fileName => {
+const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
 };
 
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
+
+function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
+    var logpromise = isFile("log.JSON");
+    var depromise = isFile("./depositories/DepositoriesList.JSON");
+    if(depromise && logpromise == true){ //for secutiy reasons check if both filese exist
+        console.log("files exists")
+        
+
+    }
+    else{
+        console.log("Error | One or more files do not exist");
+    }
+};
+
+function compareLog(){ //function to happen right after start to compare if anything has changed
+    let oldlog = fs.readFileSync('log.json');
+    let oldstring = JSON.stringify(oldlog)
+    fs.close;
+
+    let newlog = fs.readFileSync('./depositories/DepositoriesList.JSON');
+    let newstring = JSON.stringify(newlog);
+    fs.close;
+
+    if(oldstring === newstring){ 
+        statement = true; //files match
+    }
+    else{
+        statement = false;  //files dont match
+
+    }
+    //statement needs to be true | false
+    return statement;
+};
 
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
@@ -39,7 +72,7 @@ function getfile(msg) {
     match = strip.indexOf(msg)
     const position = Number(match)
     result = files[position];
-    //console.log("getfile" + result);
+    console.log("getfile" + result);
     fs.close;
     return result
 }
@@ -123,6 +156,14 @@ const requestListener = function(request, response){
     
     //here code to read and write txt or json file
     //needed to save current saved and edited codes and their versions and sizes
+
+    statement = compareLog() //function to take current depositories list and compare it to log.JSON file
+    if(statement = true){
+        console.log("different")
+    }
+    else{
+        console.log("not different");
+    }
     //on startup , compare saved information of git and infomation of gits on github
     //if differ, push notification that "theres update(s) available"
 
@@ -145,6 +186,7 @@ const requestListener = function(request, response){
     if (msg == 'restart') {
         console.log('Restarting the server...')
         response.end('Restarting...\n');
+        saveLog();
         setTimeout(function() {
             console.log('Restarting')
             process.exit(128)
@@ -155,6 +197,7 @@ const requestListener = function(request, response){
     //shutdown on command
     if (msg == 'shutdown') {
         console.log('Shutting down the server...')
+        saveLog();
         setTimeout(function() {
             response.end('Shutting down...\n');
             console.log('Shutting down.')
