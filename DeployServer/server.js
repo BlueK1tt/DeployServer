@@ -44,7 +44,7 @@ function compareLog(){ //function to happen right after start to compare if anyt
     }
     else{
         statement = false;  //files dont match
-
+        console.log("Theres update available");
     }
     //statement needs to be true | false
     return statement;
@@ -113,12 +113,10 @@ function msgidentify(msg){ //c = different incoming msg
         const data = require(`./commands/`+ `${command}`);
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
-
         try {
             return asmessage;
         } catch (error) {
             return error;
-
         }
     }
 }
@@ -130,9 +128,6 @@ function pm2start(startfile){ //start specific server on command, need to check 
     //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
     console.log("pm2"  + startfile);
     pm2.start
-
-
-
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
@@ -155,17 +150,7 @@ const requestListener = function(request, response){
     
     
     //here code to read and write txt or json file
-    //needed to save current saved and edited codes and their versions and sizes
-
-    statement = compareLog() //function to take current depositories list and compare it to log.JSON file
-    if(statement = true){
-        console.log("different")
-    }
-    else{
-        console.log("not different");
-    }
     //on startup , compare saved information of git and infomation of gits on github
-    //if differ, push notification that "theres update(s) available"
 
     //read and write gotgits json file
     //its required to keep track of versions and updates
@@ -218,4 +203,5 @@ const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
+    compareLog();
 });
