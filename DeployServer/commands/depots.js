@@ -21,10 +21,13 @@ function depots(){ //function to get current depositories and create array out o
                 return "error";
             }
             else{
-            //if(msg = somevariable)
+            //if(msg = "depots")
             console.log(typeof(files));
             const depots = JSON.stringify(files);
+            const pots = depots.replace(' "" '," ");
+            console.log(pots);
             return depots;
             };
         };
+        fs.close;
     };

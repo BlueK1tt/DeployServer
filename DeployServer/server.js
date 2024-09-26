@@ -29,11 +29,10 @@ function commandscollection() { //currently not in use, using the above commands
     return stringCMD;
 }
 
-function getfile() {
+function getfile(msg) {
     console.log("getfile")
     var files = fs.readdirSync('./commands/');
     let original = files
-    fs.close;
     strip = original.map(function(d){
         return d.replace('.js', "");
     });
@@ -41,6 +40,7 @@ function getfile() {
     const position = Number(match)
     result = files[position];
     console.log("getfile" + result);
+    fs.close;
     return result
 }
 
