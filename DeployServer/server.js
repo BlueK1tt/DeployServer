@@ -44,7 +44,7 @@ function compareLog(){ //function to happen right after start to compare if anyt
     }
     else{
         statement = false;  //files dont match
-        console.log("Theres update available");
+        console.log("Theres update(s) available");
     }
     //statement needs to be true | false
     return statement;
@@ -60,7 +60,7 @@ function commandscollection() { //currently not in use, using the above commands
     var stringCMD = result.toString();
     console.log("collention" + result);
     return stringCMD;
-}
+};
 
 function getfile(msg) {
     //console.log("getfile")
@@ -75,11 +75,11 @@ function getfile(msg) {
     console.log("getfile" + result);
     fs.close;
     return result
-}
+};
 
 function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
-}
+};
 
 function msgidentify(msg){ //c = different incoming msg
     if(basecommands.includes(msg)){
@@ -119,7 +119,7 @@ function msgidentify(msg){ //c = different incoming msg
             return error;
         }
     }
-}
+};
 
 function pm2start(startfile){ //start specific server on command, need to check available ports
     //curl 3000/start=BluBot
