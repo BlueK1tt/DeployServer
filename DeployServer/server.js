@@ -146,7 +146,7 @@ const requestListener = function(request, response){
     needcommand = msgidentify(msg)
 
     console.log(needcommand);
-    response.write(JSON.stringify(needcommand));
+    response.write(JSON.stringify(needcommand) + '\n');
     
     
     //here code to read and write txt or json file
