@@ -119,18 +119,29 @@ function msgidentify(msg){ //c = different incoming msg
         console.log("update");
         if(msg.includes("=")){
             console.log("filter");
-            return "filter"
-        } else{
-        command = getfile(msg)
-        const data = require(`./commands/`+ `${command}`);
-        var sentData = valuesToArray(data); 
-        asmessage = sentData[0];
+            filter = msg.slice(7);
+
+            const data = require(`./commands/update`);
+            module.exports = msg
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
             try {
                 return asmessage;
             } catch (error) {
                 return error;
             }
-        }
+            return "filter"
+        } else{
+            command = getfile(msg)
+            const data = require(`./commands/`+ `${command}`);
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+                try {
+                    return asmessage;
+                } catch (error) {
+                    return error;
+                }
+            }
     }
     else{
         console.log("custom");
