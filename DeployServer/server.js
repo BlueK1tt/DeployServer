@@ -63,18 +63,23 @@ function commandscollection() { //currently not in use, using the above commands
 };
 
 function getfile(msg) {
-    //console.log("getfile")
-    let files = fs.readdirSync('./commands/');
-    let original = files
-    strip = original.map(function(d){
-        return d.replace('.js', "");
-    });
-    match = strip.indexOf(msg)
-    const position = Number(match)
-    result = files[position];
-    console.log("getfile" + result);
-    fs.close;
-    return result
+    if(msg == ""){
+        return "no specified command";
+    }
+    else {
+        //console.log("getfile")
+        let files = fs.readdirSync('./commands/');
+        let original = files
+        strip = original.map(function(d){
+            return d.replace('.js', "");
+        });
+        match = strip.indexOf(msg)
+        const position = Number(match)
+        result = files[position];
+        console.log("getfile" + result);
+        fs.close;
+        return result
+    };
 };
 
 function valuesToArray(obj) {
@@ -82,6 +87,9 @@ function valuesToArray(obj) {
 };
 
 function msgidentify(msg){ //c = different incoming msg
+    if(msg == ""){
+        return "no specified command";
+    }
     if(basecommands.includes(msg)){
         console.log("base command");
         return msg;
