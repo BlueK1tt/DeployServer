@@ -117,7 +117,20 @@ function msgidentify(msg){ //c = different incoming msg
     }
     if (msg.startsWith("update")){
         console.log("update");
-        return "update"
+        if(msg.includes("=")){
+            console.log("filter");
+            return "filter"
+        } else{
+        command = getfile(msg)
+        const data = require(`./commands/`+ `${command}`);
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+            try {
+                return asmessage;
+            } catch (error) {
+                return error;
+            }
+        }
     }
     else{
         console.log("custom");
