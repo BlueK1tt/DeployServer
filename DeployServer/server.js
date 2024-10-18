@@ -5,6 +5,7 @@ const pm2 = require('pm2');
 const { Buffer } = require('node:buffer');
 
 const config = require('./config.json'); //custom configurations file for secret info
+const update = require('./commands/update');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -113,6 +114,10 @@ function msgidentify(msg){ //c = different incoming msg
             return "error with statement";
         }
         return " ";
+    }
+    if (msg.startsWith("update")){
+        console.log("update");
+        return "update"
     }
     else{
         console.log("custom");
