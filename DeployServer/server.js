@@ -2,10 +2,8 @@ const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
 const os = require('os');
 const pm2 = require('pm2');
-const { Buffer } = require('node:buffer');
 
 const config = require('./config.json'); //custom configurations file for secret info
-const update = require('./commands/update');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -180,7 +178,9 @@ const requestListener = function(request, response){
     message = request.url;
     let msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
+    exports.msg = msg;
     needcommand = msgidentify(msg)
+
 
     console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');

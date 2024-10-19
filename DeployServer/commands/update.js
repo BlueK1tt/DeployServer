@@ -1,11 +1,14 @@
-const fs = require('fs'); //filesystem
-const msg = require('../server')
+const fs = require('fs'); //filesystem;
+const server = require("../server");
+let msg = server.msg;
+
 module.exports = {
     data: update()
 };
 
-function update(msg) {
-    console.log("update:" + msg)
+function update() {
+    command = JSON.stringify(msg);
+    console.log("update:" + command)
     var files = fs.readdirSync('./Depositories/');
     let original = files
     result = original.map(function(d) {
@@ -15,8 +18,8 @@ function update(msg) {
     if (result == '') {
         data = "You haven't added any programs"
     } else { 
-        console.log("result:" + result);
-        data = result.toString();
+        send = result.toString();
+        data = "Repositories:"+ send + command; 
     } 
     fs.close;
     return data;
