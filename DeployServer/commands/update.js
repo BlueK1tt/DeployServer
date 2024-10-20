@@ -1,5 +1,7 @@
 const fs = require('fs'); //filesystem;
 const server = require("../server");
+const config = require("../config.json");
+const { type } = require('os');
 let msg = server.msg;
 
 module.exports = {
@@ -8,7 +10,7 @@ module.exports = {
 
 function update() {
     command = JSON.stringify(msg);
-    var files = fs.readdirSync('./Depositories/');
+    const files = fs.readdirSync('./Depositories/');
     let original = files
     result = original.map(function(d) {
         return d.replace('DepositoriesList.json', '');
@@ -18,7 +20,9 @@ function update() {
         data = "You haven't added any programs"
     }
     if(command.includes("update=")){
-        filter = command.slice(8)
+        fix = command.slice(8)
+        filter = fix.replace('"','');
+        verifyfile(filter);
         return filter
     
     } else { 
@@ -30,5 +34,25 @@ function update() {
 }
 
 function verifyfile(filter){
+    files = fs.readdirSync('./Depositories/');
+    //console.log(files)
+    //console.log(filter);
+    match = files.indexOf(filter)
+    fs.close;
+    const position = Number(match)
+    folder = files[position];
+
+    //need to open the found folder and check for list of files like server.js, if exists, return true
+    let directory = fs.readdirSync('./Depositories/'+`${folder}`)
+    var filearray = Object.entries(directory);
+    fs.close
+
+    mainfiles = config.mainfiles;
+    var examplefiles = mainfiles.split(",");
     
+    console.log(typeof(filearray))
+    console.log(filearray)
+    console.log(typeof(mainfiles))
+    console.log(examplefiles)
+
 }
