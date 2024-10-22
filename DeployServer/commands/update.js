@@ -2,24 +2,25 @@ const fs = require('fs'); //filesystem;
 const server = require("../server");
 const config = require("../config.json");
 const { type } = require('os');
-let msg = server.msg;
+var msg = server.msg;
 
 module.exports = {
     data: update()
 };
 
-function update() {
+async function update() {
     command = JSON.stringify(msg);
-    const files = fs.readdirSync('./Depositories/');
-    let original = files
+    var files = fs.readdirSync('./Depositories/');
+    var original = files
     result = original.map(function(d) {
         return d.replace('DepositoriesList.json', '');
     });
     result.pop(); //removes last object
+    console.log("result"+result);
     if (result == '') {
         data = "You haven't added any programs"
     }
-    if(command.includes("update=")){
+    else if (command.includes("update=")){
         fix = command.slice(8)
         filter = fix.replace('"','');
         verifyfile(filter);
