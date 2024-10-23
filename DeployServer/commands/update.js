@@ -4,9 +4,9 @@ const config = require("../config.json");
 let msg = message
 
 module.exports = {
-    data: update()
+    data: update(msg)
 };
-function update() {
+function update(msg) {
     console.log("update " + msg)
     if (msg == null){
         return "error"
@@ -31,7 +31,7 @@ function update() {
             data = "You haven't added any programs"
             return data
         }
-        else if (msg.includes('=')){
+        if (typeof value == "string" && value.includes("=")){
             console.log("second");
             returning = needupdate(command);
             return returning;

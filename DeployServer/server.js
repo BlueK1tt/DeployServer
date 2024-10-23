@@ -4,7 +4,6 @@ const os = require('os');
 const pm2 = require('pm2');
 
 const config = require('./config.json'); //custom configurations file for secret info
-const update = require('./commands/update');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -66,20 +65,21 @@ function getfile(msg) {
     if(msg == ""){
         return "no specified command";
     }
-    else if(msg.includes('=')){
+    if(msg.includes('=')){
         shortened = msg.split('=')[0];
+        console.log("shortened" + shortened);
 
-        let files = fs.readdirSync('./commands/');
-        let original = files
-        strip = original.map(function(d){
-            return d.replace('.js', "");
+        let onfiles = fs.readdirSync('./commands/');
+        let onoriginal = onfiles
+        onstrip = onoriginal.map(function(c){
+            return c.replace('.js', "");
         });
-        match = strip.indexOf(shortened)
-        const position = Number(match)
-        result = files[position];
-        console.log("getfilebetter" + result);
+        onmatch = onstrip.indexOf(shortened)
+        const onposition = Number(onmatch)
+        onresult = onfiles[onposition];
+        console.log("getfilebetter" + onresult);
         fs.close;
-        return result
+        return onresult
     }
     else {
         console.log("msg " + msg)
@@ -130,7 +130,7 @@ function msgidentify(msg){ //c = different incoming msg
         }
         return " ";
     }
-    if (msg.startsWith("update")){
+    if (msg == "update"){
         console.log("update");
         basemessage = "update";
 
