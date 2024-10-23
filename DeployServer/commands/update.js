@@ -31,7 +31,7 @@ function update(msg) {
             data = "You haven't added any programs"
             return data
         }
-        if (typeof value == "string" && value.includes("=")){
+        else if (command.includes('update=')){
             console.log("second");
             returning = needupdate(command);
             return returning;
@@ -47,22 +47,25 @@ function needupdate(command){
     console.log("needupdate");
     need = command;
     fix = need.slice(8);
-    ilter = fix.replace('"','');
+    filter = fix.replace('"','');
+    console.log(filter)
     verifyfile(filter);
     return filter
 }
 
-function verifyfile(filter){
-    files = fs.readdirSync('./Depositories/');
-    //console.log(files)
-    //console.log(filter);
-    match = files.indexOf(filter)
+function verifyfile(vfilter){
+    let vfiles = fs.readdirSync('./Depositories/');
+    console.log(vfiles)
     fs.close;
-    const position = Number(match)
-    folder = files[position];
+    //console.log(filter);
+    vmatch = vfiles.indexOf(vfilter)
+    console.log("filter "+ vfilter)
+    const vposition = Number(vmatch)
+    vfolder = vfiles[vposition];
+    console.log("folder" + typeof(vfolder))
 
     //need to open the found folder and check for list of files like server.js, if exists, return true
-    let directory = fs.readdirSync('./Depositories/'+`${folder}`)
+    let directory = fs.readdirSync('./Depositories/'+`${vfolder}`)
     var filearray = Object.entries(directory);
     fs.close
 
