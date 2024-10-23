@@ -4,6 +4,7 @@ const os = require('os');
 const pm2 = require('pm2');
 
 const config = require('./config.json'); //custom configurations file for secret info
+const update = require('./commands/update');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -65,7 +66,23 @@ function getfile(msg) {
     if(msg == ""){
         return "no specified command";
     }
+    else if(msg.includes('=')){
+        shortened = msg.split('=')[0];
+
+        let files = fs.readdirSync('./commands/');
+        let original = files
+        strip = original.map(function(d){
+            return d.replace('.js', "");
+        });
+        match = strip.indexOf(shortened)
+        const position = Number(match)
+        result = files[position];
+        console.log("getfilebetter" + result);
+        fs.close;
+        return result
+    }
     else {
+        console.log("msg " + msg)
         //console.log("getfile")
         let files = fs.readdirSync('./commands/');
         let original = files
@@ -115,23 +132,10 @@ function msgidentify(msg){ //c = different incoming msg
     }
     if (msg.startsWith("update")){
         console.log("update");
-        if(msg.includes("=")){
-            console.log("filter");
-            filter = msg.slice(7);
+        basemessage = "update";
 
-            const data = require(`./commands/update`);
-            module.exports = msg
-            var sentData = valuesToArray(data); 
-            asmessage = sentData[0];
-            try {
-                return asmessage;
-            } catch (error) {
-                return error;
-            }
-            return "filter"
-        } else{
             command = getfile(msg)
-            const data = require(`./commands/`+ `${command}`);
+            const data = require(`./commands/update`);
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
                 try {
@@ -139,7 +143,7 @@ function msgidentify(msg){ //c = different incoming msg
                 } catch (error) {
                     return error;
                 }
-            }
+            
     }
     else{
         console.log("custom");
@@ -174,11 +178,10 @@ const requestListener = function(request, response){
 
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
-
     message = request.url;
-    let msg = message.slice(1); //cutting the first / out of message
+    msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
-    exports.msg = msg;
+    exports.message = { msg };
     needcommand = msgidentify(msg)
 
 

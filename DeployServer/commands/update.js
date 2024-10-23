@@ -1,37 +1,55 @@
 const fs = require('fs'); //filesystem;
-const server = require("../server");
+const { message } = require("../server");
 const config = require("../config.json");
-const { type } = require('os');
-var msg = server.msg;
+let msg = message
 
 module.exports = {
     data: update()
 };
-
-async function update() {
-    command = JSON.stringify(msg);
-    var files = fs.readdirSync('./Depositories/');
-    var original = files
-    result = original.map(function(d) {
-        return d.replace('DepositoriesList.json', '');
-    });
-    result.pop(); //removes last object
-    console.log("result"+result);
-    if (result == '') {
-        data = "You haven't added any programs"
+function update() {
+    console.log("update " + msg)
+    if (msg == null){
+        return "error"
     }
-    else if (command.includes("update=")){
-        fix = command.slice(8)
-        filter = fix.replace('"','');
-        verifyfile(filter);
-        return filter
-    
-    } else { 
-        send = result.toString();
-        data = "Repositories:"+ send; 
-    } 
-    fs.close;
-    return data;
+    else {
+
+        console.log("upadte" + msg);
+        command = JSON.stringify(msg);
+        console.log(command)
+
+
+        var files = fs.readdirSync('./Depositories/');
+        var original = files
+        fs.close;
+        result = original.map(function(d) {
+            return d.replace('DepositoriesList.json', '');
+        });
+        result.pop(); //removes last object
+        console.log("result "+result);
+
+        if (result == '') {
+            data = "You haven't added any programs"
+            return data
+        }
+        else if (msg.includes('=')){
+            console.log("second");
+            returning = needupdate(command);
+            return returning;
+        } else { 
+            console.log("else")
+            send = result.toString();
+            data = "Repositories:"+ send; 
+            return data;
+        } 
+    }
+}
+function needupdate(command){
+    console.log("needupdate");
+    need = command;
+    fix = need.slice(8);
+    ilter = fix.replace('"','');
+    verifyfile(filter);
+    return filter
 }
 
 function verifyfile(filter){
