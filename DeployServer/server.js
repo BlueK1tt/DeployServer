@@ -90,11 +90,15 @@ function getfile(msg) {
             return d.replace('.js', "");
         });
         match = strip.indexOf(msg)
-        const position = Number(match)
-        result = files[position];
-        console.log("getfile" + result);
-        fs.close;
-        return result
+        if (match == -1){
+            return " ";
+        }else{
+            const position = Number(match)
+            result = files[position];
+            console.log("getfile" + result);
+            fs.close;
+            return result
+        };
     };
 };
 
@@ -148,7 +152,10 @@ function msgidentify(msg){ //c = different incoming msg
     else{
         console.log("custom");
         //need to slice message
-        command = getfile(msg); 
+        command = getfile(msg);
+        if(command == " "){
+            return "command error"
+        } else {
         const data = require(`./commands/`+ `${command}`);
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
@@ -157,6 +164,7 @@ function msgidentify(msg){ //c = different incoming msg
         } catch (error) {
             return error;
         }
+    }
     }
 };
 
