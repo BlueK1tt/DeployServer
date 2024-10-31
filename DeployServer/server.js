@@ -132,7 +132,7 @@ function msgidentify(msg){ //c = different incoming msg
         else{
             return "error with statement";
         }
-        return " ";
+        return " "; // this is here just in case if forget
     }
     if (msg == "update"){
         console.log("update");
