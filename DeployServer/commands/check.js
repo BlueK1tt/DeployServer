@@ -13,5 +13,9 @@ module.exports = {
 
 
 function check(){
-
+    if(navigator.onLine){ //need navigator packet
+        return "online";
+    } else {
+        return "offline";
+    }
 }
