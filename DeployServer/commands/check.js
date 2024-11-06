@@ -1,4 +1,5 @@
 const fs = require('fs'); //filesystem
+
 // use double . to go back folder
 
 //check function to see if connected to internet
@@ -13,9 +14,11 @@ module.exports = {
 
 
 function check(){
-    if(navigator.onLine){ //need navigator packet
-        return "online";
-    } else {
-        return "offline";
-    }
+    var exec = require('child_process').exec, child;
+    child = exec('ping -c 1 google.com', function(error, stdout, stderr){
+     if(error !== null)
+          console.log("Not available")
+      else
+          console.log("Available")
+    });
 }
