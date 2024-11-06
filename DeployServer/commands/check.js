@@ -13,12 +13,38 @@ module.exports = {
 };
 
 
-function check(){
+async function check(){
+    console.log("check")
+    let result = await waitresponse();
+    console.log("result" + result);
+    if(result == "undefined"){
+        checkresult();
+        let val = await Promise;
+        return val
+    }
+    else{
+        return result
+    }
+}
+
+function waitresponse(){
     var exec = require('child_process').exec, child;
     child = exec('ping -c 1 google.com', function(error, stdout, stderr){
-     if(error !== null)
-          console.log("Not available")
-      else
-          console.log("Available")
+        if(error !== null){
+            console.log("Not available")
+            return Promise.resolve("Not connected")
+        }
+        else{
+            console.log("Available")
+            return Promise.resolve("Available")
+        }
     });
 }
+
+function checkresult(){
+    Promise.all(Promise).then((values)=> {
+        console.log(values);
+        return values;
+    })
+}
+//if undefined return undefined and redo function
