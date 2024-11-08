@@ -16,15 +16,20 @@ module.exports = {
 async function check(){
     console.log("check")
     let result = await waitresponse();
-    console.log("result" + result);
-    if(result == "undefined"){
-        checkresult();
-        let val = await Promise;
-        return val
-    }
-    else{
-        return result
-    }
+    setTimeout(function (){
+        console.log("result" + result);
+        if(result == "undefined"){
+            checkresult();
+            let val = Promise;
+            setTimeout(function() {
+                console.log("timeout");
+                return val
+            }, 2000);
+        }
+        else{
+            return result
+        }
+    }, 2000);
 }
 
 function waitresponse(){
