@@ -13,43 +13,33 @@ module.exports = {
 };
 
 
-async function check(){
-    console.log("check")
-    let result = await waitresponse();
-    setTimeout(function (){
-        console.log("result" + result);
-        if(result == "undefined"){
-            checkresult();
-            let val = Promise;
-            setTimeout(function() {
-                console.log("timeout");
-                return val
-            }, 2000);
-        }
-        else{
-            return result
-        }
-    }, 2000);
-}
-
-function waitresponse(){
-    var exec = require('child_process').exec, child;
-    child = exec('ping -c 1 google.com', function(error, stdout, stderr){
-        if(error !== null){
-            console.log("Not available")
-            return Promise.resolve("Not connected")
-        }
-        else{
-            console.log("Available")
-            return Promise.resolve("Available")
+function check(){
+    checkInternet(function(isConnected) {
+        if (isConnected) {
+            // connected to the internet
+            let connected = "connected"
+        } else {
+            // not connected to the internet
+            let connected = "not connected"
+            return "not connected"
         }
     });
+
+    if(connected == "not connected"){
+        return "not connected"
+    }
+    else {
+        return "connected"
+    }
 }
 
-function checkresult(){
-    Promise.all(Promise).then((values)=> {
-        console.log(values);
-        return values;
+function checkInternet(cb) {
+    require('dns').lookup('google.com',function(err) {
+        if (err && err.code == "ENOTFOUND") {
+            cb(false);
+        } else {
+            cb(true);
+        }
     })
 }
 //if undefined return undefined and redo function

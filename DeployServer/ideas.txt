@@ -69,3 +69,11 @@ if not connected to internet, hold every command sent and execute them once conn
 
 Need to create more error checks and general cheks within code, so if code doesnt work, it gives error code but the server doesnt stop
 Will be so perfect in the future when dealing with more that one service and outside devices
+
+que system for requests
+incoming and outgoing
+server needs to check que every 10 seconds
+every request has start and stop, server has seperate process for processing
+and has start and return codes for triggering things
+Every request will trigger the next one if was in que
+Will check que every 10 seconds so 
