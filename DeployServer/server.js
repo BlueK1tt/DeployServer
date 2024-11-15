@@ -147,7 +147,6 @@ function msgidentify(msg){ //c = different incoming msg
                 } catch (error) {
                     return error;
                 }
-            
     }
     else{
         console.log("custom");
@@ -187,12 +186,12 @@ const requestListener = function(request, response){
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     message = request.url;
+
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
-    exports.message = { msg };
-    needcommand = msgidentify(msg)
+    exports.message = { msg }; //export msg as variable to use in modules
 
-
+    needcommand = msgidentify(msg) //command type
     console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
     
