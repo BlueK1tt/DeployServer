@@ -1,4 +1,5 @@
 const fs = require('fs'); //filesystem
+const { connected } = require('process');
 
 // use double . to go back folder
 
@@ -12,9 +13,10 @@ module.exports = {
     data: check()
 };
 
-
 function check(){
     checkInternet(function(isConnected) {
+        isConnected = connected
+        console.log("isconnected" + isConnected)
         if (isConnected) {
             // connected to the internet
             let connected = "connected"
