@@ -152,6 +152,24 @@ function msgidentify(msg){ //c = different incoming msg
         }
         return " "; // this is here just in case if forget
     }
+    if(msg.startsWith("install") || msg.startsWith("uninstall")){
+        if(msg.startsWith("install")){
+            const install = require('./functions/install')
+            console.log(install);
+            return install;
+        }
+
+        if(msg.startsWith("uninstall")){
+            const uninstall = require('./functions/uninstall')
+            console.log(uninstall)
+            return uninstall;
+        }
+
+        else {
+            console.log("error");
+            return "install error"
+        }
+    }
 
     if (msg == "update"){
         console.log("update");
