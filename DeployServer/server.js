@@ -153,16 +153,23 @@ function msgidentify(msg){ //c = different incoming msg
         return " "; // this is here just in case if forget
     }
     if(msg.startsWith("install") || msg.startsWith("uninstall")){
+
         if(msg.startsWith("install")){
-            const install = require('./functions/install')
-            console.log(install);
-            return install;
+            const data = require('./functions/install')
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+            delete require.cache[require.resolve(`./functions/install`)] //clears the cache allowing for new data to be read
+
+            return asmessage;
         }
 
         if(msg.startsWith("uninstall")){
-            const uninstall = require('./functions/uninstall')
-            console.log(uninstall)
-            return uninstall;
+            const data = require('./functions/uninstall')
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+            delete require.cache[require.resolve(`./functions/uninstall`)] //clears the cache allowing for new data to be read
+
+            return asmessage;
         }
 
         else {

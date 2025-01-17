@@ -1,6 +1,6 @@
 const fs = require('fs'); //filesystem;
 const { message } = require("../server");
-const config = require("../rresources");
+const config = require("../resources");
 let msg = message
 
 module.exports = {
