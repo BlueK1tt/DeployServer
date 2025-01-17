@@ -10,6 +10,7 @@ function depots(msg){ //function to get current depositories and create array ou
 
     const files = json.depositories;    
 
+    
     console.log("msg: " + msg);
         if (json == " "){
             console.log("no current depositories")
@@ -23,21 +24,17 @@ function depots(msg){ //function to get current depositories and create array ou
             if(msg = "depots"){
                 console.log("depots")
 
-              /*  function cutName(a){
-                    var newArray = [];
-                    a.forEach(function(entry){
-                        newArray.push.apply(newArray, entry,split(" "));
-                    });
-                    return newArray
-                } */
-                //console.log(JSON.stringify(cutName(json)));
+                var array = [];
+                for (var value in files) {
+                    if(files.hasOwnProperty(value)){
+                        //console.log(value)
+                        array.push(value)
+                    }
+                }
+                var arrys = array.toString();
 
-                console.log(typeof(files));
-                const depots = JSON.stringify(files);
-                
-                console.log(typeof(depots) + depots);
-                //need it to paste, filename, files, then in next tow same thing
-                return depots;
+
+                return arrys
             }
             else{
                 console.log("something else")
