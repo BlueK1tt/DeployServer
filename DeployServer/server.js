@@ -142,6 +142,8 @@ function msgidentify(msg){ //c = different incoming msg
             const data = require(`./commands/update`);
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
+            delete require.cache[require.resolve(`./commands/update/`)] //clears the cache allowing for new data to be read
+
                 try {
                     return asmessage;
                 } catch (error) {
@@ -158,6 +160,10 @@ function msgidentify(msg){ //c = different incoming msg
         const data = require(`./commands/`+ `${command}`);
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
+
+        delete require.cache[require.resolve(`./commands/` + `${command}`)] //clears the cache allowing for new data to be read
+        //console.log("cache cleared");
+
         try {
             return asmessage;
         } catch (error) {

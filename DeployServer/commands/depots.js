@@ -23,14 +23,14 @@ function depots(msg){ //function to get current depositories and create array ou
             if(msg = "depots"){
                 console.log("depots")
 
-                function cutName(a){
+              /*  function cutName(a){
                     var newArray = [];
                     a.forEach(function(entry){
                         newArray.push.apply(newArray, entry,split(" "));
                     });
                     return newArray
-                }
-                console.log(JSON.stringify(cutName(json)));
+                } */
+                //console.log(JSON.stringify(cutName(json)));
 
                 console.log(typeof(files));
                 const depots = JSON.stringify(files);
