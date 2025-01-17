@@ -8,9 +8,6 @@ function depots(msg){ //function to get current depositories and create array ou
     //const data = fs.readFile("./Depositories/DepositoriesList.json");
     let rawdata = fs.readFileSync('./Depositories/DepositoriesList.json')
     let json = JSON.parse(rawdata);
-
-    const files = json.depositories;    
-
     
     console.log("msg: " + msg);
         if (json == " "){
@@ -24,10 +21,11 @@ function depots(msg){ //function to get current depositories and create array ou
             }
             if(msg = "depots"){
                 console.log("depots")
+                console.log(json);
 
                 var array = [];
-                for (var value in files) {
-                    if(files.hasOwnProperty(value)){
+                for (var value in json) {
+                    if(json.hasOwnProperty(value)){
                         //console.log(value)
                         array.push(value)
                     }
@@ -35,7 +33,7 @@ function depots(msg){ //function to get current depositories and create array ou
                 var arrys = array.toString();
                 //console.log("1: " + array[0]);
                 //console.log("2: " + array[1]);
-                console.log(typeof(arrys))
+                //console.log(typeof(arrys))
                 return arrys
             }
             else{

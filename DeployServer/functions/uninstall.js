@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { json } = require('stream/consumers');
 
 //uninstall "program" from depositories folder
 //just need to remove the whole name floder, check it after done, and return true when done
@@ -18,11 +19,16 @@ function uninstall(){
 
     if(files.includes(filename)){
         console.log(files)
+
+        //actually deletes the whole specified folder
         fs.rmdir(`../DeployServer/Depositories/` + `${filename}`,() => {
             console.log("Folder Deleted!");
         });
+        //need to remove the json entry
+        let rawdata = fs.readFileSync('./depositories/DepositoriesList.JSON');
         
-        return "uninstalling..."
+
+        return "uninstalling" + filename + "..."
     } else {
         return "error;"
     }
