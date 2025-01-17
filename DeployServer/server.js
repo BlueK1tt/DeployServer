@@ -15,6 +15,7 @@ const isFile = fileName => { //function to test if file exists
 
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
+var msgid = 0;
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     var logpromise = isFile("log.JSON");
@@ -107,6 +108,9 @@ function valuesToArray(obj) {
 };
 
 function msgidentify(msg){ //c = different incoming msg
+    msgid ++;
+    console.log("id:" + msgid);
+
     if(msg == ""){
         return "no specified command";
     }
