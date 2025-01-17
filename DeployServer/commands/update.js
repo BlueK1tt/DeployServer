@@ -1,6 +1,6 @@
 const fs = require('fs'); //filesystem;
 const { message } = require("../server");
-const config = require("../config.json");
+const config = require("../rresources");
 let msg = message
 
 module.exports = {
@@ -22,7 +22,7 @@ function update(msg) {
         var original = files
         fs.close;
         result = original.map(function(d) {
-            return d.replace('DepositoriesList.json', '');
+            return d.replace('./resources/DepositoriesList.json', '');
         });
         result.pop(); //removes last object
         console.log("result "+result);

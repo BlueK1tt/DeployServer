@@ -1,6 +1,6 @@
 const fs = require('fs'); //filesystem
 const request = require('request');
-const config = require('../config.json'); //custom configurations file for secret info
+const config = require('../resources'); //custom configurations file for secret info
 // use double . to go back folder
 
 module.exports = {
