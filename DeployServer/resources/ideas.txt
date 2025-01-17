@@ -1,0 +1,74 @@
+p2m cluster mode should work same as "basic" node clustering code
+just execute code in pm2 cluster mode.
+
+test out if can generate and read in the same code pm2 logs
+so, pm2 start server, -> pm2 generates log file for the session -> after while in code, read the log file generated
+(could be something like, code reads all files in designated folder).
+
+Need to make websockets for servers, servers send out data and comannds to eachother
+For example have "main" server and discord bot server running on same pm2, -> if discord bot gets some command, 
+process the command and send needed information through websocket to "main" server.
+
+https://github.com/rowanmanning/learning-express-cluster/blob/master/app.js
+
+"Main" server could have running frontend website, with command input "form" available
+Need to create seperate api that "main" server uses, and use React with ajax framework to inject and update the html page with new data
+
+Need to  convert Node to Express -> more functions and modules for use
+Also need to make "Main" server into router server
+Router server listens and routes request to correct handlers. 
+
+Need to use NGINX with router server to be able to route request to different servers, use with webhooks.
+Different servers are on seperate ports, thus clustering works, can get and send data on own ports, and have NGINX as "main" server.
+
+Need to add error/crash limit to servers,
+3 Crashes or same errors in short spand of time and need to shutdown the server
+Also automatically log the crashes or errors in json or txt file.
+If bot is working, need to alert if needed to shutdown server
+By this method, helps with same error occuring and helps finding out errors and make solutions to problems yet arrive.
+
+DownWithGit
+Server to handle updating, downloading and deleting files from github.
+Allows to basically "work from anywhere", make changes to servers, have server itself donwload them and deploy with updates
+Maybe use in "main" server or have seperate server that is booted on only when needed/requested.
+Request includes -> Action(Download, Update, Delete), Name of the github repository, Path which to download
+Response include -> Result(Completed, Failed(err), canceled), Path of file, duration(time it took to make action)
+
+Jorma (Discord bot)
+Acts as "default" bot in discord servers. Has basic bot functions.
+When interracting in DM´s, have interface panel created to make it easier to control everything.
+
+cluster master = http server
+inside running http.server.on call command for forking new clsuters
+no cluster slaves are deployed until required. 
+When request comes, server waits continuing until free cluster/slave is available
+When free cluster/slave, pass the request to to cluster/slave.
+Max cpu's = maxcpu(10), if currentcluster (0-10) < maxcpu (10), create and fork new cluster
+
+it needs to be 
+
+packages 
+variables
+functions
+cluster master
+    server on/start
+        declaring functions and their needs
+        waitlist for forks
+            cluster fork
+            fork return
+        function return
+        cluster worker shutdown
+
+need function out of loop to check internet connectivity every 30 secs
+if not connected to internet, hold every command sent and execute them once connected, unless server restarted in which the buffer is emptied
+
+Need to create more error checks and general cheks within code, so if code doesnt work, it gives error code but the server doesnt stop
+Will be so perfect in the future when dealing with more that one service and outside devices
+
+que system for requests
+incoming and outgoing
+server needs to check que every 10 seconds
+every request has start and stop, server has seperate process for processing
+and has start and return codes for triggering things
+Every request will trigger the next one if was in que
+Will check que every 10 seconds so 

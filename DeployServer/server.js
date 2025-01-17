@@ -3,7 +3,7 @@ const fs = require('fs'); //filesystem
 const os = require('os');
 const pm2 = require('pm2');
 
-const config = require('./config.json'); //custom configurations file for secret info
+const config = require('./resources/config.json'); //custom configurations file for secret info
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -18,7 +18,7 @@ var direction = ['start', 'stop'];
 var msgid = 0;
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
-    var logpromise = isFile("log.JSON");
+    var logpromise = isFile("./resources/log.JSON");
     var depromise = isFile("./depositories/DepositoriesList.JSON");
     if(depromise && logpromise == true){ //for secutiy reasons check if both filese exist
         console.log("files exists")
@@ -31,7 +31,7 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
 };
 
 function compareLog(){ //function to happen right after start to compare if anything has changed
-    let oldlog = fs.readFileSync('log.json');
+    let oldlog = fs.readFileSync('./resources/log.json');
     let oldstring = JSON.stringify(oldlog)
     fs.close;
 
