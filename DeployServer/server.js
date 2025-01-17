@@ -120,24 +120,39 @@ function msgidentify(msg){ //c = different incoming msg
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
         console.log("start or stop");
+
+        const data = require('./commands/depots')
+        var sentData = valuesToArray(data); 
+        depotlist = sentData[0];
+
         //need to take msg and slice it before =
         if(msg.startsWith("start")){
             filename = msg.slice(6);
-            startfile = filename + ".js";
-            pm2start(startfile);
-            return "start " + startfile;
+            if (!depotlist.includes(filename)){
+                return "error"
+            } else {
+                const depotdata = require('./functions/depotdata')
+                startfile = filename + ".js";
+                pm2start(filename);
+                return "start " + startfile;
+            }
         };
-        if(c.startsWith("stop")){
+        if(msg.startsWith("stop")){
             filename = msg.slice(5);
-            stopfile = filename + ".js";
-            pm2stop(stopfile);
-            return "stop " + stopfile;
+            if (!depotlist.includes(filename)){
+                return "error"
+            } else {
+                stopfile = filename + ".js";
+                pm2stop(filename);
+                return "stop " + stopfile;
+            }
         }
         else{
             return "error with statement";
         }
         return " "; // this is here just in case if forget
     }
+
     if (msg == "update"){
         console.log("update");
         basemessage = "update";
@@ -187,8 +202,10 @@ function pm2start(startfile){ //start specific server on command, need to check 
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
-    console.log("pm2"  + stopfilefile);
+    console.log("pm2"  + stopfile);
 };
+
+
 
 
 const requestListener = function(request, response){

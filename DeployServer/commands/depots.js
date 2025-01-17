@@ -1,4 +1,5 @@
 const fs = require('fs'); //filesystem
+const { type } = require('os');
 
 module.exports = {
     data: depots()
@@ -32,8 +33,9 @@ function depots(msg){ //function to get current depositories and create array ou
                     }
                 }
                 var arrys = array.toString();
-
-
+                //console.log("1: " + array[0]);
+                //console.log("2: " + array[1]);
+                console.log(typeof(arrys))
                 return arrys
             }
             else{
