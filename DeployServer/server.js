@@ -133,7 +133,7 @@ function msgidentify(msg){ //c = different incoming msg
         return msg;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
-        console.log("start or stop");
+        //console.log("start or stop");
 
         const data = require('./commands/depots')
         var sentData = valuesToArray(data); 
@@ -146,7 +146,10 @@ function msgidentify(msg){ //c = different incoming msg
                 return "error"
             } else {
                 const depotdata = require('./functions/depotdata')
-                console.log(depotdata)
+                var sentData = valuesToArray(depotdata); 
+                asmessage = sentData[0];
+
+                console.log(asmessage)
                 delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
                 startfile = filename + ".js";
                 pm2start(filename);
