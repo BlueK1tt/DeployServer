@@ -28,20 +28,15 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
 
     if(depromise && logpromise == true){ //for secutiy reasons check if both filese exist
         console.log("files exists")
-        
-        newjsonobj = Object.assign({}, json1, {})
-        console.log(newjsonobj);
-
-        var json2 = JSON.stringify(newjsonobj, null, 2);
+        newjsonobj = Object.assign({}, json1, {}) //copies depositories json file to variable
+        //console.log(newjsonobj);
+        var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
         fs.writeFile('./resources/log.JSON', json2, 'utf-8', function(error){
             if(error){
                 console.lof(error)
             }
         });
-
-        console.log("Log save done.")
-        
-
+        //console.log("Log save done.")
     }
     else{
         console.log("Error | One or more files do not exist");
@@ -220,19 +215,19 @@ function msgidentify(msg){ //c = different incoming msg
         if(command == " "){
             return "command error"
         } else {
-        const data = require(`./commands/`+ `${command}`);
-        var sentData = valuesToArray(data); 
-        asmessage = sentData[0];
+            const data = require(`./commands/`+ `${command}`);
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
 
-        delete require.cache[require.resolve(`./commands/` + `${command}`)] //clears the cache allowing for new data to be read
-        //console.log("cache cleared");
+            delete require.cache[require.resolve(`./commands/` + `${command}`)] //clears the cache allowing for new data to be read
+            //console.log("cache cleared");
 
-        try {
-            return asmessage;
-        } catch (error) {
-            return error;
+            try {
+                return asmessage;
+            } catch (error) {
+                return error;
+            }
         }
-    }
     }
 };
 
@@ -248,9 +243,6 @@ function pm2start(startfile){ //start specific server on command, need to check 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     console.log("pm2"  + stopfile);
 };
-
-
-
 
 const requestListener = function(request, response){
 
@@ -273,7 +265,6 @@ const requestListener = function(request, response){
     //read and write gotgits json file
     //its required to keep track of versions and updates
     
-
     //include things to send as variables to file as part of command
 
     if (msg == "refresh") {
