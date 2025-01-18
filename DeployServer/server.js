@@ -185,7 +185,6 @@ function msgidentify(msg){ //c = different incoming msg
 
             return asmessage;
         }
-
         else {
             console.log("error");
             return "install error"

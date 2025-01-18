@@ -72,3 +72,11 @@ every request has start and stop, server has seperate process for processing
 and has start and return codes for triggering things
 Every request will trigger the next one if was in que
 Will check que every 10 seconds so 
+
+When downloading github repo, arguments need to include the name of main file
+it will be added to the repo json
+/download=Jorma,index.js
+
+Need to create function to find the file in correct repositories folder
+/depots=Jorma, get main file name from depots json, go search for the file in Jorma depot folder
+return path to it
