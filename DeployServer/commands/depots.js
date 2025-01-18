@@ -20,8 +20,8 @@ function depots(msg){ //function to get current depositories and create array ou
                 return "error";
             }
             if(msg = "depots"){
-                console.log("depots")
-                console.log(json);
+                //console.log("depots")
+                //console.log(json);
 
                 var array = [];
                 for (var value in json) {

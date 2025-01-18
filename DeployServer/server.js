@@ -146,6 +146,8 @@ function msgidentify(msg){ //c = different incoming msg
                 return "error"
             } else {
                 const depotdata = require('./functions/depotdata')
+                console.log(depotdata)
+                delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
                 startfile = filename + ".js";
                 pm2start(filename);
                 return "start " + startfile;
