@@ -4,6 +4,7 @@ const os = require('os');
 const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
+const { json } = require('node:stream/consumers');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -20,14 +21,32 @@ var msgid = 0;
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     var logpromise = isFile("./resources/log.JSON");
     var depromise = isFile("./depositories/DepositoriesList.JSON");
+
+    let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
+    let json1 = JSON.parse(rawdata1);
+    fs.close;
+
     if(depromise && logpromise == true){ //for secutiy reasons check if both filese exist
         console.log("files exists")
+        
+        newjsonobj = Object.assign({}, json1, {})
+        console.log(newjsonobj);
+
+        var json2 = JSON.stringify(newjsonobj, null, 2);
+        fs.writeFile('./resources/log.JSON', json2, 'utf-8', function(error){
+            if(error){
+                console.lof(error)
+            }
+        });
+
+        console.log("Log save done.")
         
 
     }
     else{
         console.log("Error | One or more files do not exist");
     }
+
 };
 
 function compareLog(){ //function to happen right after start to compare if anything has changed
@@ -270,7 +289,6 @@ const requestListener = function(request, response){
     if (msg == 'restart') {
         console.log('Restarting the server...')
         response.end('Restarting...\n');
-        saveLog();
         setTimeout(function() {
             console.log('Restarting')
             process.exit(128)
@@ -280,8 +298,8 @@ const requestListener = function(request, response){
 
     //shutdown on command
     if (msg == 'shutdown') {
-        console.log('Shutting down the server...')
         saveLog();
+        console.log('Shutting down the server...')
         setTimeout(function() {
             response.end('Shutting down...\n');
             console.log('Shutting down.')

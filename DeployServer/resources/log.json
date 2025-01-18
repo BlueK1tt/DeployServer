@@ -1,0 +1,14 @@
+{
+  "BluBot": [
+    {
+      "name": "BluBot",
+      "startfile": "server.js"
+    }
+  ],
+  "Jorma": [
+    {
+      "name": "Jorma",
+      "startfile": "index.js"
+    }
+  ]
+}
