@@ -39,8 +39,8 @@ function update(msg) {
         } else { 
             console.log("else")
             send = result.toString();
-            data = "Repositories:"+ send; 
-            return data;
+            repos = "Repositories:"+ send; 
+            return repos;
         } 
     }
 }
@@ -79,4 +79,5 @@ function verifyfile(vfilter){
     console.log(typeof(mainfiles))
     console.log(examplefiles)
 
+    return filearray
 }

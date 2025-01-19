@@ -204,7 +204,7 @@ function msgidentify(msg){ //c = different incoming msg
             const data = require(`./commands/update`);
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
-            delete require.cache[require.resolve(`./commands/update/`)] //clears the cache allowing for new data to be read
+            delete require.cache[require.resolve(`./commands/update`)] //clears the cache allowing for new data to be read
 
                 try {
                     return asmessage;
@@ -226,6 +226,7 @@ function msgidentify(msg){ //c = different incoming msg
             asmessage = sentData[0];
 
             //need to flush the custom command
+            delete require.cache[require.resolve('./commands/update')] //clears the cache allowing for new data to be read
 
             //console.log("cache cleared");
 
