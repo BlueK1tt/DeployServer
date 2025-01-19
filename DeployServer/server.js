@@ -33,9 +33,10 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
         var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
         fs.writeFile('./resources/log.JSON', json2, 'utf-8', function(error){
             if(error){
-                console.lof(error)
+                console.log(error)
             }
         });
+        fs.close
         //console.log("Log save done.")
     }
     else{

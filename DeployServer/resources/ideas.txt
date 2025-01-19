@@ -80,3 +80,8 @@ it will be added to the repo json
 Need to create function to find the file in correct repositories folder
 /depots=Jorma, get main file name from depots json, go search for the file in Jorma depot folder
 return path to it
+
+for install function
+need to get array as return from verifyfile, including true/false and filename
+{false, ' '}, {true, 'index.js}
+then can use .includes in the parts needing either or, or just push not needed out

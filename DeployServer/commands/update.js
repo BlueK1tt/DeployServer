@@ -52,7 +52,10 @@ function needupdate(command){
     //console.log(vfilter)
     vreturn = verifyfile(vfilter);
     if (vreturn = true){
+
         //need to update the depositories json
+        let depotlist = fs.readFileSync('./Depositories/DepositoriesList.json')
+        
 
         //need to download new version of requested depository
         console.log("Repository updated.")

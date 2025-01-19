@@ -41,11 +41,32 @@ function install(){
             instaldone = verifyfiles(filename);
             if(instaldone == true){
                 console.log("instllation completed")
-                return "installing..."
             }
             else {
                 console.log("Uknown error")
             }
+
+            //need to add new files to the depositories.json file
+            let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
+            let json1 = JSON.parse(rawdata1);
+            fs.close;
+            strtfile = 
+
+            newjsonobj = {name:filename, startfile:strtfile }
+
+            newjsonobj = Object.assign({}, json1, {}) //copies depositories json file to variable
+            //console.log(newjsonobj);
+            var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
+            fs.writeFile('./resources/Depositories.JSON', json2, 'utf-8', function(error){
+                if(error){
+                    console.log(error)
+                }
+            });
+            fs.close
+
+
+
+            return "installing..."
         }
 
     } else {
