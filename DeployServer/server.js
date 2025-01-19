@@ -225,6 +225,8 @@ function msgidentify(msg){ //c = different incoming msg
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
 
+            //need to flush the custom command
+
             //console.log("cache cleared");
 
             try {
