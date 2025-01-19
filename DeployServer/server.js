@@ -82,7 +82,7 @@ function getfile(msg) {
     }
     if(msg.includes('=')){
         shortened = msg.split('=')[0];
-        console.log("shortened" + shortened);
+        //console.log("shortened" + shortened);
 
         let onfiles = fs.readdirSync('./commands/');
         let onoriginal = onfiles
@@ -92,7 +92,7 @@ function getfile(msg) {
         onmatch = onstrip.indexOf(shortened)
         const onposition = Number(onmatch)
         onresult = onfiles[onposition];
-        console.log("getfilebetter" + onresult);
+        //console.log("getfilebetter" + onresult);
         fs.close;
         return onresult
     }
@@ -110,7 +110,7 @@ function getfile(msg) {
         }else{
             const position = Number(match)
             result = files[position];
-            console.log("getfile" + result);
+            //console.log("getfile" + result);
             fs.close;
             return result
         };
@@ -220,7 +220,7 @@ function msgidentify(msg){ //c = different incoming msg
         if(command == " "){
             return "command error"
         } else {
-            console.log("custom cmd:" + command)
+            //console.log("custom cmd:" + command)
             const data = require(`./commands/`+ `${command}`);
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];

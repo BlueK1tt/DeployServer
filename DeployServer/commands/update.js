@@ -7,16 +7,16 @@ module.exports = {
     data: update(msg)
 };
 function update(msg) {
-    console.log("update " + msg)
+    //console.log("update " + msg)
     if (msg == null){
         return "error"
     }
     else {
 
-        console.log("upadte" + msg);
+        //console.log("upadte" + msg);
         //command = JSON.stringify(msg);
         command = msg;
-        console.log(command)
+        //console.log(command)
 
 
         var files = fs.readdirSync('./Depositories/');
@@ -26,18 +26,18 @@ function update(msg) {
             return d.replace('DepositoriesList.json', '');
         });
         //result.pop(); //removes last object
-        console.log("result "+result);
+        //console.log("result "+result);
 
         if (result == '') {
             data = "You haven't added any programs"
             return data
         }
         else if (command.includes('update=')){
-            console.log("second");
+            //console.log("second");
             returning = needupdate(command);
             return returning;
         } else { 
-            console.log("else")
+            //console.log("else")
             send = result.toString();
             repos = "Repositories:"+ send; 
             return repos;
@@ -45,11 +45,11 @@ function update(msg) {
     }
 }
 function needupdate(command){
-    console.log("needupdate");
+    //console.log("needupdate");
     need = command;
     fix = need.slice(8);
     vfilter = fix.replace('"','');
-    console.log(vfilter)
+    //console.log(vfilter)
     vreturn = verifyfile(vfilter);
     return vreturn
 }
@@ -63,11 +63,11 @@ function verifyfile(vfilter){
 
     const vposition = Number(filepos)
     vfolder = vfiles[vposition];
-    console.log("folder" + vfolder)
+    //console.log("folder" + vfolder)
 
     //need to open the found folder and check for list of files like server.js, if exists, return true
     let directory = fs.readdirSync(`./Depositories/`+`${vfolder}`)
-    console.log("directory:"+directory);
+    //console.log("directory:"+directory);
     var filearray = Object.entries(directory);
     fs.close
 
