@@ -211,6 +211,7 @@ function msgidentify(msg){ //c = different incoming msg
                 } catch (error) {
                     return error;
                 }
+            return;
     }
     else{
         console.log("custom");
@@ -223,7 +224,6 @@ function msgidentify(msg){ //c = different incoming msg
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
 
-            delete require.cache[require.resolve(`./commands/` + `${command}`)] //clears the cache allowing for new data to be read
             //console.log("cache cleared");
 
             try {
@@ -259,7 +259,7 @@ const requestListener = function(request, response){
     exports.message = { msg }; //export msg as variable to use in modules
 
     needcommand = msgidentify(msg) //command type
-    console.log(needcommand);
+    //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
     
     

@@ -1,6 +1,6 @@
 const fs = require('fs'); //filesystem;
-const { message } = require("../server");
-const config = require("../resources");
+const config = require("../resources/config.json");
+const { stringify } = require('querystring');
 let msg = message
 
 module.exports = {
@@ -14,7 +14,8 @@ function update(msg) {
     else {
 
         console.log("upadte" + msg);
-        command = JSON.stringify(msg);
+        //command = JSON.stringify(msg);
+        command = msg;
         console.log(command)
 
 
@@ -22,9 +23,9 @@ function update(msg) {
         var original = files
         fs.close;
         result = original.map(function(d) {
-            return d.replace('./resources/DepositoriesList.json', '');
+            return d.replace('DepositoriesList.json', '');
         });
-        result.pop(); //removes last object
+        //result.pop(); //removes last object
         console.log("result "+result);
 
         if (result == '') {
@@ -47,25 +48,30 @@ function needupdate(command){
     console.log("needupdate");
     need = command;
     fix = need.slice(8);
-    filter = fix.replace('"','');
-    console.log(filter)
-    verifyfile(filter);
-    return filter
+    vfilter = fix.replace('"','');
+    console.log(vfilter)
+    vreturn = verifyfile(vfilter);
+    return vreturn
 }
 
 function verifyfile(vfilter){
     let vfiles = fs.readdirSync('./Depositories/');
-    console.log(vfiles)
+    //console.log(vfiles)
     fs.close;
     //console.log(filter);
-    vmatch = vfiles.indexOf(vfilter)
-    console.log("filter "+ vfilter)
+    str1 = vfiles.indexOf(vfilter)
+    str2 = stringify(str1);
+    //console.log("filter "+ vfilter)
+
+    let vmatch = [...str2].slice(1).join('');
+    console.log("vmatch:" + str2)
     const vposition = Number(vmatch)
     vfolder = vfiles[vposition];
-    console.log("folder" + typeof(vfolder))
+    console.log("folder" + vfolder)
 
     //need to open the found folder and check for list of files like server.js, if exists, return true
-    let directory = fs.readdirSync('./Depositories/'+`${vfolder}`)
+    let directory = fs.readdirSync(`./Depositories/`+`${vfolder}`)
+    console.log("directory:"+directory);
     var filearray = Object.entries(directory);
     fs.close
 
