@@ -1,6 +1,5 @@
 const fs = require('fs'); //filesystem;
 const config = require("../resources/config.json");
-const { stringify } = require('querystring');
 let msg = message
 
 module.exports = {
@@ -17,8 +16,6 @@ function update(msg) {
         //command = JSON.stringify(msg);
         command = msg;
         //console.log(command)
-
-
         var files = fs.readdirSync('./Depositories/');
         var original = files
         fs.close;
@@ -37,8 +34,6 @@ function update(msg) {
             returning = needupdate(command);
 
             //return depotstatus //if depositories json was updated or not | compare old json to new added information
-
-
             return returning;
         } else { 
             //console.log("else")
@@ -48,6 +43,7 @@ function update(msg) {
         } 
     }
 }
+
 function needupdate(command){
     //console.log("needupdate");
     need = command;
@@ -55,7 +51,16 @@ function needupdate(command){
     vfilter = fix.replace('"','');
     //console.log(vfilter)
     vreturn = verifyfile(vfilter);
-    return vreturn
+    if (vreturn = true){
+        //need to update the depositories json
+
+        //need to download new version of requested depository
+        console.log("Repository updated.")
+        return "Repository updated."
+    }
+    else {
+        return "error with files"
+    }
 }
 
 function verifyfile(vfilter){
@@ -95,5 +100,4 @@ function verifyfile(vfilter){
     else{
         return false;
     }
-
 }
