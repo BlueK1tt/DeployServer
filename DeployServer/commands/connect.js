@@ -1,6 +1,6 @@
 const fs = require('fs'); //filesystem
 const request = require('request');
-const config = require('../resources'); //custom configurations file for secret info
+const config = require('../resources/config.json'); //custom configurations file for secret info
 // use double . to go back folder
 
 module.exports = {
@@ -11,7 +11,7 @@ function connect() {
     //need able to test connection to github 
     //get username from main:config
     username = config.gitname;
-    console.log(username);
+    //console.log(username);
     url = ('https://api.github.com/users/' + username +'/repos?', 'User-Agent:' + username);
 
     function getbody(){
@@ -21,11 +21,12 @@ function connect() {
                 return body;
             }
             else{
-                return error;
+                return "error";
             }
         });
     }
-    console.log(getbody());
+    var bodi = getbody();
+    console.log(bodi);
     result = getbody();
     console.log(result)
     return result;

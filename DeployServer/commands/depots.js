@@ -9,7 +9,7 @@ function depots(msg){ //function to get current depositories and create array ou
     let rawdata = fs.readFileSync('./Depositories/DepositoriesList.json')
     let json = JSON.parse(rawdata);
     
-    console.log("msg: " + msg);
+    //console.log("msg: " + msg);
         if (json == " "){
             console.log("no current depositories")
         }

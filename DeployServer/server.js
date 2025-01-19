@@ -221,7 +221,7 @@ function msgidentify(msg){ //c = different incoming msg
             return;
     }
     else{
-        console.log("custom");
+        //console.log("custom");
         //need to slice message
         command = getfile(msg);
         if(command == " "){
@@ -234,9 +234,7 @@ function msgidentify(msg){ //c = different incoming msg
 
             //need to flush the custom command
             delete require.cache[require.resolve('./commands/update')] //clears the cache allowing for new data to be read
-
             //console.log("cache cleared");
-
             try {
                 return asmessage;
             } catch (error) {
