@@ -161,6 +161,13 @@ function msgidentify(msg){ //c = different incoming msg
             if (!depotlist.includes(filename)){
                 return "error"
             } else {
+                const depotdata = require('./functions/depotdata')
+                var sentData = valuesToArray(depotdata); 
+                asmessage = sentData[0];
+
+                console.log(asmessage)
+                delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
+               
                 stopfile = filename + ".js";
                 pm2stop(filename);
                 return "stop " + stopfile;
@@ -244,12 +251,12 @@ function pm2start(startfile){ //start specific server on command, need to check 
     //depositories need to have path to server file
     //direction = start/stop
     //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
-    console.log("pm2"  + startfile);
+    console.log("pm2start"  + startfile);
     pm2.start
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
-    console.log("pm2"  + stopfile);
+    console.log("pm2stop"  + stopfile);
 };
 
 const requestListener = function(request, response){
