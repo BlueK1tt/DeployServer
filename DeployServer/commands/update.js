@@ -35,6 +35,10 @@ function update(msg) {
         else if (command.includes('update=')){
             //console.log("second");
             returning = needupdate(command);
+
+            //return depotstatus //if depositories json was updated or not | compare old json to new added information
+
+
             return returning;
         } else { 
             //console.log("else")
@@ -74,10 +78,22 @@ function verifyfile(vfilter){
     mainfiles = config.mainfiles;
     var examplefiles = mainfiles.split(",");
     
-    console.log(typeof(filearray))
-    console.log(filearray)
-    console.log(typeof(mainfiles))
-    console.log(examplefiles)
+    //console.log(typeof(filearray))//file inside asked depository
+    //console.log(filearray) //-object
+    //console.log(typeof(examplefiles)) //example files from congig file
+    //console.log(examplefiles) //-object
 
-    return filearray
+    str1 = filearray.toString();
+    //console.log(str1)
+
+    const filexist = examplefiles.filter(element => str1.includes(element))
+    if (filexist != null){
+
+        //console.log(filexist)
+        return true //true/false if example file exists in depository
+    }
+    else{
+        return false;
+    }
+
 }
