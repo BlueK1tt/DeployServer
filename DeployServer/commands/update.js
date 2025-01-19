@@ -59,13 +59,9 @@ function verifyfile(vfilter){
     //console.log(vfiles)
     fs.close;
     //console.log(filter);
-    str1 = vfiles.indexOf(vfilter)
-    str2 = stringify(str1);
-    //console.log("filter "+ vfilter)
+    filepos = vfiles.indexOf(vfilter)
 
-    let vmatch = [...str2].slice(1).join('');
-    console.log("vmatch:" + str2)
-    const vposition = Number(vmatch)
+    const vposition = Number(filepos)
     vfolder = vfiles[vposition];
     console.log("folder" + vfolder)
 

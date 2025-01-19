@@ -220,6 +220,7 @@ function msgidentify(msg){ //c = different incoming msg
         if(command == " "){
             return "command error"
         } else {
+            console.log("custom cmd:" + command)
             const data = require(`./commands/`+ `${command}`);
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
