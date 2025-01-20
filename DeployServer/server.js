@@ -5,6 +5,7 @@ const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { json } = require('node:stream/consumers');
+const { stringify } = require('node:querystring');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -19,6 +20,7 @@ var direction = ['start', 'stop'];
 var msgid = 0;
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
+    console.log("savelog");
     var logpromise = isFile("./resources/log.JSON");
     var depromise = isFile("./depositories/DepositoriesList.JSON");
 
@@ -47,22 +49,25 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
 
 function compareLog(){ //function to happen right after start to compare if anything has changed
     let oldlog = fs.readFileSync('./resources/log.json');
-    let oldstring = JSON.stringify(oldlog)
+    const oldstring = JSON.parse(oldlog)
+    str1 = stringify(oldstring)
     fs.close;
 
     let newlog = fs.readFileSync('./depositories/DepositoriesList.JSON');
-    let newstring = JSON.stringify(newlog);
+    const newstring = JSON.parse(newlog);
+    str2 = stringify(newstring)
     fs.close;
 
-    if(oldstring === newstring){ 
+    if(str1.includes(str2)){ 
         statement = true; //files match
+        return true
     }
     else{
         statement = false;  //files dont match
         console.log("Theres update(s) available");
+        return false;
     }
-    //statement needs to be true | false
-    return statement;
+
 };
 
 function commandscollection() { //currently not in use, using the above commands command
