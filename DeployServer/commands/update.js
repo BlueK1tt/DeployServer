@@ -67,6 +67,7 @@ function needupdate(command){
 }
 
 function verifyfile(vfilter){
+    console.log("verifyfiles")
     let vfiles = fs.readdirSync('./Depositories/');
     //console.log(vfiles)
     fs.close;

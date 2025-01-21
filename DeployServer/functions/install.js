@@ -42,11 +42,11 @@ function install(){
             console.log(instaldone)
             if(instaldone.status == true){
                 console.log("instllation completed")
-                return
+                return "installation complete"
             }
             if(instaldone.stauts == false){
                 console.log("instllation error")
-                return
+                return "installation error"
             }
             else {
                 console.log("Uknown error")
@@ -84,18 +84,25 @@ function install(){
 
 function verifyfiles(filename){
     let files = fs.readdirSync(`./depositories/`+ `${filename}`);
+    console.log(files + typeof(files))
     fs.close
 
     mainfiles = config.mainfiles;
     var examplefiles = mainfiles.split(",");
-                
     str1 = files.toString();
-
-    startfile = "index.js"
 
     const filexist = examplefiles.filter(element => str1.includes(element))
 
+    console.log("filexist"+ filexist)
+    startfile = "index.js"
+
     //match the file and get its position, then get the filename in that position
+    for (const element of examplefiles) {
+        console.log(element);
+    }
+    for (const element of str1){
+        console.log(element);
+    }
 
     if (filexist != null){
         var verify = new Object();
