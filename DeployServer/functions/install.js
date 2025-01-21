@@ -39,18 +39,24 @@ function install(){
 
             //need to verify theres starting file, same way as *findfile
             instaldone = verifyfiles(filename);
-            if(instaldone == true){
+            console.log(instaldone)
+            if(instaldone.status == true){
                 console.log("instllation completed")
+                return
+            }
+            if(instaldone.stauts == false){
+                console.log("instllation error")
+                return
             }
             else {
                 console.log("Uknown error")
-            }
+            };
 
             //need to add new files to the depositories.json file
             let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
             let json1 = JSON.parse(rawdata1);
             fs.close;
-            strtfile = 
+            strtfile = instaldone.file
 
             newjsonobj = {name:filename, startfile:strtfile }
 
@@ -85,12 +91,23 @@ function verifyfiles(filename){
                 
     str1 = files.toString();
 
-    const filexist = examplefiles.filter(element => str1.includes(element))
-    if (filexist != null){
+    startfile = "index.js"
 
-        return true //true/false if example file exists in depository
+    const filexist = examplefiles.filter(element => str1.includes(element))
+
+    //match the file and get its position, then get the filename in that position
+
+    if (filexist != null){
+        var verify = new Object();
+            verify['status'] = true;
+            verify['file'] = startfile;
+
+        return verify //true/false if example file exists in depository
     }
     else{
-        return false;
+        var verify = new Object();
+            verify['status'] = false;
+            verify['file'] = " ";
+        return verify;
     }
 }

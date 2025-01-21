@@ -58,8 +58,8 @@ function needupdate(command){
         
 
         //need to download new version of requested depository
-        console.log("Repository updated.")
-        return "Repository updated."
+        console.log('Repository "' +`${vfilter}`+'" updated.')
+        return 'Repository "' +`${vfilter}`+'" updated.'
     }
     else {
         return "error with files"
