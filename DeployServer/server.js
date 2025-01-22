@@ -281,9 +281,6 @@ const requestListener = function(request, response){
     //here code to read and write txt or json file
     //on startup , compare saved information of git and infomation of gits on github
 
-    //read and write gotgits json file
-    //its required to keep track of versions and updates
-    
     //include things to send as variables to file as part of command
 
     if (msg == "refresh") {
