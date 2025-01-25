@@ -7,6 +7,7 @@ const config = require('./resources/config.json'); //custom configurations file 
 const { json } = require('node:stream/consumers');
 const { stringify } = require('node:querystring');
 
+
 const hostname = config.hostname;
 const port = config.netport;
 const timenow = new Date();
@@ -44,7 +45,6 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
     else{
         console.log("Error | One or more files do not exist");
     }
-
 };
 
 function compareLog(){ //function to happen right after start to compare if anything has changed
@@ -287,7 +287,6 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
                 console.log("uknown error")
                 return 
             }
-    
         })
     }
     catch (error ){
@@ -298,6 +297,11 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
 
 function pm2start(startfile){ //start specific server on command, need to check available ports
     console.log("pm2start")
+    
+    const data = require(`./functions/findfile`);
+    var sentData = valuesToArray(data); 
+    startfile = sentData[0];
+    delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
     //curl 3000/start=BluBot
     //depositories need to have path to server file
     //direction = start/stop
@@ -310,7 +314,7 @@ function pm2start(startfile){ //start specific server on command, need to check 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     console.log("pm2stop")
-    
+
     console.log("pm2stop"  + stopfile);
 
     //first need to check if the one requested is running
@@ -356,7 +360,6 @@ const requestListener = function(request, response){
             console.log('Restarting')
             process.exit(128)
         }, 2000);
-        
     }
 
     //shutdown on command

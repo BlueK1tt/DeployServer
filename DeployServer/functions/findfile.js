@@ -14,7 +14,7 @@ function findfile(){
 
         if(msg.startsWith("start")){
             filename = msg.slice(6);
-            console.log(filename);
+            //console.log(filename);
             let files = fs.readdirSync(`./depositories/`+ `${filename}`);
             fs.close
             //console.log("files:" + files)
@@ -37,8 +37,13 @@ function findfile(){
             //console.log("files:" + files)
             if (Object.keys(files).length !== 0){
 
-                var foudnfile = verifyfile(filename)
-                return foudnfile
+                var foundfile = verifyfile(filename)
+                console.log("foundfile " +foundfile)
+                //need to find the correct filename from the folder
+                //the above just confirms that the tile exists
+                //array > index?
+                console.log(filesname)
+                return foundfile
             }   
             else {
                 return "directory empty"
@@ -54,16 +59,29 @@ function findfile(){
 function verifyfile(filename){
     let files = fs.readdirSync(`./depositories/`+ `${filename}`);
     fs.close
+    fname = "";
 
     mainfiles = config.mainfiles;
-    var examplefiles = mainfiles.split(",");
+    var examplefiles = mainfiles.split(","); //index.js, main,js , server.js etc
                 
-    str1 = files.toString();
+    str1 = files.toString(); //index.js, config,json, resoueces etc
 
     const filexist = examplefiles.filter(element => str1.includes(element))
     if (filexist != null){
-
-        return true //true/false if example file exists in depository
+        examplefiles.forEach(element => {
+            if(str1.includes(element)){
+                console.log(element)
+                var fname = element.name
+                return fname
+            }
+            else {
+                console.log("not found")
+            }
+            return fname
+        });
+        console.log(fname)
+         //true/false if example file exists in depository
+         return true
     }
     else{
         return false;
