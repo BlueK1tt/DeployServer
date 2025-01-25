@@ -255,12 +255,18 @@ function pm2start(startfile){ //start specific server on command, need to check 
     //depositories need to have path to server file
     //direction = start/stop
     //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
+
+    //need to add check to see if any are running
     console.log("pm2start"  + startfile);
     pm2.start
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     console.log("pm2stop"  + stopfile);
+
+    //first need to check if the one requested is running
+
+    //only after that do rest, so it doesnt waste time running all
 };
 
 const requestListener = function(request, response){
