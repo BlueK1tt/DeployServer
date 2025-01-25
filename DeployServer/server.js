@@ -272,15 +272,22 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
                 //need to stop all running daemons
                 list.forEach((Element) => {
                     pm2stop(Element.name);
+                    console.log("pm2 daemon "+ Element.name + " stopped")
                 }) //call the pm2stop function with with each running daemon
+                console.log( "pm2 daemons stopped")
+                return
             }
             if(err == null && newlist == null){ //if no error but list empty
                 console.log("no running programs")
-                return "no running programs";
+                return
             }
             if(err != null){ //if error, list doenst matter
                 console.log(err)
-                return err
+                return 
+            }
+            else {
+                console.log("uknown error")
+                return 
             }
     
         })
