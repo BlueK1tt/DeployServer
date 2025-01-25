@@ -251,6 +251,7 @@ function msgidentify(msg){ //c = different incoming msg
 };
 
 function pm2connect(){ //need to call this every first time starting pm2 daemon
+    console.log("pm2connect")
     pm2.connect(function(err) {
         if (err) {
             console.error(err)
@@ -260,23 +261,38 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
 }
 
 function pm2disconnect(){ //need to call this whenever shutting down or restarting the main server
-    pm2.list((err, list) => {
-        if(err == null && list != null){ //if no error and list not empty
-            //need to stop all running daemons
-            list.forEach(pm2stop(item)) //call the pm2stop function with with each running daemon
-        }
-        if(err == null && list == null){ //if no error but list empty
-            console.log("no running programs")
-            return "no running programs";
-        }
-        if(err != null){ //if error, list doenst matter
-            console.log(err)
-            return err
-        }
-    })
+    console.log("pm2disconnect")
+    try{
+
+        pm2.list((err, list) => {
+        //need to cut "deployment server" out of that list
+        newlist = list.pop('Deployment server')
+        console.log(typeof(newlist))
+            if(err == null && newlist != null){ //if no error and list not empty
+                //need to stop all running daemons
+                list.forEach((Element) => {
+                    pm2stop(Element.name);
+                }) //call the pm2stop function with with each running daemon
+            }
+            if(err == null && newlist == null){ //if no error but list empty
+                console.log("no running programs")
+                return "no running programs";
+            }
+            if(err != null){ //if error, list doenst matter
+                console.log(err)
+                return err
+            }
+    
+        })
+    }
+    catch (error ){
+        console.error(error)
+        return error
+    }
 }
 
 function pm2start(startfile){ //start specific server on command, need to check available ports
+    console.log("pm2start")
     //curl 3000/start=BluBot
     //depositories need to have path to server file
     //direction = start/stop
@@ -326,6 +342,7 @@ const requestListener = function(request, response){
     
     //restart on command
     if (msg == 'restart') {
+        pm2disconnect();
         console.log('Restarting the server...')
         response.end('Restarting...\n');
         setTimeout(function() {
