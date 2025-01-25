@@ -251,7 +251,12 @@ function msgidentify(msg){ //c = different incoming msg
 };
 
 function pm2connect(){ //need to call this every first time starting pm2 daemon
-
+    pm2.connect(function(err) {
+        if (err) {
+            console.error(err)
+            return err
+        }
+    })
 }
 
 function pm2disconnect(){ //need to call this whenever shutting down or restarting the main server
