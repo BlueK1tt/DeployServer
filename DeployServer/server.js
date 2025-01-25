@@ -250,6 +250,27 @@ function msgidentify(msg){ //c = different incoming msg
     }
 };
 
+function pm2connect(){ //need to call this every first time starting pm2 daemon
+
+}
+
+function pm2disconnect(){ //need to call this whenever shutting down or restarting the main server
+    pm2.list((err, list) => {
+        if(err == null && list != null){ //if no error and list not empty
+            //need to stop all running daemons
+            list.forEach(pm2stop(item)) //call the pm2stop function with with each running daemon
+        }
+        if(err == null && list == null){ //if no error but list empty
+            console.log("no running programs")
+            return "no running programs";
+        }
+        if(err != null){ //if error, list doenst matter
+            console.log(err)
+            return err
+        }
+    })
+}
+
 function pm2start(startfile){ //start specific server on command, need to check available ports
     //curl 3000/start=BluBot
     //depositories need to have path to server file
