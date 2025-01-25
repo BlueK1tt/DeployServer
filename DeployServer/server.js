@@ -263,11 +263,9 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
 function pm2disconnect(){ //need to call this whenever shutting down or restarting the main server
     console.log("pm2disconnect")
     try{
-
         pm2.list((err, list) => {
         //need to cut "deployment server" out of that list
         newlist = list.pop('Deployment server')
-        console.log(typeof(newlist))
             if(err == null && newlist != null){ //if no error and list not empty
                 //need to stop all running daemons
                 list.forEach((Element) => {
@@ -311,6 +309,8 @@ function pm2start(startfile){ //start specific server on command, need to check 
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
+    console.log("pm2stop")
+    
     console.log("pm2stop"  + stopfile);
 
     //first need to check if the one requested is running
