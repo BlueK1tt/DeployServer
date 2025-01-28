@@ -275,11 +275,9 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
                     pm2.restart(Element.name)
                 }
                 if (Element.name !== 'Deployment server'){
-
                     console.log("stop:"+ Element.name)
                     pm2.stop(Element.name);
                     console.log("pm2 daemon "+ Element.name + " stopped")
-                    
                 }
                 else{
                     console.log("no running programs")
@@ -322,12 +320,18 @@ function pm2start(startfile){ //start specific server on command, need to check 
 
     //need to add check to see if any are running
     console.log("pm2start:"  + startfile);
-    pm2.start(`${startfile}`, function(err, apps) {
-        if (err) {
-            console.log(err)
-            return pm2.disconnect();
-        }
-    });
+
+    try {
+        pm2.start(`${startfile}`, function(err, apps) {
+            if (err) {
+                console.log(err)
+                return pm2.disconnect();
+            }
+        });
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
