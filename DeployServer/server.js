@@ -19,6 +19,7 @@ const isFile = fileName => { //function to test if file exists
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
 var msgid = 0;
+var msg = " ";
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");
@@ -345,7 +346,7 @@ const requestListener = function(request, response){
     if (msg == "refresh") {
         //refresh filesystem
         commandscollection();
-        getfile();
+        getfile(msg);
         console.log("commands refreshed")
         response.end("commands refreshed");
         return;
