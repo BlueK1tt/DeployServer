@@ -4,7 +4,6 @@ const os = require('os');
 const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
-const { json } = require('node:stream/consumers');
 const { stringify } = require('node:querystring');
 
 
@@ -261,29 +260,47 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
     console.log("pm2disconnect")
     try{
         pm2.list((err, list) => {
+        const id = 0;
+        
+        list = list.map(item => {
+            return item.id !== id ? item : null;
+        }).filter(item => item !== null)
+        
+        servcount = Object.keys(list).length
         //need to cut "deployment server" out of that list
-        newlist = list.pop('Deployment server')
-            if(err == null && newlist != null){ //if no error and list not empty
-                //need to stop all running daemons
-                list.forEach((Element) => {
-                    pm2stop(Element.name);
+        if(servcount >= 1){ //if no error and list not empty
+            //need to stop all running daemons
+            list.forEach((Element) => {
+                if(Element.name == 'Deployment server'){
+                    pm2.restart(Element.name)
+                }
+                if (Element.name !== 'Deployment server'){
+
+                    console.log("stop:"+ Element.name)
+                    pm2.stop(Element.name);
                     console.log("pm2 daemon "+ Element.name + " stopped")
-                }) //call the pm2stop function with with each running daemon
-                console.log( "pm2 daemons stopped")
+                    
+                }
+                else{
+                    console.log("no running programs")
+                    return "no running programs"
+                }
+            }) //call the pm2stop function with with each running daemon
+            console.log( "pm2 daemons stopped")
                 return
             }
-            if(err == null && newlist == null){ //if no error but list empty
+        if(err == null && list == null){ //if no error but list empty
                 console.log("no running programs")
                 return
             }
-            if(err != null){ //if error, list doenst matter
+        if(err != null){ //if error, list doenst matter
                 console.log(err)
                 return 
             }
-            else {
+        else {
                 console.log("uknown error")
                 return 
-            }
+        }
         })
     }
     catch (error ){
@@ -293,6 +310,7 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
 }
 
 function pm2start(startfile){ //start specific server on command, need to check available ports    
+    pm2connect();
     const data = require(`./functions/findfile`);
     var sentData = valuesToArray(data); 
     startfile = sentData[0];
@@ -304,7 +322,12 @@ function pm2start(startfile){ //start specific server on command, need to check 
 
     //need to add check to see if any are running
     console.log("pm2start:"  + startfile);
-    pm2.start
+    pm2.start(`${startfile}`, function(err, apps) {
+        if (err) {
+            console.log(err)
+            return pm2.disconnect();
+        }
+    });
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
@@ -312,7 +335,14 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
     var sentData = valuesToArray(data); 
     stopfile = sentData[0];
     delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
-        
+    
+    pm2.stop(`${stopfile}`, function(err, apps) {
+        if (err) {
+            console.log(err)
+            return pm2.disconnect();
+        }
+    });
+
     console.log("pm2stop:"  + stopfile);
 
     //first need to check if the one requested is running
@@ -321,6 +351,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
 };
 
 const requestListener = function(request, response){
+
 
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
@@ -363,6 +394,7 @@ const requestListener = function(request, response){
     //shutdown on command
     if (msg == 'shutdown') {
         saveLog();
+        pm2disconnect();
         console.log('Shutting down the server...')
         setTimeout(function() {
             response.end('Shutting down...\n');

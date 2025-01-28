@@ -66,7 +66,7 @@ function verifyfile(filename){
     const filexist = examplefiles.filter(element => str1.includes(element))
     //console.log("filexist: " + filexist)
 
-    finalcmd = '/depositories/'+ `${filename}`+"/"+ filexist
+    finalcmd = './depositories/'+ `${filename}`+"/"+ filexist
     return finalcmd
 
 }
