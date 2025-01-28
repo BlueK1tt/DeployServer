@@ -1,5 +1,4 @@
 const fs = require('fs'); //filesystem
-const { type } = require('os');
 
 module.exports = {
     data: depots()
@@ -42,4 +41,6 @@ function depots(msg){ //function to get current depositories and create array ou
             };
         };
         fs.close;
+        delete require.cache[require.resolve('./Depositories/DepositoriesList.json')] //clears the cache allowing for new data to be read
+
     };

@@ -19,7 +19,6 @@ const isFile = fileName => { //function to test if file exists
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
 var msgid = 0;
-var msg = " ";
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");

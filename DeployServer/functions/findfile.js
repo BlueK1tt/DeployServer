@@ -1,4 +1,3 @@
-const { error } = require('console');
 const fs = require('fs'); //filesystem
 const config = require("../resources/config.json");
 
