@@ -1,5 +1,6 @@
 const fs = require('fs'); //filesystem;
 const config = require("../resources/config.json");
+const { type } = require('os');
 let msg = message
 
 module.exports = {
@@ -19,9 +20,11 @@ function update(msg) {
         var files = fs.readdirSync('./Depositories/');
         var original = files
         fs.close;
+        
         result = original.map(function(d) {
             return d.replace('DepositoriesList.json', '');
         });
+        
         //result.pop(); //removes last object
         //console.log("result "+result);
 
