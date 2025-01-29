@@ -57,15 +57,17 @@ function needupdate(command){
 
     vreturn = verifyfile(vfilter);
     if (vreturn.status == true){
-        console.log("vreturn: " + typeof(vreturn));
+        //console.log("vreturn: " + typeof(vreturn));
 
         //need to add new files to the depositories.json file
         let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
         let json1 = JSON.parse(rawdata1);
         fs.close;
-        console.log(vreturn)
-        strtfile = vreturn.result
 
+        //console.log(vreturn)
+        
+        fname = vreturn.file
+        strtfile = fname.toString()
 
         var newjsonobj = new Object();
         newjsonobj['name'] = vfilter;
@@ -94,7 +96,7 @@ function needupdate(command){
 }
 
 function verifyfile(vfilter){
-    console.log("verifyfiles")
+    //console.log("verifyfiles")
     let vfiles = fs.readdirSync('./Depositories/');
     //console.log(vfiles)
     fs.close;
@@ -108,7 +110,7 @@ function verifyfile(vfilter){
     //need to open the found folder and check for list of files like server.js, if exists, return true
     let directory = fs.readdirSync(`./Depositories/`+`${vfolder}`)
     //console.log("directory:"+directory);
-    var filearray = Object.entries(directory);
+    //var filearray = Object.entries(directory);
     fs.close
 
     mainfiles = config.mainfiles;
@@ -119,14 +121,14 @@ function verifyfile(vfilter){
     //console.log(typeof(examplefiles)) //example files from congig file
     //console.log(examplefiles) //-object
 
-    str1 = filearray.toString();
-    //console.log(str1)
+    str1 = directory.toString(); //filearray has id locations
+    //console.log("str1"+str1)
 
-    const filename = examplefiles.filter(element => str1.includes(element))
+    var filename = examplefiles.filter(element => str1.includes(element))
     if (filename != null){
 
         filexist = str1.includes(filename)
-        //console.log("filexist" + filename + filexist)
+        console.log("filexist" + filename + filexist)
         //newstr = filename.toString()
 
 

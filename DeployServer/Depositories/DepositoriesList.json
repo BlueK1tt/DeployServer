@@ -10,5 +10,11 @@
       "name": "Jorma",
       "startfile": "index.js"
     }
+  ],
+  "Ticker": [
+    {
+      "name": "Ticker",
+      "startfile": "main.js"
+    }
   ]
 }
