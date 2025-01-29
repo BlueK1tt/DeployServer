@@ -46,7 +46,6 @@ function update(msg) {
                 return returning;
             }
             //console.log("second");
-
             //return depotstatus //if depositories json was updated or not | compare old json to new added information
         } else { 
             //console.log("else")
@@ -91,8 +90,6 @@ function needupdate(command){
             }
         });
         fs.close
-
-
         //need to download new version of requested depository
         console.log('Repository "' +`${vfilter}`+'" updated.')
         return 'Repository "' +`${vfilter}`+'" updated.'

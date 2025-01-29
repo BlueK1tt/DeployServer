@@ -320,10 +320,10 @@ function pm2start(startfile){ //start specific server on command, need to check 
     //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
 
     //need to add check to see if any are running
-    console.log("pm2start:"  + startfile);
-        pm2.start(`${startfile}`, function(err, apps) {
-        console.log(apps)
-        });
+    //console.log("pm2start:"  + startfile);
+    pm2.start(`${startfile}`, function(err, apps) {
+    //console.log(apps)
+    });
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
@@ -348,7 +348,6 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
 
 const requestListener = function(request, response){
 
-
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     message = request.url;
@@ -360,7 +359,6 @@ const requestListener = function(request, response){
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
-    
     
     //here code to read and write txt or json file
     //on startup , compare saved information of git and infomation of gits on github
