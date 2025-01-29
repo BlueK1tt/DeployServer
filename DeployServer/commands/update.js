@@ -34,11 +34,20 @@ function update(msg) {
             return data
         }
         else if (command.includes('update=')){
+            logstatus = compareLog()
+            console.log("logstatus:" + logstatus)
+            if(logstatus == true){
+                console.log("trueing")
+                return "Depositories are up to date"
+            }
+            else{
+                console.log("nooeing")
+                returning = needupdate(command);
+                return returning;
+            }
             //console.log("second");
-            returning = needupdate(command);
 
             //return depotstatus //if depositories json was updated or not | compare old json to new added information
-            return returning;
         } else { 
             //console.log("else")
             send = result.toString();
@@ -53,7 +62,7 @@ function needupdate(command){
     need = command;
     fix = need.slice(8);
     vfilter = fix.replace('"','');
-    console.log(vfilter)
+    //console.log(vfilter)
 
     vreturn = verifyfile(vfilter);
     if (vreturn.status == true){
@@ -63,9 +72,7 @@ function needupdate(command){
         let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
         let json1 = JSON.parse(rawdata1);
         fs.close;
-
         //console.log(vreturn)
-        
         fname = vreturn.file
         strtfile = fname.toString()
 
@@ -74,7 +81,7 @@ function needupdate(command){
         newjsonobj['startfile'] = strtfile;
 
         //newjsonobj = {name:vfilter, startfile:strtfile }
-        console.log(newjsonobj)
+        //console.log(newjsonobj)
         newjsonobj = Object.assign({}, json1, {}) //copies depositories json file to variable
         //console.log(newjsonobj);
         var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
@@ -128,7 +135,7 @@ function verifyfile(vfilter){
     if (filename != null){
 
         filexist = str1.includes(filename)
-        console.log("filexist" + filename + filexist)
+        //console.log("filexist" + filename + filexist)
         //newstr = filename.toString()
 
 
@@ -147,3 +154,25 @@ function verifyfile(vfilter){
         return verify
     }
 }
+
+function compareLog(){ //function to happen right after start to compare if anything has changed
+    let oldlog = fs.readFileSync('./resources/Depositories.JSON');
+    const oldstring = JSON.parse(oldlog)
+    str1 = stringify(oldstring)
+    fs.close;
+
+    let newlog = fs.readFileSync('./depositories/DepositoriesList.JSON');
+    const newstring = JSON.parse(newlog);
+    str2 = stringify(newstring)
+    fs.close;
+
+    if(str1.includes(str2)){ 
+        statement = true; //files match
+        return true
+    }
+    else{
+        statement = false;  //files dont match
+        return false;
+    }
+
+};
