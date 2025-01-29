@@ -398,7 +398,6 @@ const requestListener = function(request, response){
     //shutdown on command
     if (msg == 'shutdown') {
         saveLog();
-        pm2disconnect();
         console.log('Shutting down the server...')
         setTimeout(function() {
             response.end('Shutting down...\n');

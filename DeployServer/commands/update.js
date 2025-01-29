@@ -1,6 +1,7 @@
 const fs = require('fs'); //filesystem;
 const config = require("../resources/config.json");
 const { type } = require('os');
+const { stringify } = require('querystring');
 let msg = message
 
 module.exports = {
@@ -52,13 +53,36 @@ function needupdate(command){
     need = command;
     fix = need.slice(8);
     vfilter = fix.replace('"','');
-    //console.log(vfilter)
-    vreturn = verifyfile(vfilter);
-    if (vreturn = true){
+    console.log(vfilter)
 
-        //need to update the depositories json
-        let depotlist = fs.readFileSync('./Depositories/DepositoriesList.json')
-        
+    vreturn = verifyfile(vfilter);
+    if (vreturn.status == true){
+        console.log("vreturn: " + typeof(vreturn));
+
+        //need to add new files to the depositories.json file
+        let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
+        let json1 = JSON.parse(rawdata1);
+        fs.close;
+        console.log(vreturn)
+        strtfile = vreturn.result
+
+
+        var newjsonobj = new Object();
+        newjsonobj['name'] = vfilter;
+        newjsonobj['startfile'] = strtfile;
+
+        //newjsonobj = {name:vfilter, startfile:strtfile }
+        console.log(newjsonobj)
+        newjsonobj = Object.assign({}, json1, {}) //copies depositories json file to variable
+        //console.log(newjsonobj);
+        var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
+        fs.writeFile('./resources/Depositories.JSON', json2, 'utf-8', function(error){
+            if(error){
+                console.log(error)
+            }
+        });
+        fs.close
+
 
         //need to download new version of requested depository
         console.log('Repository "' +`${vfilter}`+'" updated.')
@@ -98,13 +122,26 @@ function verifyfile(vfilter){
     str1 = filearray.toString();
     //console.log(str1)
 
-    const filexist = examplefiles.filter(element => str1.includes(element))
-    if (filexist != null){
+    const filename = examplefiles.filter(element => str1.includes(element))
+    if (filename != null){
 
-        //console.log(filexist)
-        return true //true/false if example file exists in depository
+        filexist = str1.includes(filename)
+        //console.log("filexist" + filename + filexist)
+        //newstr = filename.toString()
+
+
+        var verify = new Object();
+        verify['status'] = filexist;
+        verify['file'] = filename;
+        
+        return verify //true/false if example file exists in depository
     }
     else{
-        return false;
+        filexist = str1.includes(filename)
+
+        var verify = new Object();
+        verify['status'] = filexist;
+        verify['file'] = " ";
+        return verify
     }
 }
