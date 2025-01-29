@@ -148,7 +148,7 @@ function msgidentify(msg){ //c = different incoming msg
         if(msg.startsWith("start")){
             filename = msg.slice(6);
             if (!depotlist.includes(filename)){
-                return "error"
+                return "Requested file not in log"
             } else {
                 const depotdata = require('./functions/depotdata')
                 var sentData = valuesToArray(depotdata); 
@@ -251,7 +251,7 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
     pm2.connect(function(err) {
         if (err) {
             console.error(err)
-            return err
+            return "error" + err
         }
     })
 }
@@ -308,6 +308,7 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
 }
 
 function pm2start(startfile){ //start specific server on command, need to check available ports    
+    console.log("startfile")
     pm2connect();
     const data = require(`./functions/findfile`);
     var sentData = valuesToArray(data); 
@@ -320,18 +321,9 @@ function pm2start(startfile){ //start specific server on command, need to check 
 
     //need to add check to see if any are running
     console.log("pm2start:"  + startfile);
-
-    try {
         pm2.start(`${startfile}`, function(err, apps) {
-            if (err) {
-                console.log(err)
-                return pm2.disconnect();
-            }
+        console.log(apps)
         });
-    } catch (error) {
-        console.log(error)
-        return error;
-    }
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,

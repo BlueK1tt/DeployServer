@@ -6,7 +6,7 @@ module.exports = {
 }
 
 function findfile(){
-
+    console.log("findfile")
     if(msg.startsWith("start") || msg.startsWith("stop")){
         //file find not here, beacuse its case spesific and not always same
 
@@ -48,6 +48,8 @@ function findfile(){
             }
         }
         else {
+
+            console.log("iferror")
             return error
         }
     }

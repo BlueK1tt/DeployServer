@@ -4,6 +4,8 @@ module.exports = {
     data: depots()
 }
 function depots(msg){ //function to get current depositories and create array out of them
+    //console.log("depots")
+    
     //const data = fs.readFile("./Depositories/DepositoriesList.json");
     let rawdata = fs.readFileSync('./Depositories/DepositoriesList.json')
     let json = JSON.parse(rawdata);
@@ -15,8 +17,8 @@ function depots(msg){ //function to get current depositories and create array ou
         else {
             //need to make json output into array, and with msg specification can search correct object
             if(msg = ""){
-                console.log("error");
-                return "error";
+                console.log("Requested file not in log");
+                return "Requested file not in log";
             }
             if(msg = "depots"){
                 //console.log("depots")
@@ -41,6 +43,4 @@ function depots(msg){ //function to get current depositories and create array ou
             };
         };
         fs.close;
-        delete require.cache[require.resolve('./Depositories/DepositoriesList.json')] //clears the cache allowing for new data to be read
-
     };
