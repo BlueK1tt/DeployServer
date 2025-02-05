@@ -346,6 +346,14 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
     //only after that do rest, so it doesnt waste time running all
 };
 
+function pm2bussi(){ //pm2launchbus to get data from clien to server
+    pm2.launchBus(function(err, pm2_bus) {
+        pm2_bus.on('process:msg', function(packet) {
+          console.log(packet)
+        })
+    })
+}
+
 const requestListener = function(request, response){
 
     response.statusCode = 200;
