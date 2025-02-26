@@ -256,7 +256,8 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
     })
 }
 
-function pm2disconnect(){ //need to call this whenever shutting down or restarting the main server
+function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
+    console.log(pmmsg)
     console.log("pm2disconnect")
     try{
         pm2.list((err, list) => {
@@ -272,8 +273,17 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
             //need to stop all running daemons
             list.forEach((Element) => {
                 if(Element.name == 'Deployment server'){
-                    //pm2.restart(Element.name)
-                    console.log("Deployment server restart")
+                    if(pmmsg == 0){
+                        console.log("Deployment server shutdown")
+                        return
+                    }
+                    if (pmmsg == 1) {
+                        pm2.restart(Element.name)
+                        console.log("Deployment server restart")
+                    }
+                    else{
+                        return
+                    }
                 }
                 if (Element.name !== 'Deployment server'){
                     console.log("stop:"+ Element.name)
@@ -348,10 +358,14 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
 };
 
 function pm2bussi(){ //pm2launchbus to get data from clien to server
+    console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
           console.log(packet)
         })
+        if(err){
+            console.log(err);
+        }
     })
 }
 
@@ -385,7 +399,7 @@ const requestListener = function(request, response){
     
     //restart on command
     if (msg == 'restart') {
-        pm2disconnect();
+        pm2disconnect(1);
         console.log('Restarting the server...')
         response.end('Restarting...\n');
         setTimeout(function() {
@@ -397,7 +411,7 @@ const requestListener = function(request, response){
     //shutdown on command
     if (msg == 'shutdown') {
         saveLog();
-        pm2disconnect();
+        pm2disconnect(0);
         console.log('Shutting down the server...')
         setTimeout(function() {
             response.end('Shutting down...\n');
@@ -421,4 +435,5 @@ server.listen(port, hostname, () => {
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
     compareLog();
+    pm2bussi();
 });
