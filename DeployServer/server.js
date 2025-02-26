@@ -22,7 +22,7 @@ var msgid = 0;
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");
     var logpromise = isFile("./resources/log.JSON");
-    var depromise = isFile("./depositories/DepositoriesList.JSON");
+    var depromise = isFile("./Depositories/DepositoriesList.JSON");
 
     let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
     let json1 = JSON.parse(rawdata1);
@@ -39,7 +39,7 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
             }
         });
         fs.close
-        //console.log("Log save done.")
+        console.log("Log save done.")
     }
     else{
         console.log("Error | One or more files do not exist");
@@ -59,6 +59,7 @@ function compareLog(){ //function to happen right after start to compare if anyt
 
     if(str1.includes(str2)){ 
         statement = true; //files match
+        console.log("logs match")
         return true
     }
     else{
@@ -66,7 +67,6 @@ function compareLog(){ //function to happen right after start to compare if anyt
         console.log("Theres update(s) available");
         return false;
     }
-
 };
 
 function commandscollection() { //currently not in use, using the above commands command
@@ -272,7 +272,8 @@ function pm2disconnect(){ //need to call this whenever shutting down or restarti
             //need to stop all running daemons
             list.forEach((Element) => {
                 if(Element.name == 'Deployment server'){
-                    pm2.restart(Element.name)
+                    //pm2.restart(Element.name)
+                    console.log("Deployment server restart")
                 }
                 if (Element.name !== 'Deployment server'){
                     console.log("stop:"+ Element.name)
@@ -401,6 +402,7 @@ const requestListener = function(request, response){
         setTimeout(function() {
             response.end('Shutting down...\n');
             console.log('Shutting down.')
+            pm2.stop[0]
             process.exit(0)
         }, 1500)
     }
