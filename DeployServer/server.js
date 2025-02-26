@@ -17,7 +17,7 @@ const isFile = fileName => { //function to test if file exists
 
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
-var msgid = 0;
+var msgid = 0; //just defult id for messages, gets +1 automatically
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");
@@ -59,7 +59,7 @@ function compareLog(){ //function to happen right after start to compare if anyt
 
     if(str1.includes(str2)){ 
         statement = true; //files match
-        console.log("logs match")
+        //console.log("logs match")
         return true
     }
     else{
