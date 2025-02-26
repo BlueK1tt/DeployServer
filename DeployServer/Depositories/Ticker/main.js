@@ -1,7 +1,8 @@
 http = require('node:http');
 pm2 = require('pm2');
+var path = require('path')
 
-
+var filename = path.basename(__dirname);
 
 app = function (request, response) {
    // Send the HTTP header 
@@ -18,6 +19,15 @@ app = function (request, response) {
 server = http.createServer(app);
 server.listen(3000);
 
+
+process.send({
+   type : 'process:msg',
+   data : {
+     app : filename,
+     msg : "Hello World!"
+   }
+ })
+ 
 // Console will print the message
 
 console.log('App running at http://127.0.0.1:3001/');

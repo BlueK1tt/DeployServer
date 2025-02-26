@@ -361,7 +361,8 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
-          console.log(packet)
+            appdata = packet.data.app + " : " + packet.data.msg
+            console.log(appdata)
         })
         if(err){
             console.log(err);
@@ -382,6 +383,8 @@ const requestListener = function(request, response){
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
+
+    pm2bussi();
     
     //here code to read and write txt or json file
     //on startup , compare saved information of git and infomation of gits on github
@@ -435,5 +438,4 @@ server.listen(port, hostname, () => {
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
     compareLog();
-    pm2bussi();
 });
