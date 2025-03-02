@@ -247,7 +247,7 @@ function msgidentify(msg){ //c = different incoming msg
 };
 
 function pm2connect(){ //need to call this every first time starting pm2 daemon
-    console.log("pm2connect")
+    //console.log("pm2connect")
     pm2.connect(function(err) {
         if (err) {
             console.error(err)
@@ -319,7 +319,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
 }
 
 function pm2start(startfile){ //start specific server on command, need to check available ports    
-    console.log("startfile")
+    //console.log("startfile")
     pm2connect();
     const data = require(`./functions/findfile`);
     var sentData = valuesToArray(data); 

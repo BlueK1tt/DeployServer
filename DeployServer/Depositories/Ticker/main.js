@@ -20,7 +20,7 @@ server = http.createServer(app);
 server.listen(3000);
 
 
-process.send({
+process.send({ //this is just example, boiletplate for future apps
    type : 'process:msg',
    data : {
      app : filename,
