@@ -346,6 +346,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
     pm2.stop(`${stopfile}`, function(err, apps) {
         if (err) {
             console.log(err)
+            pm2.flush(stopfile);
             return pm2.disconnect();
         }
     });
@@ -372,6 +373,7 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
 
 const requestListener = function(request, response){
 
+
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     message = request.url;
@@ -384,7 +386,6 @@ const requestListener = function(request, response){
     //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
 
-    pm2bussi();
     
     //here code to read and write txt or json file
     //on startup , compare saved information of git and infomation of gits on github
@@ -438,4 +439,6 @@ server.listen(port, hostname, () => {
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
     compareLog();
+    pm2bussi();
+
 });
