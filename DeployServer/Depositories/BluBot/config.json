@@ -1,4 +1,7 @@
 {
-    "hostname":"127.0.0.1",
-    "netport":"3001"
+    "prefix":"!",
+    "token": "MTI4NTY4NDQ2MzE3MDM1NTIyMQ.GGgxG4.pD4nNHRwhSbrD35uttyQpriMU3HJHvHAgOmSAo",
+    "botname":"BluBot",
+    "channel":"726591333443174523"
+    
 }

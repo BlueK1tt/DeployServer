@@ -440,5 +440,4 @@ server.listen(port, hostname, () => {
     console.log('Server running at ' + config.hostname +':' + config.netport);
     compareLog();
     pm2bussi();
-
 });
