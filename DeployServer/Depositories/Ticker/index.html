@@ -1,21 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./main.js" defer></script>
     <link rel="stylesheet" href="/style.css">
     <title>Ticker</title>
+
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge"> 
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0"> 
+    
+     <!-- the static loading of app.js file-->
+    <script src="main.js"></script> 
 </head>
 <body>
+    <h1>Ticker</h1>
 
+    <div> 
+        <div id="upper"> 
+            
+            <!-- The message will change on successful 
+                 execution of View button-->
+            <h3 id="mssg"> 
+               We are here to learn how to load 
+               CSS and JS file dynamically 
+            </h3> 
+  
+            <!-- The message() function is in script.js file -->
+            <button onclick="message()"> View Message </button> 
+        </div> 
+        <br> 
+        
+        <!-- This div would disappear after view  
+             message is successfully executed-->
+        <div id="lower">   
+            
+            <!-- The loadCSS would load the styles.css file -->
+            <button onclick="loadCSS()"> 
+              Load CSS  
+            </button> 
+  
+            <!-- The loadJS would load the script.js file-->
+            <button onclick="loadJS()"> 
+              Load JS  
+            </button>             
+        </div> 
+    </div> 
 
-<<<<<<< HEAD
-<h1>Ticker</h1>
-=======
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
->>>>>>> 592693c2fda22dbbb3942f8f488c3879f035f6af
 
 </body>
 </html>
