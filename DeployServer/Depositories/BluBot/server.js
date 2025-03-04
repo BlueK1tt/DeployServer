@@ -1,13 +1,14 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-var path = require('path')
+var path = require('path');
+const { error } = require('console');
 const bot = new Discord.Client({intents: [Discord.GatewayIntentBits.Guilds],});
 
 const PREFIX = config.prefix
 var filename = path.basename(__dirname);
 
 
-function sendtomaster(data){
+/*function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
       data : {
@@ -16,10 +17,14 @@ function sendtomaster(data){
       }
     })
 }
-
+*/
 bot.on('ready', () =>{
     console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
     bot.channels.cache.get(config.channel).send("`YO`");
+});
+
+bot.on('error', error => {
+    console.log(error)
 });
 
 bot.on('uncaughtException', err => {
@@ -48,4 +53,4 @@ bot.on('message', message=>{
 });
 
 bot.login(config.token);
-sendtomaster("BlutBot online");
+//sendtomaster("BlutBot online");
