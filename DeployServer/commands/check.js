@@ -50,3 +50,4 @@ function checkInternet(cb) {
     })
 }
 //if undefined return undefined and redo function
+

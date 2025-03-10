@@ -85,3 +85,6 @@ for install function
 need to get array as return from verifyfile, including true/false and filename
 {false, ' '}, {true, 'index.js}
 then can use .includes in the parts needing either or, or just push not needed out
+
+"pm2check"
+to check running pm2 process status
