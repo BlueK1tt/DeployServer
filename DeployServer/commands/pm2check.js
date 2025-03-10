@@ -16,7 +16,12 @@ function pm2check(){
             }).filter(item => item !== null)
             
             servcount = Object.keys(list).length
-            //need to cut "deployment server" out of that list
+
+
+            //need to test out if code goes procedurally if take the "if" statements away
+            //they just served as check for other command, but now they arent needed, but they functionality is useful
+
+            
             if(servcount >= 1){ //if no error and list not empty
                 //need to stop all running daemons
                 list.forEach((Element) => {
