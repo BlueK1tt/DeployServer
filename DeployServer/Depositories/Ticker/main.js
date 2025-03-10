@@ -16,8 +16,12 @@ var filename = path.basename(__dirname);
   })
 }
 */
-
-function loadwebsite(){
+function Test(){
+  console.log("clicked")
+  const element = document.getElementById("demo");
+  element.outerHTML = "<h1>PENIS!</h1>";
+}
+async function loadwebsite(){
   html = fs.readFile('./Depositories/Ticker/index.html', function(err, html){
     if(err){
       throw err;
@@ -43,6 +47,8 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
   }
   fs.close;
   http.createServer(function(request, response) {  
+      msg = request
+      console.log("msg: "+ msg)
       loadwebsite()
       response.writeHead(200, {"Content-Type": "text/html"});  
       response.write(html);
