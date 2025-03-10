@@ -14,10 +14,105 @@
     <script src="main.js"></script> 
 </head>
 <style>
-    h1 {color:green;}
+h1 {
+    color:green;
+    text-align: center;
+    text-shadow: 2px 2px  red;
+}
+.header{
+    background-color: grey;
+    border: 1px solid black;
+    margin: 3px;
+    padding: 20px;
+    border-top-left-radius: 10px ;
+    border-top-right-radius: 10px;
+}
+.ARAM{
+    background-color: grey;
+    margin: 3px;
+    height: 18cm;
+}
+.meat{
+    background-color: green;
+    margin-left: 15%;
+    height: 100%;
+    border: 1px solid black;
 
+}
+.sidenav{
+    border: 1px solid black;
+    background-color: grey;
+    width: 15%;
+    color: white;
+    float: left;
+    height: 100%;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  background-color: #f1f1f1;
+  border-style: solid;
+  border-color: red;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-style: dotted;
+  border-color: yellow;
+}
+
+li a.active {
+  background-color: #04AA6D;
+  color: white;
+  border-style: dotted;
+  border-color: red;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+  border-style: dotted;
+  border-color: red;
+  
+}
+.footer{
+    background-color: grey;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    margin: 3px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 </style>
 <body>
-    <h1>Ticker</h1>
+    <div class="header">
+        <h1>Ticker</h1>
+    </div>
+
+    <div class="ARAM">
+        <div class="sidenav">
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#first">First</a></li>
+                <li><a href="#Second">Second</a></li>
+                <li><a href="#Third">Third</a></li>
+                <li><a href="#Fourth">Fourth</a></li>
+                <li><a href="#Fifth">Fifth</a></li>
+            </ul>
+        </div>
+        <div class="meat">
+            <p>PENIS</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Created by BlueK1tt</p>
+    </div>
 </body>
 </html>
