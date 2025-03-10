@@ -22,7 +22,7 @@ function loadwebsite(){
     if(err){
       throw err;
     }
-    console.log("html"+html)
+
     return html
   })
   fs.close;
@@ -30,7 +30,7 @@ function loadwebsite(){
     if(err){
       throw err;
     }
-    console.log("css"+css)
+
     return css
   })
   fs.close;
