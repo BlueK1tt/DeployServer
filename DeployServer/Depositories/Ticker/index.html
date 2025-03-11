@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     
      <!-- the static loading of app.js file-->
-    <script type="text/javascript" src="./main.js"></script> 
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="./func.js"></script>
 </head>
 <style>
 h1 {
@@ -110,6 +111,9 @@ li a:hover:not(.active) {
             <button onclick="Test()">The time is?</button>
             <p id="demo"></p>
 
+            <form action="Test" method="GET"> 
+                <button>Call server</button> 
+            </form> 
         </div>
     </div>
     <div class="footer">
