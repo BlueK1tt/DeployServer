@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Ticker</title>
 
     <meta charset="UTF-8"> 
@@ -9,112 +9,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     
      <!-- the static loading of app.js file-->
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
     <script type="text/javascript" src="./func.js"></script>
 </head>
+
 <style>
-h1 {
-    color:green;
-    text-align: center;
-    text-shadow: 2px 2px  red;
-}
-.header{
-    background-color: grey;
-    border: 1px solid black;
-    margin: 3px;
-    padding: 20px;
-    border-top-left-radius: 10px ;
-    border-top-right-radius: 10px;
-}
-.ARAM{
-    background-color: grey;
-    margin: 3px;
-    height: 18cm;
-}
-.meat{
-    background-color: green;
-    margin-left: 15%;
-    height: 100%;
-    border: 1px solid black;
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      
+    }
+    
+    /* Style the header */
+    .header {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      border-style: solid ;
+      border-color: black;
+    }
+    
+    /* Style the top navigation bar */
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+      border-style: solid ;
+      border-color: black;
+    }
+    
+    /* Style the topnav links */
+    .topnav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
 
-}
-.sidenav{
-    border: 1px solid black;
-    background-color: grey;
-    width: 15%;
-    color: white;
-    float: left;
-    height: 100%;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  background-color: #f1f1f1;
-  border-style: solid;
-  border-color: red;
-}
+    }
+    
+    /* Change color on hover */
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    /* Create three unequal columns that floats next to each other */
+    .column {
+      float: left;
+      padding: 10px;
 
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-style: dotted;
-  border-color: yellow;
-}
+      height: 100%;
+    }
+    
+    /* Left and right column */
+    .column.side {
+      width: 25%;
+      height: 100%;
 
-li a.active {
-  background-color: #04AA6D;
-  color: white;
-  border-style: dotted;
-  border-color: red;
-}
+    }
+    
+    /* Middle column */
+    .column.middle {
+      width: 50%;
+      height: 100%;
 
-li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-  border-style: dotted;
-  border-color: red;
-  
-}
-.footer{
-    background-color: grey;
-    border: 1px solid black;
+    }
+    
+    /* Clear floats after the columns */
+    .row::after {
+      content: "";
+      display: table;
+      clear: both;
+      height: 100%;
+
+    }
+    
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+      .column.side, .column.middle {
+        width: 100%;
+        height: 100%;
+
+      }
+    }
+    
+    /* Style the footer */
+    .footer {
+    background-color: #f1f1f1;
     padding: 10px;
     text-align: center;
-    color: white;
-    margin: 3px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-</style>
-<body>
+    position:absolute;
+    bottom:0;
+    width:100%;
+    border-style: solid ;
+    border-color: black;
+    }
+    </style>
+    </head>
+    <body>
+    
     <div class="header">
-        <h1>Ticker</h1>
-    </div>
+      <h1>Header</h1>
 
-    <div class="ARAM">
-        <div class="sidenav">
-            <ul>
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#first">First</a></li>
-                <li><a href="#Second">Second</a></li>
-                <li><a href="#Third">Third</a></li>
-                <li><a href="#Fourth">Fourth</a></li>
-                <li><a href="#Fifth">Fifth</a></li>
-            </ul>
-        </div>
+    </div>
+    
+    <div class="topnav">
+      <a href="/">Home</a> 
+      <a href="#Link1">Link1</a>
+      <a href="#Link2">Link2</a>
+    </div>
+    
+    <div class="row">
+      <div class="column side">
+        <h2>Side</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+      </div>
+      
+      <div class="column middle">
+        <h2>Main Content</h2>
+        <form action="Test" method="GET"> 
+            <button>Call server</button> 
+        </form> 
+      </div>
+      
+      <div class="column side">
+        <h2>Side</h2>
         <div class="meat">
             <p>PENIS</p>
             <button onclick="Test()">The time is?</button>
             <p id="demo"></p>
-
-            <form action="Test" method="GET"> 
-                <button>Call server</button> 
-            </form> 
         </div>
+      </div>
     </div>
     <div class="footer">
         <p>Created by BlueK1tt</p>

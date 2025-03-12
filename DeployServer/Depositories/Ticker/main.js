@@ -1,7 +1,8 @@
 http = require('http');
 pm2 = require('pm2');
 fs = require('fs');
-var path = require('path')
+var path = require('path');
+const { defaults } = require('request');
 
 var filename = path.basename(__dirname);
 
@@ -17,19 +18,29 @@ function sendtomaster(data){
 }
 
 
-async function Test(){
+function Test(){
   console.log("clicked")
-  const element = document.getElementById("func");
-  element.outerHTML = "<h1>PENIS!</h1>";
   return "return"
 }
 
 function functionloader(msg){
-  console.log("Functionloader: " + msg)
-  return "yo"
+  const defaults = msg.includes("/style.css") || msg.includes("/main.js") || msg.includes("/func.js") || msg.includes("/favicon.ico")
+  if(defaults === true){
+    return
+  }
+  if(msg.includes("/Test?")){
+    Test();
+    return
+    
+  }
+  else {
+    console.log("msg: " + msg);
+    return
+  }
+
 }
 
-async function loadwebsite(){
+function loadwebsite(){
   html = fs.readFile('./Depositories/Ticker/index.html', function(err, html){
     if(err){
       throw err;
@@ -56,7 +67,6 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
   http.createServer(function(request, response) {
 
       var msg = request.url
-      console.log("msg: "+ msg)
       functionloader(msg)
       loadwebsite()
       response.writeHead(200, {"Content-Type": "text/html"});  
