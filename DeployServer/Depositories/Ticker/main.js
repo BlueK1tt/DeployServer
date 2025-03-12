@@ -32,9 +32,10 @@ function functionloader(msg){
     Test();
     return
   }
-  if(msg.includes("/Main%20request?")){
-    console.log("send to server")
+  if(msg.includes("/Main%20request?")){ //test button to try communication
     sendtomaster("button1")
+    console.log("call server")
+    return
   }
   else {
     console.log("msg: " + msg); //else, for everything else that isnt stated yet

@@ -363,7 +363,6 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
             appdata = packet.data.app + " : " + packet.data.msg
-            console.log(appdata)
             bussifunctions(appdata)
         })
         if(err){
@@ -377,6 +376,7 @@ function bussifunctions(appdata){
         console.log("Server button 1")
     }
     else {
+        console.log(appdata)
         console.log("Something else")
     }
 }
