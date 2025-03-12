@@ -364,11 +364,21 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
         pm2_bus.on('process:msg', function(packet) {
             appdata = packet.data.app + " : " + packet.data.msg
             console.log(appdata)
+            bussifunctions(appdata)
         })
         if(err){
             console.log(err);
         }
     })
+}
+
+function bussifunctions(appdata){
+    if(appdata.includes("button1")){
+        console.log("Server button 1")
+    }
+    else {
+        console.log("Something else")
+    }
 }
 
 const requestListener = function(request, response){

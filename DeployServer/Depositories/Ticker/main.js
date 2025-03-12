@@ -25,16 +25,19 @@ function Test(){
 
 function functionloader(msg){
   const defaults = msg.includes("/style.css") || msg.includes("/main.js") || msg.includes("/func.js") || msg.includes("/favicon.ico")
-  if(defaults === true){
+  if(defaults === true){ //html requests these whenever its loaded, so just ignoring them
     return
   }
-  if(msg.includes("/Test?")){
+  if(msg.includes("/Test?")){ //test button
     Test();
     return
-    
+  }
+  if(msg.includes("/Main%20request?")){
+    console.log("send to server")
+    sendtomaster("button1")
   }
   else {
-    console.log("msg: " + msg);
+    console.log("msg: " + msg); //else, for everything else that isnt stated yet
     return
   }
 

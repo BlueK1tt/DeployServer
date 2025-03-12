@@ -85,7 +85,6 @@
       display: table;
       clear: both;
       height: 100%;
-
     }
     
     /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -127,19 +126,21 @@
       <div class="column side">
         <h2>Side</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+        <form action="Main request" method="GET"> 
+            <button>Call server</button> 
+        </form> 
       </div>
       
       <div class="column middle">
         <h2>Main Content</h2>
         <form action="Test" method="GET"> 
-            <button>Call server</button> 
+            <button>Call main script</button> 
         </form> 
       </div>
       
       <div class="column side">
         <h2>Side</h2>
         <div class="meat">
-            <p>PENIS</p>
             <button onclick="Test()">The time is?</button>
             <p id="demo"></p>
         </div>
