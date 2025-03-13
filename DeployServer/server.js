@@ -131,7 +131,7 @@ function msgidentify(msg){ //c = different incoming msg
     console.log("id:" + msgid);
 
     if(msg == ""){
-        return "no specified command";
+        return "no specified command";kkkkkkkkkkkkkkkkkkkkkkkkkkkkk
     }
     if(basecommands.includes(msg)){
         console.log("base command");
