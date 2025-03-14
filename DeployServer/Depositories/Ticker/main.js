@@ -3,9 +3,7 @@ pm2 = require('pm2');
 fs = require('fs');
 var path = require('path');
 const { defaults } = require('request');
-
 var filename = path.basename(__dirname);
-
 
 function sendtomaster(data){
   process.send({ //this is just example, boiletplate for future apps
@@ -17,12 +15,10 @@ function sendtomaster(data){
   })
 }
 
-
 function Test(){
   console.log("clicked")
   return "return"
 }
-
 function functionloader(msg){
   const defaults = msg.includes("/style.css") || msg.includes("/main.js") || msg.includes("/func.js") || msg.includes("/favicon.ico")
   if(defaults === true){ //html requests these whenever its loaded, so just ignoring them
@@ -41,7 +37,6 @@ function functionloader(msg){
     console.log("msg: " + msg); //else, for everything else that isnt stated yet
     return
   }
-
 }
 
 function loadwebsite(){
@@ -49,7 +44,6 @@ function loadwebsite(){
     if(err){
       throw err;
     }
-
     return html
   })
   fs.close;
@@ -57,19 +51,15 @@ function loadwebsite(){
     if(err){
       throw err;
     }
-
     return css
   })
   fs.close;
 }
-
-
 app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
   if (err) {
       throw err;  
   }
   http.createServer(function(request, response) {
-
       var msg = request.url
       functionloader(msg)
       loadwebsite()

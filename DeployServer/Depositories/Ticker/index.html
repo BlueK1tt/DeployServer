@@ -10,7 +10,6 @@
     
      <!-- the static loading of app.js file-->
     <script type="text/javascript" src="./main.js"></script>
-    <script type="text/javascript" src="./func.js"></script>
 </head>
 
 <style>
@@ -153,7 +152,18 @@
         <p>Sample text</p>
         <form action="Main request" method="GET"> 
             <button class="call">Call server</button> 
-        </form> 
+        </form>
+        <form id="userinfo">
+          <p>
+            <label for="username">Enter your name:</label>
+            <input type="text" id="username" name="username" value="Dominic" />
+          </p>
+          <p>
+            <label for="avatar">Select an avatar</label>
+            <input type="file" id="avatar" name="avatar" required />
+          </p>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
       
       <div class="column middle">
