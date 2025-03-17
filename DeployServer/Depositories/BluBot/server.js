@@ -6,29 +6,21 @@ const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 
+
 const PREFIX = config.prefix
 var filename = path.basename(__dirname);
 
 bot.commands = new Collection();
 
-const foldersPath = path.join(__dirname, './commands');
-const commandFolders = fs.readdirSync(foldersPath);
+const commandFolders = fs.readdirSync('./commands');
 
 for (const folder of commandFolders) {
-	const commandsPath = path.join(foldersPath, folder);
-	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
 	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		// Set a new item in the Collection with the key as the command name and the value as the exported module
-		if ('data' in command && 'execute' in command) {
-			bot.commands.set(command.data.name, command);
-		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
-		}
+		const command = require(`./commands/${folder}/${file}`);
+		bot.commands.set(command.name, command);
 	}
 }
-
 /*function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -48,6 +40,27 @@ bot.on('ready', () =>{
     console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
     bot.channels.cache.get(config.channel).send("`YO`");
 
+	console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
+	  bot.channels.cache.get(config.channel).send("`YO`");
+	
+	  const baseFile = 'command-base.js'
+	  const commandBase = require(`./commands/${baseFile}`)
+	
+	  const readCommands = (dir) => {
+		const files = fs.readdirSync(path.join(__dirname, dir))
+		for (const file of files) {
+		  const stat = fs.lstatSync(path.join(__dirname, dir, file))
+		  if (stat.isDirectory()) {
+			readCommands(path.join(dir, file))
+		  } else if (file !== baseFile) {
+			const option = require(path.join(__dirname, dir, file))
+			commandBase(client, option)
+		  }
+		}
+	  }
+	
+	  readCommands('commands')
+
 });
 
 bot.on('error', error => {
@@ -62,23 +75,21 @@ bot.on('uncaughtException', err => {
 bot.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	const command = interaction.bot.commands.get(interaction.commandName);
-
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
-	}
+    if (!message.content.startsWith(PREFIX) || message.author.bot) return;
+	
+	const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+	const command = args.shift().toLowerCase();
+	
+	if (!bot.commands.has(command)) return;
+	
 
 	try {
-		await command.execute(interaction);
+		bot.commands.get(command).callback(message, args);
 	} catch (error) {
 		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
-		}
+		message.reply('there was an error trying to execute that command!');
 	}
+
 });
 
 bot.on('message', message=>{

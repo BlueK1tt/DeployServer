@@ -377,7 +377,7 @@ function bussifunctions(appdata){
     }
     else {
         console.log(appdata)
-        console.log("Something else")
+        //console.log("Something else")
     }
 }
 
