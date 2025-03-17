@@ -29,7 +29,8 @@ function findfile(){
 
 
         if(msg.startsWith("stop")){
-            filename = msg.slice(5);            let files = fs.readdirSync(`./depositories/`+ `${filename}`);
+            filename = msg.slice(5);            
+            let files = fs.readdirSync(`./depositories/`+ `${filename}`);
             fs.close
             //console.log("files:" + files)
             if (Object.keys(files).length !== 0){

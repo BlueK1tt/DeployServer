@@ -7,7 +7,6 @@ const config = require("../resources/config.json");
 module.exports = {
     data : install()
 };
-
 function install(){
     filename = msg.slice(8);
     if(msg == "install"){
@@ -15,9 +14,7 @@ function install(){
         return "target not defined"
     }
     if(msg.includes(filename)){
-
         console.log("installing " + filename)
-        
         let files = fs.readdirSync('./Depositories/')
         console.log(files);
 
@@ -25,7 +22,6 @@ function install(){
             return "Error, Directory already exists";
         }
         else {
-        
             //create folder with same name as required
             fs.mkdir(`./depositories/`+`${filename}`, callback => {
                 return "Folder created"
@@ -34,8 +30,6 @@ function install(){
             fs.close;
 
             //need download the repository into the folder
-
-
 
             //need to verify theres starting file, same way as *findfile
             instaldone = verifyfiles(filename);
@@ -51,15 +45,12 @@ function install(){
             else {
                 console.log("Uknown error")
             };
-
             //need to add new files to the depositories.json file
             let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
             let json1 = JSON.parse(rawdata1);
             fs.close;
             strtfile = instaldone.file
-
             newjsonobj = {name:filename, startfile:strtfile }
-
             newjsonobj = Object.assign({}, json1, {}) //copies depositories json file to variable
             //console.log(newjsonobj);
             var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
@@ -69,19 +60,13 @@ function install(){
                 }
             });
             fs.close
-
-
-
             return "installing..."
         }
-
     } else {
         console.log("error");
         return "error;"
     }
 }
-
-
 function verifyfiles(filename){
     let files = fs.readdirSync(`./depositories/`+ `${filename}`);
     console.log(files + typeof(files))

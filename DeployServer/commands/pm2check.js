@@ -33,7 +33,7 @@ function pm2check(){
             }
             else {
                 list.forEach((Element) => {
-                    console.log(Element)
+                    console.log(Element.name)
             })
                 return "ok"
             }
