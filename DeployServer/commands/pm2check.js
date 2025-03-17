@@ -25,7 +25,7 @@ function pm2check(){
             if(servcount >= 1){ //if no error and list not empty
                 //need to stop all running daemons
                 list.forEach((Element) => {
-                    console.log(Element)
+                    //console.log(Element)
                 })
             if(err != null){
                 console.log(err)
@@ -33,7 +33,11 @@ function pm2check(){
             }
             else {
                 list.forEach((Element) => {
-                    console.log(Element.name)
+                    filename = Element.name; //main.js server.js
+                    filetree = Element.pm2_env.pm_exec_path // /DeployServer/Depositories/
+                    pm2stat = Element.pm2_env.status //online , offline, stopped
+                    result = makepretty(filename, filetree, pm2stat);
+                    console.log(result);
             })
                 return "ok"
             }
@@ -46,4 +50,9 @@ function pm2check(){
     }
     console.log("out?")
     return "pm2check out"
+}
+
+function makepretty(filename, filetree, pm2stat){
+    results = filename + filetree + pm2stat
+    return results
 }
