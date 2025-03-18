@@ -38,7 +38,8 @@ function update(msg) {
             console.log("logstatus:" + logstatus)
             if(logstatus == true){
                 console.log("trueing")
-                return "Depositories are up to date"
+                returnmsg = "Depositories are up to date"
+                return returnmsg 
             }
             else{
                 console.log("nooeing")

@@ -204,7 +204,6 @@ function msgidentify(msg){ //c = different incoming msg
             return "install error"
         }
     }
-
     if (msg == "update"){
         console.log("update");
         basemessage = "update";
@@ -214,7 +213,6 @@ function msgidentify(msg){ //c = different incoming msg
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
             delete require.cache[require.resolve(`./commands/update`)] //clears the cache allowing for new data to be read
-
                 try {
                     return asmessage;
                 } catch (error) {
@@ -235,11 +233,12 @@ function msgidentify(msg){ //c = different incoming msg
             asmessage = sentData[0];
 
             //need to flush the custom command
-            delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
+            //delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
             //console.log("cache cleared");
             try {
                 return asmessage;
             } catch (error) {
+                console.log(error)
                 return error;
             }
         }
