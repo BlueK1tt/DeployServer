@@ -39,9 +39,6 @@ bot.on(Events.InteractionCreate, interaction => {
 bot.on('ready', () =>{
     console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
     bot.channels.cache.get(config.channel).send("`YO`");
-
-	console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
-	  bot.channels.cache.get(config.channel).send("`YO`");
 	
 	  const baseFile = 'command-base.js'
 	  const commandBase = require(`./commands/${baseFile}`)
