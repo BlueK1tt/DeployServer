@@ -8,6 +8,7 @@ so, pm2 start server, -> pm2 generates log file for the session -> after while i
 Need to make websockets for servers, servers send out data and comannds to eachother
 For example have "main" server and discord bot server running on same pm2, -> if discord bot gets some command, 
 process the command and send needed information through websocket to "main" server.
+------ this was solved with just pm2 and sending data to and from main
 
 https://github.com/rowanmanning/learning-express-cluster/blob/master/app.js
 
@@ -88,3 +89,4 @@ then can use .includes in the parts needing either or, or just push not needed o
 
 "pm2check"
 to check running pm2 process status
+--- created, prints out name and status, even if stopped
