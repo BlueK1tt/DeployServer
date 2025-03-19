@@ -32,19 +32,19 @@ async function pm2check(){
                 filetree = Element.pm2_env.pm_exec_path // /DeployServer/Depositories/
                 pm2stat = Element.pm2_env.status //online , offline, stopped
                 result = makepretty(filetree, pm2stat);
-                console.log(result);
+                //console.log(result);
                 sendArray.push(result);
                 sendtomain = sendArray
-                sendtomaster(sendArray)
+                console.log(sendArray)
                 return sendArray
             });
-            console.log("3")
+            //console.log("3")
         };
-        console.log("2")
-        return sendtomaster
+        //console.log("2")
+        return sendArray
     });
-    console.log("1")}
-
+    //console.log("1")
+};
 function makepretty(filetree, pm2stat){
     const cutArray = filetree.split('\\');
     //console.log(cutArray); //gives array split between folders
@@ -55,13 +55,3 @@ function makepretty(filetree, pm2stat){
     results = getThat +":"+ pm2stat
     return results
 }
-
-function sendtomaster(data){
-    process.send({ //this is just example, boiletplate for future apps
-      type : 'process:msg',
-      data : {
-        app : filename,
-        msg : data
-      }
-    })
-  }
