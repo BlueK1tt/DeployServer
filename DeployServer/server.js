@@ -87,7 +87,7 @@ function getfile(msg) {
     }
     if(msg.includes('=')){
         shortened = msg.split('=')[0];
-        console.log("shortened" + shortened);
+        //console.log("shortened" + shortened);
 
         let onfiles = fs.readdirSync('./commands/');
         let onoriginal = onfiles
@@ -97,13 +97,13 @@ function getfile(msg) {
         onmatch = onstrip.indexOf(shortened)
         const onposition = Number(onmatch)
         onresult = onfiles[onposition];
-        console.log("getfilebetter" + onresult);
+        //console.log("getfilebetter" + onresult);
         fs.close;
         return onresult
     }
     else {
-        console.log("msg " + msg)
-        console.log("getfile")
+        //console.log("msg " + msg)
+        //console.log("getfile")
         let files = fs.readdirSync('./commands/');
         let original = files
         strip = original.map(function(d){
@@ -115,7 +115,7 @@ function getfile(msg) {
         }else{
             const position = Number(match)
             result = files[position];
-            console.log("getfile" + result);
+            //console.log("getfile" + result);
             fs.close;
             return result
         };
@@ -227,13 +227,13 @@ function msgidentify(msg){ //c = different incoming msg
         if(command == " "){
             return "command error"
         } else {
-            console.log("custom cmd:" + command)
+            //console.log("custom cmd:" + command)
             const data = require(`./commands/`+ `${command}`);
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
 
             //need to flush the custom command
-            //delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
+            delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
             //console.log("cache cleared");
             try {
                 return asmessage;

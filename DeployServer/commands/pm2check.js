@@ -6,7 +6,7 @@ module.exports = {
 };
 
 function pm2check(){
-    console.log("pm2check");
+    //console.log("pm2check");
     try{
         pm2.list((err, list) => {
         const id = 0;
@@ -16,8 +16,6 @@ function pm2check(){
             }).filter(item => item !== null)
             
             servcount = Object.keys(list).length
-
-
             //need to test out if code goes procedurally if take the "if" statements away
             //they just served as check for other command, but now they arent needed, but they functionality is useful
 
@@ -26,6 +24,7 @@ function pm2check(){
                 //need to stop all running daemons
                 list.forEach((Element) => {
                     //console.log(Element)
+                    return;
                 })
             if(err != null){
                 console.log(err)
@@ -38,21 +37,28 @@ function pm2check(){
                     pm2stat = Element.pm2_env.status //online , offline, stopped
                     result = makepretty(filename, filetree, pm2stat);
                     console.log(result);
-            })
+                    return result;
+            });
                 return "ok"
-            }
+            };
         }
+        return;
     });
+    return result;
     }
     catch (error ){
         console.error(error)
         return error
     }
-    console.log("out?")
-    return "pm2check out"
 }
 
 function makepretty(filename, filetree, pm2stat){
-    results = filename + filetree + pm2stat
+    const cutArray = filetree.split('\\');
+    //console.log(cutArray); //gives array split between folders
+    totalLen = cutArray.length
+    getPos = totalLen - 2
+    getThat = cutArray[getPos]
+
+    results = getThat +":"+ pm2stat
     return results
 }
