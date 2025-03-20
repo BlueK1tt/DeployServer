@@ -26,6 +26,7 @@ function functionloader(msg){
   }
   if(msg.includes("/Test?")){ //test button
     Test();
+    sendtomaster("Test");
     return
   }
   if(msg.includes("/Main%20request?")){ //test button to try communication

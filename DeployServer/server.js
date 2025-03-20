@@ -373,9 +373,18 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
 function bussifunctions(appdata){
     if(appdata.includes("button1")){
         console.log("Server button 1")
+
+        return "button1";
     }
     else {
-        console.log(appdata)
+        console.log("appdata" + appdata)
+        
+        const data = require('./functions/outcommand')
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve(`./functions/outcommand`)] //clears the cache allowing for new data to be read
+        return asmessage;
+        
         //console.log("Something else")
     }
 }

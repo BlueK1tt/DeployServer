@@ -8,4 +8,7 @@ module.exports = {
     data : filtercommand(msg)
 };
 
-function filtercommand(msg){}
+function filtercommand(msg){
+    console.log("filtercommand")
+    return "end."
+}
