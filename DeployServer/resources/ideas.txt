@@ -35,7 +35,7 @@ Maybe use in "main" server or have seperate server that is booted on only when n
 Request includes -> Action(Download, Update, Delete), Name of the github repository, Path which to download
 Response include -> Result(Completed, Failed(err), canceled), Path of file, duration(time it took to make action)
 
-Jorma (Discord bot)
+Jorma (Discord bot) or maybe BluBot
 Acts as "default" bot in discord servers. Has basic bot functions.
 When interracting in DM´s, have interface panel created to make it easier to control everything.
 
