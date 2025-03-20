@@ -40,23 +40,7 @@ bot.on('ready', () =>{
     console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
     bot.channels.cache.get(config.channel).send("`YO`");
 	
-	  const baseFile = 'command-base.js'
-	  const commandBase = require(`./commands/${baseFile}`)
-	
-	  const readCommands = (dir) => {
-		const files = fs.readdirSync(path.join(__dirname, dir))
-		for (const file of files) {
-		  const stat = fs.lstatSync(path.join(__dirname, dir, file))
-		  if (stat.isDirectory()) {
-			readCommands(path.join(dir, file))
-		  } else if (file !== baseFile) {
-			const option = require(path.join(__dirname, dir, file))
-			commandBase(client, option)
-		  }
-		}
-	  }
-	
-	  readCommands('commands')
+
 
 });
 
@@ -69,25 +53,6 @@ bot.on('uncaughtException', err => {
     process.exit(1) //mandatory (as per the Node.js docs)
 })
 
-bot.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-    if (!message.content.startsWith(PREFIX) || message.author.bot) return;
-	
-	const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-	const command = args.shift().toLowerCase();
-	
-	if (!bot.commands.has(command)) return;
-	
-
-	try {
-		bot.commands.get(command).callback(message, args);
-	} catch (error) {
-		console.error(error);
-		message.reply('there was an error trying to execute that command!');
-	}
-
-});
 
 bot.on('message', message=>{
 	
