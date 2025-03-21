@@ -30,7 +30,7 @@ for (const folder of commandFolders) {
 		}
 	}
 }
-/*function sendtomaster(data){
+function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
       data : {
@@ -39,7 +39,7 @@ for (const folder of commandFolders) {
       }
     })
 }
-*/
+
 
 bot.on(Events.InteractionCreate, interaction => {
 	console.log(interaction);
@@ -51,15 +51,6 @@ bot.on('ready', () =>{
 
 });
 
-bot.on(Events.InteractionCreate, async interaction => {
-    console.log(interaction)
-    if (!interaction.isChatInputCommand()) return;
-
-    if (interaction.commandName === 'ping') {
-        await interaction.reply({ content: 'Secret Pong!', flags: MessageFlags.Ephemeral });
-    }
-});
-
 bot.on('error', error => {
     console.log(error)
 });
@@ -69,20 +60,19 @@ bot.on('uncaughtException', err => {
     process.exit(1) //mandatory (as per the Node.js docs)
 })
 
-
-
 bot.on(Events.MessageCreate, message=>{
-    console.log("message received")
-    console.log(message.content)
-    if (!message.content.startsWith(PREFIX) || message.author.bot) return;
-	
-	const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-	const command = args.shift().toLowerCase();
+        if(message.author == config.botid){
+            console.log("self");    
+        }
+        else {
+            //console.log("message received")
+            console.log(message.content)
+        
+            msgchannel = message.channel.id
+            console.log(bot.channels.cache.get(msgchannel).send("here"));
 
-	console.log(command)
-    console.log(message.content)
-    console.log(message)
+        }
 
 });
 bot.login(config.token);
-//sendtomaster("BlutBot online");
+sendtomaster("BlutBot online");
