@@ -349,7 +349,6 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             return pm2.disconnect();
         }
     });
-
     console.log("pm2stop:"  + stopfile);
 
     //first need to check if the one requested is running
@@ -388,10 +387,7 @@ function bussifunctions(appdata){
         //console.log("Something else")
     }
 }
-
 const requestListener = function(request, response){
-
-
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     message = request.url;
