@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 var path = require('path');
 const fs = require('fs'); //filesystem
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
+const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
+const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],});
 
 
 
@@ -52,6 +52,7 @@ bot.on('ready', () =>{
 });
 
 bot.on(Events.InteractionCreate, async interaction => {
+    console.log(interaction)
     if (!interaction.isChatInputCommand()) return;
 
     if (interaction.commandName === 'ping') {
@@ -69,8 +70,10 @@ bot.on('uncaughtException', err => {
 })
 
 
-bot.on('message', message=>{
 
+bot.on(Events.MessageCreate, message=>{
+    console.log("message received")
+    console.log(message.content)
     if (!message.content.startsWith(PREFIX) || message.author.bot) return;
 	
 	const args = message.content.slice(PREFIX.length).trim().split(/ +/);
