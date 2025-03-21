@@ -14,22 +14,7 @@ const foldersPath = path.join(__dirname, 'commands');
 
 bot.commands = new Collection();
 
-const commandFolders = fs.readdirSync('./Depositories/BluBot/commands/');
 
-for (const folder of commandFolders) {
-	const commandsPath = path.join(foldersPath, folder);
-	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		// Set a new item in the Collection with the key as the command name and the value as the exported module
-		if ('data' in command && 'execute' in command) {
-			bot.commands.set(command.data.name, command);
-		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
-		}
-	}
-}
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -39,6 +24,20 @@ function sendtomaster(data){
       }
     })
 }
+
+
+
+function commandscollection() { //currently not in use, using the above commands command
+    var files = fs.readdirSync('./commands/');
+    let original = files
+    fs.close;
+    result = original.map(function(d) {
+        return d.replace('.js', "");
+    });
+    var stringCMD = result.toString();
+    console.log("collention" + result);
+    return stringCMD;
+};
 
 
 bot.on(Events.InteractionCreate, interaction => {
@@ -67,7 +66,7 @@ bot.on(Events.MessageCreate, message=>{
         else {
             //console.log("message received")
             console.log(message.content)
-        
+            console.log(commandscollection())
             msgchannel = message.channel.id
             console.log(bot.channels.cache.get(msgchannel).send("here"));
 
