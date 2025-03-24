@@ -65,7 +65,8 @@ bot.on(Events.MessageCreate, message=>{
         }
         else {
             //setup for when actively needing bot on some channel, use !BluBot or some else command in that chat
-            //can be used with voice channels too            var oldchannel ="";  //prepared variable for old channel id used later
+            //can be used with voice channels too            
+            var oldchannel ="";  //prepared variable for old channel id used later
             var newchannel =";" //prepared variable for new channel id used later
 
             //console.log("message received")
