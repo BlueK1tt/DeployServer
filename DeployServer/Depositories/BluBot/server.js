@@ -14,7 +14,7 @@ const foldersPath = path.join(__dirname, 'commands');
 
 bot.commands = new Collection();
 
-
+/*
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -25,7 +25,7 @@ function sendtomaster(data){
     })
 }
 
-
+*/
 
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
@@ -57,26 +57,33 @@ bot.on('error', error => {
 bot.on('uncaughtException', err => {
     console.error('There was an uncaught error', err)
     process.exit(1) //mandatory (as per the Node.js docs)
-})
+});
+
+//setup for when actively needing bot on some channel, use !BluBot or some else command in that chat
+//can be used with voice channels too            
+var oldchannel ="";  //prepared variable for old channel id used later
+var newchannel =""; //prepared variable for new channel id used later
 
 bot.on(Events.MessageCreate, message=>{
+    channelid = message.channel.id
         if(message.author == config.botid){
             console.log("self");    
+            oldchannel = channelid
+
         }
         else {
-            //setup for when actively needing bot on some channel, use !BluBot or some else command in that chat
-            //can be used with voice channels too            
-            var oldchannel ="";  //prepared variable for old channel id used later
-            var newchannel =";" //prepared variable for new channel id used later
+
 
             //console.log("message received")
             console.log(message.content)
             console.log(commandscollection())
             msgchannel = message.channel.id
             console.log(bot.channels.cache.get(msgchannel).send("here"));
+            newchannel = channelid
+            console.log(bot.channels.cache.get(msgchannel).send("Switched from "+ oldchannel + " to "+ newchannel));
 
         }
 
 });
 bot.login(config.token);
-sendtomaster("BlutBot online");
+//sendtomaster("BlutBot online");
