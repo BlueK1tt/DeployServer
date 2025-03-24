@@ -3,6 +3,7 @@ const config = require('./config.json');
 var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
+const { channel } = require('diagnostics_channel');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],});
 
 
@@ -69,18 +70,24 @@ bot.on(Events.MessageCreate, message=>{
         if(message.author == config.botid){
             console.log("self");    
             oldchannel = channelid
-
         }
         else {
+            const discordServer = bot.guilds.cache.get("726591333443174520");
+            const channels = discordServer?.channels ? JSON.parse(
+            JSON.stringify(discordServer.channels)
+            ).guild.channels : [];
 
+            console.log(channels)
 
             //console.log("message received")
             console.log(message.content)
             console.log(commandscollection())
             msgchannel = message.channel.id
             console.log(bot.channels.cache.get(msgchannel).send("here"));
-            newchannel = channelid
-            console.log(bot.channels.cache.get(msgchannel).send("Switched from "+ oldchannel + " to "+ newchannel));
+            oldname = oldchannel.name
+            newname = newchannel.name
+            console.log(newname);
+            console.log(bot.channels.cache.get(msgchannel).send("Switched from "+ oldname + " to "+ newname));
 
         }
 
