@@ -31,7 +31,7 @@ function functionloader(msg){
     return
   }
   if(msg.includes("/Main%20request?")){ //test button to try communication
-    sendtomaster("button1")
+    sendtomaster("button1") //specified in main server to do nothing but log
     console.log("call server")
     return
   }

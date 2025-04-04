@@ -10,5 +10,6 @@ module.exports = {
 
 function filtercommand(msg){
     console.log("filtercommand")
+    
     return "end."
 }

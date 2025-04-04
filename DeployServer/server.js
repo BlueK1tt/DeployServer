@@ -384,7 +384,7 @@ function bussifunctions(appdata){
         delete require.cache[require.resolve(`./functions/outcommand`)] //clears the cache allowing for new data to be read
         return asmessage;
         
-        console.log("Something else")
+        //console.log("Something else")
     }
 }
 const requestListener = function(request, response){
@@ -443,8 +443,12 @@ const requestListener = function(request, response){
         response.statuscode = 204;
         //204 no content available
         response.end();
+        delete(request);
+        msg = "";
         return;
     }
+    delete(request);
+    msg = "";
     return;
 };
 
