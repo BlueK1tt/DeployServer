@@ -5,6 +5,7 @@ var path = require('path');
 const { defaults } = require('request');
 var filename = path.basename(__dirname);
 
+
 function sendtomaster(data){
   process.send({ //this is just example, boiletplate for future apps
     type : 'process:msg',
@@ -36,6 +37,7 @@ function functionloader(msg){
   }
   else {
     console.log("msg: " + msg); //else, for everything else that isnt stated yet
+    sendtomaster(msg)
     return
   }
 }
@@ -56,12 +58,15 @@ function loadwebsite(){
   })
   fs.close;
 }
+
 app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
   if (err) {
+      console.log(err)
       throw err;  
   }
   http.createServer(function(request, response) {
       var msg = request.url
+      console.log("request: " + request);
       functionloader(msg)
       loadwebsite()
       response.writeHead(200, {"Content-Type": "text/html"});  

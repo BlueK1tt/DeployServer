@@ -384,7 +384,7 @@ function bussifunctions(appdata){
         delete require.cache[require.resolve(`./functions/outcommand`)] //clears the cache allowing for new data to be read
         return asmessage;
         
-        //console.log("Something else")
+        console.log("Something else")
     }
 }
 const requestListener = function(request, response){
