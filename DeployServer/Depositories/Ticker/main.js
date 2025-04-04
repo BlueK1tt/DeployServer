@@ -66,7 +66,6 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
   }
   http.createServer(function(request, response) {
       var msg = request.url
-      console.log("request: " + request);
       functionloader(msg)
       loadwebsite()
       response.writeHead(200, {"Content-Type": "text/html"});  
