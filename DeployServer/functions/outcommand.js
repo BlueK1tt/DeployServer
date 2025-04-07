@@ -9,7 +9,7 @@ module.exports = {
 };
 
 function filtercommand(appdata){ 
-    console.log("filtercommand")
+    console.log("outcommand")
     console.log("appdata " + appdata); //appdata gives server + the button pressed | Ticker : Test 
     return "end."
 }
