@@ -90,3 +90,8 @@ then can use .includes in the parts needing either or, or just push not needed o
 "pm2check"
 to check running pm2 process status
 --- created, prints out name and status, even if stopped
+
+checking status before connecting
+mostly for website, good opportunity to test with Ticker
+Need to request, variable for site status
+    If "maintanance", deny reload or loading website
