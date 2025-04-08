@@ -6,6 +6,7 @@ const { defaults } = require('request');
 var filename = path.basename(__dirname);
 
 
+
 function sendtomaster(data){
   process.send({ //this is just example, boiletplate for future apps
     type : 'process:msg',
@@ -20,6 +21,11 @@ function Test(){
   console.log("clicked")
   return "return"
 }
+
+function setsite(sitestatus){
+  console.log("setsite " + sitestatus)
+}
+
 function functionloader(msg){
   const defaults = msg.includes("/style.css") || msg.includes("/main.js") || msg.includes("/func.js") || msg.includes("/favicon.ico")
   if(defaults === true){ //html requests these whenever its loaded, so just ignoring them
@@ -33,6 +39,16 @@ function functionloader(msg){
   if(msg.includes("/Main%20request?")){ //test button to try communication
     sendtomaster("button1") //specified in main server to do nothing but log
     console.log("call server")
+    return
+  }
+  if(msg.includes("/maintanance") && setsite() == true){
+    sitestatus = false;
+    console.log("site to false")
+    return
+  }
+  if(msg.includes("/maintanance") && setsite() == false){
+    sitestatus = true
+    console.log("site to true")
     return
   }
   else {
@@ -64,15 +80,22 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
       console.log(err)
       throw err;  
   }
+  sitestatus = "true";
+
   http.createServer(function(request, response) {
-      var msg = request.url
-      functionloader(msg)
-      loadwebsite()
-      response.writeHead(200, {"Content-Type": "text/html"});  
-      response.write(html);
-      response.end();
-      msg = " ";
-      delete(request);
+    var msg = request.url
+    functionloader(msg)
+    loadwebsite()
+    console.log("sitestatus: " + sitestatus)
+    setsite(sitestatus);
+
+    response.writeHead(200, {"Content-Type": "text/html"});  
+    response.write(html);
+    response.end();
+    msg = " ";
+    delete(request);
+
+
   }).listen(3001);
 });
 
