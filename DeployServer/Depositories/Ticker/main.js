@@ -28,6 +28,9 @@ function setsite(sitestatus){
 
 function functionloader(msg){
   const defaults = msg.includes("/style.css") || msg.includes("/main.js") || msg.includes("/func.js") || msg.includes("/favicon.ico")
+  
+  //here need to initialize server status vars
+  
   if(defaults === true){ //html requests these whenever its loaded, so just ignoring them
     return
   }
