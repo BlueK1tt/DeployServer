@@ -447,8 +447,8 @@ const requestListener = function(request, response){
         msg = "";
         return;
     }
-    delete(request);
-    msg = "";
+    delete(request); //empties the "incoming" request
+    msg = ""; //sets msg to basically empty
     return;
 };
 

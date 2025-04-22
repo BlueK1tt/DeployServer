@@ -55,6 +55,7 @@ function functionloader(msg){
     console.log("site to true")
     return
   }
+  
   else {
     console.log("msg: " + msg); //else, for everything else that isnt stated yet
     sendtomaster(msg)
