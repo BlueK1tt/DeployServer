@@ -4,6 +4,7 @@ fs = require('fs');
 var path = require('path');
 const { defaults } = require('request');
 var filename = path.basename(__dirname);
+sitestatus = "true";
 
 
 
@@ -30,7 +31,6 @@ function functionloader(msg){
   const defaults = msg.includes("/style.css") || msg.includes("/main.js") || msg.includes("/func.js") || msg.includes("/favicon.ico")
   
   //here need to initialize server status var
-  sitestatus = "";
   
   if(defaults === true){ //html requests these whenever its loaded, so just ignoring them
     return
@@ -85,7 +85,6 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
       console.log(err)
       throw err;  
   }
-  sitestatus = "true";
 
   http.createServer(function(request, response) {
     var msg = request.url
