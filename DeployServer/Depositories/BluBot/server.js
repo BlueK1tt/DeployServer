@@ -42,11 +42,16 @@ function commandscollection() { //currently not in use, using the above commands
 };
 
 function getchannel(id){
-    console.log(channelnames)
-    const channelarray = channelnames
-    channelarray.forEach(element => {
-        console.log(element)
-    });
+    //console.log(channelnames);
+    channelnamed = JSON.stringify(channelnames);
+    console.log(channelnamed.split(","));
+    
+    //need to make strings of channelnames into array
+    //push strings into array
+
+    //match array entry with ID sent to function
+
+    //split found entry from ":" and send back the second part
 }
 
 bot.on(Events.InteractionCreate, interaction => {
