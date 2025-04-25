@@ -1,10 +1,13 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const channelnames = require('./logchannel.json');
+const channels = require('./logchannel.json')
 var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
 const { channel } = require('diagnostics_channel');
+const { type } = require('os');
+const { json } = require('stream/consumers');
+const { data } = require('../../commands/depots');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],});
 
 
@@ -42,14 +45,12 @@ function commandscollection() { //currently not in use, using the above commands
 };
 
 function getchannel(id){
-    //console.log(channelnames);
-    channelnamed = JSON.stringify(channelnames);
-    console.log(channelnamed.split(","));
-    
+    console.log("id = " + id)
     //need to make strings of channelnames into array
     //push strings into array
 
     //match array entry with ID sent to function
+
 
     //split found entry from ":" and send back the second part
 }
@@ -92,7 +93,7 @@ bot.on(Events.MessageCreate, message=>{
         JSON.stringify(discordServer.channels)
         ).guild.channels : [];
 
-        console.log(channels)
+        //console.log(channels)
 
         //console.log("message received")
         console.log(message.content)
