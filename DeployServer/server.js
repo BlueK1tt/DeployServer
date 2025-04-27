@@ -317,6 +317,15 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 
+function thirtyTimer(){
+    setInterval(MyTimer, 30000); //30 second timer call function below
+    function MyTimer(){
+        console.log("timer");
+        var test = msgidentify("check");
+        //console.log("test:"+test) // get "connected" or "not connected"
+    }
+}
+
 function pm2start(startfile){ //start specific server on command, need to check available ports    
     //console.log("startfile")
     pm2connect();
@@ -458,4 +467,5 @@ server.listen(port, hostname, () => {
     console.log('Server running at ' + config.hostname +':' + config.netport);
     compareLog();
     pm2bussi();
+    thirtyTimer();
 });
