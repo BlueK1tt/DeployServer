@@ -4,10 +4,6 @@ const channels = require('./logchannel.json')
 var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
-const { channel } = require('diagnostics_channel');
-const { type } = require('os');
-const { json } = require('stream/consumers');
-const { data } = require('../../commands/depots');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],});
 
 
@@ -19,7 +15,7 @@ const foldersPath = path.join(__dirname, 'commands');
 
 bot.commands = new Collection();
 
-/*
+
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -30,8 +26,9 @@ function sendtomaster(data){
     })
 }
 
-*/
 
+
+/*
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
     let original = files
@@ -43,12 +40,24 @@ function commandscollection() { //currently not in use, using the above commands
     console.log("collention" + result);
     return stringCMD;
 };
+*/
 
-function getchannel(id){
-    console.log("id = " + id)
+function getchannel(cid){
+    //console.log("id = " + cid)
     //need to make strings of channelnames into array
     //push strings into array
+    //console.log(channels)
 
+
+    var keyCount  = Object.keys(channels).length;
+    for(let i = 0; i < keyCount; i++){
+        if(channels[i].id == cid){
+            return channels[i].cname
+
+        }
+        else{
+        }
+    }
     //match array entry with ID sent to function
 
 
@@ -84,7 +93,7 @@ bot.on(Events.MessageCreate, message=>{
 
     if(message.author == config.botid){
         oldchannel = newchannel
-        console.log("self");    
+        //console.log("self");    
         newchannel = channelid
     }
     else {
@@ -99,23 +108,26 @@ bot.on(Events.MessageCreate, message=>{
         console.log(message.content)
         //console.log(commandscollection())
         msgchannel = message.channel.id
-        console.log(bot.channels.cache.get(msgchannel).send("here"));
+        bot.channels.cache.get(msgchannel).send("here");
         //console.log("newchannel: " +newchannel);
         //console.log(bot.channels.cache.get(msgchannel).send("Switched from "+ oldchannel + " to "+ newchannel));
     }
 
     if(oldchannel == newchannel){
-        console.log("same channel")
+        //console.log("same channel")
     }
     else if(oldchannel == "" || newchannel == ""){
         console.log("start or error")
     }
     else{
         msgchannel = message.channel.id
-        console.log(bot.channels.cache.get(msgchannel).send("Switched from "+ getchannel(oldchannel) + " to "+ getchannel(newchannel)));        
+        chnswtich = "Switched from "+ getchannel(oldchannel) + " to "+ getchannel(newchannel);
+        bot.channels.cache.get(msgchannel).send(chnswtich);
+        console.log(chnswtich)
+        sendtomaster(chnswtich)
     }
 
 });
 
 bot.login(config.token);
-//sendtomaster("BlutBot online");
+sendtomaster("BlutBot online");
