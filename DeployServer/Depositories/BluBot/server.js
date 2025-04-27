@@ -6,15 +6,11 @@ const fs = require('fs'); //filesystem
 const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],});
 
-
-
 const PREFIX = config.prefix
 var filename = path.basename(__dirname);
 const foldersPath = path.join(__dirname, 'commands');
 
-
 bot.commands = new Collection();
-
 
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
@@ -25,9 +21,6 @@ function sendtomaster(data){
       }
     })
 }
-
-
-
 /*
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
@@ -44,26 +37,17 @@ function commandscollection() { //currently not in use, using the above commands
 
 function getchannel(cid){
     //console.log("id = " + cid)
-    //need to make strings of channelnames into array
-    //push strings into array
     //console.log(channels)
-
-
     var keyCount  = Object.keys(channels).length;
     for(let i = 0; i < keyCount; i++){
         if(channels[i].id == cid){
             return channels[i].cname
-
         }
         else{
+            //just empty, nothing needs to happen
         }
     }
-    //match array entry with ID sent to function
-
-
-    //split found entry from ":" and send back the second part
 }
-
 bot.on(Events.InteractionCreate, interaction => {
 	console.log(interaction);
 });
@@ -71,7 +55,6 @@ bot.on(Events.InteractionCreate, interaction => {
 bot.on('ready', () =>{
     console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
     bot.channels.cache.get(config.channel).send("`YO`");
-
 });
 
 bot.on('error', error => {
