@@ -4,7 +4,7 @@ const channels = require('./logchannel.json')
 var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
-const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],});
+const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages],});
 
 const PREFIX = config.prefix
 var filename = path.basename(__dirname);
@@ -12,6 +12,7 @@ const foldersPath = path.join(__dirname, 'commands');
 
 bot.commands = new Collection();
 
+/*
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -21,6 +22,8 @@ function sendtomaster(data){
       }
     })
 }
+    */
+
 /*
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
@@ -103,14 +106,24 @@ bot.on(Events.MessageCreate, message=>{
         console.log("start or error")
     }
     else{
-        msgchannel = message.channel.id
-        chnswtich = "Switched from "+ getchannel(oldchannel) + " to "+ getchannel(newchannel);
-        bot.channels.cache.get(msgchannel).send(chnswtich);
-        console.log(chnswtich)
-        sendtomaster(chnswtich)
+        if(message.content.includes("yo")){    
+            console.log("message")
+            bot.users.get('123842053435031552').send('yo');
+        }
+        else if(message.content.includes("here")){
+            console.log("here")
+            msgchannel = message.channel.id
+            chnswtich = "Switched from "+ getchannel(oldchannel) + " to "+ getchannel(newchannel);
+            bot.channels.cache.get(msgchannel).send(chnswtich);
+            console.log(chnswtich)
+            //sendtomaster(chnswtich)
+        }
+        else{
+            console.log("nothing else")
+        }
     }
 
 });
 
 bot.login(config.token);
-sendtomaster("BlutBot online");
+//sendtomaster("BlutBot online");
