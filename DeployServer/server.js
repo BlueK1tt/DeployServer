@@ -385,7 +385,7 @@ function bussifunctions(appdata){
         return "button1";
     }
     else {
-        console.log("appdata" + appdata)
+        //console.log("appdata" + appdata)
         
         const data = require('./functions/outcommand')
         var sentData = valuesToArray(data); 

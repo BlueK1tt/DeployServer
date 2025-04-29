@@ -24,6 +24,10 @@ function sendtomaster(data){
 }
     */
 
+function commandidentify(msg){
+    return "test"
+}
+
 /*
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync('./commands/');
@@ -76,12 +80,14 @@ var newchannel =""; //prepared variable for new channel id used later
 
 bot.on(Events.MessageCreate, message=>{
     channelid = message.channel.id //string id of channel where message was sent in
+    msg = message.content
 
     if(message.author == config.botid){
         oldchannel = newchannel
         //console.log("self");    
         newchannel = channelid
     }
+
     else {
         const discordServer = bot.guilds.cache.get("726591333443174520");
         const channels = discordServer?.channels ? JSON.parse(
@@ -104,6 +110,10 @@ bot.on(Events.MessageCreate, message=>{
     }
     else if(oldchannel == "" || newchannel == ""){
         console.log("start or error")
+    }
+    if(msg.startsWith("!")){
+        console.log("command")
+        console.log(commandidentify(msg));
     }
     else{
         if(message.content.includes("yo")){    
