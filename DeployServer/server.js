@@ -280,6 +280,12 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                         pm2.restart(Element.name)
                         console.log("Deployment server restart")
                     }
+                    if(pmmsg == 2){
+                        //need to get full list of pm2 elements and remove Deployment server from it then resume
+                        pm2.stop(Element.name);
+                        console.log("pm2 process "+Element.name +"stopped");
+                        return;                        
+                    }
                     else{
                         return
                     }
@@ -321,8 +327,18 @@ function thirtyTimer(){
     setInterval(MyTimer, 60000); //30 second timer call function below
     function MyTimer(){
         //console.log("timer");
-        msgidentify("check"); //will just send "check" like normal command request to function
+        var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //console.log("test:"+test) // get "connected" or "not connected"
+        console.log(connected);
+        if(connected == "not connected"){
+            console.log("Internet disconnected");
+            pm2disconnect(2);
+            return;
+        }
+        else{
+            console.log("all is good")
+            return;
+        }
     }
 }
 
