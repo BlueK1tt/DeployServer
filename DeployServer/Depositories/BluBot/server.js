@@ -25,7 +25,22 @@ function sendtomaster(data){
     */
 
 function commandidentify(msg){
-    return "test"
+    //console.log("commandidentify")
+    //console.log("msg: "+msg)
+    command = msg.slice(1); //cuts out the ! from the start of command
+    //console.log(command)
+
+    if(command == "swap"){
+        //console.log("swap")
+        return "swapping"
+    }
+    if(command == "ping"){
+        return "Pong!";
+    }
+    else {
+        console.log("empty command")
+        return "test"
+    }
 }
 
 /*
@@ -97,7 +112,7 @@ bot.on(Events.MessageCreate, message=>{
         //console.log(channels)
 
         //console.log("message received")
-        console.log(message.content)
+        //console.log(message.content)
         //console.log(commandscollection())
         msgchannel = message.channel.id
         bot.channels.cache.get(msgchannel).send("here");
@@ -110,26 +125,27 @@ bot.on(Events.MessageCreate, message=>{
     }
     else if(oldchannel == "" || newchannel == ""){
         console.log("start or error")
+        
     }
     if(msg.startsWith("!")){
-        console.log("command")
+        //console.log("command")
         console.log(commandidentify(msg));
     }
     else{
         if(message.content.includes("yo")){    
-            console.log("message")
+            //console.log("message")
             bot.users.get('123842053435031552').send('yo');
         }
         else if(message.content.includes("here")){
-            console.log("here")
+            //console.log("here")
             msgchannel = message.channel.id
             chnswtich = "Switched from "+ getchannel(oldchannel) + " to "+ getchannel(newchannel);
             bot.channels.cache.get(msgchannel).send(chnswtich);
-            console.log(chnswtich)
+            //console.log(chnswtich)
             //sendtomaster(chnswtich)
         }
         else{
-            console.log("nothing else")
+            //console.log("nothing else")
         }
     }
 
