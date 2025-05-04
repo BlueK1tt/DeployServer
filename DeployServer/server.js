@@ -279,21 +279,33 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                     if (pmmsg == 1) {
                         pm2.restart(Element.name)
                         console.log("Deployment server restart")
-                    }
-                    if(pmmsg == 2){
-                        //need to get full list of pm2 elements and remove Deployment server from it then resume
-                        pm2.stop(Element.name);
-                        console.log("pm2 process "+Element.name +"stopped");
-                        return;                        
+                        return;
                     }
                     else{
+                        console.log("else")
                         return
                     }
                 }
-                if (Element.name !== 'Deployment server'){
+                if (Element.name != 'Deployment server'){
+
+                    var keyCount  = servcount
+                    console.log(keyCount)
+                        for(let i = 1; i < keyCount; i++){
+                            if(servcount[i] == 0){
+                                console.log("first if")
+                                return servcount[i]
+                                
+                            }
+                            else{
+                                //just empty, nothing needs to happen
+                                console.log("else")
+                            }
+                        }
+
                     console.log("stop:"+ Element.name)
                     pm2.stop(Element.name);
                     console.log("pm2 daemon "+ Element.name + " stopped")
+                    return;
                 }
                 else{
                     console.log("no running programs")
@@ -330,7 +342,7 @@ function thirtyTimer(){
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //console.log("test:"+test) // get "connected" or "not connected"
         console.log(connected);
-        if(connected == "not connected"){
+        if(connected == "connected"){
             console.log("Internet disconnected");
             pm2disconnect(2);
             return;
