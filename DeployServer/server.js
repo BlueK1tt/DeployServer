@@ -342,7 +342,7 @@ function thirtyTimer(){
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //console.log("test:"+test) // get "connected" or "not connected"
         console.log(connected);
-        if(connected == "connected"){
+        if(connected == "not connected"){
             console.log("Internet disconnected");
             pm2disconnect(2);
             return;
@@ -361,8 +361,7 @@ function pm2start(startfile){ //start specific server on command, need to check 
     var sentData = valuesToArray(data); 
     startfile = sentData[0];
     delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
-    //curl 3000/start=BluBot
-    //depositories need to have path to server file
+
     //direction = start/stop
     //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
 
