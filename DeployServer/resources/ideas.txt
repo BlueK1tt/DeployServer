@@ -91,6 +91,11 @@ then can use .includes in the parts needing either or, or just push not needed o
 to check running pm2 process status
 --- created, prints out name and status, even if stopped
 
+
+--created loop to check interente connection every 60 seconds
+    if not connected, disconnect all pm2 processes automatically
+    --will need to add system to restart them once back online
+    -- also the function doesnt fully work currently, it also shuts down the main server
 checking status before connecting
 mostly for website, good opportunity to test with Ticker
 Need to request, variable for site status
