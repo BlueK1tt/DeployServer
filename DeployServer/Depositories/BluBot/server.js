@@ -8,7 +8,8 @@ const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.G
 
 const PREFIX = config.prefix
 var filename = path.basename(__dirname);
-const foldersPath = path.join(__dirname, 'commands');
+const admin = path.join(__dirname, 'commands/admin/');
+const basic = path.join(__dirname, 'commands/basic/')
 
 bot.commands = new Collection();
 
@@ -22,7 +23,7 @@ function sendtomaster(data){
       }
     })
 }
-    */
+*/
 
 function verifychannel(message){ //for the switching channels thing
     if(message.author == config.botid){
@@ -75,6 +76,10 @@ function commandidentify(msg){ //for processing commands
     if(command == "swap"){
         return "swapping"
     }
+    if(command == "commands"){
+        console.log(commandfiles())
+        return
+    }
     if(command == "ping"){
         return "Pong!";
     }
@@ -89,9 +94,15 @@ function msgidentify(msg){ //for processing general messages, like hello or yo o
     return "message received"
 };
 
-/*
+function commandfiles(){
+    const commandsbasic = fs.readdirSync(basic);
+    const commandsadmin = fs.readdirSync(admin)
+    console.log(commandsadmin + " | " + commandsbasic)
+    return "commandfilenames"
+}
+
 function commandscollection() { //currently not in use, using the above commands command
-    var files = fs.readdirSync('./commands/');
+    var files = fs.readdirSync(foldersPath, {withFileTypes: true});
     let original = files
     fs.close;
     result = original.map(function(d) {
@@ -101,7 +112,7 @@ function commandscollection() { //currently not in use, using the above commands
     console.log("collention" + result);
     return stringCMD;
 };
-*/
+
 
 function getchannel(cid){
     //console.log("id = " + cid)
