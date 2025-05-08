@@ -287,14 +287,12 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                     }
                 }
                 if (Element.name != 'Deployment server'){
-
                     var keyCount  = servcount
                     console.log(keyCount)
                         for(let i = 1; i < keyCount; i++){
                             if(servcount[i] == 0){
                                 console.log("first if")
                                 return servcount[i]
-                                
                             }
                             else{
                                 //just empty, nothing needs to happen
