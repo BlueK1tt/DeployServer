@@ -208,17 +208,17 @@ function msgidentify(msg){ //c = different incoming msg
         console.log("update");
         basemessage = "update";
 
-            command = getfile(msg)
-            const data = require(`./commands/update`);
-            var sentData = valuesToArray(data); 
-            asmessage = sentData[0];
-            delete require.cache[require.resolve(`./commands/update`)] //clears the cache allowing for new data to be read
-                try {
-                    return asmessage;
-                } catch (error) {
-                    return error;
-                }
-            return;
+        command = getfile(msg)
+        const data = require(`./commands/update`);
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve(`./commands/update`)] //clears the cache allowing for new data to be read
+        
+        try {
+            return asmessage;
+        } catch (error) {
+            return error;
+        }
     }
     else{
         //console.log("custom");
@@ -334,7 +334,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
 }
 
 function thirtyTimer(){
-    setInterval(MyTimer, 60000); //30 second timer call function below
+    setInterval(MyTimer, 60000); //60 second timer call function below
     function MyTimer(){
         //console.log("timer");
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
