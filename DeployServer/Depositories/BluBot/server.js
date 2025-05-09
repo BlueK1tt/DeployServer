@@ -39,11 +39,8 @@ function verifychannel(message){ //for the switching channels thing
 
         //console.log(channels)
         //console.log(message.content)
-        //console.log(commandscollection())
         msgchannel = message.channel.id
         bot.channels.cache.get(msgchannel).send("here");
-        //console.log("newchannel: " +newchannel);
-        //console.log(bot.channels.cache.get(msgchannel).send("Switched from "+ oldchannel + " to "+ newchannel));
     }
     if(oldchannel == newchannel){
         //console.log("same channel")
@@ -60,16 +57,34 @@ function verifychannel(message){ //for the switching channels thing
         return   
     }
     return;
+};
+
+function verifycommand(info){ //command from commandidentify
+    command = info.message.slice(1); //cuts out the ! from the start of command
+    if(info.isadmin == true){
+        adminfiles = commandfiles("commandsadmin")
+        return adminfiles.includes(command)
+    }
+    if(info.isadmin == false){
+        basicfiles = commandfiles(commandsbasic)
+        return basicfiles.includes(command)
+    }
+    else{
+        console.log("verifycommand error");
+    }
 }
 
-function botstatus(status){
+function botstatus(status){ //set custom bot activity by sending it to function
     console.log("botstatus" + status)
     bot.user.setActivity(status,{type: 4});
     return;
 };
 
 function commandidentify(info){ //for processing commands
-    command = info.message.slice(1); //cuts out the ! from the start of command
+    command = info.message; //just get the message out of info for processing
+    file = verifycommand(info) //get file of the required command
+    console.log("is command?: " + file)
+
     if(command == "swap"){
         return "swapping"
     }
@@ -95,13 +110,24 @@ function commandfiles(info){
     const commandsadmin = fs.readdirSync(admin); //get all files in admin commands folder
     if(info.isadmin == false){
         var basicout = "Available commands: " + commandsbasic
-        return basicout
-    } else{
+        return basicout;
+    } 
+    if(info.isadmin == true){
         const adminout = "Available commands: " + commandsadmin + "," + commandsbasic
-        return adminout;
-    };
+        return JSON.stringify(adminout);
+    }
+    if(info == "commandsadmin"){
+        thisreturn = commandsadmin+","+commandsbasic;
+        return thisreturn;
+    }
+    if(info == "commandsbasic"){
+        return commandsbasic
+    }
+    else{
+        return "error"
+    }
 };
-
+/*
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync(foldersPath, {withFileTypes: true});
     let original = files
@@ -113,8 +139,7 @@ function commandscollection() { //currently not in use, using the above commands
     console.log("collention" + result);
     return stringCMD;
 };
-
-
+*/
 function getchannel(cid){
     //console.log("id = " + cid)
     //console.log(channels)
@@ -164,14 +189,14 @@ bot.on(Events.MessageCreate, message=>{
             info['channel'] = getchannel(channelid)
             info['isadmin'] = message.member.roles.cache.has('815323331016392724');
 
-    console.log(info)
+    //console.log(info)
 
     if(msg.author != config.botid && msg.startsWith("!")){
         //console.log("command")
         bot.channels.cache.get(msgchannel).send(commandidentify(info)); //send 'info' to function and bot message return of that
     }
     if(message.author != config.botid){ 
-        console.log(msgidentify(info))   //send incoming message for message processing
+        //console.log(msgidentify(info))   //send incoming message for message processing
         bot.channels.cache.get(msgchannel).send(msgidentify(info));
     }
     else{
