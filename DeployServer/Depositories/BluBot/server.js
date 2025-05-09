@@ -62,6 +62,28 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
+function filelocation(info){
+    command = info.message.slice(1); //cuts out the ! from the start of command
+    cmd = command + ".js";
+    console.log(command)
+    var admincommands = commandfiles("commandsadmin")
+    console.log(admincommands)
+    var basiccommands = commandfiles("commandsbasic");
+    console.log(basiccommands)
+
+    if(admincommands.includes(cmd)){
+        console.log("filelocation admin")
+        return "admin"
+    }
+    if(basiccommands.includes(cmd)){
+        console.log("filelocation basic")
+        return "basic"
+    }
+    else{
+        console.log("filelocation error")
+    }
+}
+
 function verifycommand(info){ //command from commandidentify
     command = info.message.slice(1); //cuts out the ! from the start of command
 
@@ -94,21 +116,20 @@ function commandidentify(info){ //for processing commands
     command = info.message; //just get the message out of info for processing
     file = verifycommand(info) //get file of the required command
     console.log("is command?: " + file)
+    var commandtype = filelocation(info)
 
-    if(command == "swap" && file === true){
-        return "swapping"
-    }
-    if(command == "commands" && file === true){
-        return commandfiles(info) //send info to commandfiles and send out the output
-    }
-    if(command == "ping" && file === true){
-        return "Pong!";
-    }
-    if(file === true){
-        const data = require('./')
+    if(file === true && commandtype == "admin"){
+        const data = require("./commands/admin/"+ `${command}`)
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
-        delete require.cache[require.resolve(`./functions/install`)] //clears the cache allowing for new data to be read
+        delete require.cache[require.resolve('./commands/admin/'+`${command}`)] //clears the cache allowing for new data to be read
+        return asmessage;
+    }
+    if(file === true && commandtype == "basic"){
+        const data = require("./commands/basic/"+ `${command}`)
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve('./commands/basic/'+`${command}`)] //clears the cache allowing for new data to be read
         return asmessage;
     }
     else {
