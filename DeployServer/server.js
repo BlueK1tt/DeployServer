@@ -241,8 +241,8 @@ function msgidentify(msg){ //c = different incoming msg
                 console.log(error)
                 return error;
             }
-        }
-    }
+        };
+    };
 };
 
 function pm2connect(){ //need to call this every first time starting pm2 daemon

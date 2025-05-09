@@ -13,7 +13,7 @@ const basic = path.join(__dirname, 'commands/basic/')
 
 bot.commands = new Collection();
 
-
+/*
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -23,7 +23,7 @@ function sendtomaster(data){
       }
     })
 }
-
+*/
 
 function verifychannel(message){ //for the switching channels thing
     if(message.author == config.botid){
@@ -58,16 +58,25 @@ function verifychannel(message){ //for the switching channels thing
     }
     return;
 };
+function valuesToArray(obj) {
+    return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
+};
 
 function verifycommand(info){ //command from commandidentify
     command = info.message.slice(1); //cuts out the ! from the start of command
+
     if(info.isadmin == true){
         adminfiles = commandfiles("commandsadmin")
-        return adminfiles.includes(command)
+        basicfiles = commandfiles("commandsbasic")
+        var stringadmin = JSON.stringify(adminfiles) + JSON.stringify(basicfiles)
+        console.log(stringadmin)
+        return stringadmin.includes(command)
     }
+
     if(info.isadmin == false){
-        basicfiles = commandfiles(commandsbasic)
-        return basicfiles.includes(command)
+        basicfiles = commandfiles("commandsbasic")
+        var stringbasic = JSON.stringify(basicfiles)
+        return stringbasic.includes(command)
     }
     else{
         console.log("verifycommand error");
@@ -81,23 +90,29 @@ function botstatus(status){ //set custom bot activity by sending it to function
 };
 
 function commandidentify(info){ //for processing commands
-    sendtomaster(info.message)
+    //sendtomaster(info.message)
     command = info.message; //just get the message out of info for processing
     file = verifycommand(info) //get file of the required command
     console.log("is command?: " + file)
 
-    if(command == "swap"){
+    if(command == "swap" && file === true){
         return "swapping"
     }
-    if(command == "commands"){
+    if(command == "commands" && file === true){
         return commandfiles(info) //send info to commandfiles and send out the output
     }
-    if(command == "ping"){
+    if(command == "ping" && file === true){
         return "Pong!";
     }
+    if(file === true){
+        const data = require('./')
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve(`./functions/install`)] //clears the cache allowing for new data to be read
+        return asmessage;
+    }
     else {
-        console.log("empty command")
-        return "test"
+        return "Invalid command"
     }
 };
 
@@ -123,28 +138,18 @@ function commandfiles(info){
         return JSON.stringify(adminout);
     }
     if(info == "commandsadmin"){
+        console.log("commandsadmin")
         return commandsadmin;
     }
     if(info == "commandsbasic"){
+        console.log("commandsbasic")
         return commandsbasic
     }
     else{
         return "error"
     }
 };
-/*
-function commandscollection() { //currently not in use, using the above commands command
-    var files = fs.readdirSync(foldersPath, {withFileTypes: true});
-    let original = files
-    fs.close;
-    result = original.map(function(d) {
-        return d.replace('.js', "");
-    });
-    var stringCMD = result.toString();
-    console.log("collention" + result);
-    return stringCMD;
-};
-*/
+
 function getchannel(cid){
     //console.log("id = " + cid)
     //console.log(channels)
@@ -210,4 +215,4 @@ bot.on(Events.MessageCreate, message=>{
 });
 
 bot.login(config.token);
-sendtomaster("BluBot online");
+//sendtomaster("BluBot online");
