@@ -13,7 +13,7 @@ const basic = path.join(__dirname, 'commands/basic/')
 
 bot.commands = new Collection();
 
-/*
+
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -23,7 +23,7 @@ function sendtomaster(data){
       }
     })
 }
-*/
+
 
 function verifychannel(message){ //for the switching channels thing
     if(message.author == config.botid){
@@ -81,6 +81,7 @@ function botstatus(status){ //set custom bot activity by sending it to function
 };
 
 function commandidentify(info){ //for processing commands
+    sendtomaster(info.message)
     command = info.message; //just get the message out of info for processing
     file = verifycommand(info) //get file of the required command
     console.log("is command?: " + file)
@@ -204,9 +205,9 @@ bot.on(Events.MessageCreate, message=>{
         bot.channels.cache.get(msgchannel).send(msgidentify(info));
     }
     else{
-        console.log("else")
+        //here if bot message
     }
 });
 
 bot.login(config.token);
-//sendtomaster("BlutBot online");
+sendtomaster("BluBot online");

@@ -40,14 +40,13 @@ function checkInternet(cb) {
     require('dns').lookup('google.com',function(err) {
         if (err && err.code == "ENOTFOUND") {
             //cb(false);
-            console.log("checkinternet false")
+            console.log("checkinternet: false")
             return false
         } else {
             //cb(true);
-            console.log("checkinternet true")
+            console.log("checkinternet: true")
             return true
         }
     })
 }
 //if undefined return undefined and redo function
-

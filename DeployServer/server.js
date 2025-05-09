@@ -339,14 +339,14 @@ function thirtyTimer(){
         //console.log("timer");
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //console.log("test:"+test) // get "connected" or "not connected"
-        console.log(connected);
+        //console.log(connected);
         if(connected == "not connected"){
             console.log("Internet disconnected");
             pm2disconnect(2);
             return;
         }
         else{
-            console.log("all is good")
+            //console.log("all is good")
             return;
         }
     }
