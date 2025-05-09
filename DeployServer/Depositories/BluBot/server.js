@@ -157,6 +157,13 @@ bot.on(Events.MessageCreate, message=>{
     msg = message.content
     verifychannel(message);
 
+    var info = new Object();
+            info['user'] = message.author.displayName;
+            info['message'] = message.content;
+            info['channel'] = getchannel(channelid)
+            info['isadmin'] = message.member.roles.cache.has('815323331016392724');
+    console.log(info)
+
     if(msg.author != config.botid && msg.startsWith("!")){
         //console.log("command")
         console.log(commandidentify(msg)); //send incoming message for command processing
