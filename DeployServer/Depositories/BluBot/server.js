@@ -40,7 +40,7 @@ function verifychannel(message){ //for the switching channels thing
         //console.log(channels)
         //console.log(message.content)
         msgchannel = message.channel.id
-        bot.channels.cache.get(msgchannel).send("here");
+        //bot.channels.cache.get(msgchannel).send("here");
     }
     if(oldchannel == newchannel){
         //console.log("same channel")
@@ -75,7 +75,7 @@ function verifycommand(info){ //command from commandidentify
 }
 
 function botstatus(status){ //set custom bot activity by sending it to function
-    console.log("botstatus" + status)
+    console.log("botstatus: " + status)
     bot.user.setActivity(status,{type: 4});
     return;
 };
@@ -102,7 +102,12 @@ function commandidentify(info){ //for processing commands
 
 function msgidentify(info){ //for processing general messages, like hello or yo or something in those lines
     //console.log(info.message)
-    return "message received"
+    if(info.user == "BluBot"){
+        //bot message slipped thru
+    }
+    else {
+        return "message received"
+    }
 };
 
 function commandfiles(info){
@@ -117,8 +122,7 @@ function commandfiles(info){
         return JSON.stringify(adminout);
     }
     if(info == "commandsadmin"){
-        thisreturn = commandsadmin+","+commandsbasic;
-        return thisreturn;
+        return commandsadmin;
     }
     if(info == "commandsbasic"){
         return commandsbasic
@@ -195,7 +199,7 @@ bot.on(Events.MessageCreate, message=>{
         //console.log("command")
         bot.channels.cache.get(msgchannel).send(commandidentify(info)); //send 'info' to function and bot message return of that
     }
-    if(message.author != config.botid){ 
+    if(message.author != config.botid && !msg.startsWith("!")){ 
         //console.log(msgidentify(info))   //send incoming message for message processing
         bot.channels.cache.get(msgchannel).send(msgidentify(info));
     }
