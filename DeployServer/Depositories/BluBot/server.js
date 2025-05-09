@@ -37,8 +37,6 @@ function verifychannel(message){ //for the switching channels thing
         JSON.stringify(discordServer.channels)
         ).guild.channels : [];
 
-        //console.log(channels)
-        //console.log(message.content)
         msgchannel = message.channel.id
         //bot.channels.cache.get(msgchannel).send("here");
     }
@@ -65,18 +63,18 @@ function valuesToArray(obj) {
 function filelocation(info){
     command = info.message.slice(1); //cuts out the ! from the start of command
     cmd = command + ".js";
-    console.log(command)
+    //console.log(command)
     var admincommands = commandfiles("commandsadmin")
-    console.log(admincommands)
+    //console.log(admincommands)
     var basiccommands = commandfiles("commandsbasic");
-    console.log(basiccommands)
+    //console.log(basiccommands)
 
     if(admincommands.includes(cmd)){
-        console.log("filelocation admin")
+        //console.log("filelocation admin")
         return "admin"
     }
     if(basiccommands.includes(cmd)){
-        console.log("filelocation basic")
+        //console.log("filelocation basic")
         return "basic"
     }
     else{
@@ -91,7 +89,7 @@ function verifycommand(info){ //command from commandidentify
         adminfiles = commandfiles("commandsadmin")
         basicfiles = commandfiles("commandsbasic")
         var stringadmin = JSON.stringify(adminfiles) + JSON.stringify(basicfiles)
-        console.log(stringadmin)
+        //console.log(stringadmin)
         return stringadmin.includes(command)
     }
 
@@ -112,10 +110,11 @@ function botstatus(status){ //set custom bot activity by sending it to function
 };
 
 function commandidentify(info){ //for processing commands
+    //console.log("command indentify")
     //sendtomaster(info.message)
     command = info.message; //just get the message out of info for processing
     file = verifycommand(info) //get file of the required command
-    console.log("is command?: " + file)
+    //console.log("is command?: " + file)
     var commandtype = filelocation(info)
 
     if(file === true && commandtype == "admin"){
@@ -139,11 +138,12 @@ function commandidentify(info){ //for processing commands
 
 function msgidentify(info){ //for processing general messages, like hello or yo or something in those lines
     //console.log(info.message)
-    if(info.user == "BluBot"){
+    //console.log("message indentify")
+    if(info.user == config.botname){
         //bot message slipped thru
+        console.log("bot message")
     }
     else {
-        return "message received"
     }
 };
 
@@ -159,14 +159,15 @@ function commandfiles(info){
         return JSON.stringify(adminout);
     }
     if(info == "commandsadmin"){
-        console.log("commandsadmin")
+        //console.log("commandsadmin")
         return commandsadmin;
     }
     if(info == "commandsbasic"){
-        console.log("commandsbasic")
+        //console.log("commandsbasic")
         return commandsbasic
     }
     else{
+        console.log("commandfiles error")
         return "error"
     }
 };
@@ -181,6 +182,7 @@ function getchannel(cid){
         }
         else{
             //just empty, nothing needs to happen
+            console.log("getchannel error")
         }
     };
 };
@@ -212,6 +214,7 @@ bot.on(Events.MessageCreate, message=>{
 
     channelid = message.channel.id //string id of channel where message was sent in
     msg = message.content
+    msgchannel = message.channel.id
     verifychannel(message);
 
     var info = new Object(); //compress everything into one object easy to pass around
@@ -220,16 +223,19 @@ bot.on(Events.MessageCreate, message=>{
             info['channel'] = getchannel(channelid)
             info['isadmin'] = message.member.roles.cache.has('815323331016392724');
 
+    exports.info = { info }; //export msg as variable to use in modules
     //console.log(info)
 
-    if(msg.author != config.botid && msg.startsWith("!")){
+    if(info.user != config.botname && msg.startsWith("!")){
         //console.log("command")
         bot.channels.cache.get(msgchannel).send(commandidentify(info)); //send 'info' to function and bot message return of that
     }
-    if(message.author != config.botid && !msg.startsWith("!")){ 
+    /* currently not in use
+    if(info.user != config.botname && !msg.startsWith("!")){ 
         //console.log(msgidentify(info))   //send incoming message for message processing
         bot.channels.cache.get(msgchannel).send(msgidentify(info));
     }
+        */
     else{
         //here if bot message
     }

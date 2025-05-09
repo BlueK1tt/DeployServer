@@ -1,3 +1,4 @@
+const fs = require('fs'); //filesystem
 const { info } = require('../../server');
 
 module.exports = {
@@ -5,6 +6,7 @@ module.exports = {
 };
 
 function hello(){
+	msg = "Hello "+ info.info.user
     //console.log(msg)
-	return "User banned"
+	return msg
 }
