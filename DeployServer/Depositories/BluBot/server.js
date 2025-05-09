@@ -30,9 +30,7 @@ function verifychannel(message){ //for the switching channels thing
         oldchannel = newchannel
         //console.log("self");    
         newchannel = channelid
-        
     }
-
     else {
         const discordServer = bot.guilds.cache.get("726591333443174520");
         const channels = discordServer?.channels ? JSON.parse(
@@ -47,7 +45,6 @@ function verifychannel(message){ //for the switching channels thing
         //console.log("newchannel: " +newchannel);
         //console.log(bot.channels.cache.get(msgchannel).send("Switched from "+ oldchannel + " to "+ newchannel));
     }
-
     if(oldchannel == newchannel){
         //console.log("same channel")
         return;
@@ -69,16 +66,15 @@ function botstatus(status){
     console.log("botstatus" + status)
     bot.user.setActivity(status,{type: 4});
     return;
-}
+};
 
-function commandidentify(msg){ //for processing commands
-    command = msg.slice(1); //cuts out the ! from the start of command
+function commandidentify(info){ //for processing commands
+    command = info.message.slice(1); //cuts out the ! from the start of command
     if(command == "swap"){
         return "swapping"
     }
     if(command == "commands"){
-        console.log(commandfiles())
-        return
+        return commandfiles(info) //send info to commandfiles and send out the output
     }
     if(command == "ping"){
         return "Pong!";
@@ -89,17 +85,22 @@ function commandidentify(msg){ //for processing commands
     }
 };
 
-function msgidentify(msg){ //for processing general messages, like hello or yo or something in those lines
-    console.log(msg)
+function msgidentify(info){ //for processing general messages, like hello or yo or something in those lines
+    //console.log(info.message)
     return "message received"
 };
 
-function commandfiles(){
-    const commandsbasic = fs.readdirSync(basic);
-    const commandsadmin = fs.readdirSync(admin)
-    console.log(commandsadmin + " | " + commandsbasic)
-    return "commandfilenames"
-}
+function commandfiles(info){
+    const commandsbasic = fs.readdirSync(basic); //get all files in basic commands folder
+    const commandsadmin = fs.readdirSync(admin); //get all files in admin commands folder
+    if(info.isadmin == false){
+        var basicout = "Available commands: " + commandsbasic
+        return basicout
+    } else{
+        const adminout = "Available commands: " + commandsadmin + "," + commandsbasic
+        return adminout;
+    };
+};
 
 function commandscollection() { //currently not in use, using the above commands command
     var files = fs.readdirSync(foldersPath, {withFileTypes: true});
@@ -125,8 +126,8 @@ function getchannel(cid){
         else{
             //just empty, nothing needs to happen
         }
-    }
-}
+    };
+};
 bot.on(Events.InteractionCreate, interaction => {
 	console.log(interaction);
 });
@@ -157,19 +158,21 @@ bot.on(Events.MessageCreate, message=>{
     msg = message.content
     verifychannel(message);
 
-    var info = new Object();
+    var info = new Object(); //compress everything into one object easy to pass around
             info['user'] = message.author.displayName;
             info['message'] = message.content;
             info['channel'] = getchannel(channelid)
             info['isadmin'] = message.member.roles.cache.has('815323331016392724');
+
     console.log(info)
 
     if(msg.author != config.botid && msg.startsWith("!")){
         //console.log("command")
-        console.log(commandidentify(msg)); //send incoming message for command processing
+        bot.channels.cache.get(msgchannel).send(commandidentify(info)); //send 'info' to function and bot message return of that
     }
     if(message.author != config.botid){ 
-        console.log(msgidentify(msg))   //send incoming message for message processing
+        console.log(msgidentify(info))   //send incoming message for message processing
+        bot.channels.cache.get(msgchannel).send(msgidentify(info));
     }
     else{
         console.log("else")
