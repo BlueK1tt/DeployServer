@@ -23,7 +23,7 @@ function sendtomaster(data){
       }
     })
 }
-*/
+**/
 
 function verifychannel(message){ //for the switching channels thing
     if(message.author == config.botid){
@@ -84,6 +84,9 @@ function filelocation(info){
 
 function verifycommand(info){ //command from commandidentify
     command = info.message.slice(1); //cuts out the ! from the start of command
+
+    //need processing of the command when it has more data, like usernames or actions
+    //
 
     if(info.isadmin == true){
         adminfiles = commandfiles("commandsadmin")
@@ -174,7 +177,7 @@ function commandfiles(info){
 
 function getchannel(cid){
     //console.log("id = " + cid)
-    //console.log(channels)
+    console.log(channels)
     var keyCount  = Object.keys(channels).length;
     for(let i = 0; i < keyCount; i++){
         if(channels[i].id == cid){
@@ -182,7 +185,7 @@ function getchannel(cid){
         }
         else{
             //just empty, nothing needs to happen
-            console.log("getchannel error")
+            return
         }
     };
 };
@@ -220,13 +223,13 @@ bot.on(Events.MessageCreate, message=>{
     var info = new Object(); //compress everything into one object easy to pass around
             info['user'] = message.author.displayName;
             info['message'] = message.content;
-            info['channel'] = getchannel(channelid)
+            info['channel'] = getchannel(msgchannel)
             info['isadmin'] = message.member.roles.cache.has('815323331016392724');
 
     exports.info = { info }; //export msg as variable to use in modules
     //console.log(info)
 
-    if(info.user != config.botname && msg.startsWith("!")){
+    if(info.user != config.botname && msg.startsWith(PREFIX))){
         //console.log("command")
         bot.channels.cache.get(msgchannel).send(commandidentify(info)); //send 'info' to function and bot message return of that
     }
