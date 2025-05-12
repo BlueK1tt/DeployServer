@@ -114,25 +114,18 @@ function botstatus(status){ //set custom bot activity by sending it to function
 
 function cutmessage(info){
     //function to cut the message received to be only command part IE banuser instead of !banuser Jorma
-    console.log("cutmessage")
     msg = info.message.split("!")
-    //console.log(info.message)
-    //console.log(msg)
+
     message = msg[1].toString()
     command = message.split(" ")
-    //console.log(command)
     file = command[0] + ".js"
-
     const allcommands = commandfiles("commandlist")
-    console.log(allcommands.includes(file))
     if(allcommands.includes(file)){
         return file
     }
     else{
-        console.timeLog("cutmessage error")
+        console.log("cutmessage error")
     }
-    //get all the command files then search if one matches and get its location then length then cut msg by lenght
-
 }
 
 function commandidentify(info){ //for processing commands
@@ -260,7 +253,7 @@ bot.on(Events.MessageCreate, message=>{
             info['isadmin'] = message.member.roles.cache.has('815323331016392724');
 
     exports.info = { info }; //export msg as variable to use in modules
-    console.log(info)
+    //console.log(info)
 
     if(info.user != config.botname && msg.startsWith(PREFIX)){
         //console.log("command")
@@ -274,7 +267,7 @@ bot.on(Events.MessageCreate, message=>{
         */
     else{
         //here if bot message
-        console.log("something")
+        
     }
 });
 
