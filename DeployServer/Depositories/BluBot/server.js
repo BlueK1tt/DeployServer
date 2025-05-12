@@ -61,9 +61,11 @@ function valuesToArray(obj) {
 };
 
 function filelocation(info){
-    command = info.message.slice(1); //cuts out the ! from the start of command
-    cmd = command + ".js";
-    //console.log(command)
+    //msg = info.message.slice(1); //cuts out the ! from the start of command
+    //console.log(msg)
+    //cmd = msg + ".js";
+    cmd = cutmessage(info)
+    //console.log(cmd)
     var admincommands = commandfiles("commandsadmin")
     //console.log(admincommands)
     var basiccommands = commandfiles("commandsbasic");
@@ -83,10 +85,8 @@ function filelocation(info){
 }
 
 function verifycommand(info){ //command from commandidentify
-    command = info.message.slice(1); //cuts out the ! from the start of command
-
+    command = cutmessage(info)
     //need processing of the command when it has more data, like usernames or actions
-    //
 
     if(info.isadmin == true){
         adminfiles = commandfiles("commandsadmin")
@@ -112,22 +112,48 @@ function botstatus(status){ //set custom bot activity by sending it to function
     return;
 };
 
+function cutmessage(info){
+    //function to cut the message received to be only command part IE banuser instead of !banuser Jorma
+    console.log("cutmessage")
+    msg = info.message.split("!")
+    //console.log(info.message)
+    //console.log(msg)
+    message = msg[1].toString()
+    command = message.split(" ")
+    //console.log(command)
+    file = command[0] + ".js"
+
+    const allcommands = commandfiles("commandlist")
+    console.log(allcommands.includes(file))
+    if(allcommands.includes(file)){
+        return file
+    }
+    else{
+        console.timeLog("cutmessage error")
+    }
+    //get all the command files then search if one matches and get its location then length then cut msg by lenght
+
+}
+
 function commandidentify(info){ //for processing commands
     //console.log("command indentify")
     //sendtomaster(info.message)
-    command = info.message; //just get the message out of info for processing
-    file = verifycommand(info) //get file of the required command
+    efile = verifycommand(info) //get file of the required command
     //console.log("is command?: " + file)
     var commandtype = filelocation(info)
+    command = cutmessage(info)
+    //console.log(command)
+    //console.log(efile)
+    //console.log(commandtype)
 
-    if(file === true && commandtype == "admin"){
+    if(efile === true && commandtype == "admin"){
         const data = require("./commands/admin/"+ `${command}`)
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
         delete require.cache[require.resolve('./commands/admin/'+`${command}`)] //clears the cache allowing for new data to be read
         return asmessage;
     }
-    if(file === true && commandtype == "basic"){
+    if(efile === true && commandtype == "basic"){
         const data = require("./commands/basic/"+ `${command}`)
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
@@ -152,9 +178,11 @@ function msgidentify(info){ //for processing general messages, like hello or yo 
 
 function commandfiles(info){
     const commandsbasic = fs.readdirSync(basic); //get all files in basic commands folder
+    //console.log("basic: "+commandsbasic)
     const commandsadmin = fs.readdirSync(admin); //get all files in admin commands folder
+    //console.log("admin: "+ commandsadmin)
     if(info.isadmin == false){
-        var basicout = "Available commands: " + commandsbasic
+        const basicout = "Available commands: " + commandsbasic
         return basicout;
     } 
     if(info.isadmin == true){
@@ -169,6 +197,11 @@ function commandfiles(info){
         //console.log("commandsbasic")
         return commandsbasic
     }
+    if(info == "commandlist"){
+        const allcommands = commandsbasic.concat(commandsadmin)
+        //console.log(allcommands)
+        return allcommands
+    }
     else{
         console.log("commandfiles error")
         return "error"
@@ -177,7 +210,7 @@ function commandfiles(info){
 
 function getchannel(cid){
     //console.log("id = " + cid)
-    console.log(channels)
+    //console.log(channels)
     var keyCount  = Object.keys(channels).length;
     for(let i = 0; i < keyCount; i++){
         if(channels[i].id == cid){
@@ -227,9 +260,9 @@ bot.on(Events.MessageCreate, message=>{
             info['isadmin'] = message.member.roles.cache.has('815323331016392724');
 
     exports.info = { info }; //export msg as variable to use in modules
-    //console.log(info)
+    console.log(info)
 
-    if(info.user != config.botname && msg.startsWith(PREFIX))){
+    if(info.user != config.botname && msg.startsWith(PREFIX)){
         //console.log("command")
         bot.channels.cache.get(msgchannel).send(commandidentify(info)); //send 'info' to function and bot message return of that
     }
@@ -241,6 +274,7 @@ bot.on(Events.MessageCreate, message=>{
         */
     else{
         //here if bot message
+        console.log("something")
     }
 });
 
