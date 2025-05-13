@@ -9,6 +9,8 @@ function hello(info){
     cutmessage(info)
 	return "User kicked"
 }
+
+
 function cutmessage(info){
     //function to cut the message received to be only command part IE banuser instead of !banuser Jorma
     mesg = info.message

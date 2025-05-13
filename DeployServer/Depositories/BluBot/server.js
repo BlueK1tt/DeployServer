@@ -4,7 +4,7 @@ const channels = require('./logchannel.json')
 var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
-const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildPresences],});
+const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers,GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildPresences],});
 
 const PREFIX = config.prefix
 var filename = path.basename(__dirname);
