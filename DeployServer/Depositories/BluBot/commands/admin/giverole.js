@@ -7,6 +7,7 @@ module.exports = {
 };
 
 function hello(info){
+    info = info.info
     console.log(typeof(info))
     targetuser = targetuser(info)
     givenrole = roleuser(info)

@@ -5,6 +5,7 @@ module.exports = {
 };
 
 function hello(info){
+    info = info.info
     console.log(typeof(info))
     cutmessage(info)
 	return "User banned"

@@ -118,7 +118,9 @@ function cutmessage(info){
 
     message = msg[1].toString()
     command = message.split(" ")
+    console.log(command)
     file = command[0] + ".js"
+    console.log(file)
     const allcommands = commandfiles("commandlist")
     if(allcommands.includes(file)){
         return file
