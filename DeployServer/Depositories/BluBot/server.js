@@ -4,6 +4,7 @@ const channels = require('./logchannel.json')
 var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Embed, Collection, Events, GatewayIntentBits, } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers,GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildPresences],});
 
 const PREFIX = config.prefix
@@ -113,50 +114,59 @@ function botstatus(status){ //set custom bot activity by sending it to function
 };
 
 function cutmessage(info){
-    //function to cut the message received to be only command part IE banuser instead of !banuser Jorma
-    msg = info.message.split("!")
-
-    message = msg[1].toString()
-    splitcommand = message.split(" ")
-    console.log(splitcommand)
-    file = splitcommand[0] + ".js"
-    console.log(file)
-    const allcommands = commandfiles("commandlist")
-    if(allcommands.includes(file)){
-        return file
+    if(info.user == config.botname){
+        return "botmessage"
     }
     else{
-        console.log("cutmessage error")
+        //function to cut the message received to be only command part IE banuser instead of !banuser Jorma
+        msg = info.message.split("!")
+        //console.log(msg)
+        message = msg[1].toString()
+        splitcommand = message.split(" ")
+        //console.log(splitcommand)
+        file = splitcommand[0] + ".js"
+        //console.log(file)
+        const allcommands = commandfiles("commandlist")
+        if(allcommands.includes(file)){
+            return file
+        }
+        else{
+            console.log("cutmessage error")
+        }
     }
 }
 
 function commandidentify(info){ //for processing commands
-    //console.log("command indentify")
-    //sendtomaster(info.message)
-    efile = verifycommand(info) //get file of the required command
-    //console.log("is command?: " + file)
-    var commandtype = filelocation(info)
-    command = cutmessage(info)
-    //console.log(command)
-    //console.log(efile)
-    //console.log(commandtype)
-
-    if(efile === true && commandtype == "admin"){
-        const data = require("./commands/admin/"+ `${command}`)
-        var sentData = valuesToArray(data); 
-        asmessage = sentData[0];
-        delete require.cache[require.resolve('./commands/admin/'+`${command}`)] //clears the cache allowing for new data to be read
-        return asmessage;
+    if(info.user == config.botname){
+        return "botmessage"
     }
-    if(efile === true && commandtype == "basic"){
-        const data = require("./commands/basic/"+ `${command}`)
-        var sentData = valuesToArray(data); 
-        asmessage = sentData[0];
-        delete require.cache[require.resolve('./commands/basic/'+`${command}`)] //clears the cache allowing for new data to be read
-        return asmessage;
-    }
-    else {
-        return "Invalid command"
+    else{
+        //console.log("command indentify")
+        //sendtomaster(info.message)
+        efile = verifycommand(info) //get file of the required command
+        //console.log("is command?: " + file)
+        var commandtype = filelocation(info)
+        command = cutmessage(info)
+        //console.log(command)
+        //console.log(efile)
+        //console.log(commandtype)
+        if(efile === true && commandtype == "admin"){
+            const data = require("./commands/admin/"+ `${command}`)
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+            delete require.cache[require.resolve('./commands/admin/'+`${command}`)] //clears the cache allowing for new data to be read
+            return asmessage;
+        }
+        if(efile === true && commandtype == "basic"){
+            const data = require("./commands/basic/"+ `${command}`)
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+            delete require.cache[require.resolve('./commands/basic/'+`${command}`)] //clears the cache allowing for new data to be read
+            return asmessage;
+        }
+        else {
+            return "Invalid command"
+        }
     }
 };
 
@@ -270,10 +280,19 @@ bot.on(Events.MessageCreate, message=>{
     //console.log(roles)
     //console.log(info)
 
-    if(info.user != config.botname && msg.startsWith(PREFIX)){
+    const embedBotMessage = new EmbedBuilder()
+        .setColor(0x0099FF)
+        .setTitle(cutmessage(info))
+        .addFields(
+            {name:'Bot', value:config.botname},
+            {name:'Message', value:commandidentify(info)}
+        )
+        .setTimestamp()
+    
+    if(info.user != config.botname && message.content.startsWith("!")){
         //console.log("command")
         sendmessage = commandidentify(info)
-        bot.channels.cache.get(msgchannel).send(sendmessage); //send 'info' to function and bot message return of that
+        bot.channels.cache.get(msgchannel).send({embeds: [embedBotMessage]}); //send 'info' to function and bot message return of that
     }
     /* currently not in use
     if(info.user != config.botname && !msg.startsWith("!")){ 
