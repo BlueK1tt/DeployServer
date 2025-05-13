@@ -11,7 +11,7 @@ module.exports = {
     data: pm2check()
 };
 
-async function pm2check(){
+function pm2check(){
     //console.log("pm2check");
     sendtomaster = pm2.list((err, list) => {
         const id = 0;
@@ -33,14 +33,14 @@ async function pm2check(){
                 result = makepretty(filetree, pm2stat);
                 //console.log(result);
                 sendArray.push(result);
-                sendtomain = sendArray
-                console.log(sendArray)
-                return sendArray
+                //console.log(sendArray)
+                sendtomain = sendArray.toString();
+                console.log(sendtomain)
+                return sendtomain
             });
             //console.log("3")
         };
         //console.log("2")
-        return sendArray
     });
     //console.log("1")
 };
