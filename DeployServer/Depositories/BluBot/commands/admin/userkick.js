@@ -1,4 +1,4 @@
-const { info } = require('../../server');
+const { info, roles } = require('../../server');
 
 module.exports = {
     data: hello(info)
@@ -8,8 +8,9 @@ function hello(info){
     info = info.info
     console.log(info)
     console.log(typeof(info))
-    cutmessage(info)
-	return "User kicked"
+    targetuser = cutmessage(info)
+    sendout = "User" + targetuser + "kicked";
+	return sendout
 }
 
 
@@ -24,12 +25,15 @@ function cutmessage(info){
 
     message = msg[1].toString()
     command = message.split(" ")
-    target = command[1]
+    target = command[1] //target is the name given in command
+    checkuser(target)
     console.log(target)   
+    return target
 }
 
-function checkuser(info){
+function checkuser(target){
     //to check if user is admin or not
     //cant kick admins or bots
-
+    rolelist = roles
+    console.log(roles)
 }

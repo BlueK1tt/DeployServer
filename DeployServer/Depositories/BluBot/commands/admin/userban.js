@@ -16,7 +16,7 @@ function cutmessage(info){
     message = mesg.split("!")
 
     message = msg[1].toString()
-    command = message.split(" ")
-    target = command[1]
+    splitcommand = message.split(" ")
+    target = splitcommand[1]
     console.log(target)
 }
