@@ -88,7 +88,7 @@ function verifycommand(info){ //command from commandidentify
     command = cutmessage(info)
     //need processing of the command when it has more data, like usernames or actions
 
-    if(info.isadmin == true){
+    if(info.isStaff == true){
         adminfiles = commandfiles("commandsadmin")
         basicfiles = commandfiles("commandsbasic")
         var stringadmin = JSON.stringify(adminfiles) + JSON.stringify(basicfiles)
@@ -176,11 +176,11 @@ function commandfiles(info){
     //console.log("basic: "+commandsbasic)
     const commandsadmin = fs.readdirSync(admin); //get all files in admin commands folder
     //console.log("admin: "+ commandsadmin)
-    if(info.isadmin == false){
+    if(info.isStaff == false){
         const basicout = "Available commands: " + commandsbasic
         return basicout;
     } 
-    if(info.isadmin == true){
+    if(info.isStaff == true){
         const adminout = "Available commands: " + commandsadmin + "," + commandsbasic
         return JSON.stringify(adminout);
     }
@@ -202,6 +202,17 @@ function commandfiles(info){
         return "error"
     }
 };
+function checkstaff(message){
+    isadmin = message.member.roles.cache.has('815323331016392724');
+    isbot = message.member.roles.cache.has('829806941379231826');
+    if(isadmin === true || isbot === true){
+        return true
+    }
+    else{
+        return false
+    }
+    
+}
 
 function getchannel(cid){
     //console.log("id = " + cid)
@@ -252,7 +263,7 @@ bot.on(Events.MessageCreate, message=>{
             info['user'] = message.author.displayName;
             info['message'] = message.content;
             info['channel'] = getchannel(msgchannel)
-            info['isadmin'] = message.member.roles.cache.has('815323331016392724');
+            info['isStaff'] = checkstaff(message)
 
     exports.info = { info }; //export msg as variable to use in modules
     let roles = message.member.guild.roles.cache; //get all roles in the server

@@ -9,7 +9,7 @@ function hello(info){
     console.log(info)
     console.log(typeof(info))
     targetuser = cutmessage(info)
-    sendout = "User" + targetuser + "kicked";
+    sendout = "User" + targetuser + " kicked";
 	return sendout
 }
 
@@ -24,8 +24,8 @@ function cutmessage(info){
     message = mesg.split("!")
 
     message = msg[1].toString()
-    command = message.split(" ")
-    target = command[1] //target is the name given in command
+    kickcommand = message.split(" ")
+    target = kickcommand[1] //target is the name given in command
     checkuser(target)
     console.log(target)   
     return target
@@ -34,6 +34,7 @@ function cutmessage(info){
 function checkuser(target){
     //to check if user is admin or not
     //cant kick admins or bots
+    
     rolelist = roles
     console.log(roles)
 }
