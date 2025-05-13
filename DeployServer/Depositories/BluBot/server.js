@@ -3,7 +3,7 @@ const config = require('./config.json');
 const channels = require('./logchannel.json')
 var path = require('path');
 const fs = require('fs'); //filesystem
-const { Client, Collection, Events, GatewayIntentBits, } = require('discord.js');
+const { Client, Embed, Collection, Events, GatewayIntentBits, } = require('discord.js');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers,GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildPresences],});
 
 const PREFIX = config.prefix
@@ -273,7 +273,8 @@ bot.on(Events.MessageCreate, message=>{
 
     if(info.user != config.botname && msg.startsWith(PREFIX)){
         //console.log("command")
-        bot.channels.cache.get(msgchannel).send(commandidentify(info)); //send 'info' to function and bot message return of that
+        sendmessage = commandidentify(info)
+        bot.channels.cache.get(msgchannel).send({ embeds: [sendmessage]}); //send 'info' to function and bot message return of that
     }
     /* currently not in use
     if(info.user != config.botname && !msg.startsWith("!")){ 
