@@ -211,7 +211,6 @@ function checkstaff(message){
     else{
         return false
     }
-    
 }
 
 function getchannel(cid){
@@ -274,7 +273,7 @@ bot.on(Events.MessageCreate, message=>{
     if(info.user != config.botname && msg.startsWith(PREFIX)){
         //console.log("command")
         sendmessage = commandidentify(info)
-        bot.channels.cache.get(msgchannel).send({ embeds: [sendmessage]}); //send 'info' to function and bot message return of that
+        bot.channels.cache.get(msgchannel).send(sendmessage); //send 'info' to function and bot message return of that
     }
     /* currently not in use
     if(info.user != config.botname && !msg.startsWith("!")){ 
