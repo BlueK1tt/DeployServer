@@ -253,6 +253,9 @@ bot.on(Events.MessageCreate, message=>{
             info['isadmin'] = message.member.roles.cache.has('815323331016392724');
 
     exports.info = { info }; //export msg as variable to use in modules
+    let roles = message.member.guild.roles.cache; //get all roles in the server
+    exports.roles = roles
+    //console.log(roles)
     //console.log(info)
 
     if(info.user != config.botname && msg.startsWith(PREFIX)){

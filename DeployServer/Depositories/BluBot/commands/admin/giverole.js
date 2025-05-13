@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const { info } = require('../../server');
+const { info, roles } = require('../../server');
+
 
 module.exports = {
     data: hello(info)
@@ -13,7 +14,7 @@ function hello(info){
         return "error"
     }
     else{
-        targetuser.roles.add(givenrole)
+        targetuser.role.roles.add(givenrole)
         sendout = "User" + targetuser + "given role" + givenrole
         return sendout
     }
@@ -28,8 +29,7 @@ function roleuser(info){
     else{
         target = giverole.user
         //need to find user with same name from the server and return their ID
-    
-        targetrole = message.guild.roles.find(role => role.name === giverole);
+        let targetrolelid = roles.roles
         return targetrolelid
     }
 }
