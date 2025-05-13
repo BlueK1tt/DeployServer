@@ -284,8 +284,8 @@ bot.on(Events.MessageCreate, message=>{
         .setColor(0x0099FF)
         .setTitle(cutmessage(info))
         .addFields(
-            {name:'Bot', value:config.botname},
-            {name:'Message', value:commandidentify(info)}
+            {name:'Bot', value:config.botname, inline:true},
+            {name:'Message', value:commandidentify(info), inline:true}
         )
         .setTimestamp()
     
