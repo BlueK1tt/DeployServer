@@ -132,6 +132,7 @@ function cutmessage(info){
         }
         else{
             console.log("cutmessage error")
+            return " ";
         }
     }
 }
