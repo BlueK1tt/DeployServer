@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { info, roles } = require('../../server');
+const { info} = require('../../server');
 var path = require('path');
 const fs = require('fs'); //filesystem
 
@@ -27,7 +27,7 @@ function getcommands(info){
     });
     var givebasic = basiccommands.toString();
 
-    if(info.info.isStaff === true){
+    if(info.info.isStaff === true){ //check if user requesting is staff or not
         var givecommands = givebasic +","+ giveadmin
         return givecommands 
     }
