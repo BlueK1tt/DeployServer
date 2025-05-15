@@ -100,3 +100,8 @@ checking status before connecting
 mostly for website, good opportunity to test with Ticker
 Need to request, variable for site status
     If "maintanance", deny reload or loading website
+
+Disable commands
+- command to disable and enable commands
+- use JSON to store commands and their 'status', enabled/disabled
+- Good to use if some errors with command, so no possibility to use if broken and crashes the server

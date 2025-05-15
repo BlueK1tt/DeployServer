@@ -15,7 +15,9 @@ function hello(info){
         return "error"
     }
     else{
-        targetuser.role.roles.add(givenrole)
+        //targetuser.role.roles.add(givenrole)
+        member = targetuser
+        member.roles.add(giverole)
         sendout = "User" + targetuser + "given role" + givenrole
         return sendout
     }
@@ -48,7 +50,6 @@ function targetuser(info){
     
     
         //return targetuserid
-
     }
 }
 
