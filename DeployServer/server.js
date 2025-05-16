@@ -255,6 +255,11 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
     })
 }
 
+function disablecommand(){
+    //command to disable or enable command
+    //look for more info in ideas.txt
+}
+
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
     console.log(pmmsg)
     console.log("pm2disconnect")
