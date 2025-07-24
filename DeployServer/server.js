@@ -232,6 +232,9 @@ function msgidentify(msg){ //c = different incoming msg
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
 
+            //need to seperate "fancy commands" from regular commands
+            //so "update" and "update=BluBot"
+
             //need to flush the custom command
             delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
             //console.log("cache cleared");
@@ -442,9 +445,6 @@ const requestListener = function(request, response){
     
     //here code to read and write txt or json file
     //on startup , compare saved information of git and infomation of gits on github
-
-    //include things to send as variables to file as part of command
-
     if (msg == "refresh") {
         //refresh filesystem
         commandscollection();
