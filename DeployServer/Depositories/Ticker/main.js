@@ -8,7 +8,7 @@ sitestatus = true;
 
 
 
-/*function sendtomaster(data){
+function sendtomaster(data){
   process.send({ //this is just example, boiletplate for future apps
     type : 'process:msg',
     data : {
@@ -17,7 +17,7 @@ sitestatus = true;
     }
   })
 }
-*/
+
 function Test(){
   console.log("clicked")
   return "return"
@@ -38,28 +38,30 @@ function functionloader(msg){
   }
   if(msg.includes("/Test?")){ //test button
     Test();
-    //sendtomaster("Test");
+    sendtomaster("Test");
     return
   }
   if(msg.includes("/Main%20request?")){ //test button to try communication
-    //sendtomaster("button1") //specified in main server to do nothing but log
+    sendtomaster("button1") //specified in main server to do nothing but log
     console.log("call server")
     return
   }
   if(msg.includes("/maintanance") && sitestatus === true){
     sitestatus = false;
-    console.log("site to false")
+    sendtomaster("Under maintanance")
+    //console.log("site to false")
     return
   }
   if(msg.includes("/maintanance") && sitestatus === false){
     sitestatus = true
-    console.log("site to true")
+    sendtomaster("Back to normal")
+    //console.log("site to true")
     return
   }
   
   else {
     console.log("msg: " + msg); //else, for everything else that isnt stated yet
-    //sendtomaster(msg)
+    sendtomaster(msg)
     return
   }
 }
@@ -129,4 +131,4 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
 
 // Console will print the message
 console.log('App running at http://127.0.0.1:3001/');
-//sendtomaster("online")
+sendtomaster("online")
