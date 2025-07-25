@@ -4,7 +4,7 @@ fs = require('fs');
 var path = require('path');
 const { defaults } = require('request');
 var filename = path.basename(__dirname);
-sitestatus = true;
+sitestatus = true; //this is what the wensiote website will start as
 
 
 
@@ -23,7 +23,7 @@ function Test(){
   return "return"
 }
 
-function setsite(sitestatus){
+function setsite(sitestatus){ //dont remember what this was originally used for
   console.log("setsite " + sitestatus)
   return sitestatus
 }
@@ -106,14 +106,14 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
     //setsite(sitestatus);
 
 
-    if(sitestatus === false){
+    if(sitestatus === false){ //if requested and is under maintanance
       console.log("site under maintanance")
       loadmaintanance();
       response.end();
       delete(request);
 
     }
-    if(sitestatus === true){
+    if(sitestatus === true){ //requested and all is normal
       loadwebsite()
       response.writeHead(200, {"Content-Type": "text/html"});  
       response.write(html);
