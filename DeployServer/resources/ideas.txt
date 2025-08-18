@@ -110,3 +110,11 @@ Seperate command client using node Readline
 - Using additional javasript and functions from existing server, pull available commands to use in readline as options
 - can use directly from terminal on any machine
 - Could be seperate instance, so would need to be started after main server is started
+
+Security for consoles
+- When establishing connection, ask for password
+- The password is randomly generated 5 or 7 number string and posted in server console when requested by console.
+- The answered password is only sent to server and give back approve or reject
+- The actualy password isnt sent to console to check, for additional security.
+- Works best with the readline client, not sure if able to make work with current iteration for console/command system
+    - Could make it work by asking password first time, and every 5 minutes
