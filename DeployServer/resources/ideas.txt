@@ -118,3 +118,8 @@ Security for consoles
 - The actualy password isnt sent to console to check, for additional security.
 - Works best with the readline client, not sure if able to make work with current iteration for console/command system
     - Could make it work by asking password first time, and every 5 minutes
+- API for command handling
+    - Normal REST API for command hanlding
+    - Can basically replace most of the server code just with API
+    - API can handle most of the functions that would normally be command/function search
+    - Can be different "command handling API server"
