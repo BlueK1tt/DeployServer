@@ -123,3 +123,7 @@ Security for consoles
     - Can basically replace most of the server code just with API
     - API can handle most of the functions that would normally be command/function search
     - Can be different "command handling API server"
+- Router
+    - Can make main server into Router server that acts as API endpoint
+    - Router then calls other functions and files like it is now, but it is even more seperated
+    - Still keep the pm2 start functionality, because can deploy other servers
