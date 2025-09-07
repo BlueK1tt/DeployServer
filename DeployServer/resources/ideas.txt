@@ -127,3 +127,4 @@ Security for consoles
     - Can make main server into Router server that acts as API endpoint
     - Router then calls other functions and files like it is now, but it is even more seperated
     - Still keep the pm2 start functionality, because can deploy other servers
+ROuter idea would work, but need to build whole thing again
