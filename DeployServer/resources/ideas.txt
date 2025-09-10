@@ -128,3 +128,36 @@ Security for consoles
     - Router then calls other functions and files like it is now, but it is even more seperated
     - Still keep the pm2 start functionality, because can deploy other servers
 ROuter idea would work, but need to build whole thing again
+
+Seperate outside function accessible to all servers to save data to JSON file
+- Something really boilerplate
+- Input and output really simple, only couple words/phares
+    - Like the communication between adjecent servers to main server
+- "MAIN" data JSON capable to save some variables from all adjecent servers and services
+    - Such as:
+        - Saving the site status of "Ticker", if under maintanance when goes offline/crashes
+        - Last "Online", can pull directly from "connected" function.
+        - Server/service version/version control
+            - Can use that to then suggest updating
+        - Disabled/Enabled server/service
+            - To see if some are disabled  
+                - Maybe able to add meaning behind the status if disabled
+            - Only works in "MAIN" server
+            - Used by future function to control servers/services
+                - Cant start servers/servces if disabled
+                - Cant disable if already online, needed to stop server before updating data
+            - "List" can get list of all, all enabled, or all disabled
+                - If just "all", after the name shows if disabled or enabled
+                - Such as: "Ticker" | Disabled
+                           "BluBot" | Enabled
+        - Format same as the depositories JSON,
+            - Every server is its own "object"
+            - Easier to manipulate each object seperately, or pull only important data
+    - Saved in "./Resources" like most other "main" non javascript files
+    - Later ability to add "lines" or different data
+        - as in "Serversave add Version"
+        - "Serversave" just placeholder for the current function name
+        - "add" just codeword. other codewords like "delete", "edit", "list"
+        - "Version" is the inputted name for data.
+            - All data is in as "string" Format
+            - Can add stricter formats later, like Verion just being a "integer" or "last online" not being able to edited
