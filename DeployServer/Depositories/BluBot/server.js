@@ -21,7 +21,7 @@ function sendtomaster(data){
       data : {
         app : filename,
         msg : data
-      };
+      }
     });
 };
 

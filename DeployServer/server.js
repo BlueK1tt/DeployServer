@@ -162,21 +162,28 @@ function msgidentify(msg){ //c = different incoming msg
         };
         if(msg.startsWith("stop")){
             filename = msg.slice(5);
-            if (!depotlist.includes(filename)){
-                return "error"
+            if(filename == "all"){
+                console.log("all")
+                pm2stop("all");
+                return "stop all"
             } else {
-                const depotdata = require('./functions/depotdata')
-                var sentData = valuesToArray(depotdata); 
-                asmessage = sentData[0];
-                delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
-                stopfile = filename + ".js";
+                if (!depotlist.includes(filename)){
+                    return "error"
+                } 
+                else {
+                    const depotdata = require('./functions/depotdata')
+                    var sentData = valuesToArray(depotdata); 
+                    asmessage = sentData[0];
+                    delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
+                    stopfile = filename + ".js";
 
-                //functon to send message to the server about to be stopped
-                //possibly await function to wait for response back, for graceful stop
+                    //functon to send message to the server about to be stopped
+                    //possibly await function to wait for response back, for graceful stop
 
 
-                pm2stop(filename);
-                return "stop " + stopfile;
+                    pm2stop(filename);
+                    return "stop " + stopfile;
+                }
             }
         }
         else{
@@ -383,23 +390,32 @@ function pm2start(startfile){ //start specific server on command, need to check 
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
-    const data = require(`./functions/findfile`);
-    var sentData = valuesToArray(data); 
-    stopfile = sentData[0];
-    delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
+    if(stopfile == "all"){
+        console.log("pm2stop all")
+        //need to list all servers running and stop them individually
+        
+        return;
+    } else {
+        console.log("pm2 stop")
     
-    pm2.stop(`${stopfile}`, function(err, apps) {
-        if (err) {
-            console.log(err)
-            pm2.flush(stopfile);
-            return pm2.disconnect();
-        }
-    });
-    console.log("pm2stop:"  + stopfile);
+        const data = require(`./functions/findfile`);
+        var sentData = valuesToArray(data); 
+        stopfile = sentData[0];
+        delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
+        
+        pm2.stop(`${stopfile}`, function(err, apps) {
+            if (err) {
+                console.log(err)
+                pm2.flush(stopfile);
+                return pm2.disconnect();
+            }
+        });
+        console.log("pm2stop:"  + stopfile);
 
-    //first need to check if the one requested is running
+        //first need to check if the one requested is running
 
-    //only after that do rest, so it doesnt waste time running all
+        //only after that do rest, so it doesnt waste time running all
+    };
 };
 
 function pm2bussi(){ //pm2launchbus to get data from clien to server
