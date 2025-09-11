@@ -14,17 +14,16 @@ const admin = path.join(__dirname, 'commands/admin/');
 const basic = path.join(__dirname, 'commands/basic/')
 
 bot.commands = new Collection();
-/*
+
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
       data : {
         app : filename,
         msg : data
-      }
-    })
-}
-**/
+      };
+    });
+};
 
 function verifychannel(message){ //for the switching channels thing
     if(message.author == config.botid){
@@ -323,4 +322,4 @@ bot.on(Events.MessageCreate, message=>{
 });
 
 bot.login(config.token);
-//sendtomaster("BluBot online");
+sendtomaster("BluBot online");
