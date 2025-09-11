@@ -5,6 +5,7 @@ var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Embed, Collection, Events, GatewayIntentBits, } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
+const { message } = require('../../server');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers,GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildPresences],});
 
 const PREFIX = config.prefix
@@ -13,7 +14,6 @@ const admin = path.join(__dirname, 'commands/admin/');
 const basic = path.join(__dirname, 'commands/basic/')
 
 bot.commands = new Collection();
-
 /*
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
@@ -86,7 +86,7 @@ function filelocation(info){
 }
 
 function verifycommand(info){ //command from commandidentify
-    command = cutmessage(info)
+    command = cutmessage(info.message)
     //need processing of the command when it has more data, like usernames or actions
 
     if(info.isStaff == true){
@@ -118,10 +118,15 @@ function cutmessage(info){
         return "botmessage"
     }
     else{
+        splitmsg = "";
         //function to cut the message received to be only command part IE banuser instead of !banuser Jorma
-        msg = info.message.split("!")
-        //console.log(msg)
-        message = msg[1].toString()
+        var msg = info.message.split("!")
+        console.log(msg)
+        var splitmsg = msg[1]
+        console.log(splitmsg)
+        
+
+        var message = splitmsg.toString()
         splitcommand = message.split(" ")
         //console.log(splitcommand)
         file = splitcommand[0] + ".js"
@@ -140,6 +145,11 @@ function cutmessage(info){
 function commandidentify(info){ //for processing commands
     if(info.user == config.botname){
         return "botmessage"
+    }
+    if(info.user != config.botname && info.message == "!shutdown"){
+        console.log("But shutting down...")
+        bot.destroy();
+        return;
     }
     else{
         //console.log("command indentify")
@@ -245,7 +255,7 @@ bot.on(Events.InteractionCreate, interaction => {
 bot.on('ready', () =>{
     console.log(config.botname, 'Bot online'); //after online, post when last online, with info of how long was online, coudl store data in txt file
     bot.channels.cache.get(config.channel).send("`YO`");
-    botstatus("being good bot")
+    botstatus("Being good bot")
 });
 
 bot.on('error', error => {
@@ -261,6 +271,10 @@ bot.on('uncaughtException', err => {
 //can be used with voice channels too            
 var oldchannel ="";  //prepared variable for old channel id used later
 var newchannel =""; //prepared variable for new channel id used later
+
+bot.on(Events.MessageUpdate, message=>{
+    console.log("message update" + message)
+});
 
 bot.on(Events.MessageCreate, message=>{
 
@@ -290,7 +304,7 @@ bot.on(Events.MessageCreate, message=>{
         )
         .setTimestamp()
     
-    if(info.user != config.botname && message.content.startsWith("!")){
+    if(info.user != config.botname && message.content.startsWith(config.prefix)){
         //console.log("command")
         sendmessage = commandidentify(info)
         bot.channels.cache.get(msgchannel).send({embeds: [embedBotMessage]}); //send 'info' to function and bot message return of that
@@ -303,6 +317,7 @@ bot.on(Events.MessageCreate, message=>{
         */
     else{
         //here if bot message
+        return;
         
     }
 });
