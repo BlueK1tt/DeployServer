@@ -169,8 +169,12 @@ function msgidentify(msg){ //c = different incoming msg
                 var sentData = valuesToArray(depotdata); 
                 asmessage = sentData[0];
                 delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
-               
                 stopfile = filename + ".js";
+
+                //functon to send message to the server about to be stopped
+                //possibly await function to wait for response back, for graceful stop
+
+
                 pm2stop(filename);
                 return "stop " + stopfile;
             }
@@ -442,9 +446,6 @@ const requestListener = function(request, response){
     //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
 
-    
-    //here code to read and write txt or json file
-    //on startup , compare saved information of git and infomation of gits on github
     if (msg == "refresh") {
         //refresh filesystem
         commandscollection();
