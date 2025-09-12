@@ -371,6 +371,24 @@ function thirtyTimer(){
     }
 }
 
+function pm2check(){ //function the check what servers are running
+    //get list of runnign pm2 instances
+
+    if(){//if the requested server is running
+
+        return true
+    }
+    if(){//if the requested server is not running
+
+        return false
+    } 
+    else{//safety measure, if nothing matches
+        console.log("error with pm2check")
+        return "error with pm2check"
+    }
+    
+}
+
 function pm2start(startfile){ //start specific server on command, need to check available ports    
     //console.log("startfile")
     pm2connect();
@@ -379,14 +397,22 @@ function pm2start(startfile){ //start specific server on command, need to check 
     startfile = sentData[0];
     delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
 
-    //direction = start/stop
-    //if direction, send to other file to identify location of file and check errors then send back and start or stop pm2 function
+    var isrunning = pm2check(startfile)
 
     //need to add check to see if any are running
-    //console.log("pm2start:"  + startfile);
-    pm2.start(`${startfile}`, function(err, apps) {
-    //console.log(apps)
-    });
+    if(isrunning === true){
+        var isrunningtext = startfile + " is already running";
+        return isrunningtext;
+    } 
+    if(isrunning === false) {
+        //console.log("pm2start:"  + startfile);
+        pm2.start(`${startfile}`, function(err, apps) {
+        //console.log(apps)
+        });
+    } else{
+        console.log("error with starting")
+        return "starting error"
+    }
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
