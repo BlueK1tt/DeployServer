@@ -371,21 +371,34 @@ function thirtyTimer(){
     }
 }
 
-function pm2check(){ //function the check what servers are running
+function pm2check(instance){ //function the check what servers are running
+    console.log("pm2check")
     //get list of runnign pm2 instances
+    pm2.list((err, list)=>{
+        currentlist = list
+        if(err){
+            console.log(err)
+        }else{
+            console.log(currentlist)
 
-    if(){//if the requested server is running
-
-        return true
-    }
-    if(){//if the requested server is not running
-
-        return false
-    } 
-    else{//safety measure, if nothing matches
-        console.log("error with pm2check")
-        return "error with pm2check"
-    }
+            if(currentlist == null){
+                return false
+            }
+            if(currentlist.includes(instance) && instance != ""){//if the requested server is running
+                console.log("includes")
+                return true
+            }
+            if(!currentlist.includes(instance) && instance != ""){//if the requested server is not running
+                console.log("does not include")
+                return false
+            } 
+            else{//safety measure, if nothing matches
+                console.log("error with pm2check")
+                return "error with pm2check"
+            }
+        }
+    });
+    
     
 }
 
@@ -409,6 +422,7 @@ function pm2start(startfile){ //start specific server on command, need to check 
         pm2.start(`${startfile}`, function(err, apps) {
         //console.log(apps)
         });
+        return;
     } else{
         console.log("error with starting")
         return "starting error"
@@ -429,15 +443,27 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         stopfile = sentData[0];
         delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
         
-        pm2.stop(`${stopfile}`, function(err, apps) {
-            if (err) {
-                console.log(err)
-                pm2.flush(stopfile);
-                return pm2.disconnect();
-            }
-        });
-        console.log("pm2stop:"  + stopfile);
+        var isstopped = pm2check(stopfile)
+        
+        if(isstopped === true){
+            var isstoppedtext = stopfile + " is already stopped"
+            return isstoppedtext;
+        }
+        if(isstopped === false){
 
+            pm2.stop(`${stopfile}`, function(err, apps) {
+                if (err) {
+                    console.log(err)
+                    pm2.flush(stopfile);
+                    return pm2.disconnect();
+                }
+            });
+            console.log("pm2stop:"  + stopfile);
+            return;
+        }
+        else{
+            return "stopping error"
+        }
         //first need to check if the one requested is running
 
         //only after that do rest, so it doesnt waste time running all
