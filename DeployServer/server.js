@@ -168,7 +168,7 @@ function msgidentify(msg){ //c = different incoming msg
                 return "stop all"
             } else {
                 if (!depotlist.includes(filename)){
-                    return "error"
+                    return "msgidentify stop error"
                 } 
                 else {
                     const depotdata = require('./functions/depotdata')
@@ -211,7 +211,7 @@ function msgidentify(msg){ //c = different incoming msg
             return asmessage;
         }
         else {
-            console.log("error");
+            console.log("msgidentify error");
             return "install error"
         }
     }
@@ -373,13 +373,14 @@ function thirtyTimer(){
 
 function pm2check(instance){ //function the check what servers are running
     console.log("pm2check")
+    console.log(instance)
     //get list of runnign pm2 instances
     pm2.list((err, list)=>{
         currentlist = list
         if(err){
             console.log(err)
         }else{
-            console.log(currentlist)
+            //console.log(currentlist)
 
             if(currentlist == null){
                 return false
@@ -411,6 +412,7 @@ function pm2start(startfile){ //start specific server on command, need to check 
     delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
 
     var isrunning = pm2check(startfile)
+    console.log("isrunning: " + isrunning);
 
     //need to add check to see if any are running
     if(isrunning === true){
