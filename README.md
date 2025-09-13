@@ -1,5 +1,6 @@
 # DeployServer
 
-Update and deploy new commands and function on your home server from anywhere.
-Just message(Not yet invented) to update the server files from your github repositories.
+Update and deploy new servers and services on your home server from anywhere.
 
+(Currently) Send command through Curl request, making the server download github respository and deploy it using pm2.
+Eveyrthing on one device, using node multithread capabilties to share workload on CPU.
