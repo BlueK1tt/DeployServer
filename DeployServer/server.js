@@ -511,6 +511,7 @@ const requestListener = function(request, response){
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
     exports.message = { msg }; //export msg as variable to use in modules
+    exports.timenow = { timenow };
 
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);
