@@ -1,0 +1,1 @@
+//command to check how long server has been up
