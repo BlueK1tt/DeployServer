@@ -1,9 +1,9 @@
 //command to check how long server has been up
-const { timenow } = require("../server");
+var { timenow } = require("../server");
 
-let timestart = JSON.stringify(timenow)//variable from server start
-const current = new Date();
-let  timecurrent = JSON.stringify(current)
+var timestart = JSON.stringify(timenow)//variable from server start
+var current = new Date();
+var  timecurrent = JSON.stringify(current)
 
 module.exports =  {
     data: uptime()
@@ -71,6 +71,7 @@ function uptime(){
     if(oldyear != newyear){
         //calculate year difference 
         console.log("different year")
+        
     }
     if(oldmonth != newmonth){
         //calculate month difference
@@ -96,8 +97,13 @@ function uptime(){
         console.log("different second")
         console.log(oldsecond +" || "+ newsecond)
 
+        difsecond = oldsecond - newsecond
+        console.log(difsecond)
+
     }
 
+    delete(timenow)
+    delete(current)
 
 
 }
