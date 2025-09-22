@@ -377,8 +377,10 @@ function pm2check(instance){ //function the check what servers are running
     //get list of runnign pm2 instances
     pm2.list((err, list)=>{
         currentlist = list
+        console.log(currentlist)
         if(err){
             console.log(err)
+            return err
         }else{
             //console.log(currentlist)
 
