@@ -5,6 +5,7 @@ const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
+const { promises } = require('node:dns');
 
 
 const hostname = config.hostname;
@@ -371,33 +372,43 @@ function thirtyTimer(){
     }
 }
 
-function pm2check(instance){ //function the check what servers are running
+async function pm2check(instance){ //function the check what servers are running
     console.log("pm2check")
     console.log(instance)
     //get list of runnign pm2 instances
     pm2.list((err, list)=>{
         currentlist = list
-        console.log(currentlist)
+        //console.log(currentlist)
         if(err){
             console.log(err)
-            return err
+            return new Promise( resolve => {
+                setTimeout(() => resolve(err), 1000);
+            })
         }else{
             //console.log(currentlist)
 
             if(currentlist == null){
-                return false
+                return new Promise(resolve => {
+                    setTimeout(() => resolve(false), 1000);
+                });
             }
             if(currentlist.includes(instance) && instance != ""){//if the requested server is running
                 console.log("includes")
-                return true
+                return new Promise(resolve => {
+                    setTimeout(() => resolve(true),1000);
+                })
             }
             if(!currentlist.includes(instance) && instance != ""){//if the requested server is not running
                 console.log("does not include")
-                return false
+                return new Promise(resolve => {
+                    setTimeout(() => resolve(false), 1000);
+                });
             } 
             else{//safety measure, if nothing matches
                 console.log("error with pm2check")
-                return "error with pm2check"
+                return new Promise(resolve => {
+                    setTimeout(() => resolve("error with pm2check"),1000);
+                });
             }
         }
     });
@@ -405,15 +416,17 @@ function pm2check(instance){ //function the check what servers are running
     
 }
 
-function pm2start(startfile){ //start specific server on command, need to check available ports    
+async function pm2start(startfile){ //start specific server on command, need to check available ports    
     //console.log("startfile")
     pm2connect();
     const data = require(`./functions/findfile`);
     var sentData = valuesToArray(data); 
     startfile = sentData[0];
     delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
-
-    var isrunning = pm2check(startfile)
+    
+    var isrunningcheck = pm2check(startfile)
+    console.log(isrunningcheck)
+    isrunning = isrunningcheck
     console.log("isrunning: " + isrunning);
 
     //need to add check to see if any are running

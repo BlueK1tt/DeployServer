@@ -1,9 +1,15 @@
 //command to check how long server has been up
-var { timenow } = require("../server");
-
+let { timenow } = require("../server");
+console.log(timenow)
 var timestart = JSON.stringify(timenow)//variable from server start
-var current = new Date();
-var  timecurrent = JSON.stringify(current)
+
+var timestr = timestart.slice(1,-1);
+var timereplc = timestr.slice(10)
+var oldtime = timereplc.replaceAll('"','');
+
+console.log("timestr:" + oldtime)
+
+
 
 module.exports =  {
     data: uptime()
@@ -11,99 +17,104 @@ module.exports =  {
 };
 
 function uptime(){
-    console.log("uptime")
-    console.log(timestart) //string
-    console.log(timecurrent);
-
-    //need to cleanup both time strings
-    //cut them both by sections and divide the parts
     
-    //propably just split the whole thing and then assign  different split sections to variables
-    
-    //here code to split old date data to section
+    //console.log("timenow")
+    let timenow = new Date();
 
-     //{"timenow":"2025-09-17T13:59:16.009Z"}
-    var timestr = timestart.slice(1,-1);
-    var onlytime = timestr.slice(10)
-    console.log("timestr:" +onlytime)
-    
-    var oldcleandatetime = onlytime.replaceAll('"',"")
-    var olddatetime = oldcleandatetime.split("T")
-
-    console.log(olddatetime)
-    var olddate = olddatetime[0]
-    var oldtime = olddatetime[1]
-
-    var pastdate = olddate.split("-")
-    var pasttime = oldtime.split(":")
-
-    var oldyear = pastdate[0]
-    var oldmonth = pastdate[1]
-    var oldday = pastdate[2]
-    var oldhour = pasttime[0]
-    var oldminute = pasttime[1]
-    var oldsecond = pasttime[2].slice(0,6); //cut the annoying Z from the end
-    
+    if(oldtime == null){
+        console.log("oldtime == null")
+        oldtime = timenow
+        return timenow
+    } else {
+        console.log("Oldtime != null")
+        console.log(typeof(timenow))
+        console.log(typeof(oldtime))
+    }
+    difference = (timenow - oldtime) / 1000
+    console.log("difference"+difference)
+    translatetime(difference)
+    return
+}
 
 
+function translatetime(difference){
+    //function translates whole time into sections
+    //days, hours, minutes, seconds
+    //make it into object
 
-    //here code to split new date data to section
-    var newcleandatetime = timecurrent.replaceAll('"', "")
-    var newdatetime = newcleandatetime.split("T")
+    let totaltime = new Object();
+    totaltime['days'] = difference / 86400;
+    totaltime['hours'] = difference / 3600;
+    totaltime['minutes'] = difference / 60;
+    totaltime['seconds'] = difference;
+    //console.log(totaltime)
 
-    console.log(newdatetime)
-    var newdate = newdatetime[0]
-    var newtime = newdatetime[1]
+    //check from lowest to highest if any are empty and the print result
+    //need to convert to higher if over 60
+    var addday = 0;
+    var addhours = 0;
+    var addminute = 0;
+    var addseconds = 0;
 
-    var thisdate = newdate.split("-")
-    var thistime = newtime.split(":")
-
-    var newyear = thisdate[0];
-    var newmonth = thisdate[1];
-    var newday = thisdate[2];
-    var newhour = thistime[0];
-    var newminute = thistime[1];
-    var newsecond = thistime[2].slice(0,6); //cut the annoying Z from the end
-
-
-    //after parts are divided, can measure difference
-
-    if(oldyear != newyear){
-        //calculate year difference 
-        console.log("different year")
+    if(totaltime.hours >= 59){
+        addday = Math.floor(totaltime.days)
+        //console.log("addday:"+addday)
+        addhours = addday * 60
         
     }
-    if(oldmonth != newmonth){
-        //calculate month difference
-        console.log("different month")
-
+    if(totaltime.minutes >= 59){
+        var addhour = Math.floor(totaltime.hours)
+        //console.log("addhour"+ addhour)
+        var addminutes = addhour * 60
+        //console.log("addminute:" + addminute)
+        
     }
-    if(oldday != newday){
-        //calculate day difference
-        console.log("different day")
-
+    if(totaltime.seconds >= 59){
+        addminute = Math.floor(totaltime.minutes)
+        //console.log("addminute:"+addminute)
+        addseconds = addminute * 60
+        //console.log("addseconds:"+addseconds)        
+    } else{
+        //console.log("under minute")
+        
     }
-    if(oldhour != newhour){
-        //calculate hour diffrence
-        console.log("different hour")
-
+    var setdays;
+    if(Math.floor(totaltime.days) == 0){
+        setdays = "";
+    } else {
+        setdays = Math.floor(totaltime.days)+":";
     }
-    if(oldminute != newminute){
-        //calculate minute difference
-        console.log("different minute")
+    var sethours;
+    if(Math.floor(addhours) == 0){
+        sethours = "";
+    }if(Math.floor(addhours) < 10 && Math.floor(addhours) != 0){
+        sethours = "0"+Math.floor(addhours)+":";
+    } 
+    else {
+        sethours = Math.floor(addhours)+":";
     }
-    if(oldsecond != newsecond){
-        //calculate second difference
-        console.log("different second")
-        console.log(oldsecond +" || "+ newsecond)
+    var setminutes;
+    if(Math.floor(addminute) == 0){
+        setminutes = "";
 
-        difsecond = oldsecond - newsecond
-        console.log(difsecond)
+    } if(Math.floor(addminute) < 10 && Math.floor(addminute) != 0){
+        setminutes = "0"+Math.floor(addminute)+":"
 
+    }else {
+        setminutes = Math.floor(addminute)+":"
     }
-
-    delete(timenow)
-    delete(current)
-
-
+    if(Math.floor(totaltime.seconds - addseconds) < 10 && Math.floor(totaltime.seconds - addseconds) != 0){
+        setseconds = "0"+Math.floor(totaltime.seconds - addseconds)
+    } else {
+        setseconds = Math.floor(totaltime.seconds - addseconds)
+    }
+    let finaltime = new Object()
+    finaltime['days'] = setdays;
+    finaltime['hours'] = sethours;
+    finaltime['minutes'] = setminutes;
+    finaltime['seconds'] = setseconds;
+    //console.log(finaltime)
+    returning = "Server has been online for:"+finaltime.days+finaltime.hours+finaltime.minutes+finaltime.seconds
+    console.log(returning);
+    return returning;
 }

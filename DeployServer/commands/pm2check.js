@@ -12,8 +12,9 @@ module.exports = {
 };
 
 function pm2check(){
-    //console.log("pm2check");
+    console.log("pm2check1");
     sendtomaster = pm2.list((err, list) => {
+        console.log("pm2check sendotmaster")
         const id = 0;
         list = list.map(item => {
             return item.id !== id ? item : null;
@@ -23,22 +24,25 @@ function pm2check(){
         //need to test out if code goes procedurally if take the "if" statements away
         //they just served as check for other command, but now they arent needed, but they functionality is useful
         if(err != null){
+            console.log("pm2check error")
             console.log(err)
             return err
         }
         else {
+            console.log("pm2 check else")
             list.forEach((Element) => {
-                filetree = Element.pm2_env.pm_exec_path // /DeployServer/Depositories/
-                pm2stat = Element.pm2_env.status //online , offline, stopped
-                result = makepretty(filetree, pm2stat);
+                var filetree = Element.pm2_env.pm_exec_path // /DeployServer/Depositories/
+                var pm2stat = Element.pm2_env.status //online , offline, stopped
+                var result = makepretty(filetree, pm2stat);
                 //console.log(result);
                 sendArray.push(result);
-                //console.log(sendArray)
-                sendtomain = sendArray.toString();
-                console.log(sendtomain)
+                console.log(sendArray)
+                var sendtomain = sendArray.toString();
+                console.log("sendtomain:"+sendtomain)
                 return sendtomain
             });
             //console.log("3")
+            return sendtomain
         };
         //console.log("2")
     });
