@@ -1,46 +1,41 @@
 //command to check how long server has been up
 let { timenow } = require("../server");
-console.log(timenow)
-var timestart = JSON.stringify(timenow)//variable from server start
-
-var timestr = timestart.slice(1,-1);
-var timereplc = timestr.slice(10)
-var oldtime = timereplc.replaceAll('"','');
-
-console.log("timestr:" + oldtime)
-
-
 
 module.exports =  {
     data: uptime()
 
 };
+function cleanoldtime(){
+    var timestart = JSON.stringify(timenow)//variable from server start
 
+    var timestr = timestart.slice(1,-1);
+    var timereplc = timestr.slice(10)
+    var cleanedtime = timereplc.replaceAll('"','');
+    var cuttime = cleanedtime.slice("T");
+    console.log(cuttime)
+
+}
 function uptime(){
-    
+    oldtime = cleanoldtime();
     //console.log("timenow")
-    let timenow = new Date();
+    var timenow = new Date();
+    //var timenow = today.setHours(today.getHours() + 3)
 
-    if(oldtime == null){
-        console.log("oldtime == null")
-        oldtime = timenow
-        return timenow
-    } else {
-        console.log("Oldtime != null")
-        console.log(typeof(timenow))
-        console.log(typeof(oldtime))
-    }
+
     difference = (timenow - oldtime) / 1000
     console.log("difference"+difference)
-    translatetime(difference)
-    return
+    var translatedtime = translatetime(difference)
+    console.log("Server has been online for:"+translatedtime);
+
+    var hournow = timenow.getHours();
+    var minutenow = timenow.getMinutes();
+    var secondsnow = timenow.getSeconds();
+    var cleantime = hournow+":"+minutenow+":"+secondsnow; //is current time
+    //console.log(cleantime)
+    return translatedtime
 }
 
-
 function translatetime(difference){
-    //function translates whole time into sections
-    //days, hours, minutes, seconds
-    //make it into object
 
     let totaltime = new Object();
     totaltime['days'] = difference / 86400;
