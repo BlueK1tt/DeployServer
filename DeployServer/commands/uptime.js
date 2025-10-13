@@ -10,9 +10,11 @@ function cleanoldtime(){
 
     var timestr = timestart.slice(1,-1);
     var timereplc = timestr.slice(10)
+    console.log(timereplc)
     var cleanedtime = timereplc.replaceAll('"','');
     var cuttime = cleanedtime.slice("T");
     console.log(cuttime)
+    return cuttime
 
 }
 function uptime(){
@@ -20,7 +22,8 @@ function uptime(){
     //console.log("timenow")
     var timenow = new Date();
     //var timenow = today.setHours(today.getHours() + 3)
-
+    console.log("now"+timenow)
+    console.log("old"+oldtime)
 
     difference = (timenow - oldtime) / 1000
     console.log("difference"+difference)
