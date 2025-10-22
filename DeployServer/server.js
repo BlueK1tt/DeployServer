@@ -81,7 +81,7 @@ function commandscollection() { //currently not in use, using the above commands
     return stringCMD;
 };
 
-function getfile(msg) {
+function getfile(msg) { //------ can be made into own file and moved to 'functions'
     if(msg == ""){
         return "no specified command";
     }
@@ -126,7 +126,7 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
-function msgidentify(msg){ //c = different incoming msg
+function msgidentify(msg){ //
     msgid ++;
     console.log("id:" + msgid);
 
