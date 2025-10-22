@@ -15,7 +15,7 @@ function install(){
     }
     if(msg.includes(filename)){
         console.log("installing " + filename)
-        let files = fs.readdirSync('./Depositories/')
+        let files = fs.readdirSync('./depositories/')
         console.log(files);
 
         if(files.includes(filename)){
@@ -46,7 +46,7 @@ function install(){
                 console.log("Uknown error")
             };
             //need to add new files to the depositories.json file
-            let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
+            let rawdata1 = fs.readFileSync('./depositories/DepositoriesList.json')
             let json1 = JSON.parse(rawdata1);
             fs.close;
             strtfile = instaldone.file

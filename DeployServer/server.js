@@ -23,9 +23,9 @@ var msgid = 0; //just defult id for messages, gets +1 automatically
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");
     var logpromise = isFile("./resources/log.JSON");
-    var depromise = isFile("./Depositories/DepositoriesList.JSON");
+    var depromise = isFile("./depositories/DepositoriesList.JSON");
 
-    let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
+    let rawdata1 = fs.readFileSync('./depositories/DepositoriesList.json')
     let json1 = JSON.parse(rawdata1);
     fs.close;
 
