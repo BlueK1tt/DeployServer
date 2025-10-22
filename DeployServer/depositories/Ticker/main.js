@@ -107,8 +107,10 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
 
 
     if(sitestatus === false){ //if requested and is under maintanance
-      console.log("site under maintanance")
       loadmaintanance();
+      response.writeHead(200, {"Content-Type": "text/html"});  
+      console.log("site under maintanance")
+      response.write(html1)
       response.end();
       delete(request);
 
