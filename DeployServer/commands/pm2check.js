@@ -29,6 +29,9 @@ function pm2check(){
             return err
         }
         else {
+
+            //------- Need to remove this, pm2.list is async and cant have async comamands
+            //make the active servers list a export variable, then call it here and fill in the blanks
             console.log("pm2 check else")
             list.forEach((Element) => {
                 var filetree = Element.pm2_env.pm_exec_path // /DeployServer/Depositories/
