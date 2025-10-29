@@ -1,4 +1,5 @@
 //command to check how long server has been up
+const { diff } = require("util");
 let { timenow } = require("../server");
 //var oldreqtime = null; //just as start when there is not last request
 console
@@ -24,25 +25,38 @@ function uptime() {
     var oldcleantime = oldsplit[1].slice(0,-5)
     console.log(oldcleantime)
     console.log(newsplit[1])
-    timeobjects(oldcleantime, newsplit)
+    
+    let timeobj = timeobjects(oldcleantime, newsplit)
+    let timediff = difference(timeobj[0], timeobj[1])
+    console.log(timediff)
+    return "Server has been online for:";
 }
 
 function timeobjects(oldcleantime, newsplit){
+    console.log("timeobject")
     //oldtime and newtime strings cut and split into object
     let newtimesplit = newsplit[1].split(":")
     let newsection = new Object
     newsection['hours'] = newtimesplit[0]
     newsection['minutes'] = newtimesplit[1]
     newsection['seconds'] = newtimesplit[2]
-    console.log(newsection)
+    //console.log(newsection)
 
     let oldtimesplit = oldcleantime.split(":")
     let oldsection = new Object
     oldsection['hours'] = oldtimesplit[0]
     oldsection['minutes'] = oldtimesplit[1]
     oldsection['seconds'] = oldtimesplit[2]
-    console.log(oldsection)
+    //console.log(oldsection)
 
-    var timediff = newsection.seconds - oldsection.seconds;
-    console.log(timediff)
+
+    return [newsection, oldsection]; 
+}
+
+function difference(newsection, oldsection){
+    console.log("difference ")
+    //console.log(oldsection) //when the server was started
+    //console.log(newsection) //
+
+    return "Server has been online for:";
 }
