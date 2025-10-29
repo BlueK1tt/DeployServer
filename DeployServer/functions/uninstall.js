@@ -17,7 +17,7 @@ function uninstall(){
     }
 
     if(isfile === true){
-        console.log(files)
+        //console.log(files)
 
         //actually deletes the whole specified folder
         fs.rmdir(`./depositories/` + `${filename}`,() => {
@@ -37,6 +37,6 @@ function uninstall(){
 function checkfile(filename){ //used 2 times, first to check that file exitst, then checking it doesnt exist anymore
     filepath = "./depositories/"+filename
     files = fs.existsSync(filepath);
-    console.log(files)
+    //console.log(files)
     return files
 }

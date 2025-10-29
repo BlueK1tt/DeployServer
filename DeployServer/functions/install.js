@@ -14,11 +14,12 @@ function install(){
         return "target not defined"
     }
     if(msg.includes(filename)){
-        console.log("installing " + filename)
+        console.log("installing " + filename+"...")
         let files = fs.readdirSync('./depositories/')
-        console.log(files);
+        //console.log(files); //shows all files in the '/depositories/ folder
 
         if(files.includes(filename)){
+            console.log("Error, Directory already exists");
             return "Error, Directory already exists";
         }
         else {
@@ -26,7 +27,7 @@ function install(){
             fs.mkdir(`./depositories/`+`${filename}`, callback => {
                 return "Folder created"
             });
-            console.log("folder,"+`${filename}`+ " created");
+            console.log('folder "'+`${filename}`+ '" created');
             fs.close;
 
             //need download the repository into the folder
@@ -34,9 +35,9 @@ function install(){
             
             //need to verify theres starting file, same way as *findfile
             instaldone = verifyfiles(filename);
-            console.log(instaldone)
+            //console.log(instaldone)
             if(instaldone.status == true){
-                console.log("instllation completed")
+                console.log("installation completed")
                 return "installation complete"
             }
             if(instaldone.stauts == false){
@@ -61,6 +62,7 @@ function install(){
                 }
             });
             fs.close
+            console.log("installing...")
             return "installing..."
         }
     } else {
@@ -70,7 +72,7 @@ function install(){
 }
 function verifyfiles(filename){
     let files = fs.readdirSync(`./depositories/`+ `${filename}`);
-    console.log(files + typeof(files))
+    //console.log(files + typeof(files))
     fs.close
 
     mainfiles = config.mainfiles;
@@ -79,15 +81,16 @@ function verifyfiles(filename){
 
     const filexist = examplefiles.filter(element => str1.includes(element))
 
-    console.log("filexist"+ filexist)
+    //console.log("filexist"+ filexist)
     startfile = "index.js"
 
     //match the file and get its position, then get the filename in that position
     for (const element of examplefiles) {
-        console.log(element);
+        //console.log(element);
+        //
     }
     for (const element of str1){
-        console.log(element);
+        //console.log(element);
     }
 
     if (filexist != null){
