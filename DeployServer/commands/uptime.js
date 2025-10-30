@@ -36,9 +36,9 @@ function timeobjects(oldcleantime, newsplit){
     oldsection['minutes'] = oldtimesplit[1]
     oldsection['seconds'] = oldtimesplit[2]
 
-    let diffhour = newsection.hours - oldsection.hours
+    let diffhour = newsection.hours - oldsection.hours 
     let diffmin = newsection.minutes - oldsection.minutes
-    let diffsec = newsection.seconds - oldsection.seconds
+    let diffsec = newsection.seconds - oldsection.seconds //still gives wrong value, due sometimes being - 
 
     let returnhours = diffhour > 0 ? diffhour + (diffhour == 1 ? " hour, " : " hours, ") : "";
     let returnmins = diffmin > 0 ? diffmin + (diffmin == 1 ? " minute, " : " minutes, ") : "";
