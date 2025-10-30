@@ -7,7 +7,7 @@ module.exports =  {
 };
 function cleanoldtime(){
     var timestart = JSON.stringify(timenow)//variable from server start
-
+    console.log("timestart"+timestart)
     var timestr = timestart.slice(1,-1);
     var timereplc = timestr.slice(10)
     console.log(timereplc)
