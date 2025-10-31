@@ -15,10 +15,6 @@ https://github.com/rowanmanning/learning-express-cluster/blob/master/app.js
 "Main" server could have running frontend website, with command input "form" available
 Need to create seperate api that "main" server uses, and use React with ajax framework to inject and update the html page with new data
 
-Need to  convert Node to Express -> more functions and modules for use
-Also need to make "Main" server into router server
-Router server listens and routes request to correct handlers. 
-
 Need to use NGINX with router server to be able to route request to different servers, use with webhooks.
 Different servers are on seperate ports, thus clustering works, can get and send data on own ports, and have NGINX as "main" server.
 
@@ -60,9 +56,6 @@ cluster master
         function return
         cluster worker shutdown
 
-need function out of loop to check internet connectivity every 30 secs
-if not connected to internet, hold every command sent and execute them once connected, unless server restarted in which the buffer is emptied
-
 Need to create more error checks and general cheks within code, so if code doesnt work, it gives error code but the server doesnt stop
 Will be so perfect in the future when dealing with more that one service and outside devices
 
@@ -78,29 +71,10 @@ When downloading github repo, arguments need to include the name of main file
 it will be added to the repo json
 /download=Jorma,index.js
 
-Need to create function to find the file in correct repositories folder
-/depots=Jorma, get main file name from depots json, go search for the file in Jorma depot folder
-return path to it
-
-for install function
-need to get array as return from verifyfile, including true/false and filename
-{false, ' '}, {true, 'index.js}
-then can use .includes in the parts needing either or, or just push not needed out
-
-"pm2check"
-to check running pm2 process status
---- created, prints out name and status, even if stopped
-
-
 --created loop to check interente connection every 60 seconds
     if not connected, disconnect all pm2 processes automatically
     --will need to add system to restart them once back online
     -- also the function doesnt fully work currently, it also shuts down the main server
-checking status before connecting
-mostly for website, good opportunity to test with Ticker
-Need to request, variable for site status
-    If "maintanance", deny reload or loading website
-
 
 Disable commands
 - command to disable and enable commands
@@ -163,8 +137,3 @@ Seperate outside function accessible to all servers to save data to JSON file
             - All data is in as "string" Format
             - Can add stricter formats later, like Verion just being a "integer" or "last online" not being able to edited
 
-When starting server, check internet connectio.
-If internet is connected, asks' "Internet is not connected, are you sure you want to start $insertservername"
-then if you try start it again, it starts normally. So if same command is called twice.
-Wrap this all in new function, under the functions folder.
-Need also timeout for the function, so after 10 seconds it wont "remember" the last command
