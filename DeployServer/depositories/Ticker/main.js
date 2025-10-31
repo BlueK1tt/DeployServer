@@ -67,14 +67,14 @@ function functionloader(msg){
 }
 
 function loadwebsite(){
-  html = fs.readFile('./Depositories/Ticker/index.html', function(err, html){
+  html = fs.readFile('./depositories/Ticker/index.html', function(err, html){
     if(err){
       throw err;
     }
     return html
   })
   fs.close;
-  css = fs.readFile('./Depositories/Ticker/style.css', function(err, css){
+  css = fs.readFile('./depositories/Ticker/style.css', function(err, css){
     if(err){
       throw err;
     }
@@ -84,7 +84,7 @@ function loadwebsite(){
 }
 
 function loadmaintanance(){
-  html1 = fs.readFile('./Depositories/Ticker/maintanance.html', function(err, html1){
+  html1 = fs.readFile('./depositories/Ticker/maintanance.html', function(err, html1){
     if(err){
       throw err;
     }
@@ -93,7 +93,7 @@ function loadmaintanance(){
   fs.close;
 }
 
-app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
+app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
   if (err) {
       console.log(err)
       throw err;  
@@ -107,8 +107,10 @@ app = fs.readFile('./Depositories/Ticker/index.html', function (err, html) {
 
 
     if(sitestatus === false){ //if requested and is under maintanance
-      console.log("site under maintanance")
       loadmaintanance();
+      response.writeHead(200, {"Content-Type": "text/html"});  
+      console.log("site under maintanance")
+      response.write(html1)
       response.end();
       delete(request);
 

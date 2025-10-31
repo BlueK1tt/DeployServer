@@ -7,7 +7,7 @@ function depots(msg){ //function to get current depositories and create array ou
     //console.log("depots")
     
     //const data = fs.readFile("./Depositories/DepositoriesList.json");
-    let rawdata = fs.readFileSync('./Depositories/DepositoriesList.json')
+    let rawdata = fs.readFileSync('./depositories/DepositoriesList.json')
     let json = JSON.parse(rawdata);
     
     //console.log("msg: " + msg);

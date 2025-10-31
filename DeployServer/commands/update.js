@@ -18,7 +18,7 @@ function update(msg) {
         //command = JSON.stringify(msg);
         command = msg;
         //console.log(command)
-        var files = fs.readdirSync('./Depositories/');
+        var files = fs.readdirSync('./depositories/');
         var original = files
         fs.close;
         

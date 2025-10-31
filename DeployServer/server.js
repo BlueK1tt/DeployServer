@@ -5,12 +5,11 @@ const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
-const { promises } = require('node:dns');
-
 
 const hostname = config.hostname;
 const port = config.netport;
 const timenow = new Date();
+var runningservers = [];
 
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
@@ -22,10 +21,10 @@ var msgid = 0; //just defult id for messages, gets +1 automatically
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");
-    var logpromise = isFile("./resources/log.JSON");
-    var depromise = isFile("./Depositories/DepositoriesList.JSON");
+    var logpromise = isFile("./resources/log.json");
+    var depromise = isFile("./depositories/DepositoriesList.JSON");
 
-    let rawdata1 = fs.readFileSync('./Depositories/DepositoriesList.json')
+    let rawdata1 = fs.readFileSync('./depositories/DepositoriesList.json')
     let json1 = JSON.parse(rawdata1);
     fs.close;
 
@@ -82,7 +81,7 @@ function commandscollection() { //currently not in use, using the above commands
     return stringCMD;
 };
 
-function getfile(msg) {
+function getfile(msg) { //------ can be made into own file and moved to 'functions'
     if(msg == ""){
         return "no specified command";
     }
@@ -127,7 +126,7 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
-function msgidentify(msg){ //c = different incoming msg
+function msgidentify(msg){ //
     msgid ++;
     console.log("id:" + msgid);
 
@@ -372,51 +371,30 @@ function thirtyTimer(){
     }
 }
 
-async function pm2check(instance){ //function the check what servers are running
+function pm2check(instance){ //function the check what servers are running
     console.log("pm2check")
-    console.log(instance)
-    //get list of runnign pm2 instances
-    pm2.list((err, list)=>{
-        currentlist = list
-        //console.log(currentlist)
-        if(err){
-            console.log(err)
-            return new Promise( resolve => {
-                setTimeout(() => resolve(err), 1000);
-            })
-        }else{
-            //console.log(currentlist)
-
-            if(currentlist == null){
-                return new Promise(resolve => {
-                    setTimeout(() => resolve(false), 1000);
-                });
-            }
-            if(currentlist.includes(instance) && instance != ""){//if the requested server is running
-                console.log("includes")
-                return new Promise(resolve => {
-                    setTimeout(() => resolve(true),1000);
-                })
-            }
-            if(!currentlist.includes(instance) && instance != ""){//if the requested server is not running
-                console.log("does not include")
-                return new Promise(resolve => {
-                    setTimeout(() => resolve(false), 1000);
-                });
-            } 
-            else{//safety measure, if nothing matches
-                console.log("error with pm2check")
-                return new Promise(resolve => {
-                    setTimeout(() => resolve("error with pm2check"),1000);
-                });
-            }
+    //console.log(instance) //make it into array
+    console.log("runningservers: "+runningservers.toString())
+    //get list of running pm2 instances
+    if(runningservers == null){ //if array is empty
+        console.log("pm2check list is empty")
+        return false
+    } else { //if array is not empty
+        if(runningservers.includes(instance)){ //if include is true
+            console.log("pm2check includes")
+            return true
         }
-    });
-    
-    
-}
+        if(!runningservers.includes(instance)){ //if include is false
+            console.log("pm2check does not include")
+            return false
+        } else {
+            console.log("pm2check error")
+            return false
+        }
+    }
+};
 
-async function pm2start(startfile){ //start specific server on command, need to check available ports    
+function pm2start(startfile){ //start specific server on command, need to check available ports    
     //console.log("startfile")
     pm2connect();
     const data = require(`./functions/findfile`);
@@ -436,6 +414,7 @@ async function pm2start(startfile){ //start specific server on command, need to 
     } 
     if(isrunning === false) {
         //console.log("pm2start:"  + startfile);
+        runningservers.push(startfile)
         pm2.start(`${startfile}`, function(err, apps) {
         //console.log(apps)
         });
@@ -461,13 +440,19 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
         
         var isstopped = pm2check(stopfile)
-        
-        if(isstopped === true){
+        console.log(isstopped)
+
+        if(isstopped === false){
             var isstoppedtext = stopfile + " is already stopped"
             return isstoppedtext;
         }
-        if(isstopped === false){
+        if(isstopped === true){
+            let itemid = arrayservermatch(stopfile)
+            console.log("itemid"+itemid)
+            let removeitem = runningservers[itemid]
+            console.log(removeitem)
 
+            runningservers.splice(itemid)
             pm2.stop(`${stopfile}`, function(err, apps) {
                 if (err) {
                     console.log(err)
@@ -486,7 +471,16 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         //only after that do rest, so it doesnt waste time running all
     };
 };
+function arrayservermatch(stopfile){
+    //get position of element matching anything in array
+    console.log("arrayservermatch")
+    console.log(runningservers)
 
+    let servertomatch = (element) => element = stopfile
+    let itemposition = runningservers.findIndex(servertomatch)
+    console.log(itemposition)
+    return itemposition
+}
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
@@ -531,7 +525,7 @@ const requestListener = function(request, response){
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
-
+    
     if (msg == "refresh") {
         //refresh filesystem
         commandscollection();

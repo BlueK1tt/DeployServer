@@ -1,0 +1,20 @@
+{
+  "BluBot": [
+    {
+      "name": "BluBot",
+      "startfile": "server.js"
+    }
+  ],
+  "Jorma": [
+    {
+      "name": "Jorma",
+      "startfile": "index.js"
+    }
+  ],
+  "Ticker": [
+    {
+      "name": "Ticker",
+      "startfile": "main.js"
+    }
+  ]
+}
