@@ -418,18 +418,18 @@ function pm2start(startfile,filename){ //start specific server on command, need 
     if(isrunning === false) {
         let startcondition = require(`./functions/internetcheck`);
         countid = startcondition.startcondition.count
-        console.log("first"+startcondition.startcondition.count)
+        //console.log("first"+startcondition.startcondition.count)
         delete require.cache[require.resolve(`./functions/internetcheck`)] //clears the cache allowing for new data to be read
-        console.log(startcondition)
+        //console.log(startcondition)
 
         if(countid == 0){
-            console.log(startcondition.startcondition.message + filename)    
+            //console.log(startcondition.startcondition.message + filename)    
             repeated = startcondition.startcondition.count
             return startcondition.startcondition.message
         }
         if(countid == 1){
             repeated = startcondition.startcondition.count
-            console.log("startcond"+startcondition.startcondition.count)
+            //console.log("startcond"+startcondition.startcondition.count)
             //console.log("pm2start:"  + startfile);
             runningservers.push(startfile)
             pm2.start(`${startfile}`, function(err, apps) {

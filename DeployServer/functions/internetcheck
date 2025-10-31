@@ -1,14 +1,14 @@
 
 let { repeated } = require("../server");
 repeatcount = JSON.stringify(repeated)
-console.log("repeatcount"+repeatcount)
+//console.log("repeatcount"+repeatcount)
 repeated = repeatcount.slice(12,-1)
 module.exports = {
     startcondition : conditions()
 };
 
 function conditions(){
-    console.log("internetcheck")
+    //console.log("internetcheck")
     let connected = require(`../commands/check`);
     let stringdata = JSON.stringify(connected)
     let split = stringdata.split(":")
@@ -17,7 +17,7 @@ function conditions(){
     delete require.cache[require.resolve(`../commands/check`)] //clears the cache allowing for new data to be read
 
     if(isconnected.includes("connected")){ //if internet is connected
-        console.log("is connected1");
+        //console.log("is connected1");
 
         var startcondition = new Object()
         startcondition['connected'] = isconnected;
@@ -26,27 +26,27 @@ function conditions(){
         return startcondition
     }
     if(isconnected.includes("not connected")){ //if internet is not connected
-        console.log(repeated)
+        //console.log(repeated)
         if(repeated == 0){ //if first try running start without internet
-            console.log("not connected")
+            //console.log("not connected")
             repeated++;
 
             var startcondition = new Object()
             startcondition['connected'] = isconnected;
             startcondition['count'] = repeated;
             startcondition['message'] = "Internet is not connected, are you sure you want to start  ";
-            console.log(repeated)
+            //console.log(repeated)
             return startcondition 
         }  
         if(repeated == 1){    //if not first time
-            console.log("connected")
+            //console.log("connected")
             repeated--;
 
             var startcondition = new Object()
             startcondition['connected'] = isconnected;
             startcondition['count'] = repeated;
             startcondition['message'] = "Starting the server offline...";
-            console.log("repeated else "+repeated)
+            //console.log("repeated else "+repeated)
             return startcondition 
         } else {
             console.log("error1")
@@ -54,6 +54,6 @@ function conditions(){
     } else {
         console.log("error2")
     }
-    console.log("repeatend" +repeated)
+    //console.log("repeatend" +repeated)
     return;
 }
