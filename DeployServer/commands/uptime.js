@@ -4,7 +4,7 @@ let { timenow } = require("../server");
 module.exports =  {
     data: uptime()
 };
-<<<<<<< HEAD
+
 function cleanoldtime(){
     var timestart = JSON.stringify(timenow)//variable from server start
     console.log("timestart"+timestart)
@@ -15,13 +15,13 @@ function cleanoldtime(){
     var cuttime = cleanedtime.slice("T");
     console.log(cuttime)
     return cuttime
-=======
+}
 
 function uptime() {
     let currenttime = new Date();
     let currenttimestr = JSON.stringify(currenttime)
     let oldtimestr = JSON.stringify(timenow)
->>>>>>> 8f55635ffec33738353bf5693c3642237338282f
+
 
     let cutobject = oldtimestr.slice(11,-1)
     let oldobj = JSON.parse(cutobject)
