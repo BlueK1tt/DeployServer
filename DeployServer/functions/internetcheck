@@ -1,3 +1,4 @@
+
 let { repeated } = require("../server");
 repeatcount = JSON.stringify(repeated)
 console.log("repeatcount"+repeatcount)
@@ -15,17 +16,23 @@ function conditions(){
     let isconnected = first.slice(1,-2) //connected or not connected
     delete require.cache[require.resolve(`../commands/check`)] //clears the cache allowing for new data to be read
 
-    if(!isconnected.includes("connected")){ //if internet is connected
-        console.log("is connected1")
-        return
+    if(isconnected.includes("connected")){ //if internet is connected
+        console.log("is connected1");
+
+        var startcondition = new Object()
+        startcondition['connected'] = isconnected;
+        startcondition['count'] = 1;
+        startcondition['message'] = "";
+        return startcondition
     }
-    if(!isconnected.includes("not connected")){ //if internet is not connected
+    if(isconnected.includes("not connected")){ //if internet is not connected
         console.log(repeated)
         if(repeated == 0){ //if first try running start without internet
             console.log("not connected")
             repeated++;
-            var startcondition  = new Object()
-            startcondition ['connected'] = isconnected;
+
+            var startcondition = new Object()
+            startcondition['connected'] = isconnected;
             startcondition['count'] = repeated;
             startcondition['message'] = "Internet is not connected, are you sure you want to start  ";
             console.log(repeated)
@@ -34,6 +41,7 @@ function conditions(){
         if(repeated == 1){    //if not first time
             console.log("connected")
             repeated--;
+
             var startcondition = new Object()
             startcondition['connected'] = isconnected;
             startcondition['count'] = repeated;
