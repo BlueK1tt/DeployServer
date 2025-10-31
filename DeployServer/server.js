@@ -134,7 +134,7 @@ function msgidentify(msg){ //
         return "no specified command";
     }
     if(basecommands.includes(msg)){
-        console.log("base command");
+        //console.log("base command");
         return msg;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
@@ -275,8 +275,8 @@ function disablecommand(){
 }
 
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
-    console.log(pmmsg)
-    console.log("pm2disconnect")
+    //console.log(pmmsg)
+    //console.log("pm2disconnect")
     try{
         pm2.list((err, list) => {
         const id = 0;
@@ -321,7 +321,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
 
                     console.log("stop:"+ Element.name)
                     pm2.stop(Element.name);
-                    console.log("pm2 daemon "+ Element.name + " stopped")
+                    //console.log("pm2 daemon "+ Element.name + " stopped")
                     return;
                 }
                 else{
@@ -329,7 +329,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                     return "no running programs"
                 }
             }) //call the pm2stop function with with each running daemon
-            console.log( "pm2 daemons stopped")
+            //console.log( "pm2 daemons stopped")
                 return
             }
         if(err == null && list == null){ //if no error but list empty
