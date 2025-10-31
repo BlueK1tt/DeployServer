@@ -5,6 +5,7 @@ const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
+const { start } = require('node:repl');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -18,6 +19,7 @@ const isFile = fileName => { //function to test if file exists
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
 var msgid = 0; //just defult id for messages, gets +1 automatically
+var repeated = 0;
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");
@@ -156,7 +158,7 @@ function msgidentify(msg){ //
                 //console.log(asmessage)
                 delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
                 startfile = filename + ".js";
-                pm2start(filename);
+                pm2start(filename,startfile);
                 return "start " + startfile;
             }
         };
@@ -395,7 +397,7 @@ function pm2check(instance){ //function the check what servers are running
     }
 };
 
-function pm2start(startfile){ //start specific server on command, need to check available ports    
+function pm2start(startfile,filename){ //start specific server on command, need to check available ports    
     //console.log("startfile")
     pm2connect();
     const data = require(`./functions/findfile`);
@@ -414,11 +416,29 @@ function pm2start(startfile){ //start specific server on command, need to check 
         return isrunningtext;
     } 
     if(isrunning === false) {
-        //console.log("pm2start:"  + startfile);
-        runningservers.push(startfile)
-        pm2.start(`${startfile}`, function(err, apps) {
-        //console.log(apps)
-        });
+        let startcondition = require(`./functions/internetcheck`);
+        countid = startcondition.startcondition.count
+        console.log("first"+startcondition.startcondition.count)
+        delete require.cache[require.resolve(`./functions/internetcheck`)] //clears the cache allowing for new data to be read
+        console.log(startcondition)
+
+        if(countid == 0){
+            console.log(startcondition.startcondition.message + filename)    
+            repeated = startcondition.startcondition.count
+            return startcondition.startcondition.message
+        }
+        if(countid == 1){
+            repeated = startcondition.startcondition.count
+            console.log("startcond"+startcondition.startcondition.count)
+            //console.log("pm2start:"  + startfile);
+            runningservers.push(startfile)
+            pm2.start(`${startfile}`, function(err, apps) {
+            //console.log(apps)
+            });
+        } else {
+            console.log("error with start conditions")
+            return "error with start conditions";
+        }
         return;
     } else{
         console.log("error with starting")
@@ -523,6 +543,7 @@ const requestListener = function(request, response){
     console.log("> " + msg);
     exports.message = { msg }; //export msg as variable to use in modules
     exports.timenow = { timenow };
+    exports.repeated = { repeated };
 
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);

@@ -101,6 +101,7 @@ mostly for website, good opportunity to test with Ticker
 Need to request, variable for site status
     If "maintanance", deny reload or loading website
 
+
 Disable commands
 - command to disable and enable commands
 - use JSON to store commands and their 'status', enabled/disabled
@@ -161,3 +162,9 @@ Seperate outside function accessible to all servers to save data to JSON file
         - "Version" is the inputted name for data.
             - All data is in as "string" Format
             - Can add stricter formats later, like Verion just being a "integer" or "last online" not being able to edited
+
+When starting server, check internet connectio.
+If internet is connected, asks' "Internet is not connected, are you sure you want to start $insertservername"
+then if you try start it again, it starts normally. So if same command is called twice.
+Wrap this all in new function, under the functions folder.
+Need also timeout for the function, so after 10 seconds it wont "remember" the last command
