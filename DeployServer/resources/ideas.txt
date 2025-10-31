@@ -80,6 +80,8 @@ Disable commands
 - command to disable and enable commands
 - use JSON to store commands and their 'status', enabled/disabled
 - Good to use if some errors with command, so no possibility to use if broken and crashes the server
+-...3000:disablecommands=all|s
+
 
 Seperate command client using node Readline
 - Using additional javasript and functions from existing server, pull available commands to use in readline as options

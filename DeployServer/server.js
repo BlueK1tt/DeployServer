@@ -5,21 +5,20 @@ const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
-const { start } = require('node:repl');
 
 const hostname = config.hostname;
 const port = config.netport;
 const timenow = new Date();
 var runningservers = [];
 
-const isFile = fileName => { //function to test if file exists
-    return fs.lstatSync(fileName).isFile();
-};
-
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
 var msgid = 0; //just defult id for messages, gets +1 automatically
 var repeated = 0;
+
+const isFile = fileName => { //function to test if file exists
+    return fs.lstatSync(fileName).isFile();
+};
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     console.log("savelog");
@@ -99,7 +98,6 @@ function getfile(msg) { //------ can be made into own file and moved to 'functio
         onmatch = onstrip.indexOf(shortened)
         const onposition = Number(onmatch)
         onresult = onfiles[onposition];
-        //console.log("getfilebetter" + onresult);
         fs.close;
         return onresult
     }
@@ -181,8 +179,6 @@ function msgidentify(msg){ //
 
                     //functon to send message to the server about to be stopped
                     //possibly await function to wait for response back, for graceful stop
-
-
                     pm2stop(filename);
                     return "stop " + stopfile;
                 }
@@ -203,7 +199,6 @@ function msgidentify(msg){ //
 
             return asmessage;
         }
-
         if(msg.startsWith("uninstall")){
             const data = require('./functions/uninstall')
             var sentData = valuesToArray(data); 
@@ -271,9 +266,8 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
     })
 }
 
-function disablecommand(){
-    //command to disable or enable command
-    //look for more info in ideas.txt
+function disablecommand(){ //command to disable or enable command
+    //array of all commands ['command','enabled'],etc...
 }
 
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
