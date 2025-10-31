@@ -372,20 +372,21 @@ function thirtyTimer(){
 }
 
 function pm2check(instance){ //function the check what servers are running
-    console.log("pm2check")
+    //console.log("pm2check")
     //console.log(instance) //make it into array
-    console.log("runningservers: "+runningservers.toString())
+    
     //get list of running pm2 instances
     if(runningservers == null){ //if array is empty
-        console.log("pm2check list is empty")
+        let runningserverlist = runningservers.length > 0 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
+        console.log(runningserverlist)
         return false
     } else { //if array is not empty
         if(runningservers.includes(instance)){ //if include is true
-            console.log("pm2check includes")
+            //console.log("pm2check includes")
             return true
         }
         if(!runningservers.includes(instance)){ //if include is false
-            console.log("pm2check does not include")
+            //console.log("pm2check does not include")
             return false
         } else {
             console.log("pm2check error")
@@ -403,9 +404,9 @@ function pm2start(startfile){ //start specific server on command, need to check 
     delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
     
     var isrunningcheck = pm2check(startfile)
-    console.log(isrunningcheck)
+    //console.log(isrunningcheck)
     isrunning = isrunningcheck
-    console.log("isrunning: " + isrunning);
+    //console.log("isrunning: " + isrunning);
 
     //need to add check to see if any are running
     if(isrunning === true){
@@ -427,12 +428,12 @@ function pm2start(startfile){ //start specific server on command, need to check 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     if(stopfile == "all"){
-        console.log("pm2stop all")
+        //console.log("pm2stop all")
         //need to list all servers running and stop them individually
         
         return;
     } else {
-        console.log("pm2 stop")
+        //console.log("pm2 stop")
     
         const data = require(`./functions/findfile`);
         var sentData = valuesToArray(data); 
@@ -440,7 +441,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
         
         var isstopped = pm2check(stopfile)
-        console.log(isstopped)
+        //console.log(isstopped)
 
         if(isstopped === false){
             var isstoppedtext = stopfile + " is already stopped"
@@ -448,9 +449,9 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         }
         if(isstopped === true){
             let itemid = arrayservermatch(stopfile)
-            console.log("itemid"+itemid)
+            //console.log("itemid"+itemid)
             let removeitem = runningservers[itemid]
-            console.log(removeitem)
+            //console.log(removeitem)
 
             runningservers.splice(itemid)
             pm2.stop(`${stopfile}`, function(err, apps) {
@@ -460,7 +461,8 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
                     return pm2.disconnect();
                 }
             });
-            console.log("pm2stop:"  + stopfile);
+            //console.log("pm2stop:"  + stopfile);
+            console.log("Shutting down server"+stopfile+"...")
             return;
         }
         else{
@@ -473,12 +475,12 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
 };
 function arrayservermatch(stopfile){
     //get position of element matching anything in array
-    console.log("arrayservermatch")
-    console.log(runningservers)
+    //console.log("arrayservermatch")
+    //console.log(runningservers)
 
     let servertomatch = (element) => element = stopfile
     let itemposition = runningservers.findIndex(servertomatch)
-    console.log(itemposition)
+    //console.log(itemposition)
     return itemposition
 }
 function pm2bussi(){ //pm2launchbus to get data from clien to server
