@@ -268,6 +268,7 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
 
 function disablecommand(){ //command to disable or enable command
     //array of all commands ['command','enabled'],etc...
+    
 }
 
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
