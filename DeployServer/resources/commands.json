@@ -1,0 +1,10 @@
+[
+  {
+    "command":"hello",
+    "status":"disabled"
+  },
+  {
+    "command":"uptime",
+    "status":"enabled"
+  }
+]

@@ -5,6 +5,7 @@ const pm2 = require('pm2');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
+const commandslist = require('./resources/commands.json'); //read the commands status JSON on server start
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -235,6 +236,12 @@ function msgidentify(msg){ //
         if(command == " "){
             return "command error"
         } else {
+            //here need to check disabledcommands JSON first.
+            //commands status are read on server start
+            const commandstatus = require(`./resources/commands.json`);
+            console.log(commandstatus)
+            
+
             //console.log("custom cmd:" + command)
             const data = require(`./commands/`+ `${command}`);
             var sentData = valuesToArray(data); 
@@ -266,10 +273,7 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
     })
 }
 
-function disablecommand(){ //command to disable or enable command
-    //array of all commands ['command','enabled'],etc...
-    
-}
+
 
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
     //console.log(pmmsg)
