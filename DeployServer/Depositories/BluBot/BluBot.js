@@ -5,7 +5,7 @@ var path = require('path');
 const fs = require('fs'); //filesystem
 const { Client, Embed, Collection, Events, GatewayIntentBits, } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
-const { message } = require('../../server');
+//const { message } = require('../../server');
 const bot = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers,GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildPresences],});
 
 const PREFIX = config.prefix
@@ -14,7 +14,7 @@ const admin = path.join(__dirname, 'commands/admin/');
 const basic = path.join(__dirname, 'commands/basic/')
 
 bot.commands = new Collection();
-
+/*
 function sendtomaster(data){
     process.send({ //this is just example, boiletplate for future apps
       type : 'process:msg',
@@ -24,7 +24,7 @@ function sendtomaster(data){
       }
     });
 };
-
+*/
 function verifychannel(message){ //for the switching channels thing
     if(message.author == config.botid){
         oldchannel = newchannel
@@ -322,4 +322,4 @@ bot.on(Events.MessageCreate, message=>{
 });
 
 bot.login(config.token);
-sendtomaster("BluBot online");
+//sendtomaster("BluBot online");
