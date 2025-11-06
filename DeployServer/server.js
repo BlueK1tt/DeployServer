@@ -238,10 +238,11 @@ function msgidentify(msg){ //
         } else {
             //here need to check disabledcommands JSON first.
             //commands status are read on server start
-            const commandstatus = require(`./resources/commands.json`);
-            //console.log(commandstatus.length)
+            let commandsjson = require(`./resources/commands.json`);
+            console.log(commandsjson)
+            
             //need for loop here to check through all the entries and check if command exists
-
+            
             
             //console.log("custom cmd:" + command)
             const data = require(`./commands/`+ `${command}`);
@@ -273,8 +274,6 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
         }
     })
 }
-
-
 
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
     //console.log(pmmsg)

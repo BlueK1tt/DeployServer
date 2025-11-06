@@ -1,10 +1,5 @@
 [
-  {
-    "command":"hello",
-    "status":"disabled"
-  },
-  {
-    "command":"uptime",
-    "status":"enabled"
-  }
+{"command":"hello","status":"disabled"},
+{"command":"uptime","status":"enabled"},
+{"command":"update","status":"enabled"}
 ]
