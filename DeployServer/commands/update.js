@@ -1,6 +1,5 @@
 const fs = require('fs'); //filesystem;
 const config = require("../resources/config.json");
-const { type } = require('os');
 const { stringify } = require('querystring');
 let msg = message
 

@@ -5,18 +5,6 @@ module.exports =  {
     data: uptime()
 };
 
-function cleanoldtime(){
-    var timestart = JSON.stringify(timenow)//variable from server start
-    console.log("timestart"+timestart)
-    var timestr = timestart.slice(1,-1);
-    var timereplc = timestr.slice(10)
-    console.log(timereplc)
-    var cleanedtime = timereplc.replaceAll('"','');
-    var cuttime = cleanedtime.slice("T");
-    console.log(cuttime)
-    return cuttime
-}
-
 function uptime() {
     let currenttime = new Date();
     let currenttimestr = JSON.stringify(currenttime)
