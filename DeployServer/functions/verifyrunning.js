@@ -2,14 +2,18 @@
 const { error } = require('console');
 const fs = require('fs');
 
+//need msg from main server
+//need to split it up and specify the server wanted
+
+
 module.exports = {
     data : verifyrunning()
 
 };
 
 function verifyrunning(){
-    
-    let isrunning = somefunction //return true or false
+    //need to pass the server from msg to the function chekc if true or not
+    let isrunning = getrunningservers //return true or false
     if(isrunning === true){
 
     }
@@ -20,4 +24,8 @@ function verifyrunning(){
         console.log(error)
     }
     return
+}
+
+function getrunningservers(){ //use pm2 functions to get what servers are on
+
 }
