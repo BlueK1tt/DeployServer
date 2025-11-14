@@ -1,13 +1,14 @@
 const fs = require('fs');
 let { message } = require("../server");
 
+
 module.exports =  {
     data: disablecommand()
 };
 
 function disablecommand(){ //command to disable or enable command
-    console.log("---disablecommand---")
-    console.log(message)
+    //console.log("---disablecommand---")
+    //console.log(message)
     let msg = JSON.stringify(message) //need to slice the excess
 
     if(msg.includes("=")){
@@ -17,25 +18,50 @@ function disablecommand(){ //command to disable or enable command
         let commandexist = verifycommand(command1)
         let commandislogged = checkcommandlog(command1)
 
+        let commandinfo = getcmdinfo(command1) //get the specific command object info
+        
         if(commandexist === true){ //if requested command exists in commands folder
             
             if(commandislogged === false){ //if command doesnt exist
-                console.log("commandislogged false")
+                //console.log("commandislogged false")
                 writenew(command1);
-                console.log("Making log of command "+command1+"...") //need to show that new log is being created
+                //console.log("Making log of command "+command1+"...") //need to show that new log is being created
                 return;
     
             } else { //if command exists, disable or enable
-                console.log("---command exists, need disabled---")
+                //console.log("---command exists, need disabled---")
                 //if command is enabled, disable it
-        
+                if(commandinfo.status == "enabled"){
+                    
+
+                    let commandinfo = new Object;
+                    commandinfo['command'] = command1; //get command name
+                    commandinfo['status'] = "disabled"; //enabled or disabled
+
+                    //console.log(commandinfo)
+                    appendcommand(commandinfo)
+                    delete commandinfo.status;
+
+                    console.log("disabled "+ command1)
+                    return "disabled "+command1;
+                }
                 //if command is disabled, enable it
-        
-                //array of all commands ['command','enabled'],etc...
-            
-                //disable is toggle, if enabled>disable, if disabled>enable
-                //read ./commands folder and commands JSON, crossmatch
-                //if some command isnt in JSON make object out of it, default enabled
+                if(commandinfo.status == "disabled"){
+                    
+                    let commandinfo = new Object;
+                    commandinfo['command'] = command1; //get command name
+                    commandinfo['status'] = "enabled"; //enabled or disabled
+                    
+                    //console.log(commandinfo)
+                    appendcommand(commandinfo)
+                    delete commandinfo.status;
+                    
+                    console.log("enabled "+command1)
+                    return "enabled "+command1;
+                } else {
+                    console.log("commandstatus error")
+                    return;
+                }            
                 return;
             }
         }
@@ -72,7 +98,7 @@ function verifycommand(command1){
 }
 
 function checkcommandlog(command1){
-    console.log("checkcommandlog")
+    //console.log("checkcommandlog")
     //need to read JSON file
     let commandstatus = require(`../resources/commands.json`);
     if(commandstatus.length == 0){ //if JSON file is empty
@@ -81,11 +107,11 @@ function checkcommandlog(command1){
     }
     if(commandstatus.length >= 1){ //if file has 1 or more commands
         let commands = JSON.stringify(commandstatus)
-        console.log(commands)
+        //console.log(commands)
         let specificommand = '"command":"'+command1+'"'
-        console.log(specificommand)
+        //console.log(specificommand)
         let ifexists = commands.includes(specificommand)
-        console.log(ifexists)
+        //console.log(ifexists)
         return ifexists
     } else { //if error
         console.log("writenew error")
@@ -94,7 +120,7 @@ function checkcommandlog(command1){
 };
 
 function writenew(command1){ 
-    console.log("---writenew---")
+    //console.log("---writenew---")
     console.log("command:"+command1)
 
     //make commands into objects and array for JSON
@@ -108,7 +134,7 @@ function writenew(command1){
 
     //check if commands file is empty
     let commandslist = require(`../resources/commands.json`);
-    console.log(commandslist.length)
+    //console.log(commandslist.length)
     let commandliststr = JSON.stringify(commandslist)
     let commandlistclean = commandliststr.slice(1,-1);
     let replacestring = commandlistclean.replaceAll('},{','},\n{')
@@ -124,6 +150,7 @@ function writenew(command1){
             };
             return true;
         });
+        fs.close;
     }
     if(commandslist.length >= 1){ //if file has 1 or more commands
         //need to "append" commands
@@ -137,9 +164,47 @@ function writenew(command1){
             };
             return true;
         });
-
+        fs.close;
     } else { //if error
         console.log("writenew error")
         return error
     };
+}
+
+function getcmdinfo(command1){
+    //get detailed info about command and position
+
+    let commandslist = require(`../resources/commands.json`);
+
+    let found = commandslist.find(({ command }) => command === command1)
+    //console.log(found)
+    return found;
+}
+
+function appendcommand(commandinfo){ //function to read and write the commands json with updated data
+    //console.log("appendcommand")
+    //console.log(typeof(commandinfo))
+    let appendcommandstr = JSON.stringify(commandinfo)
+    
+    let commandslist = require(`../resources/commands.json`);
+    let commandliststr = JSON.stringify(commandslist)
+
+    let index = commandslist.map(i => i.command).indexOf(commandinfo.command)
+    let correctdata = commandslist[index]
+    let correctdatastr = JSON.stringify(correctdata)
+
+    
+    let newlist = commandliststr.replaceAll(correctdatastr,appendcommandstr)
+    //console.log(newlist)
+    var json2 = JSON.parse(newlist, null, 2);//null and '2' make the json look prettier
+    //console.log(json2)
+    let json1 = JSON.stringify(json2, null, 2);
+    fs.writeFile('./resources/commands.json', json1, 'utf-8', function(error){
+        if(error){
+            console.log(error)
+            return false
+        }
+    });
+    fs.close;
+    return true;
 }
