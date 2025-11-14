@@ -239,7 +239,10 @@ function msgidentify(msg){ //
             //here need to check disabledcommands JSON first.
             //commands status are read on server start
             let commandsjson = require(`./resources/commands.json`);
-            console.log(commandsjson)
+            let findcommand = msg
+            //console.log(commandsjson)
+            let found = commandsjson.find(({ command }) => command === findcommand)
+            console.log(found)
             
             //need for loop here to check through all the entries and check if command exists
             

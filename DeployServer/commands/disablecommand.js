@@ -32,8 +32,6 @@ function disablecommand(){ //command to disable or enable command
                 //console.log("---command exists, need disabled---")
                 //if command is enabled, disable it
                 if(commandinfo.status == "enabled"){
-                    
-
                     let commandinfo = new Object;
                     commandinfo['command'] = command1; //get command name
                     commandinfo['status'] = "disabled"; //enabled or disabled
@@ -47,7 +45,6 @@ function disablecommand(){ //command to disable or enable command
                 }
                 //if command is disabled, enable it
                 if(commandinfo.status == "disabled"){
-                    
                     let commandinfo = new Object;
                     commandinfo['command'] = command1; //get command name
                     commandinfo['status'] = "enabled"; //enabled or disabled

@@ -5,7 +5,7 @@
   },
   {
     "command": "uptime",
-    "status": "disabled"
+    "status": "enabled"
   },
   {
     "command": "update",
