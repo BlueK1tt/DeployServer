@@ -229,6 +229,13 @@ function msgidentify(msg){ //
             return error;
         }
     }
+    if(msg.includes('disablecommand')){
+        const data = require('./commands/disablecommand')
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
+        return
+    }
     else{
         //console.log("custom");
         //need to slice message
@@ -241,28 +248,38 @@ function msgidentify(msg){ //
             let commandsjson = require(`./resources/commands.json`);
             let findcommand = msg
             //console.log(commandsjson)
-            let found = commandsjson.find(({ command }) => command === findcommand)
-            console.log(found)
-            
-            //need for loop here to check through all the entries and check if command exists
-            
-            
-            //console.log("custom cmd:" + command)
-            const data = require(`./commands/`+ `${command}`);
-            var sentData = valuesToArray(data); 
-            asmessage = sentData[0];
+            let found = commandsjson.find(({ command }) => command == findcommand)
+            if(found == null){
+                return;
+            };
+            if(found.status == 'enabled'){
 
-            //need to seperate "fancy commands" from regular commands
-            //so "update" and "update=BluBot"
-
-            //need to flush the custom command
-            delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
-            //console.log("cache cleared");
-            try {
-                return asmessage;
-            } catch (error) {
-                console.log(error)
-                return error;
+                //need for loop here to check through all the entries and check if command exists
+                
+                
+                //console.log("custom cmd:" + command)
+                let data = require(`./commands/`+ `${command}`);
+                let sentData = valuesToArray(data); 
+                asmessage = sentData[0];
+    
+                //need to seperate "fancy commands" from regular commands
+                //so "update" and "update=BluBot"
+    
+                //need to flush the custom command
+                delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
+                //console.log("cache cleared");
+                try {
+                    return asmessage;
+                } catch (error) {
+                    console.log(error)
+                    return error;
+                }
+            }
+            if(found.status == 'disabled'){
+                console.log("Sorry, command "+command+" is disabled")
+                return "Sorry command is disabled"
+            } else {
+                return "error with command verification"
             }
         };
     };

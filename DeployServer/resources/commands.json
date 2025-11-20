@@ -9,6 +9,14 @@
   },
   {
     "command": "update",
+    "status": "enabled"
+  },
+  {
+    "command": "disablecommand",
     "status": "disabled"
+  },
+  {
+    "command": "test",
+    "status": "enabled"
   }
 ]

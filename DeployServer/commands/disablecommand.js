@@ -38,7 +38,7 @@ function disablecommand(){ //command to disable or enable command
 
                     //console.log(commandinfo)
                     appendcommand(commandinfo)
-                    delete commandinfo.status;
+                    //delete commandinfo.status;
 
                     console.log("disabled "+ command1)
                     return "disabled "+command1;
@@ -51,7 +51,7 @@ function disablecommand(){ //command to disable or enable command
                     
                     //console.log(commandinfo)
                     appendcommand(commandinfo)
-                    delete commandinfo.status;
+                    //delete commandinfo.status;
                     
                     console.log("enabled "+command1)
                     return "enabled "+command1;
@@ -127,7 +127,7 @@ function writenew(command1){
     let varcommand = new Object 
     varcommand['name'] = commandname+'\n'; //get command name
     varcommand['status'] = commandstatus+'\n'; //enabled or disabled
-    console.log(varcommand)
+    //console.log(varcommand)
 
     //check if commands file is empty
     let commandslist = require(`../resources/commands.json`);
@@ -153,7 +153,7 @@ function writenew(command1){
         //need to "append" commands
         console.log("append new command")
         var commandarr2 = [];
-        commandarr2 = JSON.stringify({"command":commandname,"status":commandstatus}, null), "\n";
+        commandarr2 = JSON.stringify({"command":commandname,"status":commandstatus}, null), 2, "\n";
         let secondentry = "[\n"+replacestring+",\n"+commandarr2+'\n'+"]";
         fs.writeFile('./resources/commands.json', secondentry,'utf-8', function(error){
             if(error){
@@ -181,21 +181,22 @@ function getcmdinfo(command1){
 function appendcommand(commandinfo){ //function to read and write the commands json with updated data
     //console.log("appendcommand")
     //console.log(typeof(commandinfo))
-    let appendcommandstr = JSON.stringify(commandinfo)
+    var appendcommandstr = JSON.stringify(commandinfo)
     
-    let commandslist = require(`../resources/commands.json`);
+    var commandslist = require(`../resources/commands.json`);
     let commandliststr = JSON.stringify(commandslist)
+    //console.log(commandslist)
 
     let index = commandslist.map(i => i.command).indexOf(commandinfo.command)
     let correctdata = commandslist[index]
     let correctdatastr = JSON.stringify(correctdata)
 
-    
-    let newlist = commandliststr.replaceAll(correctdatastr,appendcommandstr)
+    var newlist = commandliststr.replaceAll(correctdatastr,appendcommandstr)
     //console.log(newlist)
     var json2 = JSON.parse(newlist, null, 2);//null and '2' make the json look prettier
     //console.log(json2)
-    let json1 = JSON.stringify(json2, null, 2);
+    var json1 = JSON.stringify(json2, null, 2);
+    //console.log(json1)
     fs.writeFile('./resources/commands.json', json1, 'utf-8', function(error){
         if(error){
             console.log(error)
