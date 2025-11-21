@@ -18,7 +18,7 @@ function specifymessage(message){
 function mainfunction(){
     console.log(getdatetime())
 
-    if(message == "appendmain"){
+    if(message.msg == "appendmain"){
         console.log("appendcomand")
         return "empty update"
     } else {
@@ -26,11 +26,12 @@ function mainfunction(){
         console.log(updatedata)
         
         //check if server log exists
-        
-        //fsread file, so get udpated data
+        let mainfile = fs.readFileSync('./resources/MAIN.json', 'utf8')
+        fs.close;
+        console.log(mainfile)
         
         //if not
-        //writenew(servicename)
+        writenew(servicename)
         
         return;    
     }
