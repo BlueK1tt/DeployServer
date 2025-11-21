@@ -247,7 +247,8 @@ function msgidentify(msg){ //
             //commands status are read on server start
             let commandsjson = require(`./resources/commands.json`);
             let findcommand = msg
-            //console.log(commandsjson)
+            commandsliststr = JSON.stringify(commandsjson)
+
             let found = commandsjson.find(({ command }) => command == findcommand)
             if(found == null){
                 return "command not in list";
