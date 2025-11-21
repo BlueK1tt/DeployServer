@@ -16,10 +16,6 @@
     "status": "enabled"
   },
   {
-    "command": "test",
-    "status": "enabled"
-  },
-  {
     "command": "check",
     "status": "enabled"
   },
@@ -41,6 +37,10 @@
   },
   {
     "command": "pm2check",
+    "status": "enabled"
+  },
+  {
+    "command": "test",
     "status": "enabled"
   }
 ]

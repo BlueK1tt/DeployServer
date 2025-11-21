@@ -26,7 +26,7 @@ function disablecommand(){ //command to disable or enable command
                 //console.log("commandislogged false")
                 writenew(command1);
                 //console.log("Making log of command "+command1+"...") //need to show that new log is being created
-                return;
+                return "new command logged";
     
             } else { //if command exists, disable or enable
                 //console.log("---command exists, need disabled---")
@@ -57,7 +57,7 @@ function disablecommand(){ //command to disable or enable command
                     return "enabled "+command1;
                 } else {
                     console.log("commandstatus error")
-                    return;
+                    return "commandstatus error";
                 }            
                 return;
             }

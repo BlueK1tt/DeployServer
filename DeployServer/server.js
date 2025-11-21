@@ -116,7 +116,7 @@ function getfile(msg) { //------ can be made into own file and moved to 'functio
         }else{
             const position = Number(match)
             result = files[position];
-            //console.log("getfile" + result);
+            console.log("getfile" + result);
             fs.close;
             return result
         };
@@ -234,7 +234,7 @@ function msgidentify(msg){ //
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
         delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
-        return
+        return "disablecommand";
     }
     else{
         //console.log("custom");
@@ -250,21 +250,17 @@ function msgidentify(msg){ //
             //console.log(commandsjson)
             let found = commandsjson.find(({ command }) => command == findcommand)
             if(found == null){
-                return;
+                return "command not in list";
             };
-            if(found.status == 'enabled'){
-
-                //need for loop here to check through all the entries and check if command exists
-                
-                
+            if(found.status == 'enabled'){               
                 //console.log("custom cmd:" + command)
                 let data = require(`./commands/`+ `${command}`);
                 let sentData = valuesToArray(data); 
                 asmessage = sentData[0];
     
                 //need to seperate "fancy commands" from regular commands
-                //so "update" and "update=BluBot"
-    
+                    //so "update" and "update=BluBot"
+
                 //need to flush the custom command
                 delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
                 //console.log("cache cleared");
@@ -314,16 +310,16 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                 if(Element.name == 'Deployment server'){
                     if(pmmsg == 0){
                         console.log("Deployment server shutdown")
-                        return
+                        return "Deployment server shutdown";
                     }
                     if (pmmsg == 1) {
                         pm2.restart(Element.name)
                         console.log("Deployment server restart")
-                        return;
+                        return "Deployment server restart";
                     }
                     else{
                         console.log("else")
-                        return
+                        return "else shutdown"
                     }
                 }
                 if (Element.name != 'Deployment server'){
@@ -343,7 +339,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                     console.log("stop:"+ Element.name)
                     pm2.stop(Element.name);
                     //console.log("pm2 daemon "+ Element.name + " stopped")
-                    return;
+                    return "Service stopping...";
                 }
                 else{
                     console.log("no running programs")
@@ -355,15 +351,15 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
             }
         if(err == null && list == null){ //if no error but list empty
                 console.log("no running programs")
-                return
+                return "No running programs"
             }
         if(err != null){ //if error, list doenst matter
                 console.log(err)
-                return 
+                return err
             }
         else {
                 console.log("uknown error")
-                return 
+                return "Uknown pm2 error"
         }
         })
     }
