@@ -116,7 +116,7 @@ function getfile(msg) { //------ can be made into own file and moved to 'functio
         }else{
             const position = Number(match)
             result = files[position];
-            console.log("getfile" + result);
+            //console.log("getfile" + result);
             fs.close;
             return result
         };

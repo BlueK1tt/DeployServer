@@ -30,8 +30,10 @@ function mainfunction(){
         fs.close;
         console.log(mainfile)
         
+        updatedata(servicename);
+
         //if not
-        writenew(servicename)
+        writenew(servicename);
         
         return;    
     }

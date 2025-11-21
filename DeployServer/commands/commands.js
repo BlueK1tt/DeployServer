@@ -10,7 +10,7 @@ function commands(){ //function to get current depositories and create array out
     var files = fs.readdirSync('./commands/');
     let original = files;
     fs.close;
-    commands = original.map(function(d) {
+    let commands = original.map(function(d) {
         return d.replace('.js', "");
     });
     var data = commands.toString();
