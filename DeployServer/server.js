@@ -276,7 +276,7 @@ function msgidentify(msg){ //
                 }
             }
             if(found.status == 'disabled'){
-                console.log("Sorry, command "+command+" is disabled")
+                console.log('Sorry, command "'+command+'" is disabled')
                 return "Sorry command is disabled"
             } else {
                 return "error with command verification"

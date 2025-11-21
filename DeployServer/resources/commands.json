@@ -1,7 +1,7 @@
 [
   {
     "command": "hello",
-    "status": "disabled"
+    "status": "enabled"
   },
   {
     "command": "uptime",
@@ -13,10 +13,34 @@
   },
   {
     "command": "disablecommand",
-    "status": "disabled"
+    "status": "enabled"
   },
   {
     "command": "test",
+    "status": "enabled"
+  },
+  {
+    "command": "check",
+    "status": "enabled"
+  },
+  {
+    "command": "depots",
+    "status": "enabled"
+  },
+  {
+    "command": "commands",
+    "status": "enabled"
+  },
+  {
+    "command": "depotlist",
+    "status": "enabled"
+  },
+  {
+    "command": "connect",
+    "status": "enabled"
+  },
+  {
+    "command": "pm2check",
     "status": "enabled"
   }
 ]
