@@ -7,19 +7,52 @@ module.exports =  {
 
 };
 
+function specifymessage(message){
+    //need to split message, so get needed data out of it
+    //can append and update data
+
+    let updatedata = message //change to correct variable
+    return updatedata
+}
+
 function mainfunction(){
-    //check if server log exists
-    
-    //fsread file, so get udpated data
 
-    //if not
-    writenew(servicename)
-
-    return;
+    if(message == "appendmain"){
+        console.log("appendcomand")
+        return "empty update"
+    } else {
+        let updatedata = specifymessage(message)
+        
+        //check if server log exists
+        
+        //fsread file, so get udpated data
+        
+        //if not
+        writenew(servicename)
+        
+        return;    
+    }
 }
 
 function updatedata(){
-    
+
+
+
+
+    /*
+    function setUsername(id, newUsername) {
+    for (var i = 0; i < jsonObj.length; i++) {
+        if (jsonObj[i].Id === id) {
+            jsonObj[i].Username = newUsername;
+            return;
+            }
+        }
+    }
+
+    // Call as
+    setUsername(3, "Thomas");
+
+    */ 
     return;
 }
 
