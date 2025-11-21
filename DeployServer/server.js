@@ -242,7 +242,26 @@ function msgidentify(msg){ //
         command = getfile(msg);
         if(command == " "){
             return "command error"
-        } else {
+        } if(msg.includes("=")){
+            
+            let data = require(`./commands/`+ `${command}`);
+            let sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+
+            //need to seperate "fancy commands" from regular commands
+                //so "update" and "update=BluBot"
+
+            //need to flush the custom command
+            delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
+            //console.log("cache cleared");
+            try {
+                return asmessage;
+            } catch (error) {
+                console.log(error)
+                return error;
+            }
+        } 
+        else {
             //here need to check disabledcommands JSON first.
             //commands status are read on server start
             let commandsjson = require(`./resources/commands.json`);
