@@ -35,7 +35,7 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
         newjsonobj = Object.assign({}, json1, {}) //copies depositories json file to variable
         //console.log(newjsonobj);
         var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
-        fs.writeFile('./resources/log.JSON', json2, 'utf-8', function(error){
+        fs.writeFile('./resources/log.json', json2, 'utf-8', function(error){
             if(error){
                 console.log(error)
             }
@@ -54,7 +54,7 @@ function compareLog(){ //function to happen right after start to compare if anyt
     str1 = stringify(oldstring)
     fs.close;
 
-    let newlog = fs.readFileSync('./depositories/DepositoriesList.JSON');
+    let newlog = fs.readFileSync('./depositories/DepositoriesList.json');
     const newstring = JSON.parse(newlog);
     str2 = stringify(newstring)
     fs.close;
