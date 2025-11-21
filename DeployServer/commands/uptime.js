@@ -14,6 +14,7 @@ function uptime() {
     let cutobject = oldtimestr.slice(11,-1)
     let oldobj = JSON.parse(cutobject)
     let cleannewtime = currenttimestr.slice(1,-6)
+    console.log(cleannewtime)
 
     let oldsplit = oldobj.split("T") //0 = date, 1 = time
     var newsplit = cleannewtime.split("T")
