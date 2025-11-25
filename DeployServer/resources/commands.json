@@ -1,14 +1,50 @@
 [
-{"command":"hello","status":"enabled"},
-{"command":"uptime","status":"enabled"},
-{"command":"update","status":"enabled"},
-{"command":"disablecommand","status":"enabled"},
-{"command":"check","status":"enabled"},
-{"command":"depots","status":"enabled"},
-{"command":"commands","status":"enabled"},
-{"command":"depotlist","status":"enabled"},
-{"command":"connect","status":"enabled"},
-{"command":"pm2check","status":"enabled"},
-{"command":"test","status":"enabled"},
-{"command":"appendmain","status":"enabled"}
+  {
+    "command": "hello",
+    "status": "enabled"
+  },
+  {
+    "command": "uptime",
+    "status": "enabled"
+  },
+  {
+    "command": "update",
+    "status": "enabled"
+  },
+  {
+    "command": "disablecommand",
+    "status": "enabled"
+  },
+  {
+    "command": "check",
+    "status": "disabled"
+  },
+  {
+    "command": "depots",
+    "status": "enabled"
+  },
+  {
+    "command": "commands",
+    "status": "enabled"
+  },
+  {
+    "command": "depotlist",
+    "status": "enabled"
+  },
+  {
+    "command": "connect",
+    "status": "enabled"
+  },
+  {
+    "command": "pm2check",
+    "status": "enabled"
+  },
+  {
+    "command": "test",
+    "status": "disabled"
+  },
+  {
+    "command": "appendmain",
+    "status": "enabled"
+  }
 ]

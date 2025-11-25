@@ -264,9 +264,13 @@ function msgidentify(msg){ //
         else {
             //here need to check disabledcommands JSON first.
             //commands status are read on server start
-            let commandsjson = require(`./resources/commands.json`);
+            //let commandsjson = require(`./resources/commands.json`); //need to convert into fs.readfile
+
+            let commandsliststr = fs.readFileSync('./resources/commands.json')
+            fs.close;
             let findcommand = msg
-            commandsliststr = JSON.stringify(commandsjson)
+            let commandsjson = JSON.parse(commandsliststr)
+            //commandsliststr = JSON.stringify(commandsjson)
 
             let found = commandsjson.find(({ command }) => command == findcommand)
             if(found == null){

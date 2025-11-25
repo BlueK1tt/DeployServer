@@ -97,7 +97,12 @@ function verifycommand(command1){
 function checkcommandlog(command1){
     //console.log("checkcommandlog")
     //need to read JSON file
+
     let commandstatus = require(`../resources/commands.json`);
+
+    fs.close;
+
+    //let commandstatus = JSON.parse(commandliststr)
     if(commandstatus.length == 0){ //if JSON file is empty
         console.log("No commands are logged")
         return false
@@ -130,9 +135,14 @@ function writenew(command1){
     //console.log(varcommand)
 
     //check if commands file is empty
-    let commandslist = require(`../resources/commands.json`);
+    //let commandslist = require(`../resources/commands.json`);
+    let commandliststr = fs.readFileSync('../resources/commands.json');
+    fs.close
     //console.log(commandslist.length)
-    let commandliststr = JSON.stringify(commandslist)
+    let commandslist = JSON.parse(commandliststr)
+    //let commandliststr = JSON.stringify(commandslist)
+
+
     let commandlistclean = commandliststr.slice(1,-1);
     let replacestring = commandlistclean.replaceAll('},{','},\n{')
 
@@ -171,7 +181,11 @@ function writenew(command1){
 function getcmdinfo(command1){
     //get detailed info about command and position
 
-    let commandslist = require(`../resources/commands.json`);
+    //let commandslist = require(`../resources/commands.json`);
+    const data = () => fs.readFileSync(require.resolve("../resources/commands.json"), { encoding: "utf8" });
+    let commandsobj = data()
+    fs.close;
+    let commandslist = JSON.parse(commandsobj)
 
     let found = commandslist.find(({ command }) => command === command1)
     //console.log(found)
@@ -183,8 +197,16 @@ function appendcommand(commandinfo){ //function to read and write the commands j
     //console.log(typeof(commandinfo))
     var appendcommandstr = JSON.stringify(commandinfo)
     
-    var commandslist = require(`../resources/commands.json`);
+    const data = () => fs.readFileSync(require.resolve("../resources/commands.json"), { encoding: "utf8" });
+    let commandsobj = data()
+    fs.close;
+    let commandslist = JSON.parse(commandsobj)
+    console.log(commandslist)
+
+    //var commandslist = require(`../resources/commands.json`);
+    
     let commandliststr = JSON.stringify(commandslist)
+    
     //console.log(commandslist)
 
     let index = commandslist.map(i => i.command).indexOf(commandinfo.command)
