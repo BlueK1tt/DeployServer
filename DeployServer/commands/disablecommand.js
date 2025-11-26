@@ -201,7 +201,7 @@ function appendcommand(commandinfo){ //function to read and write the commands j
     let commandsobj = data()
     fs.close;
     let commandslist = JSON.parse(commandsobj)
-    console.log(commandslist)
+    //console.log(commandslist)
 
     //var commandslist = require(`../resources/commands.json`);
     

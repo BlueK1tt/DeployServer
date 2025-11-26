@@ -29,23 +29,28 @@ function check(){
     });
 
     if(connected == "not connected"){
-        return "not connected"
+        //return "not connected"
+        return "connected"
     }
     else {
-        return "connected"
+        //return "connected"
+        return "not connected"
     }
 }
 
 function checkInternet(cb) {
     require('dns').lookup('google.com',function(err) {
         if (err && err.code == "ENOTFOUND") {
-            //cb(false);
-            console.log("checkinternet: false")
-            return false
-        } else {
             //cb(true);
             console.log("checkinternet: true")
-            return true
+            return false
+
+        } else {
+            
+
+            //cb(false);
+            console.log("checkinternet: false")
+            return true //is inverted for test purposes
         }
     })
 }

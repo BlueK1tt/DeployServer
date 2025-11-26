@@ -342,7 +342,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                         return "Deployment server restart";
                     }
                     else{
-                        console.log("else")
+                        console.log("shutdown else")
                         return "else shutdown"
                     }
                 }
@@ -357,11 +357,23 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                             else{
                                 //just empty, nothing needs to happen
                                 console.log("else")
+                                console.log(Element.pm2_env.pm_exec_path)
+                                let envpath = Element.pm2_env.pm_exec_path
+                                let finstring = envpath + ".js";
+                                let cutexcess = Element.pm2_env.pm_exec_path.split("/")
+                                console.log(cutexcess[8])
+                                let servname = cutexcess[8] + ".js"
+                                console.log(servname)
+                                //msgidentify("stop="+cutexcess[8])
+                                let stopfile = cutexcess[8]
+                                //pm2stop(stopfile)
+                                pm2.stop(stopfile)
+                                return;
                             }
                         }
 
-                    console.log("stop:"+ Element.name)
-                    pm2.stop(Element.name);
+                    //console.log("stop:"+ Element.name)
+                    //pm2.stop(Element.name);
                     //console.log("pm2 daemon "+ Element.name + " stopped")
                     return "Service stopping...";
                 }
@@ -396,10 +408,10 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
 function thirtyTimer(){
     setInterval(MyTimer, 60000); //60 second timer call function below
     function MyTimer(){
-        //console.log("timer");
+        console.log("timer");
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //console.log("test:"+test) // get "connected" or "not connected"
-        //console.log(connected);
+        console.log(connected);
         if(connected == "not connected"){
             console.log("Internet disconnected");
             pm2disconnect(2);
