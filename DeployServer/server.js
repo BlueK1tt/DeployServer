@@ -499,10 +499,54 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     if(stopfile == "all"){
-        //console.log("pm2stop all")
+        console.log("pm2stop all")
         //need to list all servers running and stop them individually
-        
+        pm2.list((err, list) => {
+            const id = 0;
+            
+            list = list.map(item => {
+                return item.id !== id ? item : null;
+            }).filter(item => item !== null)
+            
+            servcount = Object.keys(list).length
+            //console.log(list)
+
+            const stoplist = [];
+            list.forEach((Element) => {
+                if(Element.name == "Deployment server"){
+                    //main server
+                    console.log("main server")
+                    return;
+                }
+                if(Element.name != "Deployment server"){
+                    console.log(Element.name)
+                    //pm2.delete(Element.name)
+                    let servername = Element.name + ".js"
+                    console.log(servername)
+                    stoplist.push(servername)
+
+
+                    pm2.stop(`${Element.name}`, function(err, apps) {
+                        if (err) {
+                            console.log(err)
+                            pm2.flush(Element.name);
+                        pm2.disconnect();
+                        }
+                        return;
+                    });
+                    return;
+                    //push element into array
+                    //take the array out of foreach and list to stop each element in array
+                }
+                else {
+                    console.log("else")
+                    return
+                }
+            })
+            return;
+        });
         return;
+
     } else {
         //console.log("pm2 stop")
     
@@ -542,6 +586,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         //first need to check if the one requested is running
 
         //only after that do rest, so it doesnt waste time running all
+        return;
     };
 };
 function arrayservermatch(stopfile){
