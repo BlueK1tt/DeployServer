@@ -21,6 +21,7 @@ function check(){
         if (isConnected) {
             // connected to the internet
             let connected = "connected"
+            return "connected"
         } else {
             // not connected to the internet
             let connected = "not connected"
@@ -29,28 +30,26 @@ function check(){
     });
 
     if(connected == "not connected"){
-        //return "not connected"
-        return "connected"
+        return "not connected"
+
     }
     else {
-        //return "connected"
-        return "not connected"
+        return "connected"
     }
 }
 
 function checkInternet(cb) {
+    //console.log("checkinternet")
     require('dns').lookup('google.com',function(err) {
         if (err && err.code == "ENOTFOUND") {
-            //cb(true);
-            console.log("checkinternet: true")
-            return false
-
-        } else {
-            
-
             //cb(false);
             console.log("checkinternet: false")
-            return true //is inverted for test purposes
+            return false
+        } else {
+            //cb(true);
+            console.log("checkinternet: true")
+            return true
+
         }
     })
 }

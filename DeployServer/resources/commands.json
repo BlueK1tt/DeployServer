@@ -9,7 +9,7 @@
   },
   {
     "command": "update",
-    "status": "enabled"
+    "status": "disabled"
   },
   {
     "command": "disablecommand",
@@ -21,7 +21,7 @@
   },
   {
     "command": "depots",
-    "status": "enabled"
+    "status": "disabled"
   },
   {
     "command": "commands",
@@ -29,11 +29,11 @@
   },
   {
     "command": "depotlist",
-    "status": "enabled"
+    "status": "disabled"
   },
   {
     "command": "connect",
-    "status": "enabled"
+    "status": "disabled"
   },
   {
     "command": "pm2check",
@@ -41,7 +41,7 @@
   },
   {
     "command": "test",
-    "status": "disabled"
+    "status": "enabled"
   },
   {
     "command": "appendmain",
