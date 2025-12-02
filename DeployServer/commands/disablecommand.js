@@ -136,10 +136,17 @@ function writenew(command1){
 
     //check if commands file is empty
     //let commandslist = require(`../resources/commands.json`);
-    let commandliststr = fs.readFileSync('../resources/commands.json');
-    fs.close
+    //let commandliststr = fs.readFileSync('../resources/commands.json');
+    //fs.close
+
+    const data = () => fs.readFileSync(require.resolve("../resources/commands.json"), { encoding: "utf8" });
+    let commandslistobj = data()
+    let commandliststr = commandslistobj
+    fs.close;
     //console.log(commandslist.length)
-    let commandslist = JSON.parse(commandliststr)
+    //console.log(commandliststr)
+    let commandslist = JSON.parse(commandslistobj)
+    console.log(typeof(commandslist))
     //let commandliststr = JSON.stringify(commandslist)
 
 
