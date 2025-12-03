@@ -53,6 +53,9 @@ function findfile(){
             console.log("iferror")
             return error
         }
+    } else {
+        console.log("findfile error")
+        return "findfile error"
     }
 
 }

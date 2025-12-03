@@ -7,8 +7,12 @@ module.exports = {
 
 function list(){
     pm2.list((err, list) => {
-        console.log(err)
-        console.log(Object.keys(list))
+        if(err){
+            console.log(err)
+        } else {
+            console.log(list)
+            console.log(Object.keys(list))
+        }
     })
     return list
     

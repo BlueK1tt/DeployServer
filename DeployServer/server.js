@@ -617,6 +617,12 @@ function bussifunctions(appdata){
         console.log("Server button 1")
 
         return "button1";
+    } 
+    if(appdata.includes("test")){
+        let testdata = testsend()
+        pm2datasend(appdata,testdata);
+
+        return 
     }
     else {
         //console.log("appdata" + appdata)
@@ -628,8 +634,36 @@ function bussifunctions(appdata){
         return asmessage;
         
         //console.log("Something else")
+    };
+};
+
+function pm2datasend(appdata, testdata){ //data=string or object to send, client=pm2 server to send to
+    console.log("pm2datasend")
+    //console.log(appdata) //string
+    let splitdata = appdata.split(" :")
+    let servername = splitdata[0]
+    //console.log(testdata)
+    //need seperate function to match pm2client to server name
+
+    process.send({ //this is just example, boiletplate for future apps
+    type : 'process:msg',
+    data : {
+      app : servername,
+      msg : testdata
     }
-}
+  })
+
+
+    return
+};
+
+function testsend(data){
+    console.log("testsend")
+    let exampledata = "This is example data from 'main'";
+
+    return exampledata
+};
+
 const requestListener = function(request, response){
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
@@ -637,6 +671,7 @@ const requestListener = function(request, response){
 
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
+    
     exports.message = { msg }; //export msg as variable to use in modules
     exports.timenow = { timenow };
     exports.repeated = { repeated };

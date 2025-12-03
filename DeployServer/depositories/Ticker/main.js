@@ -17,6 +17,54 @@ function sendtomaster(data){
     }
   })
 }
+/*
+function pm2bussi(){ //pm2launchbus to get data from clien to server
+    console.log("bus active");
+    pm2.launchBus(function(err, pm2_bus) {
+        pm2_bus.on('process:msg', function(packet) {
+          console.log(process.env)
+          if(process.name == filename){
+            console.log("ignore")
+            return;
+          } else {
+            console.log("pm2 bus else")
+            appdata = packet.data.app + " : " + packet.data.msg
+            bussifunctions(appdata)
+          }
+        })
+        if(err){
+            console.log(err);
+        }
+    })
+}
+
+function bussifunctions(appdata){
+    if(appdata.includes("button1")){
+        console.log("Server button 1")
+
+        return "button1";
+    }
+    else {
+        //console.log("appdata" + appdata)
+        
+        asmessage = filtercommand(appdata)
+        return asmessage;
+        
+        //console.log("Something else")
+    };
+};
+
+function findpm2match(){
+  let list = pm2.list()
+
+  return //true or false
+}
+*/
+function filtercommand(appdata){ 
+    //console.log("outcommand")
+    console.log("appdata " + appdata); //appdata gives server + the button pressed | Ticker : Test 
+    return "end."
+}
 
 function Test(){
   console.log("clicked")
@@ -134,3 +182,4 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
 // Console will print the message
 console.log('App running at http://127.0.0.1:3001/');
 sendtomaster("online")
+

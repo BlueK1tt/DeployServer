@@ -29,7 +29,7 @@
   },
   {
     "command": "depotlist",
-    "status": "disabled"
+    "status": "enabled"
   },
   {
     "command": "connect",
