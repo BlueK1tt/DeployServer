@@ -16,7 +16,15 @@ function sendtomaster(data){
       msg : data
     }
   })
-}
+};
+
+/*new sendtomaster
+need to make app two part string, dividded by :
+to : from
+so servers processing the data, need to only look for the first one
+
+*/
+
 /*
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
