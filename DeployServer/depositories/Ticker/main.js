@@ -2,7 +2,6 @@ http = require('http');
 pm2 = require('pm2');
 fs = require('fs');
 var path = require('path');
-const { defaults } = require('request');
 var thisfilename = path.basename(__dirname);
 sitestatus = true; //this is what the wensiote website will start as
 
@@ -25,27 +24,38 @@ function pm2packetprocess(packet){
     //console.log(destinationsender[0])
     if(!destinationsender[0].includes(thisfilename)){
         console.log("not for this server")
+        return false
     } else {
         console.log("For this server")
+        return true
     }
 }
 
-/*new sendtomaster
-need to make app two part string, dividded by :
-to : from
-so servers processing the data, need to only look for the first one
 
-*/
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
+      console.log("launche bus")
         pm2_bus.on('process:msg', function(packet) {
-            pm2packetprocess(packet) //0 to, 1 from, 2 msg
+            processthis = pm2packetprocess(packet) //0 to, 1 from, 2 msg
             appdata = packet.data.app + " : " + packet.data.msg
-            bussifunctions(appdata)
+            console.log("before bus if")
+            if(processthis === true){
+              console.log("process this")
+              bussifunctions(appdata)
+              return;
+            }
+            if(processthis === false){
+              console.log("dont process this")
+              return
+            } else {
+              console.log("processthis error")
+            }
         })
         if(err){
+          console.log("bus error")
             console.log(err);
+            return;
         }
     })
 }
@@ -58,23 +68,17 @@ function bussifunctions(appdata){
         return "button1";
     }
     else {
-        //console.log("appdata" + appdata)
+        console.log("appdata" + appdata)
         
         asmessage = filtercommand(appdata)
         return asmessage;
         
-        //console.log("Something else")
+        console.log("Something else")
     };
 };
-/*
-function findpm2match(){
-  let list = pm2.list()
 
-  return //true or false
-}
-*/
 function filtercommand(appdata){ 
-    //console.log("outcommand")
+    console.log("outcommand")
     console.log("appdata " + appdata); //appdata gives server + the button pressed | Ticker : Test 
     return "end."
 }
@@ -115,6 +119,11 @@ function functionloader(msg){
       Test();
       sendtomaster("DeployServer","Test");
       return
+    }
+    if(msg.includes("/joulu")){
+      sendtomaster("DeployServer","joulu")
+      console.log("joulu")
+      return;
     }
     if(msg.includes("/Main%20request?")){ //test button to try communication
       sendtomaster("DeployServer","button1") //specified in main server to do nothing but log
@@ -202,4 +211,4 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
 // Console will print the message
 console.log('App running at http://127.0.0.1:3001/');
 sendtomaster("DeployServer","online")
-pm2bussi()
+

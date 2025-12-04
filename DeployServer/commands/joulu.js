@@ -48,7 +48,7 @@ function joulu(){
         return "It's Christmas today!"
     } else {
         let returnmsg = "It's "+monthstochrist+" months,"+daystochrist+" days,"+hourstochrist+" hours,"+minutestochrist+" minutes and "+secondstochrist+" seconds till Christmas!"    
-        console.log(returnmsg)
+        //console.log(returnmsg)
         return returnmsg
     }
     return "joulu"

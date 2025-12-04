@@ -1,12 +1,10 @@
 const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
-const os = require('os');
 const pm2 = require('pm2');
 var path = require('path');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
-const commandslist = require('./resources/commands.json'); //read the commands status JSON on server start
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -601,6 +599,7 @@ function arrayservermatch(stopfile){
     //console.log(itemposition)
     return itemposition
 }
+/* old function
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
@@ -614,7 +613,32 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
         }
     })
 }
+*/
 
+function pm2bussi(){ //pm2launchbus to get data from clien to server
+    console.log("bus active");
+    pm2.launchBus(function(err, pm2_bus) {
+        pm2_bus.on('process:msg', function(packet) {
+            processthis = pm2packetprocess(packet) //0 to, 1 from, 2 msg
+            appdata = packet.data.app + " : " + packet.data.msg
+            if(processthis === true){
+              //console.log("process this")
+              bussifunctions(appdata)
+              return;
+            }
+            if(processthis === false){
+              //console.log("dont process this")
+              return
+            } else {
+              console.log("processthis error")
+              return;
+            }
+        })
+        if(err){
+            console.log(err);
+        }
+    })
+}
 function bussifunctions(appdata){
     if(appdata.includes("button1")){
         console.log("Server button 1")
@@ -622,14 +646,24 @@ function bussifunctions(appdata){
         return "button1";
     } 
     if(appdata.includes("test")){
+        console.log("test")
         let testdata = testsend()
         pm2datasend(appdata,testdata);
 
         return 
-    }
+    }/*
+    if(appdata.includes("joulu")){
+        const data = require('./commands/joulu')
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve(`./commands/joulu`)] 
+        console.log(asmessage)
+        let msg = "joulubtn"+":"+asmessage
+        sendtomaster("Ticker",msg)
+    }*/
     else {
         //console.log("appdata" + appdata)
-        
+        console.log("bussi else")
         const data = require('./functions/outcommand')
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
@@ -641,18 +675,21 @@ function bussifunctions(appdata){
 };
 
 function pm2packetprocess(packet){
+    console.log("packetprocess")
     //process packets coming in and return data if for this server
     packetdataapp = JSON.stringify(packet.data.app);
     let destinationsender = packetdataapp.split(":");
     //console.log(thisfilename)
     //console.log(destinationsender[0])
     if(!destinationsender[0].includes(thisfilename)){
-        console.log("not for this server")
+        //console.log("not for this server")
+        return false
     } else {
-        console.log("For this server")
+        //console.log("For this server")
+        return true
     }
 }
-
+/*
 function pm2datasend(appdata, testdata){ //data=string or object to send, client=pm2 server to send to
     console.log("pm2datasend")
     //console.log(appdata) //string
@@ -672,6 +709,18 @@ function pm2datasend(appdata, testdata){ //data=string or object to send, client
 
     return
 };
+*/
+function sendtomaster(destination, data){
+  let destinationsender = destination +":"+ thisfilename
+  process.send({ //this is just example, boiletplate for future apps
+    type : 'process:msg',
+    data : {
+      app : destinationsender,
+      msg : data
+    }
+  })
+};
+
 
 function testsend(data){
     console.log("testsend")
