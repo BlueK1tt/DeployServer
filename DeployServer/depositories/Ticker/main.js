@@ -88,40 +88,44 @@ function functionloader(msg){
   const defaults = msg.includes("/style.css") || msg.includes("/main.js") || msg.includes("/func.js") || msg.includes("/favicon.ico")
   
   //here need to initialize server status var
-  
-  if(defaults === true){ //html requests these whenever its loaded, so just ignoring them
-    return
-  }
-  if(msg.includes("/Test?")){ //test button
-    Test();
-    sendtomaster("Test");
-    return
-  }
-  if(msg.includes("/Main%20request?")){ //test button to try communication
-    sendtomaster("button1") //specified in main server to do nothing but log
-    console.log("call server")
-    return
+  if(!msg.includes("/maintanance") && sitestatus == false){
+    return "maintanance"
   }
   if(msg.includes("/maintanance") && sitestatus === true){
-    sitestatus = false;
-    sendtomaster("Under maintanance")
-    //console.log("site to false")
-    return
-  }
-  if(msg.includes("/maintanance") && sitestatus === false){
-    sitestatus = true
-    sendtomaster("Back to normal")
-    //console.log("site to true")
-    return;
-  }
-  if(msg == "/"){
-    //just "home"
-    return;
-  }
-  else {
-    console.log("msg: " + msg); //else, for everything else that isnt stated yet
-    sendtomaster(msg)
-    return;
+      sitestatus = false;
+      sendtomaster("Under maintanance")
+      //console.log("site to false")
+      return
+    }
+    if(msg.includes("/maintanance") && sitestatus === false){
+      sitestatus = true
+      sendtomaster("Back to normal")
+      //console.log("site to true")
+      return;
+  } else {
+    if(defaults === true){ //html requests these whenever its loaded, so just ignoring them
+      return
+    }
+    if(msg.includes("/Test?")){ //test button
+      Test();
+      sendtomaster("Test");
+      return
+    }
+    if(msg.includes("/Main%20request?")){ //test button to try communication
+      sendtomaster("button1") //specified in main server to do nothing but log
+      console.log("call server")
+      return
+    }
+    
+    if(msg == "/"){
+      //just "home"
+      return;
+    }
+    else {
+      console.log("msg: " + msg); //else, for everything else that isnt stated yet
+      sendtomaster(msg)
+      return;
+    }
   }
 }
 
