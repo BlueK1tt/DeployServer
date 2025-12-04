@@ -3,13 +3,11 @@ pm2 = require('pm2');
 fs = require('fs');
 var path = require('path');
 const { defaults } = require('request');
-var filename = path.basename(__dirname);
+var thisfilename = path.basename(__dirname);
 sitestatus = true; //this is what the wensiote website will start as
 
-
-
 function sendtomaster(destination, data){
-  let destinationsender = destination +" : "+ filename
+  let destinationsender = destination +":"+ thisfilename
   process.send({ //this is just example, boiletplate for future apps
     type : 'process:msg',
     data : {
@@ -19,33 +17,39 @@ function sendtomaster(destination, data){
   })
 };
 
+function pm2packetprocess(packet){
+    //process packets coming in and return data if for this server
+    packetdataapp = JSON.stringify(packet.data.app);
+    let destinationsender = packetdataapp.split(":");
+    //console.log(thisfilename)
+    //console.log(destinationsender[0])
+    if(!destinationsender[0].includes(thisfilename)){
+        console.log("not for this server")
+    } else {
+        console.log("For this server")
+    }
+}
+
 /*new sendtomaster
 need to make app two part string, dividded by :
 to : from
 so servers processing the data, need to only look for the first one
 
 */
-
-/*
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
-          console.log(process.env)
-          if(process.name == filename){
-            console.log("ignore")
-            return;
-          } else {
-            console.log("pm2 bus else")
+            pm2packetprocess(packet) //0 to, 1 from, 2 msg
             appdata = packet.data.app + " : " + packet.data.msg
             bussifunctions(appdata)
-          }
         })
         if(err){
             console.log(err);
         }
     })
 }
+
 
 function bussifunctions(appdata){
     if(appdata.includes("button1")){
@@ -62,7 +66,7 @@ function bussifunctions(appdata){
         //console.log("Something else")
     };
 };
-
+/*
 function findpm2match(){
   let list = pm2.list()
 
@@ -94,13 +98,13 @@ function functionloader(msg){
   }
   if(msg.includes("/maintanance") && sitestatus === true){
       sitestatus = false;
-      sendtomaster("Deploy server","Under maintanance")
+      sendtomaster("DeployServer","Under maintanance")
       //console.log("site to false")
       return
     }
     if(msg.includes("/maintanance") && sitestatus === false){
       sitestatus = true
-      sendtomaster("Deploy server","Back to normal")
+      sendtomaster("DeployServer","Back to normal")
       //console.log("site to true")
       return;
   } else {
@@ -109,11 +113,11 @@ function functionloader(msg){
     }
     if(msg.includes("/Test?")){ //test button
       Test();
-      sendtomaster("Deploy server","Test");
+      sendtomaster("DeployServer","Test");
       return
     }
     if(msg.includes("/Main%20request?")){ //test button to try communication
-      sendtomaster("Deploy server","button1") //specified in main server to do nothing but log
+      sendtomaster("DeployServer","button1") //specified in main server to do nothing but log
       console.log("call server")
       return
     }
@@ -124,7 +128,7 @@ function functionloader(msg){
     }
     else {
       console.log("msg: " + msg); //else, for everything else that isnt stated yet
-      sendtomaster("Deploy server",msg)
+      sendtomaster("DeployServer",msg)
       return;
     }
   }
@@ -166,6 +170,7 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
   http.createServer(function(request, response) {
     var msg = request.url
     functionloader(msg)
+    
     //console.log("sitestatus: " + sitestatus)
     //setsite(sitestatus);
 
@@ -196,5 +201,5 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
 
 // Console will print the message
 console.log('App running at http://127.0.0.1:3001/');
-sendtomaster("Deploy server","online")
-
+sendtomaster("DeployServer","online")
+pm2bussi()

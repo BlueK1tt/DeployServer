@@ -2,6 +2,7 @@ const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
 const os = require('os');
 const pm2 = require('pm2');
+var path = require('path');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
@@ -11,6 +12,7 @@ const hostname = config.hostname;
 const port = config.netport;
 const timenow = new Date();
 var runningservers = [];
+var thisfilename = path.basename(__dirname);
 
 var basecommands = ['shutdown','restart','refresh'];
 var direction = ['start', 'stop'];
@@ -640,9 +642,15 @@ function bussifunctions(appdata){
 
 function pm2packetprocess(packet){
     //process packets coming in and return data if for this server
-    console.log(packet)
-    packetstr = JSON.stringify(packet) //0 to, 1 from, 2 msg
-    console.log(packetstr)
+    packetdataapp = JSON.stringify(packet.data.app);
+    let destinationsender = packetdataapp.split(":");
+    //console.log(thisfilename)
+    //console.log(destinationsender[0])
+    if(!destinationsender[0].includes(thisfilename)){
+        console.log("not for this server")
+    } else {
+        console.log("For this server")
+    }
 }
 
 function pm2datasend(appdata, testdata){ //data=string or object to send, client=pm2 server to send to
