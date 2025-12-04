@@ -19,34 +19,33 @@ function sendtomaster(destination, data){
 function pm2packetprocess(packet){
     //process packets coming in and return data if for this server
     packetdataapp = JSON.stringify(packet.data.app);
-    let destinationsender = packetdataapp.split(":");
+    let destinationsender = packetdataapp.split(":"); //0=to, 1=from
     //console.log(thisfilename)
     //console.log(destinationsender[0])
     if(!destinationsender[0].includes(thisfilename)){
-        console.log("not for this server")
+        //console.log("not for this server")
         return false
     } else {
-        console.log("For this server")
+        //console.log("For this server")
         return true
     }
 }
 
-
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
-      console.log("launche bus")
+      //console.log("launched bus")
         pm2_bus.on('process:msg', function(packet) {
             processthis = pm2packetprocess(packet) //0 to, 1 from, 2 msg
             appdata = packet.data.app + " : " + packet.data.msg
-            console.log("before bus if")
+            //console.log("before bus if")
             if(processthis === true){
-              console.log("process this")
+              //console.log("process this")
               bussifunctions(appdata)
               return;
             }
             if(processthis === false){
-              console.log("dont process this")
+              //console.log("dont process this")
               return
             } else {
               console.log("processthis error")
@@ -60,7 +59,6 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
     })
 }
 
-
 function bussifunctions(appdata){
     if(appdata.includes("button1")){
         console.log("Server button 1")
@@ -68,17 +66,17 @@ function bussifunctions(appdata){
         return "button1";
     }
     else {
-        console.log("appdata" + appdata)
+        //console.log("appdata" + appdata)
         
         asmessage = filtercommand(appdata)
+        //console.log("Something else")
         return asmessage;
         
-        console.log("Something else")
     };
 };
 
 function filtercommand(appdata){ 
-    console.log("outcommand")
+    //console.log("outcommand")
     console.log("appdata " + appdata); //appdata gives server + the button pressed | Ticker : Test 
     return "end."
 }
@@ -211,4 +209,4 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
 // Console will print the message
 console.log('App running at http://127.0.0.1:3001/');
 sendtomaster("DeployServer","online")
-
+pm2bussi();

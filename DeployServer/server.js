@@ -404,7 +404,6 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
         return error
     }
 }
-
 function thirtyTimer(){
     setInterval(MyTimer, 60000); //60 second timer call function below
     function MyTimer(){
@@ -599,21 +598,6 @@ function arrayservermatch(stopfile){
     //console.log(itemposition)
     return itemposition
 }
-/* old function
-function pm2bussi(){ //pm2launchbus to get data from clien to server
-    console.log("bus active");
-    pm2.launchBus(function(err, pm2_bus) {
-        pm2_bus.on('process:msg', function(packet) {
-            pm2packetprocess(packet) //0 to, 1 from, 2 msg
-            appdata = packet.data.app + " : " + packet.data.msg
-            bussifunctions(appdata)
-        })
-        if(err){
-            console.log(err);
-        }
-    })
-}
-*/
 
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
@@ -651,7 +635,7 @@ function bussifunctions(appdata){
         pm2datasend(appdata,testdata);
 
         return 
-    }/*
+    }
     if(appdata.includes("joulu")){
         const data = require('./commands/joulu')
         var sentData = valuesToArray(data); 
@@ -660,7 +644,7 @@ function bussifunctions(appdata){
         console.log(asmessage)
         let msg = "joulubtn"+":"+asmessage
         sendtomaster("Ticker",msg)
-    }*/
+    }
     else {
         //console.log("appdata" + appdata)
         console.log("bussi else")
@@ -720,8 +704,6 @@ function sendtomaster(destination, data){
     }
   })
 };
-
-
 function testsend(data){
     console.log("testsend")
     let exampledata = "This is example data from 'main'";
@@ -765,7 +747,6 @@ const requestListener = function(request, response){
             process.exit(128)
         }, 2000);
     }
-
     //shutdown on command
     if (msg == 'shutdown') {
         saveLog();
