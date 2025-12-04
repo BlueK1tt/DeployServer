@@ -499,7 +499,7 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     if(stopfile == "all"){
-        console.log("pm2stop all")
+        //console.log("pm2stop all")
         //need to list all servers running and stop them individually
         pm2.list((err, list) => {
             const id = 0;
@@ -519,7 +519,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
                     return;
                 }
                 if(Element.name != "Deployment server"){
-                    console.log(Element.name)
+                    //console.log(Element.name)
                     //pm2.delete(Element.name)
                     let servername = Element.name + ".js"
                     console.log(servername)
@@ -539,7 +539,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
                     //take the array out of foreach and list to stop each element in array
                 }
                 else {
-                    console.log("else")
+                    //console.log("else")
                     return
                 }
             })
@@ -603,6 +603,7 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
+            pm2packetprocess(packet)
             appdata = packet.data.app + " : " + packet.data.msg
             bussifunctions(appdata)
         })
@@ -636,6 +637,13 @@ function bussifunctions(appdata){
         //console.log("Something else")
     };
 };
+
+function pm2packetprocess(packet){
+    //process packets coming in and return data if for this server
+    console.log(packet)
+    packetstr = JSON.stringify(packet)
+    console.log(packetstr)
+}
 
 function pm2datasend(appdata, testdata){ //data=string or object to send, client=pm2 server to send to
     console.log("pm2datasend")
@@ -694,6 +702,7 @@ const requestListener = function(request, response){
         pm2disconnect(1);
         console.log('Restarting the server...')
         response.end('Restarting...\n');
+        pm2stop("all")
         setTimeout(function() {
             console.log('Restarting')
             process.exit(128)

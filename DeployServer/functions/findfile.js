@@ -26,8 +26,6 @@ function findfile(){
                 return "directory empty"
             }
         }
-
-
         if(msg.startsWith("stop")){
             filename = msg.slice(5);            
             let files = fs.readdirSync(`./depositories/`+ `${filename}`);
@@ -73,6 +71,7 @@ function verifyfile(filename){
     //console.log("filexist: " + filexist)
 
     finalcmd = './depositories/'+ `${filename}`+"/"+ filexist
+    //console.log(finalcmd)
     return finalcmd
 
 }
