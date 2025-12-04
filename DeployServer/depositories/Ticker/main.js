@@ -112,13 +112,16 @@ function functionloader(msg){
     sitestatus = true
     sendtomaster("Back to normal")
     //console.log("site to true")
-    return
+    return;
   }
-  
+  if(msg == "/"){
+    //just "home"
+    return;
+  }
   else {
     console.log("msg: " + msg); //else, for everything else that isnt stated yet
     sendtomaster(msg)
-    return
+    return;
   }
 }
 
@@ -158,7 +161,7 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
   http.createServer(function(request, response) {
     var msg = request.url
     functionloader(msg)
-    console.log("sitestatus: " + sitestatus)
+    //console.log("sitestatus: " + sitestatus)
     //setsite(sitestatus);
 
 
@@ -166,7 +169,6 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
       loadmaintanance();
       response.writeHead(200, {"Content-Type": "text/html"});  
       console.log("site under maintanance")
-      response.write(html1)
       response.end();
       delete(request);
 
