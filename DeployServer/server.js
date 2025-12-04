@@ -603,7 +603,7 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
-            pm2packetprocess(packet)
+            pm2packetprocess(packet) //0 to, 1 from, 2 msg
             appdata = packet.data.app + " : " + packet.data.msg
             bussifunctions(appdata)
         })
@@ -641,7 +641,7 @@ function bussifunctions(appdata){
 function pm2packetprocess(packet){
     //process packets coming in and return data if for this server
     console.log(packet)
-    packetstr = JSON.stringify(packet)
+    packetstr = JSON.stringify(packet) //0 to, 1 from, 2 msg
     console.log(packetstr)
 }
 

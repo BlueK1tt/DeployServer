@@ -8,11 +8,12 @@ sitestatus = true; //this is what the wensiote website will start as
 
 
 
-function sendtomaster(data){
+function sendtomaster(destination, data){
+  let destinationsender = destination +" : "+ filename
   process.send({ //this is just example, boiletplate for future apps
     type : 'process:msg',
     data : {
-      app : filename,
+      app : destinationsender,
       msg : data
     }
   })
@@ -93,13 +94,13 @@ function functionloader(msg){
   }
   if(msg.includes("/maintanance") && sitestatus === true){
       sitestatus = false;
-      sendtomaster("Under maintanance")
+      sendtomaster("Deploy server","Under maintanance")
       //console.log("site to false")
       return
     }
     if(msg.includes("/maintanance") && sitestatus === false){
       sitestatus = true
-      sendtomaster("Back to normal")
+      sendtomaster("Deploy server","Back to normal")
       //console.log("site to true")
       return;
   } else {
@@ -108,11 +109,11 @@ function functionloader(msg){
     }
     if(msg.includes("/Test?")){ //test button
       Test();
-      sendtomaster("Test");
+      sendtomaster("Deploy server","Test");
       return
     }
     if(msg.includes("/Main%20request?")){ //test button to try communication
-      sendtomaster("button1") //specified in main server to do nothing but log
+      sendtomaster("Deploy server","button1") //specified in main server to do nothing but log
       console.log("call server")
       return
     }
@@ -123,7 +124,7 @@ function functionloader(msg){
     }
     else {
       console.log("msg: " + msg); //else, for everything else that isnt stated yet
-      sendtomaster(msg)
+      sendtomaster("Deploy server",msg)
       return;
     }
   }
@@ -195,5 +196,5 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
 
 // Console will print the message
 console.log('App running at http://127.0.0.1:3001/');
-sendtomaster("online")
+sendtomaster("Deploy server","online")
 
