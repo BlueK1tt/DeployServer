@@ -359,11 +359,12 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                                 console.log("else")
                                 console.log(Element.pm2_env.pm_exec_path)
                                 let envpath = Element.pm2_env.pm_exec_path
-                                let finstring = envpath + ".js";
-                                let cutexcess = Element.pm2_env.pm_exec_path.split("/")
-                                console.log(cutexcess[8])
-                                let servname = cutexcess[8] + ".js"
-                                console.log(servname)
+                                //let finstring = envpath + ".js";
+                                let cutexcess = Element.pm2_env.pm_exec_path.split("\\")
+                                console.log(cutexcess)
+                                console.log(cutexcess[6]) // need last -1
+                                let servname = cutexcess[6] + ".js" //need to take last
+                                console.log("servname"+servname)
                                 //msgidentify("stop="+cutexcess[8])
                                 let stopfile = cutexcess[8]
                                 //pm2stop(stopfile)
