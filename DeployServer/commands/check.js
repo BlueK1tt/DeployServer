@@ -54,3 +54,5 @@ function checkInternet(cb) {
     })
 }
 //if undefined return undefined and redo function
+//if pushed "check=30", change variable to 30, if was thirty, return "interval was already +queryinterval"
+//set the variable in memory here, and every time thirtytimer gets called, request interval from command
