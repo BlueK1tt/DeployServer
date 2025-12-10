@@ -1,3 +1,5 @@
 /DeployServer/DeployServer/Depositories/BluBot/config.json
 DeployServer/Depositories/BluBot/config.json
 DeployServer/commands/yelda.js
+DeployServer/resources/commands.json
+DeployServer/resources/log.JSON
