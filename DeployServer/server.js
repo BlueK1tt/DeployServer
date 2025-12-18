@@ -61,7 +61,6 @@ function compareLog(){ //function to happen right after start to compare if anyt
 
     if(str1.includes(str2)){ 
         statement = true; //files match
-        //console.log("logs match")
         return true
     }
     else{
@@ -103,8 +102,6 @@ function getfile(msg) { //------ can be made into own file and moved to 'functio
         return onresult
     }
     else {
-        //console.log("msg " + msg)
-        //console.log("getfile")
         let files = fs.readdirSync('./commands/');
         let original = files
         strip = original.map(function(d){
@@ -176,7 +173,6 @@ function msgidentify(msg){ //
                     asmessage = sentData[0];
                     delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
                     stopfile = filename + ".js";
-                    
                     //functon to send message to the server about to be stopped
                     //possibly await function to wait for response back, for graceful stop
                     pm2stop(filename);
@@ -646,14 +642,10 @@ function bussifunctions(appdata){
         asmessage = sentData[0];
         delete require.cache[require.resolve(`./functions/outcommand`)] //clears the cache allowing for new data to be read
         return asmessage;
-        
-        //console.log("Something else")
     };
 };
 
 function pm2packetprocess(packet){
-    //console.log("packetprocess")
-    //console.log(packet)
     //process packets coming in and return data if for this server
     if(packet == "undefined"){
         return false
@@ -661,7 +653,6 @@ function pm2packetprocess(packet){
         packetdataapp = JSON.stringify(packet.data.app);
         //console.log(packetdataapp)
         let destinationsender = packetdataapp.split(":");
-        //console.log(thisfilename)
         //console.log(destinationsender[0])
         if(!destinationsender[0].includes(thisfilename)){
             //console.log("not for this server")
@@ -675,14 +666,8 @@ function pm2packetprocess(packet){
 }
 
 function sendtomaster(destination, data){
-    //console.log("sendotmaster")
-    if(destination == "all"){
-        //console.log("sendtomaster all")
+    if(destination == "all"){ //send message to all servers
         let destinationsender = pm2list();
-        //data = data;
-        //console.log(data)
-
-        //console.log("packet: "+destinationsender +" "+ data)
         process.send({ //this is just example, boiletplate for future apps
             type : 'process:msg',
             data : {
@@ -692,11 +677,9 @@ function sendtomaster(destination, data){
         });
         return;
     }
-    if(destination != "all"){
-        //console.log("sendotmaster not all")
+    if(destination != "all"){ //send message to specified server
         var destinationsender = destination +":"+ thisfilename
-        //console.log("packet: "+destinationsender +" "+ data)
-        process.send({ //this is just example, boiletplate for future apps
+        process.send({ 
             type : 'process:msg',
             data : {
                 app : destinationsender,
