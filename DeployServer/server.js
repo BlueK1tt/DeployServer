@@ -235,8 +235,8 @@ function msgidentify(msg){ //
         delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
         return "disablecommand";
     }if(msg == "testcommand"){
-        console.log("testcommand")
-        sendtomaster("all","all")
+        //console.log("testcommand")
+        sendtomaster("all","this is test message")
         return;
     }
     else{
@@ -432,7 +432,7 @@ function pm2check(instance){ //function the check what servers are running
     //get list of running pm2 instances
     if(runningservers == null){ //if array is empty
         let runningserverlist = runningservers.length > 0 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
-        console.log(runningserverlist)
+        //console.log(runningserverlist)
         return false
     } else { //if array is not empty
         if(runningservers.includes(instance)){ //if include is true
@@ -448,6 +448,17 @@ function pm2check(instance){ //function the check what servers are running
         }
     }
 };
+
+function pm2list(){ //to get all running servers as variable
+    //console.log("pm2list")
+    let mainfile = fs.readFileSync('./resources/log.json', 'utf8')
+    fs.close;
+    let pm2serverlist = JSON.parse(mainfile)
+    //console.log(pm2serverlist)
+    let keys = Object.keys(pm2serverlist)
+    //console.log(keys)
+    return keys
+}
 
 function pm2start(startfile,filename){ //start specific server on command, need to check available ports    
     //console.log("startfile")
@@ -641,53 +652,63 @@ function bussifunctions(appdata){
 };
 
 function pm2packetprocess(packet){
-    console.log("packetprocess")
+    //console.log("packetprocess")
+    //console.log(packet)
     //process packets coming in and return data if for this server
-    packetdataapp = JSON.stringify(packet.data.app);
-    let destinationsender = packetdataapp.split(":");
-    //console.log(thisfilename)
-    //console.log(destinationsender[0])
-    if(!destinationsender[0].includes(thisfilename)){
-        //console.log("not for this server")
+    if(packet == "undefined"){
         return false
     } else {
-        //console.log("For this server")
-        return true
+        packetdataapp = JSON.stringify(packet.data.app);
+        //console.log(packetdataapp)
+        let destinationsender = packetdataapp.split(":");
+        //console.log(thisfilename)
+        //console.log(destinationsender[0])
+        if(!destinationsender[0].includes(thisfilename)){
+            //console.log("not for this server")
+            return false
+        } else {
+            //console.log("For this server")
+            return true
+        }
     }
+    
 }
 
 function sendtomaster(destination, data){
+    //console.log("sendotmaster")
     if(destination == "all"){
-        pm2.list((err, pmlist) => {
-            let id = 0;            
-            pmlist = pmlist.map(item => {
-                return item.id !== id ? item : null;
-            }).filter(item => item !== null)
-            //console.log(pmlist)
+        //console.log("sendtomaster all")
+        let destinationsender = pm2list();
+        //data = data;
+        //console.log(data)
 
-            servcount = Object.keys(pmlist).length
-
-            if(servcount >= 1){ //if no error and list not empty
-                //need to stop all running daemons
-                pmlist.forEach((Element) => {
-                    console.log(Element.name)
-                });
-            };
+        //console.log("packet: "+destinationsender +" "+ data)
+        process.send({ //this is just example, boiletplate for future apps
+            type : 'process:msg',
+            data : {
+                app : destinationsender,
+                msg : data
+            }
         });
-
+        return;
     }
     if(destination != "all"){
+        //console.log("sendotmaster not all")
         var destinationsender = destination +":"+ thisfilename
+        //console.log("packet: "+destinationsender +" "+ data)
+        process.send({ //this is just example, boiletplate for future apps
+            type : 'process:msg',
+            data : {
+                app : destinationsender,
+                msg : data
+            }
+        });
+        return;
     } else {
         console.log("sendtomaster error")
+        return;
     }
-    process.send({ //this is just example, boiletplate for future apps
-        type : 'process:msg',
-        data : {
-            app : destinationsender,
-            msg : data
-        }
-    })
+    
 };
 
 function testsend(data){
@@ -724,6 +745,7 @@ const requestListener = function(request, response){
     
     //restart on command
     if (msg == 'restart') {
+        sendtomaster("all","Server is restarting...")
         pm2disconnect(1);
         console.log('Restarting the server...')
         response.end('Restarting...\n');
@@ -735,6 +757,7 @@ const requestListener = function(request, response){
     }
     //shutdown on command
     if (msg == 'shutdown') {
+        sendtomaster("all","Server is shutting down...")
         saveLog();
         pm2disconnect(0);
         console.log('Shutting down the server...')

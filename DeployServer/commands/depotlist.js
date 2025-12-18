@@ -10,8 +10,8 @@ function list(){
         if(err){
             console.log(err)
         } else {
-            console.log(list)
-            console.log(Object.keys(list))
+            //console.log(list)
+            //console.log(Object.keys(list))
         }
     })
     return list
