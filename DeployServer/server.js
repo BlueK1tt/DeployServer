@@ -140,7 +140,6 @@ function msgidentify(msg){ //
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
         //console.log("start or stop");
-
         const data = require('./commands/depots')
         var sentData = valuesToArray(data); 
         depotlist = sentData[0];
@@ -177,7 +176,7 @@ function msgidentify(msg){ //
                     asmessage = sentData[0];
                     delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
                     stopfile = filename + ".js";
-
+                    
                     //functon to send message to the server about to be stopped
                     //possibly await function to wait for response back, for graceful stop
                     pm2stop(filename);
@@ -235,6 +234,10 @@ function msgidentify(msg){ //
         asmessage = sentData[0];
         delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
         return "disablecommand";
+    }if(msg == "testcommand"){
+        console.log("testcommand")
+        sendtomaster("all","all")
+        return;
     }
     else{
         //console.log("custom");
@@ -316,8 +319,6 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
 }
 
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
-    //console.log(pmmsg)
-    //console.log("pm2disconnect")
     try{
         pm2.list((err, list) => {
         const id = 0;
@@ -414,8 +415,6 @@ function thirtyTimer(){
     function MyTimer(){
         //console.log("timer");
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
-        //console.log("test:"+test) // get "connected" or "not connected"
-        //console.log(connected);
         if(connected == "not connected"){
             console.log("Internet disconnected");
             pm2disconnect(2);
@@ -429,9 +428,7 @@ function thirtyTimer(){
 }
 
 function pm2check(instance){ //function the check what servers are running
-    //console.log("pm2check")
-    //console.log(instance) //make it into array
-    
+
     //get list of running pm2 instances
     if(runningservers == null){ //if array is empty
         let runningserverlist = runningservers.length > 0 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
@@ -461,11 +458,7 @@ function pm2start(startfile,filename){ //start specific server on command, need 
     delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
     
     var isrunningcheck = pm2check(startfile)
-    //console.log(isrunningcheck)
     isrunning = isrunningcheck
-    //console.log("isrunning: " + isrunning);
-
-    //need to add check to see if any are running
     if(isrunning === true){
         var isrunningtext = startfile + " is already running";
         return isrunningtext;
@@ -484,8 +477,6 @@ function pm2start(startfile,filename){ //start specific server on command, need 
         }
         if(countid == 1){
             repeated = startcondition.startcondition.count
-            //console.log("startcond"+startcondition.startcondition.count)
-            //console.log("pm2start:"  + startfile);
             runningservers.push(startfile)
             pm2.start(`${startfile}`, function(err, apps) {
             //console.log(apps)
@@ -503,8 +494,6 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     if(stopfile == "all"){
-        //console.log("pm2stop all")
-        //need to list all servers running and stop them individually
         pm2.list((err, list) => {
             const id = 0;
             
@@ -528,8 +517,6 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
                     let servername = Element.name + ".js"
                     console.log(servername)
                     stoplist.push(servername)
-
-
                     pm2.stop(`${Element.name}`, function(err, apps) {
                         if (err) {
                             console.log(err)
@@ -552,8 +539,6 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         return;
 
     } else {
-        //console.log("pm2 stop")
-    
         const data = require(`./functions/findfile`);
         var sentData = valuesToArray(data); 
         stopfile = sentData[0];
@@ -587,17 +572,9 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         else{
             return "stopping error"
         }
-        //first need to check if the one requested is running
-
-        //only after that do rest, so it doesnt waste time running all
-        return;
     };
 };
 function arrayservermatch(stopfile){
-    //get position of element matching anything in array
-    //console.log("arrayservermatch")
-    //console.log(runningservers)
-
     let servertomatch = (element) => element = stopfile
     let itemposition = runningservers.findIndex(servertomatch)
     //console.log(itemposition)
@@ -678,37 +655,41 @@ function pm2packetprocess(packet){
         return true
     }
 }
-/*
-function pm2datasend(appdata, testdata){ //data=string or object to send, client=pm2 server to send to
-    console.log("pm2datasend")
-    //console.log(appdata) //string
-    let splitdata = appdata.split(" :")
-    let servername = splitdata[0]
-    //console.log(testdata)
-    //need seperate function to match pm2client to server name
 
-    process.send({ //this is just example, boiletplate for future apps
-    type : 'process:msg',
-    data : {
-      app : servername,
-      msg : testdata
-    }
-  })
-
-
-    return
-};
-*/
 function sendtomaster(destination, data){
-  let destinationsender = destination +":"+ thisfilename
-  process.send({ //this is just example, boiletplate for future apps
-    type : 'process:msg',
-    data : {
-      app : destinationsender,
-      msg : data
+    if(destination == "all"){
+        pm2.list((err, pmlist) => {
+            let id = 0;            
+            pmlist = pmlist.map(item => {
+                return item.id !== id ? item : null;
+            }).filter(item => item !== null)
+            //console.log(pmlist)
+
+            servcount = Object.keys(pmlist).length
+
+            if(servcount >= 1){ //if no error and list not empty
+                //need to stop all running daemons
+                pmlist.forEach((Element) => {
+                    console.log(Element.name)
+                });
+            };
+        });
+
     }
-  })
+    if(destination != "all"){
+        var destinationsender = destination +":"+ thisfilename
+    } else {
+        console.log("sendtomaster error")
+    }
+    process.send({ //this is just example, boiletplate for future apps
+        type : 'process:msg',
+        data : {
+            app : destinationsender,
+            msg : data
+        }
+    })
 };
+
 function testsend(data){
     console.log("testsend")
     let exampledata = "This is example data from 'main'";
