@@ -20,9 +20,12 @@ function logtemps(){
         console.log("str include error")
     }
     console.log(newstr)
+
+    
     //to add commands used to 'temps.json' always add to the end with when used(server uptime)
     let tempdata = fs.readFileSync('./resources/temps.json', { encoding: 'utf8'});
     //console.log("this is data:"+tempdata)
+
 
     //every time used, get "refreshed" log file, with latest command
 
@@ -34,6 +37,7 @@ function logtemps(){
     
 
     //put the check at start of 'msgidentify', so check before identifying
+
 
     passstatus = true
     return passstatus;
