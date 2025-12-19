@@ -1,3 +1,6 @@
 [
-    
+    {
+        "time":"now",
+        "command":"check"
+    }
 ]

@@ -126,16 +126,19 @@ function valuesToArray(obj) {
 
 function getfuntion(folder,filename){
     let filePath = "./"+folder+"/"+filename
-    console.log(filePath)
+    //console.log(filePath)
     let data = require(filePath);
     let sentData = valuesToArray(data); 
     asmessage = sentData[0];
+    delete require.cache[require.resolve(filePath)] //clears the cache allowing for new data to be read
     return asmessage;
 }
 
-function msgidentify(msg){ //
+function msgidentify(msg){ 
     msgid ++;
     console.log("id:" + msgid);
+    let passstatus = getfuntion("functions","logtemps")
+    console.log(passstatus)
 
     if(msg == ""){
         return "no specified command";
@@ -240,9 +243,10 @@ function msgidentify(msg){ //
         delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
         return "disablecommand";
     }if(msg == "testcommand"){
+        console.log("testcommand")
         //console.log("testcommand")
-        let filedata = getfuntion("functions","logtemps.js")
-        console.log(filedata)
+        //let filedata = getfuntion("functions","logtemps.js")
+        //console.log(filedata)
         sendtomaster("all","this is test message")
         return;
     }
