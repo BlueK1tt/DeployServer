@@ -124,6 +124,15 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
+function getfuntion(folder,filename){
+    let filePath = "./"+folder+"/"+filename
+    console.log(filePath)
+    let data = require(filePath);
+    let sentData = valuesToArray(data); 
+    asmessage = sentData[0];
+    return asmessage;
+}
+
 function msgidentify(msg){ //
     msgid ++;
     console.log("id:" + msgid);
@@ -232,6 +241,8 @@ function msgidentify(msg){ //
         return "disablecommand";
     }if(msg == "testcommand"){
         //console.log("testcommand")
+        let filedata = getfuntion("functions","logtemps.js")
+        console.log(filedata)
         sendtomaster("all","this is test message")
         return;
     }

@@ -6,6 +6,7 @@ module.exports = {
 };
 
 function logtemps(){
+    console.log("logtemps")
     //to add commands used to 'temps.json' always add to the end with when used(server uptime)
     
     //every time used, get "refreshed" log file, with latest command
@@ -15,4 +16,5 @@ function logtemps(){
     //if last 3 same commands within under 5 minutes are same disabled command, disable the log for it
     
     //put the check at start of 'msgidentify', so check before identifying
+    return;
 }
