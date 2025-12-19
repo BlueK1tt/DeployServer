@@ -17,7 +17,7 @@
   },
   {
     "command": "check",
-    "status": "enabled"
+    "status": "disabled"
   },
   {
     "command": "depots",

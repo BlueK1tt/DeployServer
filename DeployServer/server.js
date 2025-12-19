@@ -10,10 +10,10 @@ const hostname = config.hostname;
 const port = config.netport;
 const timenow = new Date();
 var runningservers = [];
-var thisfilename = path.basename(__dirname);
+var thisfilename = path.basename(__dirname); //gets this files name
 
-var basecommands = ['shutdown','restart','refresh'];
-var direction = ['start', 'stop'];
+var basecommands = ['shutdown','restart','refresh']; //commands to ignore as "commands"
+var direction = ['start', 'stop']; 
 var msgid = 0; //just defult id for messages, gets +1 automatically
 var repeated = 0;
 
@@ -294,7 +294,8 @@ function msgidentify(msg){ //
                     return error;
                 }
             }
-            if(found.status == 'disabled'){
+            if(found.status == 'disabled'){ //make log to 'temps.json', if tried multiple times 2 minutes, disable log
+                
                 console.log('Sorry, command "'+command+'" is disabled')
                 return "Sorry command is disabled"
             } else {
@@ -346,33 +347,33 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                 if (Element.name != 'Deployment server'){
                     var keyCount  = servcount
                     console.log(keyCount)
-                        for(let i = 1; i < keyCount; i++){
-                            if(servcount[i] == 0){
-                                //console.log("first if")
-                                return servcount[i]
-                            }
-                            else{
-                                pm2stop("all")
-
-                                //just empty, nothing needs to happen
-                                //console.log("else")
-                                //console.log(Element.pm2_env.pm_exec_path)
-                                let envpath = Element.pm2_env.pm_exec_path
-                                //let finstring = envpath + ".js";
-                                var cutexcess = Element.pm2_env.pm_exec_path.split("/")
-                                //console.log(cutexcess)
-                                var cutexcesslen = cutexcess.length
-                                //console.log(cutexcesslen)
-                                //console.log(cutexcess[6]) // need last -1
-                                let servname = cutexcess[6] + ".js" //need to take last
-                                //console.log("servname"+servname)
-                                msgidentify("stop="+cutexcess[8])
-                                let stopfile = cutexcess[8]
-                                //pm2stop(stopfile)
-                                pm2.stop(stopfile)
-                                return;
-                            }
+                    for(let i = 1; i < keyCount; i++){
+                        if(servcount[i] == 0){
+                            //console.log("first if")
+                            return servcount[i]
                         }
+                        else{
+                            pm2stop("all")
+
+                            //just empty, nothing needs to happen
+                            //console.log("else")
+                            //console.log(Element.pm2_env.pm_exec_path)
+                            let envpath = Element.pm2_env.pm_exec_path
+                            //let finstring = envpath + ".js";
+                            var cutexcess = Element.pm2_env.pm_exec_path.split("/")
+                            //console.log(cutexcess)
+                            var cutexcesslen = cutexcess.length
+                            //console.log(cutexcesslen)
+                            //console.log(cutexcess[6]) // need last -1
+                            let servname = cutexcess[6] + ".js" //need to take last
+                            //console.log("servname"+servname)
+                            msgidentify("stop="+cutexcess[8])
+                            let stopfile = cutexcess[8]
+                            //pm2stop(stopfile)
+                            pm2.stop(stopfile)
+                            return;
+                        }
+                    }
 
                     //console.log("stop:"+ Element.name)
                     //pm2.stop(Element.name);
