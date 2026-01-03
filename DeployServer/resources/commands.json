@@ -17,11 +17,11 @@
   },
   {
     "command": "check",
-    "status": "disabled"
+    "status": "enabled"
   },
   {
     "command": "depots",
-    "status": "disabled"
+    "status": "enabled"
   },
   {
     "command": "commands",

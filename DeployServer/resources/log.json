@@ -2,7 +2,7 @@
   "BluBot": [
     {
       "name": "BluBot",
-      "startfile": "server.js"
+      "startfile": "blubot.js"
     }
   ],
   "Jorma": [
