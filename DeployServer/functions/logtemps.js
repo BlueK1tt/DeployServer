@@ -9,7 +9,7 @@ module.exports = {
 
 function logtemps(){
     let { message } = require("../server");
-    console.log(message)
+    //console.log(message)
     str = JSON.stringify(message) //{"msg":"testcommand"}
     
     if(str == null){
@@ -18,7 +18,7 @@ function logtemps(){
     } 
     if(str != null){
 
-        console.log("logtemps")
+        //console.log("logtemps")
         //need to 'clean up' message, to only get command)
         console.log(str)
         if(str.includes("'")){

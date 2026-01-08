@@ -135,138 +135,171 @@ function getfuntion(folder,filename){
 }
 
 function msgidentify(msg){ 
-    console.log(msg)
     msgid ++;
     console.log("id:" + msgid);
 
 
-    if(msg == ""|| msg == null){
+    if(msg == ""){
         return "no specified command";
-    } else {
-        let passstatus = getfuntion("functions","logtemps") //not working on this node version
-         console.log(passstatus)
-        if(basecommands.includes(msg)){
-            //console.log("base command");
-            return msg;
-        }
-        if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
-            //console.log("start or stop");
-            const data = require('./commands/depots')
-            var sentData = valuesToArray(data); 
-            depotlist = sentData[0];
-    
-            //need to take msg and slice it before =
-            if(msg.startsWith("start")){
-                filename = msg.slice(6);
+    } 
+    let passstatus = getfuntion("functions","logtemps") //not working on this node version
+    console.log(passstatus)
+    if(basecommands.includes(msg)){
+        //console.log("base command");
+        return msg;
+    }
+    if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
+        //console.log("start or stop");
+        const data = require('./commands/depots')
+        var sentData = valuesToArray(data); 
+        depotlist = sentData[0];
+
+        //need to take msg and slice it before =
+        if(msg.startsWith("start")){
+            filename = msg.slice(6);
+            if (!depotlist.includes(filename)){
+                return "Requested file not in log"
+            } else {
+                const depotdata = require('./functions/depotdata')
+                var sentData = valuesToArray(depotdata); 
+                asmessage = sentData[0];
+                //console.log(asmessage)
+                delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
+                startfile = filename + ".js";
+                pm2start(filename,startfile);
+                return "start " + startfile;
+            }
+        };
+        if(msg.startsWith("stop")){
+            filename = msg.slice(5);
+            if(filename == "all"){
+                console.log("all")
+                pm2stop("all");
+                return "stop all"
+            } else {
                 if (!depotlist.includes(filename)){
-                    return "Requested file not in log"
-                } else {
+                    return "msgidentify stop error"
+                } 
+                else {
                     const depotdata = require('./functions/depotdata')
                     var sentData = valuesToArray(depotdata); 
                     asmessage = sentData[0];
-                    //console.log(asmessage)
                     delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
-                    startfile = filename + ".js";
-                    pm2start(filename,startfile);
-                    return "start " + startfile;
-                }
-            };
-            if(msg.startsWith("stop")){
-                filename = msg.slice(5);
-                if(filename == "all"){
-                    console.log("all")
-                    pm2stop("all");
-                    return "stop all"
-                } else {
-                    if (!depotlist.includes(filename)){
-                        return "msgidentify stop error"
-                    } 
-                    else {
-                        const depotdata = require('./functions/depotdata')
-                        var sentData = valuesToArray(depotdata); 
-                        asmessage = sentData[0];
-                        delete require.cache[require.resolve(`./functions/depotdata`)] //clears the cache allowing for new data to be read
-                        stopfile = filename + ".js";
-                        //functon to send message to the server about to be stopped
-                        //possibly await function to wait for response back, for graceful stop
-                        pm2stop(filename);
-                        return "stop " + stopfile;
-                    }
+                    stopfile = filename + ".js";
+                    //functon to send message to the server about to be stopped
+                    //possibly await function to wait for response back, for graceful stop
+                    pm2stop(filename);
+                    return "stop " + stopfile;
                 }
             }
-            else{
-                return "error with statement";
-            }
-            return " "; // this is here just in case if forget
         }
-        if(msg.startsWith("install") || msg.startsWith("uninstall")){
-    
-            if(msg.startsWith("install")){
-                const data = require('./functions/install')
-                var sentData = valuesToArray(data); 
-                asmessage = sentData[0];
-                delete require.cache[require.resolve(`./functions/install`)] //clears the cache allowing for new data to be read
-    
-                return asmessage;
-            }
-            if(msg.startsWith("uninstall")){
-                const data = require('./functions/uninstall')
-                var sentData = valuesToArray(data); 
-                asmessage = sentData[0];
-                delete require.cache[require.resolve(`./functions/uninstall`)] //clears the cache allowing for new data to be read
-    
-                return asmessage;
-            }
-            else {
-                console.log("msgidentify error");
-                return "install error"
-            }
+        else{
+            return "error with statement";
         }
-        if (msg == "update"){
-            console.log("update");
-            basemessage = "update";
-    
-            command = getfile(msg)
-            const data = require(`./commands/update`);
+        return " "; // this is here just in case if forget
+    }
+    if(msg.startsWith("install") || msg.startsWith("uninstall")){
+
+        if(msg.startsWith("install")){
+            const data = require('./functions/install')
             var sentData = valuesToArray(data); 
             asmessage = sentData[0];
-            delete require.cache[require.resolve(`./commands/update`)] //clears the cache allowing for new data to be read
+            delete require.cache[require.resolve(`./functions/install`)] //clears the cache allowing for new data to be read
+
+            return asmessage;
+        }
+        if(msg.startsWith("uninstall")){
+            const data = require('./functions/uninstall')
+            var sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+            delete require.cache[require.resolve(`./functions/uninstall`)] //clears the cache allowing for new data to be read
+
+            return asmessage;
+        }
+        else {
+            console.log("msgidentify error");
+            return "install error"
+        }
+    }
+    if (msg == "update"){
+        console.log("update");
+        basemessage = "update";
+
+        command = getfile(msg)
+        const data = require(`./commands/update`);
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve(`./commands/update`)] //clears the cache allowing for new data to be read
+        
+        try {
+            return asmessage;
+        } catch (error) {
+            return error;
+        }
+    }
+    if(msg.includes('disablecommand')){
+        const data = require('./commands/disablecommand')
+        var sentData = valuesToArray(data); 
+        asmessage = sentData[0];
+        delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
+        return "disablecommand";
+    }if(msg == "testcommand"){
+        console.log("testcommand")
+        //console.log("testcommand")
+        //let filedata = getfuntion("functions","logtemps.js")
+        //console.log(filedata)
+        sendtomaster("all","this is test message")
+        return;
+    }
+    else{
+        //console.log("custom");
+        //need to slice message
+        command = getfile(msg);
+        if(command == " "){
+            return "command error"
+        } if(msg.includes("=")){
             
+            let data = require(`./commands/`+ `${command}`);
+            let sentData = valuesToArray(data); 
+            asmessage = sentData[0];
+
+            //need to seperate "fancy commands" from regular commands
+                //so "update" and "update=BluBot"
+
+            //need to flush the custom command
+            delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
+            //console.log("cache cleared");
             try {
                 return asmessage;
             } catch (error) {
+                console.log(error)
                 return error;
             }
-        }
-        if(msg.includes('disablecommand')){
-            const data = require('./commands/disablecommand')
-            var sentData = valuesToArray(data); 
-            asmessage = sentData[0];
-            delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
-            return "disablecommand";
-        }if(msg == "testcommand"){
-            console.log("testcommand")
-            //console.log("testcommand")
-            //let filedata = getfuntion("functions","logtemps.js")
-            //console.log(filedata)
-            sendtomaster("all","this is test message")
-            return;
-        }
-        else{
-            //console.log("custom");
-            //need to slice message
-            command = getfile(msg);
-            if(command == " "){
-                return "command error"
-            } if(msg.includes("=")){
-                
+        } 
+        else {
+            //here need to check disabledcommands JSON first.
+            //commands status are read on server start
+            //let commandsjson = require(`./resources/commands.json`); //need to convert into fs.readfile
+
+            let commandsliststr = fs.readFileSync('./resources/commands.json')
+            fs.close;
+            let findcommand = msg
+            let commandsjson = JSON.parse(commandsliststr)
+            //commandsliststr = JSON.stringify(commandsjson)
+
+            let found = commandsjson.find(({ command }) => command == findcommand)
+            if(found == null){
+                return "command not in list";
+            };
+            if(found.status == 'enabled'){               
+                //console.log("custom cmd:" + command)
                 let data = require(`./commands/`+ `${command}`);
                 let sentData = valuesToArray(data); 
                 asmessage = sentData[0];
     
                 //need to seperate "fancy commands" from regular commands
                     //so "update" and "update=BluBot"
-    
+
                 //need to flush the custom command
                 delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
                 //console.log("cache cleared");
@@ -276,53 +309,17 @@ function msgidentify(msg){
                     console.log(error)
                     return error;
                 }
-            } 
-            else {
-                //here need to check disabledcommands JSON first.
-                //commands status are read on server start
-                //let commandsjson = require(`./resources/commands.json`); //need to convert into fs.readfile
-    
-                let commandsliststr = fs.readFileSync('./resources/commands.json')
-                fs.close;
-                let findcommand = msg
-                let commandsjson = JSON.parse(commandsliststr)
-                //commandsliststr = JSON.stringify(commandsjson)
-    
-                let found = commandsjson.find(({ command }) => command == findcommand)
-                if(found == null){
-                    return "command not in list";
-                };
-                if(found.status == 'enabled'){               
-                    //console.log("custom cmd:" + command)
-                    let data = require(`./commands/`+ `${command}`);
-                    let sentData = valuesToArray(data); 
-                    asmessage = sentData[0];
-        
-                    //need to seperate "fancy commands" from regular commands
-                        //so "update" and "update=BluBot"
-    
-                    //need to flush the custom command
-                    delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
-                    //console.log("cache cleared");
-                    try {
-                        return asmessage;
-                    } catch (error) {
-                        console.log(error)
-                        return error;
-                    }
-                }
-                if(found.status == 'disabled'){ //make log to 'temps.json', if tried multiple times 2 minutes, disable log
-                    
-                    console.log('Sorry, command "'+command+'" is disabled')
-                    return "Sorry command is disabled"
-                } else {
-                    return "error with command verification"
-                }
-                return;
-            };
-            return
+            }
+            if(found.status == 'disabled'){ //make log to 'temps.json', if tried multiple times 2 minutes, disable log
+                
+                console.log('Sorry, command "'+command+'" is disabled')
+                return "Sorry command is disabled"
+            } else {
+                return "error with command verification"
+            }
+            return;
         };
-        return;
+        return
     };
     return;
 };
@@ -432,7 +429,6 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
 function thirtyTimer(){
     setInterval(MyTimer, 30000); //60 second timer call function below
     function MyTimer(){
-        //console.log("timer");
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         exports.message = "check"; //export msg as variable to use in modules
 
