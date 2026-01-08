@@ -423,7 +423,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
-    setInterval(MyTimer, 60000); //60 second timer call function below
+    setInterval(MyTimer, 10000); //60 second timer call function below
     function MyTimer(){
         //console.log("timer");
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
