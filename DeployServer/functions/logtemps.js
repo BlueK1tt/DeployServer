@@ -1,20 +1,24 @@
 const fs = require('fs');
 //way to set message default to " " or null?
-let { message } = require("../server");
+
+
 
 module.exports = {
     data : logtemps()
 };
 
 function logtemps(){
-    if(message == "" || message == null){
+    let { message } = require("../server");
+    str = JSON.stringify(message) //{"msg":"testcommand"}
+    
+    if(str == null){
         console.log("no message to log")
-        return;
-    } else {
-        let str = JSON.stringify(message) //{"msg":"testcommand"}
+        return false;
+    } 
+    if(str != null){
+
         console.log("logtemps")
-        //need to 'clean up' message, to only get command
-        console.log(message)
+        //need to 'clean up' message, to only get command)
         console.log(str)
         if(str.includes("'")){
             var newstr = str.split(':"').pop().split('"')[0]; // if message has '
@@ -46,5 +50,8 @@ function logtemps(){
     
         passstatus = true
         return passstatus;
+    }else {
+        console.log("else error")
+        return;
     }
 }

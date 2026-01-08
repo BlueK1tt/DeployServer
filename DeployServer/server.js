@@ -137,8 +137,8 @@ function getfuntion(folder,filename){
 function msgidentify(msg){ 
     msgid ++;
     console.log("id:" + msgid);
-    let passstatus = getfuntion("functions","logtemps")
-    console.log(passstatus)
+    //let passstatus = getfuntion("functions","logtemps") //not working on this node version
+    //console.log(passstatus)
 
     if(msg == ""){
         return "no specified command";
@@ -316,8 +316,11 @@ function msgidentify(msg){
             } else {
                 return "error with command verification"
             }
+            return;
         };
+        return
     };
+    return;
 };
 
 function pm2connect(){ //need to call this every first time starting pm2 daemon
