@@ -9,6 +9,7 @@ module.exports = {
 
 function logtemps(){
     let { message } = require("../server");
+    console.log(message)
     str = JSON.stringify(message) //{"msg":"testcommand"}
     
     if(str == null){
