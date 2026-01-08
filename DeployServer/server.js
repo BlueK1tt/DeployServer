@@ -427,7 +427,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
-    setInterval(MyTimer, 30000); //60 second timer call function below
+    setInterval(MyTimer, 60000); //60 second timer call function below
     function MyTimer(){
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         exports.message = "check"; //export msg as variable to use in modules

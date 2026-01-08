@@ -20,7 +20,7 @@ function logtemps(){
 
         //console.log("logtemps")
         //need to 'clean up' message, to only get command)
-        console.log(str)
+        //console.log(str)
         if(str.includes("'")){
             var newstr = str.split(':"').pop().split('"')[0]; // if message has '
         }
