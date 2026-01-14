@@ -139,14 +139,16 @@ function msgidentify(msg){
     msgid ++;
     console.log("id:" + msgid);
 
-
-    if(msg == ""){
-        return "no specified command";
-    } 
     let passstatus = getfuntion("functions","logtemps") //not working on this node version
     console.log(passstatus)
+
+    console.log("msgidentify")
+    if(msg == ""){
+        console.log("no specified command")
+        return "no specified command";
+    } 
     if(basecommands.includes(msg)){
-        //console.log("base command");
+        console.log("base command");
         return msg;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
@@ -195,6 +197,7 @@ function msgidentify(msg){
             }
         }
         else{
+            console.log("msgidentify else")
             return "error with statement";
         }
         return " "; // this is here just in case if forget
@@ -253,10 +256,11 @@ function msgidentify(msg){
         return;
     }
     else{
-        //console.log("custom");
+        console.log("custom");
         //need to slice message
         command = getfile(msg);
         if(command == " "){
+            console.log("custom command error")
             return "command error"
         } if(msg.includes("=")){
             
@@ -278,22 +282,24 @@ function msgidentify(msg){
             }
         } 
         else {
+            console.log("custom command else")
             //here need to check disabledcommands JSON first.
             //commands status are read on server start
             //let commandsjson = require(`./resources/commands.json`); //need to convert into fs.readfile
 
             let commandsliststr = fs.readFileSync('./resources/commands.json')
-            fs.close;
             let findcommand = msg
             let commandsjson = JSON.parse(commandsliststr)
+            fs.close;
             //commandsliststr = JSON.stringify(commandsjson)
 
             let found = commandsjson.find(({ command }) => command == findcommand)
             if(found == null){
+                console.log("foundcommand is null")
                 return "command not in list";
             };
             if(found.status == 'enabled'){               
-                //console.log("custom cmd:" + command)
+                console.log("custom cmd:" + command)
                 let data = require(`./commands/`+ `${command}`);
                 let sentData = valuesToArray(data); 
                 asmessage = sentData[0];
@@ -305,6 +311,7 @@ function msgidentify(msg){
                 delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
                 //console.log("cache cleared");
                 try {
+                    console.log("custom commandd asmessage")
                     return asmessage;
                 } catch (error) {
                     console.log(error)
@@ -428,8 +435,9 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
-    setInterval(MyTimer, 60000); //60 second timer call function below
+    setInterval(MyTimer, 30000); //60 second timer call function below
     function MyTimer(){
+        console.log("myTimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         exports.message = "check"; //export msg as variable to use in modules
 
@@ -439,7 +447,7 @@ function thirtyTimer(){
             return;
         }
         else{
-            //console.log("all is good")
+            console.log("all is good")
             return;
         }
     }
@@ -723,10 +731,10 @@ function testsend(data){
 };
 
 const requestListener = function(request, response){
-    
+    message = "";
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
-    message = request.url;
+    var message = request.url;
 
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
