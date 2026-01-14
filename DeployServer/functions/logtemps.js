@@ -8,6 +8,7 @@ module.exports = {
 };
 
 function logtemps(){
+    let newstr;
     let { message } = require("../server");
     //console.log(message)
     str = JSON.stringify(message) //{"msg":"testcommand"}
@@ -17,20 +18,23 @@ function logtemps(){
         return false;
     } 
     if(str != null){
-
+        console.log("new log entry")
         //console.log("logtemps")
         //need to 'clean up' message, to only get command)
         //console.log(str)
         if(str.includes("'")){
-            var newstr = str.split(':"').pop().split('"')[0]; // if message has '
+            newstr = str.split(':"').pop().split('"')[0]; // if message has '
+            console.log(newstr)
         }
         if(str.includes('"')){
-            var newstr = str.split(':"').pop().split('"')[0]; //if message has "
+            newstr = str.split(':"').pop().split('"')[0]; //if message has "
+            console.log(newstr)
         } else {
             console.log("str include error")
         }
+        console.log("new entry:")
         console.log(newstr)
-    
+        
         
         //to add commands used to 'temps.json' always add to the end with when used(server uptime)
         let tempdata = fs.readFileSync('./resources/temps.json', { encoding: 'utf8'});
