@@ -16,6 +16,7 @@ var basecommands = ['shutdown','restart','refresh']; //commands to ignore as "co
 var direction = ['start', 'stop']; 
 var msgid = 0; //just defult id for messages, gets +1 automatically
 var repeated = 0;
+var msg = " ";
 
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
@@ -723,6 +724,7 @@ function testsend(data){
 };
 
 const requestListener = function(request, response){
+    
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     message = request.url;

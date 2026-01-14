@@ -1,6 +1,6 @@
 const fs = require('fs');
 //way to set message default to " " or null?
-
+msg = "";
 
 
 module.exports = {
@@ -8,8 +8,10 @@ module.exports = {
 };
 
 function logtemps(){
-    let { message } = require("../server");
+ 
+    var { message } = require("../server");
     //console.log(message)
+    let str = 
     str = JSON.stringify(message) //{"msg":"testcommand"}
     
     if(str == null){
@@ -33,7 +35,7 @@ function logtemps(){
     
         
         //to add commands used to 'temps.json' always add to the end with when used(server uptime)
-        let tempdata = fs.readFileSync('./resources/temps.json', { encoding: 'utf8'});
+        //let tempdata = fs.readFileSync('./resources/temps.json', { encoding: 'utf8'});
         //console.log("this is data:"+tempdata)
     
     
