@@ -684,7 +684,6 @@ function pm2packetprocess(packet){
             return true
         }
     }
-    
 }
 
 function sendtomaster(destination, data){
