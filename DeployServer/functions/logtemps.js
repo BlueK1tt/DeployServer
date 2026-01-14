@@ -61,5 +61,5 @@ function logtemps(){
             console.log("else error")
             return;
         }
-    }
+    
 }
