@@ -744,10 +744,12 @@ const requestListener = function(request, response){
     exports.repeated = { repeated };
 
     needcommand = msgidentify(msg) //command type
-    //console.log(needcommand);
+    console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
     
+    console.log("start of if listener")
     if (msg == "refresh") {
+        console.log("refresh")
         //refresh filesystem
         commandscollection();
         getfile(msg);
@@ -783,6 +785,7 @@ const requestListener = function(request, response){
     }
 
     else { //if nothing matches
+        console.log("listener else")
         response.statuscode = 204;
         //204 no content available
         response.end();
