@@ -14,6 +14,10 @@ function logtemps(){
     msg = " ";
     str = JSON.stringify(message) //{"msg":"testcommand"}
     
+    //crashes after 1 use
+    delete require.cache[require.resolve('../server.js')] //clears the cache allowing for new data to be read
+
+    
     if(str == null){
         console.log("no message to log")
         return false;

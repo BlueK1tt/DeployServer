@@ -1,6 +1,6 @@
 {
     "hostname":"127.0.0.1",
-    "netport":"3001",
+    "netport":"3000",
     "gitname":"BlueK1tt",
     "mainfile": "server.js",
     "mainfiles":"index.js,server.js,main.js,test.txt"

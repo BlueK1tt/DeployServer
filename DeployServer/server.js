@@ -756,7 +756,7 @@ const requestListener = function(request, response){
     console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
     
-    console.log("start of if listener")
+    //console.log("start of if listener")
     if (msg == "refresh") {
         console.log("refresh")
         //refresh filesystem
@@ -794,7 +794,7 @@ const requestListener = function(request, response){
     }
 
     else { //if nothing matches
-        console.log("listener else")
+        //console.log("listener else")
         response.statuscode = 204;
         //204 no content available
         response.end();
