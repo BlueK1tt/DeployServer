@@ -14,7 +14,7 @@ module.exports = {
 };
 
 function check(){
-    console.log("check")
+    //console.log("check")
     checkInternet(function(isConnected) {
         checkInternet();
         console.log("checkinternet after")
@@ -41,7 +41,7 @@ function check(){
 }
 
 function checkInternet(cb) {
-    console.log("checkinternet")
+    //console.log("checkinternet")
     require('dns').lookup('google.com',function(err) {
         if (err && err.code == "ENOTFOUND") {
             //cb(false);

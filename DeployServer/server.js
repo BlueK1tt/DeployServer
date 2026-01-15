@@ -17,6 +17,7 @@ var direction = ['start', 'stop'];
 var msgid = 0; //just defult id for messages, gets +1 automatically
 var repeated = 0;
 var msg = " ";
+var message = " ";
 
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
@@ -142,7 +143,7 @@ function msgidentify(msg){
     let passstatus = getfuntion("functions","logtemps") //not working on this node version
     console.log(passstatus)
 
-    console.log("msgidentify")
+    //console.log("msgidentify")
     if(msg == ""){
         console.log("no specified command")
         return "no specified command";
@@ -256,9 +257,10 @@ function msgidentify(msg){
         return;
     }
     else{
-        console.log("custom");
+        //console.log("custom");
         //need to slice message
         command = getfile(msg);
+        message = msg
         if(command == " "){
             console.log("custom command error")
             return "command error"
@@ -282,7 +284,8 @@ function msgidentify(msg){
             }
         } 
         else {
-            console.log("custom command else")
+            //console.log("custom command else")
+
             //here need to check disabledcommands JSON first.
             //commands status are read on server start
             //let commandsjson = require(`./resources/commands.json`); //need to convert into fs.readfile
@@ -299,7 +302,7 @@ function msgidentify(msg){
                 return "command not in list";
             };
             if(found.status == 'enabled'){               
-                console.log("custom cmd:" + command)
+                //console.log("custom cmd:" + command)
                 let data = require(`./commands/`+ `${command}`);
                 let sentData = valuesToArray(data); 
                 asmessage = sentData[0];
@@ -311,7 +314,7 @@ function msgidentify(msg){
                 delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
                 //console.log("cache cleared");
                 try {
-                    console.log("custom commandd asmessage")
+                    //console.log("custom commandd asmessage")
                     return asmessage;
                 } catch (error) {
                     console.log(error)
@@ -435,11 +438,16 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
+    message = "check"
+    const messagetosend = "check"
+    exports.message = { messagetosend }; 
     setInterval(MyTimer, 30000); //60 second timer call function below
     function MyTimer(){
+        message = "check";
         console.log("myTimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
-        exports.message = "check"; //export msg as variable to use in modules
+        const messagetosend = "check"
+        exports.message = { messagetosend }; //export msg as variable to use in modules
 
         if(connected == "not connected"){
             console.log("Internet disconnected");
@@ -447,7 +455,7 @@ function thirtyTimer(){
             return;
         }
         else{
-            console.log("all is good")
+            //console.log("all is good")
             return;
         }
     }
@@ -731,15 +739,16 @@ function testsend(data){
 };
 
 const requestListener = function(request, response){
-    message = "";
+    message = " ";
     response.statusCode = 200;
     response.setHeader('Content-type', 'text/plain');
     var message = request.url;
 
     msg = message.slice(1); //cutting the first / out of message
     console.log("> " + msg);
-    
-    exports.message = { msg }; //export msg as variable to use in modules
+    var msgtosend = msg != null ? (msg): "empty";
+
+    exports.message = {msgtosend}; //export msg as variable to use in modules
     exports.timenow = { timenow };
     exports.repeated = { repeated };
 
@@ -790,11 +799,12 @@ const requestListener = function(request, response){
         //204 no content available
         response.end();
         delete(request);
-        msg = "";
+        msg = " ";
         return;
     }
     delete(request); //empties the "incoming" request
-    msg = ""; //sets msg to basically empty
+    msg = " "; //sets msg to basically empty
+    message = " ";
     return;
 };
 

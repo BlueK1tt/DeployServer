@@ -1,17 +1,17 @@
 const fs = require('fs');
 //way to set message default to " " or null?
 
-var { message } = require("../server");
-
-
 module.exports = {
     data : logtemps()
 };
 
 function logtemps(){
-    let newstr;
-    let { message } = require("../server");
-    //console.log(message)
+    var str = null;
+    message = null;
+    var { message } = require('../server.js')
+    console.log("message:")
+    console.log(message)
+    msg = " ";
     str = JSON.stringify(message) //{"msg":"testcommand"}
     
     if(str == null){
@@ -56,6 +56,7 @@ function logtemps(){
     
     
         passstatus = true
+        message = null;
         return passstatus;
     }else {
         console.log("else error")
