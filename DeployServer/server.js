@@ -139,10 +139,7 @@ function getfuntion(folder,filename){
 function msgidentify(msg){ 
     msgid ++;
     console.log("id:" + msgid);
-
-    let passstatus = getfuntion("functions","logtemps") //not working on this node version
-    console.log(passstatus)
-
+    makelogentry(msg);
     //console.log("msgidentify")
     if(msg == ""){
         console.log("no specified command")
@@ -438,16 +435,13 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
-    message = "check"
-    const messagetosend = "check"
-    exports.message = { messagetosend }; 
-    setInterval(MyTimer, 30000); //60 second timer call function below
+    setInterval(MyTimer, 15000); //60 second timer call function below
     function MyTimer(){
-        message = "check";
         console.log("myTimer")
+        //makelogentry("thirtytimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
-        const messagetosend = "check"
-        exports.message = { messagetosend }; //export msg as variable to use in modules
+        //const messagetosend = "check"
+        //exports.message = { messagetosend }; //export msg as variable to use in modules
 
         if(connected == "not connected"){
             console.log("Internet disconnected");
@@ -738,6 +732,30 @@ function testsend(data){
     return exampledata
 };
 
+function makelogentry(data){
+    console.log("makelogentry")
+    console.log(data)
+
+    const currenttime = require('./commands/uptime')
+    let sentData = valuesToArray(currenttime); 
+    let servertime = sentData[0];
+    delete require.cache[require.resolve(`./commands/uptime`)] //clears the cache allowing for new data to be read
+    //console.log(servertime)
+
+
+    let datatolog = data + ":" + servertime 
+    exports.logdata = { datatolog }
+
+
+    let logtemps = require('./functions/logtemps')
+    let gotdata = valuesToArray(logtemps); 
+    let functiondata = gotdata[0];
+    delete require.cache[require.resolve(`./functions/logtemps`)] //clears the cache allowing for new data to be read
+    console.log(functiondata)
+
+    return;
+}
+
 const requestListener = function(request, response){
     message = " ";
     response.statusCode = 200;
@@ -749,7 +767,6 @@ const requestListener = function(request, response){
     var msgtosend = msg != null ? (msg): "empty";
 
     exports.message = {msgtosend}; //export msg as variable to use in modules
-    exports.timenow = { timenow };
     exports.repeated = { repeated };
 
     needcommand = msgidentify(msg) //command type
@@ -815,4 +832,6 @@ server.listen(port, hostname, () => {
     compareLog();
     pm2bussi();
     thirtyTimer();
+    exports.timenow = { timenow };
+
 });

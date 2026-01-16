@@ -1,6 +1,6 @@
 [
-    {
-        "time":"now",
-        "command":"check"
-    }
+{
+  "message": "restart",
+  "time": "22 seconds"
+}
 ]

@@ -14,7 +14,7 @@ function uptime() {
     let cutobject = oldtimestr.slice(11,-1)
     let oldobj = JSON.parse(cutobject)
     let cleannewtime = currenttimestr.slice(1,-6)
-    console.log(cleannewtime)
+    //console.log(cleannewtime)
 
     let oldsplit = oldobj.split("T") //0 = date, 1 = time
     var newsplit = cleannewtime.split("T")
@@ -46,6 +46,6 @@ function timeobjects(oldcleantime, newsplit){
     let returnmins = diffmin > 0 ? diffmin + (diffmin == 1 ? " minute, " : " minutes, ") : "";
     let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : "";
     let returncombined = "Server has been online for,"+returnhours+returnmins+returnsecs
-    console.log(returnhours+returnmins+returnsecs)
+    //console.log(returnhours+returnmins+returnsecs)
     return returncombined
 }

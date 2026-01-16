@@ -1,70 +1,71 @@
 const fs = require('fs');
 //way to set message default to " " or null?
+let { logdata} = require("../server");
+const { time } = require('console');
+
 
 module.exports = {
     data : logtemps()
 };
 
 function logtemps(){
-    var str = null;
-    message = null;
-    var { message } = require('../server.js')
-    console.log("message:")
-    console.log(message)
-    msg = " ";
-    str = JSON.stringify(message) //{"msg":"testcommand"}
-    
-    //crashes after 1 use
-    delete require.cache[require.resolve('../server.js')] //clears the cache allowing for new data to be read
+    console.log("logtemps")
+    //onsole.log(logdata)
+    let logdatastr = JSON.stringify(logdata)
+    let splitdata = logdatastr.split(":")
+    let cleanmessage = splitdata[1]; //check, uptime, hello etc...
+    let message = cleanmessage.slice(1);
+    let messagetime = splitdata[2]; //Server has been online for, 1 minute, 2 seconds...
 
+    let timesplit = messagetime.slice(27,-4)
+    //console.log(messagetime)
+    //console.log(timesplit)
+
+    let logentry = new Object
+    logentry["message"] = message
+    logentry["time"] = timesplit
+    console.log(logentry)
     
-    if(str == null){
-        console.log("no message to log")
-        return false;
-    } 
-    if(str != null){
-        console.log("new log entry")
-        //console.log("logtemps")
-        //need to 'clean up' message, to only get command)
-        //console.log(str)
-        if(str.includes("'")){
-            newstr = str.split(':"').pop().split('"')[0]; // if message has '
-            console.log(newstr)
-        }
-        if(str.includes('"')){
-            newstr = str.split(':"').pop().split('"')[0]; //if message has "
-            console.log(newstr)
-        } else {
-            console.log("str include error")
-        }
-        console.log("new entry:")
-        console.log(newstr)
-        
-        
-        
-        //to add commands used to 'temps.json' always add to the end with when used(server uptime)
-        //let tempdata = fs.readFileSync('./resources/temps.json', { encoding: 'utf8'});
-        //console.log("this is data:"+tempdata)
-    
-    
-        //every time used, get "refreshed" log file, with latest command
-    
-    
-        //get used commands as array or string, split 
-    
-    
-        //if last 3 same commands within under 5 minutes are same disabled command, disable the log for it
-        
-    
-        //put the check at start of 'msgidentify', so check before identifying
-    
-    
-        passstatus = true
-        message = null;
-        return passstatus;
-    }else {
-        console.log("else error")
-        return;
+    const logsdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
+    let logsfile = logsdata()
+    console.log(logsfile)
+    if(logsfile == ""){
+        emptyfile(message,timesplit)
+        return "yo"
     }
+    if(logsfile != ""){
+        appendlogs(message,timesplit)
+        return "yo"
+    } else {
+        console.log("logs error")
+        return "yo"
+    }
+}
 
+function emptyfile(message, timesplit){
+    console.log("empty file")
+    console.log(message,timesplit)
+
+    var logarray = [];
+    logarray = JSON.stringify({"message":message,"time":timesplit},null,2),null,2,"\n";
+    console.log(logarray)
+    
+    let firstentry = "["+"\n"+logarray+"\n"+"]";
+    fs.writeFile('./resources/temps.json', firstentry, "utf-8", function(error){
+        if(error){
+            console.log(error)
+        };
+        return true;
+    });
+    fs.close;
+    return "yo"
+}
+
+function appendlogs(message, timesplit){
+    console.log("appendlogs")
+    console.log(message,timesplit)
+
+
+
+    return "yo"
 }
