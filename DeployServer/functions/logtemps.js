@@ -65,7 +65,10 @@ function appendlogs(message, timesplit){
     console.log("appendlogs")
     console.log(message,timesplit)
 
-
-
+    const existingdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
+    let existinglogs = existingdata()
+    console.log(existinglogs)
+    
+    
     return "yo"
 }
