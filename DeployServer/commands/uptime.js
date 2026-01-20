@@ -21,6 +21,8 @@ function uptime() {
     var oldcleantime = oldsplit[1].slice(0,-5)
 
     let timeobj = timeobjects(oldcleantime, newsplit)
+    //console.log(oldcleantime)
+    //console.log(newsplit)
     return timeobj
 }
 
@@ -44,7 +46,10 @@ function timeobjects(oldcleantime, newsplit){
 
     let returnhours = diffhour > 0 ? diffhour + (diffhour == 1 ? " hour, " : " hours, ") : "";
     let returnmins = diffmin > 0 ? diffmin + (diffmin == 1 ? " minute, " : " minutes, ") : "";
+
     let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : "";
+
+    console.log(diffsec)
     let returncombined = "Server has been online for,"+returnhours+returnmins+returnsecs
     //console.log(returnhours+returnmins+returnsecs)
     return returncombined
