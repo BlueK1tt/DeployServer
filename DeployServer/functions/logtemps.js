@@ -31,14 +31,14 @@ function logtemps(){
     console.log(logsfile)
     if(logsfile == ""){
         emptyfile(message,timesplit)
-        return "yo"
+        return "yo1"
     }
     if(logsfile != ""){
         appendlogs(message,timesplit)
-        return "yo"
+        return "yo2"
     } else {
         console.log("logs error")
-        return "yo"
+        return "yo3"
     }
 }
 
@@ -58,7 +58,7 @@ function emptyfile(message, timesplit){
         return true;
     });
     fs.close;
-    return "yo"
+    return "yo4"
 }
 
 function appendlogs(message, timesplit){
@@ -70,5 +70,5 @@ function appendlogs(message, timesplit){
     console.log(existinglogs)
     
     
-    return "yo"
+    return "yo5"
 }
