@@ -71,6 +71,23 @@ function appendlogs(message, timesplit){
     const existingdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
     let existinglogs = existingdata()
     console.log(existinglogs)
+    let existinglogsclean = existinglogs.slice(1,-1);
+    let replacestring = existinglogsclean.replaceAll('},{','},\n{')
+    fs.close;
+
+    let alreadylogs = JSON.parse(existinglogs)
+    console.log(alreadylogs)
+
+    var newlog = [];
+    newlog = JSON.stringify({"message":message,"time":timesplit},2, null), 2, "\n";
+    let secondentry = "[\n"+replacestring+",\n"+newlog+'\n'+"]";
+    fs.writeFile('./resources/temps.json', secondentry,'utf-8', function(error){
+        if(error){
+            console.log(error);
+        };
+        return true;
+    });
+    fs.close;
     
     
     return "yo5"
