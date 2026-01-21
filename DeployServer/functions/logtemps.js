@@ -50,7 +50,7 @@ function emptyfile(message, timesplit){
     console.log(message,timesplit)
 
     var logarray = [];
-    logarray = JSON.stringify({"message":message,"time":timesplit},null,2),null,2,"\n";
+    logarray = JSON.stringify({"message":message,"time":timesplit},null,2),null,2;
     console.log(logarray)
     
     let firstentry = "["+"\n"+logarray+"\n"+"]";
@@ -72,15 +72,16 @@ function appendlogs(message, timesplit){
     let existinglogs = existingdata()
     console.log(existinglogs)
     let existinglogsclean = existinglogs.slice(1,-1);
-    let replacestring = existinglogsclean.replaceAll('},{','},\n{')
+    let replacestring = existinglogsclean.replaceAll('},{','}\n,{')
+    replacesthis = replacestring+","
     fs.close;
 
     let alreadylogs = JSON.parse(existinglogs)
     console.log(alreadylogs)
 
     var newlog = [];
-    newlog = JSON.stringify({"message":message,"time":timesplit},2, null), 2, "\n";
-    let secondentry = "[\n"+replacestring+",\n"+newlog+'\n'+"]";
+    newlog = JSON.stringify({"message":message,"time":timesplit},null, 2),null, 2;
+    let secondentry = "["+replacesthis+newlog+'\n'+"]";
     fs.writeFile('./resources/temps.json', secondentry,'utf-8', function(error){
         if(error){
             console.log(error);
