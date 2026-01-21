@@ -17,6 +17,7 @@ function logtemps(){
     let message = cleanmessage.slice(1);
     let messagetime = splitdata[2]; //Server has been online for, 1 minute, 2 seconds...
     
+    
     let nowtime = JSON.stringify(timenow)
     //console.log(nowtime)
     //let timesplit = messagetime.slice(27,-4)
