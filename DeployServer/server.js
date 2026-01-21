@@ -833,5 +833,5 @@ server.listen(port, hostname, () => {
     pm2bussi();
     thirtyTimer();
     exports.timenow = { timenow };
-
+    makelogentry("Startup")
 });
