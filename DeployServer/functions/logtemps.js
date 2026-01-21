@@ -1,6 +1,6 @@
 const fs = require('fs');
 //way to set message default to " " or null?
-const { time } = require('console');
+const { timenow } = require('../server');
 
 
 module.exports = {
@@ -17,10 +17,15 @@ function logtemps(){
     let message = cleanmessage.slice(1);
     let messagetime = splitdata[2]; //Server has been online for, 1 minute, 2 seconds...
     
-    let timesplit = messagetime.slice(27,-4)
+    let nowtime = JSON.stringify(timenow)
+    //console.log(nowtime)
+    //let timesplit = messagetime.slice(27,-4)
+    let timesplit = message == "Startup" ? nowtime : messagetime.slice(27,-4);
+
     //delete require.cache[require.resolve("../server")] //clears the cache allowing for new data to be read
     //console.log(messagetime)
     //console.log(timesplit)
+
 
     let logentry = new Object
     logentry["message"] = message
@@ -66,18 +71,18 @@ function emptyfile(message, timesplit){
 
 function appendlogs(message, timesplit){
     console.log("appendlogs")
-    console.log(message,timesplit)
+    //console.log(message,timesplit)
 
     const existingdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
     let existinglogs = existingdata()
-    console.log(existinglogs)
+    //console.log(existinglogs)
     let existinglogsclean = existinglogs.slice(1,-1);
     let replacestring = existinglogsclean.replaceAll('},{','}\n,{')
     replacesthis = replacestring+","
     fs.close;
 
     let alreadylogs = JSON.parse(existinglogs)
-    console.log(alreadylogs)
+    //console.log(alreadylogs)
 
     var newlog = [];
     newlog = JSON.stringify({"message":message,"time":timesplit},null, 2),null, 2;
