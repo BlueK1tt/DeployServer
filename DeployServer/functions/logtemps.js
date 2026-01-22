@@ -33,28 +33,52 @@ function logtemps(){
     logentry["time"] = timesplit
     console.log(logentry)
     
-    const logsdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
-    let logsfile = logsdata()
-    delete require.cache[require.resolve("../resources/temps.json")] //clears the cache allowing for new data to be read
-
-    //console.log(logsfile)
-
-    //add if file doesnt exist, then do emptyfile()
-    //newlogfile , true: create new log file every restart with time as filename
-    //newlogfile: false, wipe the existing log file
-
-    //read config.json 
-    if(logsfile == ""){
-        emptyfile(message,timesplit)
-        return "yo1"
+    var logfilename = "temps.json"
+    var filexeist = filexist(logfilename)
+    if(filexeist == false){
+        //create file and call emptyfile
+        console.log("Creating new log file...")
+        fs.writeFile(logfilename,"", 'utf8', (err) => {
+        if (err) {
+            console.error('Error writing file:', err);
+            return;
+        }
+        console.log('File written successfully!');
+        });
+        emptyfile(message, timesplit)
+        return;
     }
-    if(logsfile != ""){
-        appendlogs(message,timesplit)
-        return "yo2"
+    if(filexeist == true){
+        //continue log writing
+        console.log("Writing new log entry...")
+        //add if file doesnt exist, then do emptyfile()
+        //newlogfile , true: create new log file every restart with time as filename
+        //newlogfile: false, wipe the existing log file
+        const logsdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
+        let logsfile = logsdata()
+        delete require.cache[require.resolve("../resources/temps.json")] //clears the cache allowing for new data to be read
+    
+        //console.log(logsfile)
+    
+    
+        //read config.json 
+        if(logsfile == ""){
+            emptyfile(message,timesplit)
+            return "yo1"
+        }
+        if(logsfile != ""){
+            appendlogs(message,timesplit)
+            return "yo2"
+        } else {
+            console.log("logs error")
+            return "yo3"
+        }
+        
     } else {
-        console.log("logs error")
-        return "yo3"
+        console.log("Error in filexesist")
+        return
     }
+
 }
 
 function emptyfile(message, timesplit){
@@ -104,4 +128,20 @@ function appendlogs(message, timesplit){
     
     
     return "yo5"
+}
+
+function filexist(filename){
+    let files = fs.readdirSync('./resources/')
+    //filename = "temps.json"
+    if(files.includes(filename)){
+        console.log("File exists")
+        return true
+    } 
+    if(!files.includes(filename)){
+        console.log("File does not exist")
+        return false
+    } else {
+        console.log("error in file check")
+        return "error"
+    }
 }
