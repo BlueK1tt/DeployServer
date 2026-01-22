@@ -38,6 +38,12 @@ function logtemps(){
     delete require.cache[require.resolve("../resources/temps.json")] //clears the cache allowing for new data to be read
 
     //console.log(logsfile)
+
+    //add if file doesnt exist, then do emptyfile()
+    //newlogfile , true: create new log file every restart with time as filename
+    //newlogfile: false, wipe the existing log file
+
+    //read config.json 
     if(logsfile == ""){
         emptyfile(message,timesplit)
         return "yo1"
