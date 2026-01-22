@@ -27,8 +27,6 @@ function logtemps(){
     let thisdate = splitdate[2]+"."+splitdate[1]+"."+splitdate[0]
 
     let datentime = thisdate + "-" +splitdatetime[1]
-    //console.log(datentime)
-    //let timesplit = messagetime.slice(27,-4)
     let timesplit = message == "Startup" ? datentime : messagetime.slice(27,-5);
 
     //delete require.cache[require.resolve("../server")] //clears the cache allowing for new data to be read
@@ -75,15 +73,11 @@ function logtemps(){
         if(wipeconfig == "false"){
             //console.log("no wipe config")
         }
-
-
         const logsdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
         let logsfile = logsdata()
         delete require.cache[require.resolve("../resources/temps.json")] //clears the cache allowing for new data to be read
     
-        //console.log(logsfile)
-    
-    
+        console.log(logsfile)
         //read config.json 
         if(logsfile == ""){
             emptyfile(message,timesplit)
@@ -135,7 +129,7 @@ function appendlogs(message, timesplit){
     fs.close;
 
     let alreadylogs = JSON.parse(existinglogs)
-    //console.log(alreadylogs)
+    console.log(alreadylogs)
 
     var newlog = [];
     newlog = JSON.stringify({"message":message,"time":timesplit},null, 2),null, 2;
@@ -146,9 +140,7 @@ function appendlogs(message, timesplit){
         };
         return true;
     });
-    fs.close;
-    
-    
+    fs.close;    
     return "yo5"
 }
 
