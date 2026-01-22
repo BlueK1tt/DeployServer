@@ -33,7 +33,7 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
     fs.close;
 
     if(depromise && logpromise == true){ //for secutiy reasons check if both filese exist
-        console.log("files exists")
+        //console.log("files exists")
         newjsonobj = Object.assign({}, json1, {}) //copies depositories json file to variable
         //console.log(newjsonobj);
         var json2 = JSON.stringify(newjsonobj, null, 2);//null and '2' make the json look prettier
@@ -43,7 +43,7 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
             }
         });
         fs.close
-        console.log("Log save done.")
+        //console.log("Log save done.")
     }
     else{
         console.log("Error | One or more files do not exist");
@@ -437,7 +437,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
 function thirtyTimer(){
     setInterval(MyTimer, 15000); //60 second timer call function below
     function MyTimer(){
-        console.log("myTimer")
+        //console.log("myTimer")
         //makelogentry("thirtytimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //const messagetosend = "check"
@@ -733,8 +733,8 @@ function testsend(data){
 };
 
 function makelogentry(data){
-    console.log("makelogentry")
-    console.log(data)
+    //console.log("makelogentry")
+    //console.log(data)
 
     const currenttime = require('./commands/uptime')
     let sentData = valuesToArray(currenttime); 
@@ -751,7 +751,7 @@ function makelogentry(data){
     let gotdata = valuesToArray(logtemps); 
     let functiondata = gotdata[0];
     delete require.cache[require.resolve(`./functions/logtemps`)] //clears the cache allowing for new data to be read
-    console.log(functiondata)
+    //console.log(functiondata)
 
     return;
 }

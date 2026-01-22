@@ -10,13 +10,14 @@ module.exports = {
 
 function logtemps(){
     var { logdata} = require("../server");
-    console.log("logtemps")
+    //console.log("logtemps")
     //onsole.log(logdata)
     let logdatastr = JSON.stringify(logdata)
     let splitdata = logdatastr.split(":")
     let cleanmessage = splitdata[1]; //check, uptime, hello etc...
     let message = cleanmessage.slice(1);
     let messagetime = splitdata[2]; //Server has been online for, 1 minute, 2 seconds...
+    //console.log(messagetime)
     
     
     let nowtime = JSON.stringify(timenow)
@@ -24,12 +25,11 @@ function logtemps(){
     let splitdatetime = newdatetime.split("T")
     let splitdate = splitdatetime[0].split("-")
     let thisdate = splitdate[2]+"."+splitdate[1]+"."+splitdate[0]
-    console.log(thisdate)
 
     let datentime = thisdate + "-" +splitdatetime[1]
-    console.log(datentime)
+    //console.log(datentime)
     //let timesplit = messagetime.slice(27,-4)
-    let timesplit = message == "Startup" ? datentime : messagetime.slice(27,-4);
+    let timesplit = message == "Startup" ? datentime : messagetime.slice(27,-5);
 
     //delete require.cache[require.resolve("../server")] //clears the cache allowing for new data to be read
     //console.log(messagetime)
@@ -39,7 +39,7 @@ function logtemps(){
     let logentry = new Object
     logentry["message"] = message
     logentry["time"] = timesplit
-    console.log(logentry)
+    //console.log(logentry)
     
     var logfilename = "temps.json" //logfilename can be altered for "true" in server config
     var filexeist = filexist(logfilename)
@@ -60,7 +60,7 @@ function logtemps(){
         //console.log("Writing new log entry...")
 
         var wipeconfig = config.newlogfile //true or false
-        console.log(wipeconfig)
+        //console.log(wipeconfig)
         if(wipeconfig == "true" && message.includes("Startup")){
             //overwrite file with empty
             var isemptyfile = ""
@@ -73,7 +73,7 @@ function logtemps(){
             emptyfile(message,timesplit)
         } 
         if(wipeconfig == "false"){
-            console.log("no wipe config")
+            //console.log("no wipe config")
         }
 
 
@@ -104,12 +104,12 @@ function logtemps(){
 }
 
 function emptyfile(message, timesplit){
-    console.log("empty file")
-    console.log(message,timesplit)
+    //console.log("empty file")
+    //console.log(message,timesplit)
 
     var logarray = [];
     logarray = JSON.stringify({"message":message,"time":timesplit},null,2),null,2;
-    console.log(logarray)
+    //console.log(logarray)
     
     let firstentry = "["+"\n"+logarray+"\n"+"]";
     fs.writeFile('./resources/temps.json', firstentry, "utf-8", function(error){
@@ -123,7 +123,7 @@ function emptyfile(message, timesplit){
 }
 
 function appendlogs(message, timesplit){
-    console.log("appendlogs")
+    //console.log("appendlogs")
     //console.log(message,timesplit)
 
     const existingdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
@@ -156,7 +156,7 @@ function filexist(filename){
     let files = fs.readdirSync('./resources/')
     //filename = "temps.json"
     if(files.includes(filename)){
-        console.log("File exists")
+        //console.log("File exists")
         return true
     } 
     if(!files.includes(filename)){

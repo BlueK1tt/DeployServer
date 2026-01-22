@@ -43,10 +43,24 @@ function timeobjects(oldcleantime, newsplit){
     let diffhour = newsection.hours - oldsection.hours 
     let diffmin = newsection.minutes - oldsection.minutes
     let diffsec = newsection.seconds - oldsection.seconds //still gives wrong value, due sometimes being - 
-    //console.log(diffsec)
+    console.log(typeof(diffsec))
+    console.log(60-diffsec)
+    var decration = 60-diffsec
+    console.log(decration)
+
+    let realseconds = diffsec < 0 ? diffsec : 60-diffsec;
+    console.log(realseconds)
+    /*
+    if(realseconds.startsWith("-")){
+        let truetime = 60 
+    } else {
+
+    }
+*/
+
     let returnhours = diffhour > 0 ? diffhour + (diffhour == 1 ? " hour, " : " hours, ") : "";
     let returnmins = diffmin > 0 ? diffmin + (diffmin == 1 ? " minute, " : " minutes, ") : "";
-    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : 60-diffsec;
+    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : realseconds-60;
 
     //console.log(diffsec)
     let returncombined = "Server has been online for,"+returnhours+returnmins+returnsecs
