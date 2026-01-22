@@ -435,7 +435,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
-    setInterval(MyTimer, 15000); //60 second timer call function below
+    setInterval(MyTimer, 37000); //60 second timer call function below
     function MyTimer(){
         //console.log("myTimer")
         //makelogentry("thirtytimer")
