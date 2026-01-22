@@ -20,9 +20,16 @@ function logtemps(){
     
     
     let nowtime = JSON.stringify(timenow)
-    //console.log(nowtime)
+    let newdatetime = nowtime.slice(12,-7) //2026-01-22T09:40:58
+    let splitdatetime = newdatetime.split("T")
+    let splitdate = splitdatetime[0].split("-")
+    let thisdate = splitdate[2]+"."+splitdate[1]+"."+splitdate[0]
+    console.log(thisdate)
+
+    let datentime = thisdate + "-" +splitdatetime[1]
+    console.log(datentime)
     //let timesplit = messagetime.slice(27,-4)
-    let timesplit = message == "Startup" ? nowtime : messagetime.slice(27,-4);
+    let timesplit = message == "Startup" ? datentime : messagetime.slice(27,-4);
 
     //delete require.cache[require.resolve("../server")] //clears the cache allowing for new data to be read
     //console.log(messagetime)
