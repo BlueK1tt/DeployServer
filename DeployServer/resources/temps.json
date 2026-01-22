@@ -1,18 +1,10 @@
 [
 {
   "message": "Startup",
-  "time": "{\"timenow\":\"2026-01-22T08:34:34.329Z\"}"
-}
-,{
-  "message": "check",
-  "time": "15 seconds"
-}
-,{
-  "message": "check",
-  "time": "1 minute, "
+  "time": "{\"timenow\":\"2026-01-22T08:58:09.105Z\"}"
 }
 ,{
   "message": "shutdown",
-  "time": "1 minute, "
+  "time": "6 seconds"
 }
 ]

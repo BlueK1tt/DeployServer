@@ -1,4 +1,5 @@
 const fs = require('fs');
+const config = require('../resources/config.json'); //server configurations file
 //way to set message default to " " or null?
 const { timenow } = require('../server');
 
@@ -33,27 +34,42 @@ function logtemps(){
     logentry["time"] = timesplit
     console.log(logentry)
     
-    var logfilename = "temps.json"
+    var logfilename = "temps.json" //logfilename can be altered for "true" in server config
     var filexeist = filexist(logfilename)
+
     if(filexeist == false){
         //create file and call emptyfile
-        console.log("Creating new log file...")
         fs.writeFile(logfilename,"", 'utf8', (err) => {
         if (err) {
             console.error('Error writing file:', err);
             return;
         }
-        console.log('File written successfully!');
+        //console.log('File written successfully!');
         });
         emptyfile(message, timesplit)
         return;
     }
     if(filexeist == true){
-        //continue log writing
-        console.log("Writing new log entry...")
-        //add if file doesnt exist, then do emptyfile()
-        //newlogfile , true: create new log file every restart with time as filename
-        //newlogfile: false, wipe the existing log file
+        //console.log("Writing new log entry...")
+
+        var wipeconfig = config.newlogfile //true or false
+        console.log(wipeconfig)
+        if(wipeconfig == "true" && message.includes("Startup")){
+            //overwrite file with empty
+            var isemptyfile = ""
+            fs.writeFile('./resources/temps.json', isemptyfile,'utf-8', function(error){
+                if(error){
+                    console.log(error);
+                };
+            });
+            fs.close;
+            emptyfile(message,timesplit)
+        } 
+        if(wipeconfig == "false"){
+            console.log("no wipe config")
+        }
+
+
         const logsdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
         let logsfile = logsdata()
         delete require.cache[require.resolve("../resources/temps.json")] //clears the cache allowing for new data to be read
@@ -78,7 +94,6 @@ function logtemps(){
         console.log("Error in filexesist")
         return
     }
-
 }
 
 function emptyfile(message, timesplit){
@@ -138,10 +153,10 @@ function filexist(filename){
         return true
     } 
     if(!files.includes(filename)){
-        console.log("File does not exist")
+        //console.log("File does not exist")
         return false
     } else {
-        console.log("error in file check")
+        //console.log("error in file check")
         return "error"
     }
 }
