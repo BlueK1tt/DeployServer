@@ -111,4 +111,16 @@
   "message": "shutdown",
   "time": "8 minutes, 21 second"
 }
+,{
+  "message": "Startup",
+  "time": "30.01.2026-10:01:28"
+}
+,{
+  "message": "restart",
+  "time": "1 minute, "
+}
+,{
+  "message": "Startup",
+  "time": "30.01.2026-10:02:02"
+}
 ]

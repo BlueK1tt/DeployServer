@@ -77,7 +77,7 @@ function logtemps(){
         let logsfile = logsdata()
         delete require.cache[require.resolve("../resources/temps.json")] //clears the cache allowing for new data to be read
     
-        console.log(logsfile)
+        //console.log(logsfile)
         //read config.json 
         if(logsfile == ""){
             emptyfile(message,timesplit)
@@ -129,7 +129,7 @@ function appendlogs(message, timesplit){
     fs.close;
 
     let alreadylogs = JSON.parse(existinglogs)
-    console.log(alreadylogs)
+    //console.log(alreadylogs)
 
     var newlog = [];
     newlog = JSON.stringify({"message":message,"time":timesplit},null, 2),null, 2;
