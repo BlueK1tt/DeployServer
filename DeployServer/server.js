@@ -435,7 +435,8 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
-    setInterval(MyTimer, 60000); //60 second timer call function below
+    console.log("Timer is on "+(config.systimer/1000)+" second interval");
+    setInterval(MyTimer, config.systimer); //systimer from config, in milliseconds
     function MyTimer(){
         //console.log("myTimer")
         //makelogentry("thirtytimer")
@@ -621,7 +622,7 @@ function arrayservermatch(stopfile){
 }
 
 function pm2bussi(){ //pm2launchbus to get data from clien to server
-    console.log("bus active");
+    console.log("pm2 server bus active");
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
             processthis = pm2packetprocess(packet) //0 to, 1 from, 2 msg
@@ -830,8 +831,8 @@ server.listen(port, hostname, () => {
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
     compareLog();
-    pm2bussi();
     thirtyTimer();
+    pm2bussi();
     exports.timenow = { timenow };
     makelogentry("Startup")
 });

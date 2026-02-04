@@ -1,5 +1,7 @@
 const fs = require('fs'); //filesystem
 const config = require("../resources/config.json");
+var { msg } = require('../server');
+
 
 module.exports = {
     data: findfile()
