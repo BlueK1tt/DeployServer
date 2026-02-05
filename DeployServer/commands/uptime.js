@@ -1,4 +1,5 @@
 //command to check how long server has been up
+const { diff } = require("util");
 let { timenow } = require("../server");
 
 module.exports =  {
@@ -40,25 +41,17 @@ function timeobjects(oldcleantime, newsplit){
     oldsection['minutes'] = oldtimesplit[1]
     oldsection['seconds'] = oldtimesplit[2]
 
-    let diffhour = newsection.hours - oldsection.hours 
-    let diffmin = newsection.minutes - oldsection.minutes 
+    console.log(newsection.minutes)
+    console.log(oldsection.minutes)
+
     let diffsec = newsection.seconds - oldsection.seconds //still gives wrong value, due sometimes being - 
-    console.log(diffmin)
-    console.log(diffsec)
-
-    let realseconds = diffsec < 0 ? diffsec : 60-diffsec;
-    console.log(realseconds)
-    /*
-    if(realseconds.startsWith("-")){
-        let truetime = 60 
-    } else {
-
-    }
-*/
+    let diffmin = newsection.minutes - oldsection.minutes 
+    
+    let diffhour = newsection.hours - oldsection.hours 
 
     let returnhours = diffhour > 0 ? diffhour + (diffhour == 1 ? " hour, " : " hours, ") : "";
     let returnmins = diffmin > 0 ? diffmin + (diffmin == 1 ? " minute, " : " minutes, ") : "";
-    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : realseconds-60;
+    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : 60-diffsec;
 
     //console.log(diffsec)
     let returncombined = "Server has been online for,"+returnhours+returnmins+returnsecs

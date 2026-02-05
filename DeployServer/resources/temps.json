@@ -1,1848 +1,139 @@
 [
 {
-<<<<<<< HEAD
-  "message": "check",
-  "time": "1 hour, 10 second"
+  "message": "restart",
+  "time": "2 minutes, 25 second"
+}
+,{
+  "message": "Startup",
+  "time": "05.02.2026-10:52:48"
 }
 ,{
   "message": "check",
-  "time": "1 hour, "
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 24 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 38 second"
+  "time": "1 minute,"
 }
 ,{
   "message": "restart",
-  "time": "1 hour, 5 second"
+  "time": "1 minute,"
+}
+,{
+  "message": "check",
+  "time": "1 minute,"
 }
 ,{
   "message": "Startup",
-  "time": "27.01.2026-09:03:20"
+  "time": "05.02.2026-10:53:41"
 }
 ,{
   "message": "check",
-  "time": "37 second"
+  "time": "17 second"
 }
 ,{
   "message": "check",
-  "time": "1 minute, 14 second"
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "2 minutes, "
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "2 minutes, 28 second"
+  "time": "1 minute, 8 second"
 }
 ,{
   "message": "check",
-  "time": "3 minutes, 5 second"
+  "time": "2 minutes,"
 }
 ,{
-  "message": "check",
-  "time": "4 minutes, "
-}
-,{
-  "message": "check",
-  "time": "4 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, "
-}
-,{
-  "message": "check",
-  "time": "5 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "7 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "9 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "10 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "11 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "12 minutes, "
-}
-,{
-  "message": "check",
-  "time": "12 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "13 minutes, "
-}
-,{
-  "message": "check",
-  "time": "13 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "14 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "15 minutes, "
-}
-,{
-  "message": "check",
-  "time": "15 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "16 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "16 minutes, 39 second"
-}
-,{
-  "message": "check",
-  "time": "17 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "18 minutes, "
-}
-,{
-  "message": "check",
-  "time": "18 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "19 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "20 minutes, "
-}
-,{
-  "message": "check",
-  "time": "20 minutes, 21 second"
-}
-,{
-  "message": "check",
-  "time": "21 minutes, "
-}
-,{
-  "message": "check",
-  "time": "21 minutes, 35 second"
-}
-,{
-  "message": "check",
-  "time": "22 minutes, 12 second"
-}
-,{
-  "message": "check",
-  "time": "23 minutes, "
-}
-,{
-  "message": "check",
-  "time": "23 minutes, 26 second"
-}
-,{
-  "message": "check",
-  "time": "24 minutes, 3 second"
-}
-,{
-  "message": "check",
-  "time": "25 minutes, "
-}
-,{
-  "message": "check",
-  "time": "25 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "26 minutes, "
-}
-,{
-  "message": "check",
-  "time": "26 minutes, 31 second"
-}
-,{
-  "message": "check",
-  "time": "27 minutes, 8 second"
-}
-,{
-  "message": "check",
-  "time": "28 minutes, "
-}
-,{
-  "message": "check",
-  "time": "28 minutes, 22 second"
-}
-,{
-  "message": "check",
-  "time": "29 minutes, "
-}
-,{
-  "message": "check",
-  "time": "29 minutes, 36 second"
-}
-,{
-  "message": "check",
-  "time": "30 minutes, 13 second"
-}
-,{
-  "message": "check",
-  "time": "31 minutes, "
-}
-,{
-  "message": "check",
-  "time": "31 minutes, 27 second"
-}
-,{
-  "message": "check",
-  "time": "32 minutes, 4 second"
-}
-,{
-  "message": "check",
-  "time": "33 minutes, "
-}
-,{
-  "message": "check",
-  "time": "33 minutes, 18 second"
-}
-,{
-  "message": "check",
-  "time": "34 minutes, "
-}
-,{
-  "message": "check",
-  "time": "34 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "35 minutes, 9 second"
-}
-,{
-  "message": "check",
-  "time": "36 minutes, "
-}
-,{
-  "message": "check",
-  "time": "36 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "37 minutes"
-}
-,{
-  "message": "check",
-  "time": "37 minutes, 37 second"
-}
-,{
-  "message": "check",
-  "time": "38 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "39 minutes, "
-}
-,{
-  "message": "check",
-  "time": "39 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "40 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "41 minutes, "
-}
-,{
-  "message": "check",
-  "time": "41 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "42 minutes, "
-}
-,{
-  "message": "check",
-  "time": "42 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "43 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "44 minutes, "
-}
-,{
-  "message": "check",
-  "time": "44 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "45 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "45 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "46 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "47 minutes, "
-}
-,{
-  "message": "check",
-  "time": "47 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "48 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "49 minutes, "
-}
-,{
-  "message": "check",
-  "time": "49 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "50 minutes, "
-}
-,{
-  "message": "check",
-  "time": "50 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "51 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "52 minutes, "
-}
-,{
-  "message": "check",
-  "time": "52 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "53 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "53 minutes, 39 second"
-}
-,{
-  "message": "check",
-  "time": "54 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "55 minutes, "
-}
-,{
-  "message": "check",
-  "time": "55 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "56 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 21 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 35 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 12 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 26 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 1 minute, 3 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 2 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 3 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 3 minutes, 31 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 4 minutes, 8 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 5 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 5 minutes, 22 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 6 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 6 minutes, 36 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 7 minutes, 13 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 8 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 8 minutes, 27 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 9 minutes, 4 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 10 minutes, 18 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 11 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 11 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 12 minutes, 9 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 13 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 13 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 14 minutes"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 14 minutes, 37 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 15 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 16 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 16 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 17 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 18 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 18 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 19 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 19 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 20 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 21 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 21 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 22 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 22 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 23 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 24 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 24 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 25 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 26 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 26 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 27 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 27 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 28 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 29 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 29 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 30 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 30 minutes, 39 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 31 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 32 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 32 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 33 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 34 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 34 minutes, 21 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 35 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 35 minutes, 35 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 36 minutes, 12 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 37 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 37 minutes, 26 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 38 minutes, 3 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 39 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 39 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 40 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 40 minutes, 31 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 41 minutes, 8 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 42 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 42 minutes, 22 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 43 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 43 minutes, 36 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 44 minutes, 13 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 45 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 45 minutes, 27 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 46 minutes, 4 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 47 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 47 minutes, 18 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 48 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 48 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 49 minutes, 9 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 50 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 50 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 51 minutes"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 51 minutes, 37 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 52 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 53 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 53 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 54 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 55 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 55 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 56 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 56 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 10 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 24 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 38 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 15 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 1 minute, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 1 minute, 29 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 2 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 3 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 3 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 4 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 4 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 5 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 6 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 6 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 7 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 7 minutes, 39 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 8 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 9 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 9 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 10 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 11 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 11 minutes, 21 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 12 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 12 minutes, 35 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 13 minutes, 12 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 14 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 14 minutes, 26 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 15 minutes, 3 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 16 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 16 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 17 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 17 minutes, 31 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 18 minutes, 8 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 19 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 19 minutes, 22 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 20 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 20 minutes, 36 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 21 minutes, 13 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 22 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 22 minutes, 27 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 23 minutes, 4 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 24 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 24 minutes, 18 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 25 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 25 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 26 minutes, 9 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 27 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 27 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 28 minutes"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 28 minutes, 37 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 29 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 30 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 30 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 31 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 32 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 32 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 33 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 33 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 34 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 35 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 35 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 36 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 36 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 37 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 38 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 38 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 39 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 40 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 40 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 41 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 41 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 42 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 43 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 43 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 44 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 44 minutes, 39 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 45 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 46 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 46 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 47 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 48 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 48 minutes, 21 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 49 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 49 minutes, 35 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 50 minutes, 12 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 51 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 51 minutes, 26 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 52 minutes, 3 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 53 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 53 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 54 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 54 minutes, 31 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 55 minutes, 8 second"
-}
-,{
-  "message": "check",
-  "time": "2 hours, 56 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 hours, 56 minutes, 22 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 36 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 13 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 27 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 4 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 1 minute, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 1 minute, 18 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 2 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 3 minutes, 9 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 4 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 4 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 5 minutes"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 5 minutes, 37 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 6 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 7 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 8 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 9 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 9 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 10 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 11 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 12 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 12 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 13 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 13 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 14 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 15 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 15 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 16 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 17 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 17 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 18 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 18 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 19 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 20 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 20 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 21 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 21 minutes, 39 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 22 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 23 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 23 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 24 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 25 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 25 minutes, 21 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 26 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 26 minutes, 35 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 27 minutes, 12 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 28 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 28 minutes, 26 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 29 minutes, 3 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 30 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 30 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 31 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 31 minutes, 31 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 32 minutes, 8 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 33 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 33 minutes, 22 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 34 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 34 minutes, 36 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 35 minutes, 13 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 36 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 36 minutes, 27 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 37 minutes, 4 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 38 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 38 minutes, 18 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 39 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 39 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 40 minutes, 9 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 41 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 41 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 42 minutes"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 42 minutes, 37 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 43 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 44 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 44 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 45 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 46 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 46 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 47 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 47 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 48 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 49 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 49 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 50 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 50 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 51 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 52 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 hours, 52 minutes, 29 second"
-}
-,{
-  "message": "shutdown",
-  "time": "3 hours, 53 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "3 hours, 53 minutes, 6 second"
+  "message": "restart",
+  "time": "2 minutes,"
 }
 ,{
   "message": "Startup",
-  "time": "28.01.2026-11:26:25"
+  "time": "05.02.2026-10:55:23"
 }
 ,{
   "message": "check",
-  "time": "1 minute, "
+  "time": "17 second"
 }
 ,{
   "message": "check",
-  "time": "1 minute, 15 second"
+  "time": "34 second"
 }
 ,{
-  "message": "check",
-  "time": "2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, "
-}
-,{
-  "message": "check",
-  "time": "4 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, "
-}
-,{
-  "message": "check",
-  "time": "5 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "7 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "9 minutes, "
-}
-,{
-  "message": "check",
-  "time": "9 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "10 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "11 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "12 minutes, "
-}
-,{
-  "message": "check",
-  "time": "12 minutes, 21 second"
-}
-,{
-  "message": "check",
-  "time": "13 minutes, "
-}
-,{
-  "message": "check",
-  "time": "14 minutes, "
-}
-,{
-  "message": "check",
-  "time": "14 minutes, 12 second"
-}
-,{
-  "message": "check",
-  "time": "15 minutes, "
-}
-,{
-  "message": "check",
-  "time": "15 minutes, 26 second"
-}
-,{
-  "message": "check",
-  "time": "16 minutes, 3 second"
-}
-,{
-  "message": "check",
-  "time": "17 minutes, "
-}
-,{
-  "message": "check",
-  "time": "17 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "18 minutes, "
-}
-,{
-  "message": "check",
-  "time": "18 minutes, 31 second"
-}
-,{
-  "message": "check",
-  "time": "19 minutes, 8 second"
-}
-,{
-  "message": "check",
-  "time": "20 minutes, "
-}
-,{
-  "message": "check",
-  "time": "20 minutes, 22 second"
-}
-,{
-  "message": "check",
-  "time": "21 minutes, "
-}
-,{
-  "message": "check",
-  "time": "22 minutes, "
-}
-,{
-  "message": "check",
-  "time": "22 minutes, 13 second"
-}
-,{
-  "message": "check",
-  "time": "23 minutes, "
-}
-,{
-  "message": "check",
-  "time": "23 minutes, 27 second"
-}
-,{
-  "message": "check",
-  "time": "24 minutes, 4 second"
-}
-,{
-  "message": "check",
-  "time": "25 minutes, "
-}
-,{
-  "message": "check",
-  "time": "25 minutes, 18 second"
-}
-,{
-  "message": "check",
-  "time": "26 minutes, "
-}
-,{
-  "message": "check",
-  "time": "26 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "27 minutes, 9 second"
+  "message": "restart",
+  "time": "1 minute,"
 }
 ,{
-  "message": "check",
-  "time": "28 minutes, "
-}
-,{
-  "message": "check",
-  "time": "28 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "29 minutes"
-}
-,{
-  "message": "check",
-  "time": "30 minutes, "
-}
-,{
-  "message": "check",
-  "time": "30 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "31 minutes, "
-}
-,{
-  "message": "check",
-  "time": "31 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "32 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "33 minutes, "
-}
-,{
-  "message": "check",
-  "time": "33 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
+  "message": "Startup",
+  "time": "05.02.2026-10:56:12"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 33 second"
+  "time": "17 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 10 second"
+  "time": "34 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, "
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 24 second"
+  "time": "1 minute, 8 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 1 secon"
+  "time": "1 minute, 25 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, "
+  "time": "1 minute, 42 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 15 second"
+  "time": "2 minutes,"
 }
 ,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 29 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 6 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
+  "message": "restart",
+  "time": "2 minutes,"
 }
 ,{
-  "message": "check",
-  "time": "1 hour, 20 second"
+  "message": "Startup",
+  "time": "05.02.2026-10:58:14"
 }
 ,{
   "message": "check",
-  "time": "1 hour, "
+  "time": "17 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 34 second"
+  "time": "34 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 11 second"
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "1 hour, "
+  "time": "1 minute, 8 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 25 second"
+  "time": "1 minute, 25 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 2 second"
+  "time": "1 minute, 42 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, "
+  "time": "1 hour,"
 }
 ,{
   "message": "check",
@@ -1850,507 +141,71 @@
 }
 ,{
   "message": "check",
-  "time": "1 hour, "
+  "time": "1 hour, 33 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 30 second"
+  "time": "1 hour,"
 }
 ,{
-  "message": "check",
-  "time": "1 hour, 7 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 21 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 12 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 26 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 3 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 17 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 31 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 8 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 22 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 13 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 27 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 1 minute, 4 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 2 minutes, 18 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 3 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 3 minutes, 32 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 4 minutes, 9 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 5 minutes, "
+  "message": "restart",
+  "time": "1 hour, 6 second"
 }
 ,{
-  "message": "check",
-  "time": "1 hour, 5 minutes, 23 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 6 minutes"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 7 minutes, 14 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 8 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 8 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 9 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 10 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 11 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 11 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 12 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 13 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 13 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 14 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 15 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 15 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 16 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 16 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 17 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 18 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 18 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 19 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 19 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 20 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 21 minutes, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 21 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "1 hour, 22 minutes, 2 second"
+  "message": "Startup",
+  "time": "05.02.2026-11:01:22"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 23 minutes, "
+  "time": "17 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 23 minutes, 16 second"
+  "time": "34 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 24 minutes, "
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 24 minutes, 30 second"
+  "time": "8 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 25 minutes, 7 second"
+  "time": "25 second"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 26 minutes, "
+  "time": "2 minutes,"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 26 minutes, 21 second"
+  "time": "2 minutes,"
 }
 ,{
   "message": "check",
-  "time": "1 hour, 27 minutes, "
+  "time": "16 second"
 }
 ,{
   "message": "shutdown",
-  "time": "1 hour, 27 minutes, 6 second"
+  "time": "28 second"
 }
 ,{
   "message": "Startup",
-  "time": "29.01.2026-11:36:59"
+  "time": "05.02.2026-11:03:59"
 }
 ,{
   "message": "check",
-  "time": "1 minute, "
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "2 minutes, -"
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
-  "time": "2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 minutes, "
-}
-,{
-  "message": "check",
-  "time": "4 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, "
-}
-,{
-  "message": "check",
-  "time": "5 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, "
-}
-,{
-  "message": "check",
-  "time": "6 minutes, "
-}
-,{
-  "message": "check",
-  "time": "7 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "8 minutes, "
-}
-,{
-  "message": "check",
-  "time": "9 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "9 minutes, "
-}
-,{
-  "message": "check",
-  "time": "10 minutes, -"
-}
-,{
-  "message": "commands",
-  "time": "10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "10 minutes, "
-}
-,{
-  "message": "restart",
-  "time": "10 minutes"
-}
-,{
-  "message": "Startup",
-  "time": "29.01.2026-11:47:01"
-}
-,{
-  "message": "check",
-  "time": "37 second"
-}
-,{
-  "message": "joulu",
-  "time": "45 second"
-}
-,{
-  "message": "check",
-  "time": "1 minute, 14 second"
-}
-,{
-  "message": "check",
-  "time": "1 minute, 51 second"
-}
-,{
-  "message": "check",
-  "time": "2 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 42 second"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, 56 second"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 47 second"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "9 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "9 minutes, 52 second"
-}
-,{
-  "message": "check",
-  "time": "10 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "11 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "11 minutes, 43 second"
-}
-,{
-  "message": "check",
-  "time": "12 minutes, 20 second"
-}
-,{
-  "message": "restart",
-  "time": "12 minutes, 23 second"
-}
-,{
-  "message": "Startup",
-  "time": "29.01.2026-11:59:26"
-}
-,{
-  "message": "check",
-  "time": "1 hour, "
-}
-,{
-  "message": "check",
-  "time": "1 hour, 14 second"
-}
-,{
-  "message": "restart",
-  "time": "1 hour, 29 second"
-}
-,{
-  "message": "Startup",
-  "time": "29.01.2026-12:00:57"
-}
-,{
-  "message": "check",
-  "time": "1 minute, "
-}
-,{
-  "message": "check",
-  "time": "2 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 minutes, "
-}
-,{
-  "message": "check",
-  "time": "4 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, "
-}
-,{
-  "message": "check",
-  "time": "5 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, "
-}
-,{
-  "message": "restart",
-  "time": "6 minutes, -"
-}
-,{
-  "message": "Startup",
-  "time": "29.01.2026-12:06:16"
-=======
-  "message": "Startup",
-  "time": "30.01.2026-10:04:40"
->>>>>>> origin/main
-}
-,{
-  "message": "check",
-  "time": "1 minute"
+  "time": "1 minute,"
 }
 ,{
   "message": "check",
@@ -2358,438 +213,722 @@
 }
 ,{
   "message": "check",
-  "time": "3 minutes"
+  "time": "2 minutes,"
 }
 ,{
   "message": "check",
-  "time": "4 minutes"
+  "time": "2 minutes,"
 }
 ,{
   "message": "check",
-  "time": "5 minutes"
-}
-,{
-  "message": "check",
-  "time": "6 minutes"
-}
-,{
-  "message": "check",
-  "time": "7 minutes"
-}
-,{
-  "message": "check",
-  "time": "8 minutes"
-}
-,{
-  "message": "check",
-  "time": "9 minutes"
-}
-,{
-  "message": "check",
-  "time": "10 minutes"
-}
-,{
-  "message": "check",
-  "time": "11 minutes"
-}
-,{
-  "message": "check",
-  "time": "12 minutes"
-}
-,{
-  "message": "check",
-  "time": "13 minutes"
-}
-,{
-  "message": "check",
-  "time": "14 minutes"
-}
-,{
-  "message": "check",
-  "time": "15 minutes"
-}
-,{
-  "message": "check",
-  "time": "16 minutes"
-}
-,{
-  "message": "check",
-  "time": "17 minutes"
-}
-,{
-  "message": "check",
-  "time": "18 minutes"
-}
-,{
-  "message": "check",
-  "time": "19 minutes"
-}
-,{
-  "message": "check",
-  "time": "20 minutes"
-}
-,{
-  "message": "check",
-  "time": "21 minutes"
-}
-,{
-  "message": "check",
-  "time": "22 minutes"
-}
-,{
-  "message": "check",
-  "time": "23 minutes"
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 38 second"
-}
-,{
-  "message": "check",
-  "time": "9 minutes, 15 second"
-}
-,{
-  "message": "check",
-  "time": "10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "10 minutes, 29 second"
-}
-,{
-  "message": "check",
-  "time": "11 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "11 minutes, 43 second"
-}
-,{
-  "message": "check",
-  "time": "12 minutes, 20 second"
-}
-,{
-  "message": "check",
-  "time": "13 minutes, "
-}
-,{
-  "message": "check",
-  "time": "13 minutes, 34 second"
-}
-,{
-  "message": "check",
-  "time": "14 minutes, 11 second"
-}
-,{
-  "message": "check",
-  "time": "15 minutes, "
-}
-,{
-  "message": "check",
-  "time": "15 minutes, 25 second"
-}
-,{
-  "message": "check",
-  "time": "16 minutes, 2 second"
-}
-,{
-  "message": "check",
-  "time": "16 minutes, 39 second"
-}
-,{
-  "message": "check",
-  "time": "17 minutes, 16 second"
-}
-,{
-  "message": "check",
-  "time": "18 minutes, "
-}
-,{
-  "message": "check",
-  "time": "18 minutes, 30 second"
-}
-,{
-  "message": "check",
-  "time": "19 minutes, 7 second"
-}
-,{
-  "message": "check",
-  "time": "20 minutes, "
-}
-,{
-  "message": "check",
-  "time": "20 minutes, 21 second"
-}
-,{
-  "message": "check",
-  "time": "21 minutes, "
-}
-,{
-  "message": "check",
-  "time": "21 minutes, 35 second"
-}
-,{
-  "message": "check",
-  "time": "22 minutes, 12 second"
-}
-,{
-  "message": "check",
-  "time": "23 minutes, "
-}
-,{
-  "message": "check",
-  "time": "23 minutes, 26 second"
-}
-,{
-  "message": "check",
-  "time": "24 minutes, 3 second"
-}
-,{
-  "message": "check",
-  "time": "24 minutes, 40 second"
-}
-,{
-  "message": "check",
-  "time": "25 minutes, 17 second"
-}
-,{
-  "message": "check",
-  "time": "26 minutes, "
-}
-,{
-  "message": "check",
-  "time": "26 minutes, 31 second"
+  "time": ""
 }
 ,{
   "message": "restart",
-  "time": "26 minutes, 31 second"
+  "time": "2 minutes,"
 }
 ,{
   "message": "Startup",
-  "time": "29.01.2026-12:32:49"
+  "time": "05.02.2026-11:06:01"
 }
 ,{
   "message": "check",
-  "time": "1 minute, "
+  "time": "17 second"
 }
 ,{
   "message": "check",
-  "time": "2 minutes, -"
+  "time": "34 second"
 }
 ,{
   "message": "check",
-  "time": "2 minutes, "
+  "time": "51 second"
 }
 ,{
   "message": "check",
-  "time": "3 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, "
-}
-,{
-  "message": "check",
-  "time": "5 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, "
-}
-,{
-  "message": "check",
-  "time": "6 minutes, "
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "8 minutes, "
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 1 secon"
-}
-,{
-  "message": "check",
-  "time": "9 minutes, "
-}
-,{
-  "message": "check",
-  "time": "10 minutes, -"
-}
-,{
-  "message": "check",
-  "time": "10 minutes, "
-}
-,{
-  "message": "check",
-  "time": "11 minutes, "
-}
-,{
-  "message": "check",
-  "time": "11 minutes, 6 second"
-}
-,{
-  "message": "check",
-  "time": "12 minutes, "
-}
-,{
-  "message": "check",
-  "time": "13 minutes, -"
+  "time": "1 minute, 8 second"
 }
 ,{
   "message": "restart",
-  "time": "13 minutes, "
+  "time": "1 minute, 9 second"
 }
 ,{
   "message": "Startup",
-  "time": "29.01.2026-12:45:17"
+  "time": "05.02.2026-11:07:12"
 }
 ,{
   "message": "check",
-  "time": "37 second"
+  "time": "17 second"
 }
 ,{
   "message": "check",
-  "time": "1 minute, 14 second"
+  "time": "34 second"
 }
 ,{
   "message": "check",
-  "time": "2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 42 second"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, "
-}
-,{
-  "message": "check",
-  "time": "5 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, "
-}
-,{
-  "message": "restart",
-  "time": "7 minutes, 14 second"
-}
-,{
-  "message": "Startup",
-  "time": "29.01.2026-12:52:33"
-}
-,{
-  "message": "check",
-  "time": "1 minute, "
-}
-,{
-  "message": "check",
-  "time": "1 minute, 14 second"
-}
-,{
-  "message": "check",
-  "time": "2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 minutes, "
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 5 second"
+  "time": ""
 }
 ,{
   "message": "shutdown",
-<<<<<<< HEAD
-  "time": "3 minutes, 20 second"
-=======
-  "time": "23 minutes, 2 second"
+  "time": ""
 }
 ,{
   "message": "Startup",
-  "time": "04.02.2026-13:30:57"
+  "time": "05.02.2026-11:08:59"
 }
 ,{
   "message": "check",
-  "time": "1 minute"
-}
-,{
-  "message": "restart",
-  "time": "2 minutes, "
-}
-,{
-  "message": "Startup",
-  "time": "04.02.2026-13:32:54"
+  "time": ""
 }
 ,{
   "message": "check",
-  "time": "1 minute"
+  "time": ""
 }
 ,{
   "message": "check",
-  "time": "2 minutes"
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
 }
 ,{
   "message": "restart",
-  "time": "3 minutes, "
+  "time": ""
 }
 ,{
   "message": "Startup",
-  "time": "04.02.2026-13:35:21"
+  "time": "05.02.2026-11:10:29"
+}
+,{
+  "message": "check",
+  "time": "17 second"
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
 }
 ,{
   "message": "restart",
-  "time": "7 second"
+  "time": "1 minute, 2 second"
 }
 ,{
   "message": "Startup",
-  "time": "04.02.2026-13:35:30"
+  "time": "05.02.2026-11:11:33"
+}
+,{
+  "message": "check",
+  "time": "1717 second"
+}
+,{
+  "message": "check",
+  "time": ""
 }
 ,{
   "message": "restart",
-  "time": "22 second"
+  "time": ""
 }
 ,{
   "message": "Startup",
-  "time": "04.02.2026-13:35:55"
+  "time": "05.02.2026-11:12:22"
+}
+,{
+  "message": "check",
+  "time": "17 second"
+}
+,{
+  "message": "check",
+  "time": "34 second"
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "shutdown",
+  "time": "1 minute, 6 second"
+}
+,{
+  "message": "Startup",
+  "time": "05.02.2026-11:14:17"
+}
+,{
+  "message": "check",
+  "time": "17 second"
+}
+,{
+  "message": "check",
+  "time": "34 second"
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": "1 minute, 8 second"
+}
+,{
+  "message": "check",
+  "time": "1 minute, 25 second"
+}
+,{
+  "message": "check",
+  "time": "1 minute, 42 second"
 }
 ,{
   "message": "restart",
-  "time": "1 minute, "
+  "time": ""
 }
 ,{
   "message": "Startup",
-  "time": "04.02.2026-13:36:38"
->>>>>>> origin/main
+  "time": "05.02.2026-11:16:03"
+}
+,{
+  "message": "check",
+  "time": "17 second"
+}
+,{
+  "message": "check",
+  "time": "34 second"
+}
+,{
+  "message": "check",
+  "time": "51 second"
+}
+,{
+  "message": "check",
+  "time": "1 minute, 8 second"
+}
+,{
+  "message": "check",
+  "time": "1 minute, 25 second"
+}
+,{
+  "message": "check",
+  "time": "1 minute, 42 second"
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": "2 minutes, 16 second"
+}
+,{
+  "message": "check",
+  "time": "2 minutes, 33 second"
+}
+,{
+  "message": "check",
+  "time": "2 minutes, 50 second"
+}
+,{
+  "message": "check",
+  "time": "3 minutes, 7 second"
+}
+,{
+  "message": "check",
+  "time": "3 minutes, 24 second"
+}
+,{
+  "message": "check",
+  "time": "3 minutes, 41 second"
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": "hour4 minutes, 15 second"
+}
+,{
+  "message": "check",
+  "time": "hour4 minutes, 32 second"
+}
+,{
+  "message": "check",
+  "time": "hour4 minutes, 49 second"
+}
+,{
+  "message": "check",
+  "time": "hour5 minutes, 6 second"
+}
+,{
+  "message": "check",
+  "time": "hour5 minutes, 23 second"
+}
+,{
+  "message": "check",
+  "time": "hour5 minutes, 40 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "shutdown",
+  "time": "hour6 minutes, 2 second"
+}
+,{
+  "message": "Startup",
+  "time": "05.02.2026-11:23:40"
+}
+,{
+  "message": "check",
+  "time": "hourminute17 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour1 minute, 8 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour2 minutes, 16 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour3 minutes, 7 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour4 minutes, 15 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour5 minutes, 6 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour6 minutes, 14 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour7 minutes, 5 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour8 minutes, 13 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour9 minutes, 4 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour10 minutes, 12 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour11 minutes, 3 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour12 minutes, 11 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour13 minutes, 2 second"
+}
+,{
+  "message": "check",
+  "time": "hour13 minutes, 19 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour14 minutes, 10 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour15 minutes, 1 secon"
+}
+,{
+  "message": "check",
+  "time": "hour15 minutes, 18 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour16 minutes, 9 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour17 minutes,"
+}
+,{
+  "message": "check",
+  "time": "hour17 minutes, 17 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour18 minutes, 8 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour19 minutes, 16 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour20 minutes, 7 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hour21 minutes, 15 second"
+}
+,{
+  "message": "restart",
+  "time": "hourminut"
+}
+,{
+  "message": "Startup",
+  "time": "05.02.2026-11:45:03"
+}
+,{
+  "message": "check",
+  "time": "hourminute17 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute34 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute51 second"
+}
+,{
+  "message": "restart",
+  "time": "hourminut"
+}
+,{
+  "message": "Startup",
+  "time": "05.02.2026-11:46:03"
+}
+,{
+  "message": "check",
+  "time": "hourminute17 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute34 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute51 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute8 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute25 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute42 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminute16 second"
+}
+,{
+  "message": "restart",
+  "time": "hourminute32 second"
+}
+,{
+  "message": "check",
+  "time": "hourminute33 second"
+}
+,{
+  "message": "Startup",
+  "time": "05.02.2026-11:48:37"
+}
+,{
+  "message": "check",
+  "time": "hourminute17 second"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "hourminut"
+}
+,{
+  "message": "check",
+  "time": "8 second"
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": "2 minutes, 16 second"
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "restart",
+  "time": "3 minutes, 2 second"
+}
+,{
+  "message": "Startup",
+  "time": "05.02.2026-11:51:41"
+}
+,{
+  "message": "check",
+  "time": "17 second"
+}
+,{
+  "message": "check",
+  "time": "1 minute,"
+}
+,{
+  "message": "check",
+  "time": "1 minute,"
+}
+,{
+  "message": "check",
+  "time": "1 minute, 8 second"
+}
+,{
+  "message": "check",
+  "time": "2 minutes,"
+}
+,{
+  "message": "check",
+  "time": "2 minutes,"
+}
+,{
+  "message": "check",
+  "time": "2 minutes,"
 }
 ]
