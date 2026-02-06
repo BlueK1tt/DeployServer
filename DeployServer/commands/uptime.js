@@ -43,11 +43,11 @@ function timeobjects(oldcleantime, newsplit){
     let diffhour = newsection.hours - oldsection.hours 
     let diffmin = newsection.minutes - oldsection.minutes 
     let diffsec = newsection.seconds - oldsection.seconds //still gives wrong value, due sometimes being - 
-    console.log(diffmin)
-    console.log(diffsec)
+    //console.log(diffmin)
+    //console.log(diffsec)
 
     let realseconds = diffsec < 0 ? diffsec : 60-diffsec;
-    console.log(realseconds)
+    //console.log(realseconds)
     /*
     if(realseconds.startsWith("-")){
         let truetime = 60 
