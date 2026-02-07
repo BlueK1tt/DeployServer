@@ -1,7 +1,8 @@
 const fs = require('fs'); //filesystem
 const config = require("../resources/config.json");
-var { msg } = require('../server');
+var { message } = require('../server');
 
+let msg = cleanemssage(message) //sent object to function to get proper str
 
 module.exports = {
     data: findfile()
@@ -76,4 +77,10 @@ function verifyfile(filename){
     //console.log(finalcmd)
     return finalcmd
 
+}
+
+function cleanemssage(message){ // > { msgtosend: 'start=Ticker' }
+    let stremssage = JSON.stringify(message)
+    let frontback = stremssage.slice(14,-2)
+    return frontback
 }

@@ -1,7 +1,9 @@
 const fs = require('fs'); //filesystem;
 const config = require("../resources/config.json");
 const { stringify } = require('querystring');
-let msg = message
+var { message } = require('../server');
+
+let msg = cleanemssage(message)
 
 module.exports = {
     data: update(msg)
@@ -173,3 +175,9 @@ function compareLog(){ //function to happen right after start to compare if anyt
     }
 
 };
+
+function cleanemssage(message){ // > { msgtosend: 'start=Ticker' }
+    let stremssage = JSON.stringify(message)
+    let frontback = stremssage.slice(14,-2)
+    return frontback
+}

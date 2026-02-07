@@ -519,7 +519,10 @@ function pm2start(startfile,filename){ //start specific server on command, need 
             repeated = startcondition.startcondition.count
             runningservers.push(startfile)
             pm2.start(`${startfile}`, function(err, apps) {
-            //console.log(apps)
+            //need to call some counter to check if server is up after while
+            //if not, start again and add +1 to coutner
+            //if counter reaches 3, stop and add error
+      
             });
         } else {
             console.log("error with start conditions")
