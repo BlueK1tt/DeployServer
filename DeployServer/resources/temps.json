@@ -1,26 +1,42 @@
 [
 {
+  "message": "restart",
+  "time": "5 minutes, -21"
+}
+,{
   "message": "Startup",
-  "time": "07.02.2026-00:02:59"
+  "time": "07.02.2026-00:34:22"
+}
+,{
+  "message": "uptime",
+  "time": "15 seconds, "
+}
+,{
+  "message": "uptime",
+  "time": "1 minute, -1"
+}
+,{
+  "message": "uptime",
+  "time": "1 minute, -"
 }
 ,{
   "message": "check",
-  "time": "1 minute"
+  "time": "1 minute, 6\","
 }
 ,{
-  "message": "update",
-  "time": "2 minutes, "
-}
-,{
-  "message": "start=Ticker",
-  "time": "2 minutes,"
+  "message": "uptime",
+  "time": "2 minutes, -7"
 }
 ,{
   "message": "check",
-  "time": "2 minutes"
+  "time": "2 minutes, 6\",\""
+}
+,{
+  "message": "uptime",
+  "time": "2 minutes, 25 seconds, "
 }
 ,{
   "message": "check",
-  "time": "3 minutes"
+  "time": "3 minutes, 6\",\""
 }
 ]

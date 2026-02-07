@@ -48,7 +48,7 @@ function timeobjects(oldcleantime, newsplit){
   
     let returnhours = diffhour > 0 ? diffhour + (diffhour == 1 ? " hour, " : " hours, ") : "";
     let returnmins = diffmin > 0 ? diffmin + (diffmin == 1 ? " minute, " : " minutes, ") : "";
-    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : 60-realseconds;
+    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : realseconds;
 
     //console.log(diffsec)
     let returncombined = "Server has been online for,"+returnhours+returnmins+returnsecs
