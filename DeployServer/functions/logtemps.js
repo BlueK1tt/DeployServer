@@ -10,17 +10,17 @@ module.exports = {
 
 function logtemps(){
     var { logdata} = require("../server");
-    console.log("logtemps")
-    console.log(logdata)
+    //console.log("logtemps")
+    //console.log(logdata)
     let logdatastr = JSON.stringify(logdata)
     let splitdata = logdatastr.split(":")
     let cleanmessage = splitdata[1]; //check, uptime, hello etc...
     let message = cleanmessage.slice(1);
     let bettertime = splitdata[2]; //Server has been online for, 1 minute, 2 seconds...
-    console.log(typeof(bettertime))
+    //console.log(typeof(bettertime))
     let objtime = bettertime.split(0,-4)
-    console.log("yo")
-    console.log(objtime)
+    //console.log("yo")
+    //console.log(objtime)
     messagetime = JSON.stringify(objtime)
     
     
@@ -36,11 +36,11 @@ function logtemps(){
     //delete require.cache[require.resolve("../server")] //clears the cache allowing for new data to be read
     //console.log(messagetime)
     //console.log(timesplit)
-    
+
     let logentry = new Object;
     logentry["message"] = message
     logentry["time"] = timesplit
-    console.log(logentry.time)
+    //console.log(logentry.time)
     
     var logfilename = "temps.json" //logfilename can be altered for "true" in server config
     var filexeist = filexist(logfilename)
