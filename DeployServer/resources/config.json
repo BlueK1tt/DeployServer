@@ -4,6 +4,6 @@
     "gitname":"BlueK1tt",
     "mainfile": "server.js",
     "mainfiles":"index.js,server.js,main.js,test.txt",
-    "newlogfile":"false",
+    "newlogfile":"true",
     "systimer":60000
 }

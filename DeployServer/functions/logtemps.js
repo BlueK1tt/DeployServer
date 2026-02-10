@@ -36,7 +36,8 @@ function logtemps(){
     //delete require.cache[require.resolve("../server")] //clears the cache allowing for new data to be read
     //console.log(messagetime)
     //console.log(timesplit)
-
+    
+    let logentry = new Object;
     logentry["message"] = message
     logentry["time"] = timesplit
     console.log(logentry.time)
