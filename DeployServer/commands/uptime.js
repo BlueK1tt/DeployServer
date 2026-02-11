@@ -27,7 +27,20 @@ function uptime() {
 }
 
 function timeobjects(oldcleantime, newsplit){
+    //console.log(oldcleantime)
+    //console.log(newsplit[1])
+    let newtotal = timetoseconds(newsplit[1])
+    let oldtotal = timetoseconds(oldcleantime)
     //oldtime and newtime strings cut and split into object
+    let timedifference = newtotal - oldtotal
+    //console.log(timedifference)
+    var date = new Date(null)
+    date.setSeconds(timedifference)
+    let returncombined = date.toISOString().substr(11,8)
+    //console.log(returncombined)
+
+    return returncombined;
+    /*
     let newtimesplit = newsplit[1].split(":")
     let newsection = new Object
     newsection['hours'] = newtimesplit[0]
@@ -53,5 +66,25 @@ function timeobjects(oldcleantime, newsplit){
     //console.log(diffsec)
     let returncombined = "Server has been online for,"+returnhours+returnmins+returnsecs
     //console.log(returnhours+returnmins+returnsecs)
+    
     return returncombined
+    */
+}
+
+function timetoseconds(timevariable){
+    //console.log(timevariable)
+    let newtimesplit = timevariable.split(":")
+    //console.log(newtimesplit)
+    let timehours = Number(newtimesplit[0]*3600);
+    //console.log(timehours)
+    let timeminutes = Number(newtimesplit[1]*60);
+    //console.log(timeminutes)
+    let timeseconds = Number(newtimesplit[2]);
+    //console.log(timeseconds)
+    let totalseconds = timeseconds+timeminutes+timehours
+    //console.log(totalseconds)
+    //console.log(newtimesplit[0]*3600)
+    return totalseconds
+
+
 }
