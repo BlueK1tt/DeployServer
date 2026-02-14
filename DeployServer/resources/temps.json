@@ -1,14 +1,162 @@
 [
 {
   "message": "Startup",
-  "time": "11.02.2026-03:23:45"
+  "time": "14.02.2026-02:21:41"
 }
 ,{
-  "message": "uptime",
+  "message": "stop=Ticker",
   "time": ""
 }
 ,{
-  "message": "uptime",
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "stop=Ticker",
+  "time": ""
+}
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
   "time": ""
 }
 ,{
