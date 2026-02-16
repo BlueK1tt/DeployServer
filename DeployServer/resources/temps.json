@@ -1,14 +1,22 @@
 [
 {
   "message": "Startup",
-  "time": "16.02.2026-14:35:58"
+  "time": "16.02.2026-23:45:41"
 }
 ,{
-  "message": "shutdown",
+  "message": "check",
   "time": ""
 }
 ,{
-  "message": "stop=undefined",
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "check",
   "time": ""
 }
 ]

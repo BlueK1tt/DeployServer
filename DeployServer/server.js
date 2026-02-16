@@ -146,7 +146,7 @@ function msgidentify(msg){
         return "no specified command";
     } 
     if(basecommands.includes(msg)){
-        console.log("base command");
+        //console.log("base command");
         return msg;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
@@ -373,7 +373,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                 }
                 if (Element.name != 'Deployment server'){
                     var keyCount  = servcount
-                    console.log(keyCount)
+                    //console.log(keyCount)
                     for(let i = 1; i < keyCount; i++){
                         if(servcount[i] == 0){
                             //console.log("first if")
@@ -397,8 +397,9 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                             msgidentify("stop="+cutexcess[8])
                             let stopfile = cutexcess[8]
                             //pm2stop(stopfile)
-                            console.log("400 stopfile")
-                            console.log(stopfile)
+
+                            //console.log("400 stopfile")
+                            //console.log(stopfile)
                             
                             //pm2.stop(stopfile)
                             return;
@@ -540,30 +541,30 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     if(stopfile == "all"){
-        console.log("pm2stop all")
+        //console.log("pm2stop all")
         pm2.list((err, list) => {
             var id = 0;
-            console.log("after id")
+            //console.log("after id")
             list = list.map(item => {
                 return item.id !== id ? item : null;
             }).filter(item => item !== null)
             
             servcount = Object.keys(list).length
-            console.log(list)
+            //console.log(list)
 
             const stoplist = [];
-            console.log("Stoplist")
+            //console.log("Stoplist")
             list.forEach((Element) => {
                 if(Element.name == "Deployment server"){
                     //main server
-                    console.log("main server")
+                    //console.log("main server")
                     return;
                 }
                 if(Element.name != "Deployment server"){
                     //console.log(Element.name)
                     //pm2.delete(Element.name)
                     let servername = Element.name + ".js"
-                    console.log(servername)
+                    //console.log(servername)
                     stoplist.push(servername)
                     pm2.stop(`${Element.name}`, function(err, apps) {
                         if (err) {
@@ -801,7 +802,7 @@ const requestListener = function(request, response){
         response.end('Restarting...\n');
         pm2stop("all")
         setTimeout(function() {
-            console.log('Restarting')
+            //console.log('Restarting')
             process.exit(128)
         }, 2000);
     }
