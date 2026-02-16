@@ -397,7 +397,10 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                             msgidentify("stop="+cutexcess[8])
                             let stopfile = cutexcess[8]
                             //pm2stop(stopfile)
-                            pm2.stop(stopfile)
+                            console.log("400 stopfile")
+                            console.log(stopfile)
+                            
+                            //pm2.stop(stopfile)
                             return;
                         }
                     }
@@ -537,17 +540,19 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     if(stopfile == "all"){
+        console.log("pm2stop all")
         pm2.list((err, list) => {
-            const id = 0;
-            
+            var id = 0;
+            console.log("after id")
             list = list.map(item => {
                 return item.id !== id ? item : null;
             }).filter(item => item !== null)
             
             servcount = Object.keys(list).length
-            //console.log(list)
+            console.log(list)
 
             const stoplist = [];
+            console.log("Stoplist")
             list.forEach((Element) => {
                 if(Element.name == "Deployment server"){
                     //main server
