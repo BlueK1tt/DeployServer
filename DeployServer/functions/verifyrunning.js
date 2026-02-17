@@ -39,6 +39,8 @@ function getrunningservers(){ //use pm2 functions to get what servers are on
         
             servcount = Object.keys(list).length
             //console.log(list)
+            
+            var runningservers = []
             list.forEach((Element) => {
                 let filetree = Element.pm2_env.pm_exec_path
                 let splitdata = filetree.split("/")
@@ -53,9 +55,11 @@ function getrunningservers(){ //use pm2 functions to get what servers are on
                 let runninginfo = new Object
                 runninginfo["name"] = servername
                 runninginfo["status"] = pm2stat
-                console.log(runninginfo)
+                //console.log(runninginfo)
+                runningservers.push(runninginfo)
                 return runninginfo
             });
+            console.log(runningservers)
             return;
         }
         if(err != null){
