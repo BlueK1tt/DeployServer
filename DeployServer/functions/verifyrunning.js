@@ -27,5 +27,27 @@ function verifyrunning(){
 }
 
 function getrunningservers(){ //use pm2 functions to get what servers are on
-
+    pm2.list((err, list) => {
+        if(err == null){
+            const id = 0;
+            list = list.map(item => {
+                return item.id !== id ? item : null;
+            }).filter(item => item !== null)
+        
+            servcount = Object.keys(list).length
+            console.log(list)
+            list.forEach((Element) => {
+                var filetree = Element.pm2_env.pm_exec_path
+                console.log(filetree)
+                return filetree
+            });
+        }
+        if(err != null){
+            console.log(err)
+            return err
+        } else {
+            console.log("getrunningservers else")
+            return;
+        }
+    })
 }
