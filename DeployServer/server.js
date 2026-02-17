@@ -723,7 +723,6 @@ function sendtomaster(destination, data){
         console.log("sendtomaster error")
         return;
     }
-    
 };
 
 function testsend(data){

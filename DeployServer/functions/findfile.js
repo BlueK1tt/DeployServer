@@ -1,6 +1,6 @@
 const fs = require('fs'); //filesystem
 const config = require("../resources/config.json");
-var { msg } = require('../server');
+var { message } = require('../server');
 
 
 module.exports = {
@@ -8,6 +8,7 @@ module.exports = {
 }
 
 function findfile(){
+    let msg = cleanmessage(message)
     //console.log("findfile")
     if(msg.startsWith("start") || msg.startsWith("stop")){
         //file find not here, beacuse its case spesific and not always same
@@ -76,4 +77,12 @@ function verifyfile(filename){
     //console.log(finalcmd)
     return finalcmd
 
+}
+
+function cleanmessage(message){
+    console.log(message)
+    msgstring = JSON.stringify(message)
+    let msg = msgstring.slice(14,-2)
+    console.log(msg)
+    return msg
 }

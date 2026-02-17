@@ -5,5 +5,5 @@
     "mainfile": "server.js",
     "mainfiles":"index.js,server.js,main.js,test.txt",
     "newlogfile":"true",
-    "systimer":17000
+    "systimer":60000
 }
