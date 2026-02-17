@@ -435,9 +435,15 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
     }
 }
 function thirtyTimer(){
+    let serverrun = require("./functions/verifyrunning")
+    console.log(serverrun)
     console.log("Timer is on "+(config.systimer/1000)+" second interval");
     setInterval(MyTimer, config.systimer); //systimer from config, in milliseconds
     function MyTimer(){
+
+        let serverrun = require("./functions/verifyrunning")
+        console.log(serverrun)
+        
         //console.log("myTimer")
         //makelogentry("thirtytimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
