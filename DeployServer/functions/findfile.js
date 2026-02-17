@@ -2,7 +2,6 @@ const fs = require('fs'); //filesystem
 const config = require("../resources/config.json");
 var { message } = require('../server');
 
-
 module.exports = {
     data: findfile()
 }
@@ -80,9 +79,9 @@ function verifyfile(filename){
 }
 
 function cleanmessage(message){
-    console.log(message)
+    //console.log(message)
     msgstring = JSON.stringify(message)
     let msg = msgstring.slice(14,-2)
-    console.log(msg)
+    //console.log(msg)
     return msg
 }

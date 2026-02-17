@@ -1,5 +1,6 @@
 const fs = require('fs'); //filesystem
 const config = require("../resources/config.json");
+const { message } = require('../server');
 
 //install "program" to depositories folder
 //need to connect to github and download same named repository from there
@@ -8,6 +9,7 @@ module.exports = {
     data : install()
 };
 function install(){
+    let msg = cleanmessage(message)
     filename = msg.slice(8);
     if(msg == "install"){
         console.log("error, target not defined");
@@ -106,4 +108,11 @@ function verifyfiles(filename){
             verify['file'] = " ";
         return verify;
     }
+}
+function cleanmessage(message){
+    console.log(message)
+    msgstring = JSON.stringify(message)
+    let msg = msgstring.slice(14,-2)
+    console.log(msg)
+    return msg
 }

@@ -6,7 +6,8 @@ module.exports = {
 }
 
 function commands(){
-    let msg = JSON.stringify(message) //need to slice the excess
+    
+    let msg = cleanmessage(message)
 
     const data = () => fs.readFileSync(require.resolve("../resources/commands.json"), { encoding: "utf8" });
     fs.close;
@@ -44,4 +45,11 @@ function commands(){
         return encommands
     }
 
+}
+function cleanmessage(message){
+    console.log(message)
+    msgstring = JSON.stringify(message)
+    let msg = msgstring.slice(14,-2)
+    console.log(msg)
+    return msg
 }

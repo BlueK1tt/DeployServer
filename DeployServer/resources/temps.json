@@ -1,14 +1,14 @@
 [
 {
   "message": "Startup",
-  "time": "17.02.2026-10:22:35"
+  "time": "17.02.2026-10:44:24"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:00:07"
+  "message": "check",
+  "time": "00:01:00"
 }
 ,{
-  "message": "stop=Ticker",
-  "time": "00:00:16"
+  "message": "check",
+  "time": "00:02:00"
 }
 ]
