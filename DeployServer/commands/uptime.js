@@ -27,7 +27,20 @@ function uptime() {
 }
 
 function timeobjects(oldcleantime, newsplit){
+    //console.log(oldcleantime)
+    //console.log(newsplit[1])
+    let newtotal = timetoseconds(newsplit[1])
+    let oldtotal = timetoseconds(oldcleantime)
     //oldtime and newtime strings cut and split into object
+    let timedifference = newtotal - oldtotal
+    //console.log(timedifference)
+    var date = new Date(null)
+    date.setSeconds(timedifference)
+    let returncombined = date.toISOString().substr(11,8)
+    //console.log(returncombined)
+
+    return returncombined;
+    /*
     let newtimesplit = newsplit[1].split(":")
     let newsection = new Object
     newsection['hours'] = newtimesplit[0]
@@ -43,25 +56,35 @@ function timeobjects(oldcleantime, newsplit){
     let diffhour = newsection.hours - oldsection.hours 
     let diffmin = newsection.minutes - oldsection.minutes 
     let diffsec = newsection.seconds - oldsection.seconds //still gives wrong value, due sometimes being - 
-    console.log(diffmin)
-    console.log(diffsec)
 
     let realseconds = diffsec < 0 ? diffsec : 60-diffsec;
-    console.log(realseconds)
-    /*
-    if(realseconds.startsWith("-")){
-        let truetime = 60 
-    } else {
-
-    }
-*/
-
+  
     let returnhours = diffhour > 0 ? diffhour + (diffhour == 1 ? " hour, " : " hours, ") : "";
     let returnmins = diffmin > 0 ? diffmin + (diffmin == 1 ? " minute, " : " minutes, ") : "";
-    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : realseconds-60;
+    let returnsecs = diffsec > 0 ? diffsec + (diffsec == 1 ? " second, " : " seconds, ") : realseconds;
 
     //console.log(diffsec)
     let returncombined = "Server has been online for,"+returnhours+returnmins+returnsecs
     //console.log(returnhours+returnmins+returnsecs)
+    
     return returncombined
+    */
+}
+
+function timetoseconds(timevariable){
+    //console.log(timevariable)
+    let newtimesplit = timevariable.split(":")
+    //console.log(newtimesplit)
+    let timehours = Number(newtimesplit[0]*3600);
+    //console.log(timehours)
+    let timeminutes = Number(newtimesplit[1]*60);
+    //console.log(timeminutes)
+    let timeseconds = Number(newtimesplit[2]);
+    //console.log(timeseconds)
+    let totalseconds = timeseconds+timeminutes+timehours
+    //console.log(totalseconds)
+    //console.log(newtimesplit[0]*3600)
+    return totalseconds
+
+
 }
