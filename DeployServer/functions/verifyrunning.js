@@ -16,6 +16,7 @@ function verifyrunning(){
     console.log("verifyrunning")
     //need to pass the server from msg to the function chekc if true or not
     let isrunning = getrunningservers() //return true or false
+    console.log(getrunningservers())
     if(isrunning === true){
         return;
     }
@@ -58,15 +59,15 @@ function getrunningservers(){ //use pm2 functions to get what servers are on
                 runningservers.push(runninginfo)
                 return runninginfo
             });
-            console.log(runningservers)
-            return;
+            return runningservers;
         }
         if(err != null){
             console.log(err)
-            return err
+            return err;
         } else {
             console.log("getrunningservers else")
             return;
         }
+        return runningservers
     })
 }

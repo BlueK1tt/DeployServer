@@ -463,7 +463,7 @@ function pm2check(instance){ //function the check what servers are running
 
     //get list of running pm2 instances
     if(runningservers == null){ //if array is empty
-        let runningserverlist = runningservers.length > 0 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
+        let runningserverlist = runningservers.length > 1 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
         //console.log(runningserverlist)
         return false
     } else { //if array is not empty

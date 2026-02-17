@@ -1,10 +1,34 @@
 [
 {
   "message": "Startup",
-  "time": "17.02.2026-11:40:58"
+  "time": "17.02.2026-12:48:34"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:00:02"
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:01:00"
+}
+,{
+  "message": "restart",
+  "time": "00:01:03"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:01:03"
+}
+,{
+  "message": "Startup",
+  "time": "17.02.2026-12:49:37"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:56"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:56"
 }
 ]
