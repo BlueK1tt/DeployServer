@@ -2,6 +2,7 @@ const fs = require('fs');
 const config = require('../resources/config.json'); //server configurations file
 //way to set message default to " " or null?
 const { timenow } = require('../server');
+const { time } = require('console');
 
 
 module.exports = {
@@ -11,15 +12,14 @@ module.exports = {
 function logtemps(){
     var { logdata} = require("../server");
     //console.log("logtemps")
-    //onsole.log(logdata)
+    //console.log(logdata)
     let logdatastr = JSON.stringify(logdata)
     let splitdata = logdatastr.split(":")
     let cleanmessage = splitdata[1]; //check, uptime, hello etc...
     let message = cleanmessage.slice(1);
-    let messagetime = splitdata[2]; //Server has been online for, 1 minute, 2 seconds...
-    //console.log(messagetime)
-    
-    
+    let messagetime = splitdata[2]+":"+splitdata[3]+":"+splitdata[4]; //Server has been online for, 1 minute, 2 seconds...
+    let timecorrect = messagetime.slice(0,-2)
+
     let nowtime = JSON.stringify(timenow)
     let newdatetime = nowtime.slice(12,-7) //2026-01-22T09:40:58
     let splitdatetime = newdatetime.split("T")
@@ -27,18 +27,12 @@ function logtemps(){
     let thisdate = splitdate[2]+"."+splitdate[1]+"."+splitdate[0]
 
     let datentime = thisdate + "-" +splitdatetime[1]
-    let timesplit = message == "Startup" ? datentime : messagetime.slice(27,-5);
-
-    //delete require.cache[require.resolve("../server")] //clears the cache allowing for new data to be read
-    //console.log(messagetime)
-    //console.log(timesplit)
-
+    let timesplit = message == "Startup" ? datentime : timecorrect
 
     let logentry = new Object
     logentry["message"] = message
     logentry["time"] = timesplit
-    //console.log(logentry)
-    
+
     var logfilename = "temps.json" //logfilename can be altered for "true" in server config
     var filexeist = filexist(logfilename)
 
@@ -118,18 +112,14 @@ function emptyfile(message, timesplit){
 
 function appendlogs(message, timesplit){
     //console.log("appendlogs")
-    //console.log(message,timesplit)
 
     const existingdata = () => fs.readFileSync(require.resolve("../resources/temps.json"), { encoding: "utf8" });
     let existinglogs = existingdata()
-    //console.log(existinglogs)
+
     let existinglogsclean = existinglogs.slice(1,-1);
     let replacestring = existinglogsclean.replaceAll('},{','}\n,{')
     replacesthis = replacestring+","
     fs.close;
-
-    let alreadylogs = JSON.parse(existinglogs)
-    //console.log(alreadylogs)
 
     var newlog = [];
     newlog = JSON.stringify({"message":message,"time":timesplit},null, 2),null, 2;
