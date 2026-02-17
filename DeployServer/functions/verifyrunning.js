@@ -10,7 +10,6 @@ const pm2 = require('pm2');
 
 module.exports = {
     data : verifyrunning()
-
 };
 
 function verifyrunning(){
@@ -18,13 +17,13 @@ function verifyrunning(){
     //need to pass the server from msg to the function chekc if true or not
     let isrunning = getrunningservers() //return true or false
     if(isrunning === true){
-
+        return;
     }
     if(isrunning === false){
-
+        return;
     } else {
-        error;
-        console.log(error)
+        console.log("verifyrunning else")
+        return;
     }
     return
 }
