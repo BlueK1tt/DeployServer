@@ -23,8 +23,20 @@ const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
 };
 
+function startup(){
+    console.log("Server staring up at: " + timenow)
+    console.log('Server running at ' + config.hostname +':' + config.netport);
+    compareLog();
+    thirtyTimer();
+    pm2bussi();
+    exports.timenow = { timenow };
+    makelogentry("Startup")
+    return;
+}
+
+
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
-    console.log("savelog");
+    //console.log("savelog");
     var logpromise = isFile("./resources/log.json");
     var depromise = isFile("./depositories/DepositoriesList.JSON");
 
@@ -444,6 +456,7 @@ function thirtyTimer(){
         depotlist = sentData[0];
         
         console.log(runningservers)
+
         //console.log("myTimer")
         //makelogentry("thirtytimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
@@ -833,11 +846,5 @@ const requestListener = function(request, response){
 
 const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
-    console.log("Server staring up at: " + timenow)
-    console.log('Server running at ' + config.hostname +':' + config.netport);
-    compareLog();
-    thirtyTimer();
-    pm2bussi();
-    exports.timenow = { timenow };
-    makelogentry("Startup")
+    startup();
 });

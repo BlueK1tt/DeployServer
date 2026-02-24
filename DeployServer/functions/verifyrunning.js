@@ -67,7 +67,7 @@ function getrunningservers(){ //use pm2 functions to get what servers are on
             //console.log(serverdata)
             if(serverdata.includes('"status":"online"')){
                 console.log("Server is online")
-                console.log(serverdata)
+                //console.log(serverdata)
                 return "true";
             }if(!serverdata.includes('"status":"online"')){
                 console.log("No servers are online")
@@ -76,8 +76,7 @@ function getrunningservers(){ //use pm2 functions to get what servers are on
             } else {
                 console.log("Runningserver if error")
                 return "Runningserver if error";
-            }
-            
+            }            
         }
         if(err != null){
             console.log("err")
