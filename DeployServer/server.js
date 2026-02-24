@@ -30,7 +30,7 @@ function startup(){
     compareLog();
     thirtyTimer();
     pm2bussi();
-    exports.timenow = { timenow };
+    exports.timenow = { timenow }; //needs to be just here
     makelogentry("Startup")
     return;
 }
