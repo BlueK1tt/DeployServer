@@ -47,9 +47,9 @@ function depots(msg){ //function to get current depositories and create array ou
     fs.close;
 };
 function cleanmessage(message){
-    console.log(message)
+    //console.log(message)
     msgstring = JSON.stringify(message)
     let msg = msgstring.slice(14,-2)
-    console.log(msg)
+    //console.log(msg)
     return msg
 }

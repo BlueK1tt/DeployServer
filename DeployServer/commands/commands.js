@@ -37,19 +37,19 @@ function commands(){
     
     if(msg.includes('=all')){
         const commandlistall = resulten.concat(resultdis) //combine the two arrays into one
-        console.log(commandlistall)
+        //console.log(commandlistall)
         return (commandlistall)
     }
     else { //only commands that are enabled
-        console.log(encommands)
+        //console.log(encommands)
         return encommands
     }
 
 }
 function cleanmessage(message){
-    console.log(message)
+    //console.log(message)
     msgstring = JSON.stringify(message)
     let msg = msgstring.slice(14,-2)
-    console.log(msg)
+    //console.log(msg)
     return msg
 }

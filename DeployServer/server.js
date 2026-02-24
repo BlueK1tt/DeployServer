@@ -373,7 +373,7 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
     //console.log("pm2connect")
     pm2.connect(function(err) {
         if (err) {
-            console.error(err)
+            //console.error(err)
             return "error" + err
         }
     })
@@ -475,7 +475,7 @@ function thirtyTimer(){
     console.log("Timer is on "+(config.systimer/1000)+" second interval");
     setInterval(MyTimer, config.systimer); //systimer from config, in milliseconds
     function MyTimer(){
-            //console.log("myTimer")
+        //console.log("myTimer")
         //makelogentry("thirtytimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //const messagetosend = "check"
@@ -807,7 +807,7 @@ const requestListener = function(request, response){
     exports.repeated = { repeated };
 
     needcommand = msgidentify(msg) //command type
-    console.log(needcommand);
+    //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
     
     //console.log("start of if listener")
