@@ -143,4 +143,132 @@
   "message": "start=Ticker",
   "time": "00:00:05"
 }
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "shutdown",
+  "time": "00:01:18"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:01:18"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-11:38:09"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:08"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "restart",
+  "time": "00:02:48"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:02:48"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-11:40:57"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:05"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:32"
+}
+,{
+  "message": "restart",
+  "time": "00:00:58"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:58"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-11:41:55"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:07"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:11"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:14"
+}
+,{
+  "message": "restart",
+  "time": "00:00:55"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:55"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-11:42:50"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:03"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "restart",
+  "time": "00:01:37"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:01:37"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-11:44:28"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:10"
+}
+,{
+  "message": "restart",
+  "time": "00:00:12"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:12"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-11:44:41"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:05"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:13"
+}
 ]
