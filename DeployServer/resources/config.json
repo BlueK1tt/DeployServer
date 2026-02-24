@@ -3,7 +3,7 @@
     "netport":"3000",
     "gitname":"BlueK1tt",
     "mainfile": "server.js",
-    "mainfiles":"index.js,server.js,main.js,test.txt",
+    "mainfiles":"index.js,server.js,main.js,test.txt,ecosystem.config.js",
     "newlogfile":"false",
     "systimer":60000
 }

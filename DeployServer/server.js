@@ -438,8 +438,11 @@ function thirtyTimer(){
     console.log("Timer is on "+(config.systimer/1000)+" second interval");
     setInterval(MyTimer, config.systimer); //systimer from config, in milliseconds
     function MyTimer(){
-        let runningservers = require("./functions/verifyrunning")
+        let data = require("./functions/verifyrunning")
         delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
+        var sentData = valuesToArray(data); 
+        depotlist = sentData[0];
+        
         console.log(runningservers)
         //console.log("myTimer")
         //makelogentry("thirtytimer")

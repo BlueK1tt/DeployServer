@@ -2,7 +2,7 @@
   "BluBot": [
     {
       "name": "BluBot",
-      "startfile": "blubot.js"
+      "startfile": "ecosystem.config.js"
     }
   ],
   "Jorma": [

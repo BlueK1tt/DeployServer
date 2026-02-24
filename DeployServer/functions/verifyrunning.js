@@ -15,22 +15,26 @@ module.exports = {
 function verifyrunning(){
     console.log("verifyrunning")
     //need to pass the server from msg to the function chekc if true or not
-    let isrunning = getrunningservers() //return true or false
-    console.log(getrunningservers())
+    var isrunning = getrunningservers() //return true or false
+    //console.log(isrunning)
     if(isrunning === true){
-        return;
+        console.log("is running")
+        return "true";
     }
     if(isrunning === false){
-        return;
+        console.log("is not running")
+        return "false";
     } else {
-        console.log("verifyrunning else")
-        return;
+        console.log("verifyrunning else 1")
+        return "error";
     }
     return
 }
 
 function getrunningservers(){ //use pm2 functions to get what servers are on
+    var serverdata;
     pm2.list((err, list) => {
+        var serverdata;
         if(err == null){
             const id = 0;
             list = list.map(item => {
@@ -39,34 +43,48 @@ function getrunningservers(){ //use pm2 functions to get what servers are on
         
             servcount = Object.keys(list).length
             //console.log(list)
-            
+            let runninginfo = new Object
             var runningservers = []
             list.forEach((Element) => {
                 let filetree = Element.pm2_env.pm_exec_path
                 let splitdata = filetree.split("/")
                 let strinlength = splitdata.length
-                //console.log(splitdata)
-                //console.log(strinlength)
                 let servername = splitdata[strinlength-2] 
-                //console.log(servername)
                 var pm2stat = Element.pm2_env.status //online , offline, stopped
-                //console.log(filetree+pm2stat)
 
-                let runninginfo = new Object
-                runninginfo["name"] = servername
-                runninginfo["status"] = pm2stat
-                //console.log(runninginfo)
-                runningservers.push(runninginfo)
-                return runninginfo
+                if(servername == "DeployServer"){
+                    return;
+                } else {
+                    runninginfo["name"] = servername
+                    runninginfo["status"] = pm2stat
+                    runningservers.push(runninginfo)
+                    return runninginfo
+                }
             });
-            return runningservers;
+            //console.log(runningservers)
+            //console.log(runninginfo)
+            var serverdata = JSON.stringify(runningservers)
+            //console.log(serverdata)
+            if(serverdata.includes('"status":"online"')){
+                console.log("Server is online")
+                console.log(serverdata)
+                return "true";
+            }if(!serverdata.includes('"status":"online"')){
+                console.log("No servers are online")
+                
+                return "false";
+            } else {
+                console.log("Runningserver if error")
+                return "Runningserver if error";
+            }
+            
         }
         if(err != null){
-            console.log(err)
+            console.log("err")
             return err;
         } else {
-            console.log("getrunningservers else")
-            return;
+            console.log("getrunningservers else 2")
+            return serverdata;
         }
         return runningservers
     })
