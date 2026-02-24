@@ -26,12 +26,37 @@ const isFile = fileName => { //function to test if file exists
 function startup(){
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
+    checkservers()
     compareLog();
     thirtyTimer();
     pm2bussi();
     exports.timenow = { timenow };
     makelogentry("Startup")
     return;
+}
+
+function checkservers(){
+    //console.log("Checkservers")
+
+    let data = require("./functions/verifyrunning")
+    delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
+    var sentData = valuesToArray(data); 
+    depotlist = sentData[0];
+    //console.log(runningservers)
+    let serverstring = JSON.stringify(runningservers)
+    //console.log(serverstring)
+    if(serverstring == "[]"){
+        //console.log("No running servers")
+        return;
+    }
+    if(serverstring != "[]"){
+        //console.log("Some server is still running")
+        pm2stop("all");
+        return;
+    } else {
+        console.log("checkserver error")
+        return;
+    }
 }
 
 
@@ -450,14 +475,7 @@ function thirtyTimer(){
     console.log("Timer is on "+(config.systimer/1000)+" second interval");
     setInterval(MyTimer, config.systimer); //systimer from config, in milliseconds
     function MyTimer(){
-        let data = require("./functions/verifyrunning")
-        delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
-        var sentData = valuesToArray(data); 
-        depotlist = sentData[0];
-        
-        console.log(runningservers)
-
-        //console.log("myTimer")
+            //console.log("myTimer")
         //makelogentry("thirtytimer")
         var connected = msgidentify("check"); //will just send "check" like normal command request to function
         //const messagetosend = "check"
@@ -688,7 +706,7 @@ function bussifunctions(appdata){
     }
     else {
         //console.log("appdata" + appdata)
-        console.log("bussi else")
+        //console.log("bussi else")
         const data = require('./functions/outcommand')
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];

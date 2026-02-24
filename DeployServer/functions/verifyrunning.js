@@ -13,19 +13,19 @@ module.exports = {
 };
 
 function verifyrunning(){
-    console.log("verifyrunning")
+    //console.log("verifyrunning")
     //need to pass the server from msg to the function chekc if true or not
     var isrunning = getrunningservers() //return true or false
     //console.log(isrunning)
     if(isrunning === true){
-        console.log("is running")
+        //console.log("is running")
         return "true";
     }
     if(isrunning === false){
-        console.log("is not running")
+        //console.log("is not running")
         return "false";
     } else {
-        console.log("verifyrunning else 1")
+        //console.log("verifyrunning else 1")
         return "error";
     }
     return
@@ -66,11 +66,11 @@ function getrunningservers(){ //use pm2 functions to get what servers are on
             var serverdata = JSON.stringify(runningservers)
             //console.log(serverdata)
             if(serverdata.includes('"status":"online"')){
-                console.log("Server is online")
+                //console.log("Server is online")
                 //console.log(serverdata)
                 return "true";
             }if(!serverdata.includes('"status":"online"')){
-                console.log("No servers are online")
+                //console.log("No servers are online")
                 
                 return "false";
             } else {
