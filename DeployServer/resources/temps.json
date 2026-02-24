@@ -195,4 +195,196 @@
   "message": "check",
   "time": "00:05:00"
 }
+,{
+  "message": "check",
+  "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:07:42"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:07:56"
+}
+,{
+  "message": "restart",
+  "time": "00:08:00"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:08:00"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:24:28"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:11"
+}
+,{
+  "message": "restart",
+  "time": "00:00:22"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:22"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:24:50"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:01:38"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "restart",
+  "time": "00:03:23"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:03:23"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:28:14"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:56"
+}
+,{
+  "message": "restart",
+  "time": "00:00:58"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:58"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:29:13"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:07"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:07"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:35:04"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:03"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:07"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:07"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:35:30"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:02"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:13"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:13"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:36:08"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:08"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:12"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:12"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:38:30"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:03"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:10"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:10"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:41:39"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:02"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:09"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:09"
+}
+,{
+  "message": "Startup",
+  "time": "24.02.2026-10:43:06"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:04"
+}
+,{
+  "message": "shutdown",
+  "time": "00:00:08"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:08"
+}
 ]

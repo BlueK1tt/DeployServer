@@ -373,7 +373,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                 }
                 if (Element.name != 'Deployment server'){
                     var keyCount  = servcount
-                    console.log(keyCount)
+                    //console.log(keyCount)
                     for(let i = 1; i < keyCount; i++){
                         if(servcount[i] == 0){
                             //console.log("first if")
@@ -554,14 +554,14 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             list.forEach((Element) => {
                 if(Element.name == "Deployment server"){
                     //main server
-                    console.log("main server")
+                    //console.log("main server")
                     return;
                 }
                 if(Element.name != "Deployment server"){
                     //console.log(Element.name)
                     //pm2.delete(Element.name)
                     let servername = Element.name + ".js"
-                    console.log(servername)
+                    //console.log(servername)
                     stoplist.push(servername)
                     pm2.stop(`${Element.name}`, function(err, apps) {
                         if (err) {
