@@ -26,18 +26,16 @@ const isFile = fileName => { //function to test if file exists
 function startup(){
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
-    checkservers()
-    compareLog();
-    thirtyTimer();
-    pm2bussi();
+    checkservers() //check if servers online even after startup
+    compareLog(); //make log entries and replace if different
+    thirtyTimer(); //initiate the timer, interval from config
+    pm2bussi(); //initiate pm2bus functionality, able to send and receive data
     exports.timenow = { timenow }; //needs to be just here
-    makelogentry("Startup")
+    makelogentry("Startup") //to make log entry to temps.json
     return;
 }
 
-function checkservers(){
-    //console.log("Checkservers")
-
+function checkservers(){ // see if any servers are online
     let data = require("./functions/verifyrunning")
     delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
     var sentData = valuesToArray(data); 
