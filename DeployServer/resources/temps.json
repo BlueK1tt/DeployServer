@@ -1,31 +1,55 @@
 [
 {
   "message": "Startup",
-  "time": "24.02.2026-11:21:07"
+  "time": "25.02.2026-10:07:03"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:00:04"
+  "message": "depotlist",
+  "time": "00:00:12"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
 }
 ,{
-  "message": "shutdown",
-  "time": "00:01:56"
+  "message": "depotlist",
+  "time": "00:01:01"
 }
 ,{
-  "message": "stop=Ticker",
-  "time": "00:01:56"
+  "message": "depotlist",
+  "time": "00:01:49"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "depotlist",
+  "time": "00:02:12"
+}
+,{
+  "message": "depotlist",
+  "time": "00:02:41"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "depotlist",
+  "time": "00:03:05"
+}
+,{
+  "message": "depotlist",
+  "time": "00:03:36"
+}
+,{
+  "message": "depotlist",
+  "time": "00:03:49"
 }
 ,{
   "message": "Startup",
-  "time": "24.02.2026-11:23:31"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:13"
+  "time": "25.02.2026-10:10:52"
 }
 ,{
   "message": "check",
@@ -40,28 +64,504 @@
   "time": "00:03:00"
 }
 ,{
-  "message": "start=restart",
-  "time": "00:03:56"
-}
-,{
-  "message": "check",
-  "time": "00:04:00"
-}
-,{
-  "message": "restart",
-  "time": "00:04:17"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:04:17"
+  "message": "depotlist",
+  "time": "00:03:52"
 }
 ,{
   "message": "Startup",
-  "time": "24.02.2026-11:27:48"
+  "time": "25.02.2026-10:15:07"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:00:09"
+  "message": "Startup",
+  "time": "25.02.2026-10:15:07"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:08"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:08"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:09"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:09"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:09"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:10"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:10"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:11"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:11"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:11"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:12"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:12"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:12"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:13"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:13"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:14"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:14"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:14"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:15"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:15"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:15"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:16"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:16"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:17"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:17"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:17"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:18"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:18"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:18"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:19"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:19"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:19"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:20"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:20"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:20"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:21"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:21"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:22"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:22"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:22"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:23"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:23"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:23"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:24"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:24"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:24"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:25"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:25"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:25"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:26"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:26"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:26"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:27"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:27"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:28"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:28"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:28"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:29"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:29"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:29"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:30"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:30"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:31"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:31"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:31"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:32"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:32"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:32"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:33"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:33"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:33"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:34"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:34"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:34"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:35"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:35"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:35"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:36"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:36"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:37"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:37"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:37"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:38"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:38"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:38"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:39"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:39"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:40"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:40"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:40"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:41"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:41"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:41"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:42"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:42"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:43"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:43"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:43"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:44"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:44"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:44"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:45"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:45"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:45"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:46"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:46"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:47"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:52"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:52"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:52"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:53"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:53"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:53"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:54"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:54"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:54"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:55"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:55"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:56"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:56"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:15:56"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:19:54"
 }
 ,{
   "message": "check",
@@ -72,98 +572,30 @@
   "time": "00:02:00"
 }
 ,{
-  "message": "check",
-  "time": "00:03:00"
-}
-,{
-  "message": "restart",
-  "time": "00:03:32"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:03:32"
+  "message": "depotlist",
+  "time": "00:02:51"
 }
 ,{
   "message": "Startup",
-  "time": "24.02.2026-11:31:21"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:01"
-}
-,{
-  "message": "check",
-  "time": "00:01:00"
-}
-,{
-  "message": "check",
-  "time": "00:02:00"
-}
-,{
-  "message": "check",
-  "time": "00:03:00"
-}
-,{
-  "message": "restart",
-  "time": "00:03:09"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:03:09"
-}
-,{
-  "message": "Startup",
-  "time": "24.02.2026-11:34:31"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:03"
-}
-,{
-  "message": "check",
-  "time": "00:01:00"
-}
-,{
-  "message": "check",
-  "time": "00:02:00"
-}
-,{
-  "message": "restart",
-  "time": "00:02:07"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:02:07"
-}
-,{
-  "message": "Startup",
-  "time": "24.02.2026-11:36:39"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:05"
-}
-,{
-  "message": "check",
-  "time": "00:01:00"
-}
-,{
-  "message": "shutdown",
-  "time": "00:01:18"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:01:18"
-}
-,{
-  "message": "Startup",
-  "time": "24.02.2026-11:38:09"
+  "time": "25.02.2026-10:23:19"
 }
 ,{
   "message": "start=Ticker",
   "time": "00:00:08"
 }
 ,{
+  "message": "restart",
+  "time": "00:00:13"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:13"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:23:32"
+}
+,{
   "message": "check",
   "time": "00:01:00"
 }
@@ -172,124 +604,32 @@
   "time": "00:02:00"
 }
 ,{
-  "message": "restart",
-  "time": "00:02:48"
+  "message": "check",
+  "time": "00:03:00"
 }
 ,{
-  "message": "stop=Ticker",
-  "time": "00:02:48"
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "check",
+  "time": "00:05:00"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:05:15"
+}
+,{
+  "message": "depotlist",
+  "time": "00:05:17"
 }
 ,{
   "message": "Startup",
-  "time": "24.02.2026-11:40:57"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:05"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:00:32"
-}
-,{
-  "message": "restart",
-  "time": "00:00:58"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:00:58"
-}
-,{
-  "message": "Startup",
-  "time": "24.02.2026-11:41:55"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:07"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:00:11"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:14"
-}
-,{
-  "message": "restart",
-  "time": "00:00:55"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:00:55"
-}
-,{
-  "message": "Startup",
-  "time": "24.02.2026-11:42:50"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:03"
+  "time": "25.02.2026-10:28:49"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
-}
-,{
-  "message": "restart",
-  "time": "00:01:37"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:01:37"
-}
-,{
-  "message": "Startup",
-  "time": "24.02.2026-11:44:28"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:10"
-}
-,{
-  "message": "restart",
-  "time": "00:00:12"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:00:12"
-}
-,{
-  "message": "Startup",
-  "time": "24.02.2026-11:44:41"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:05"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:00:13"
-}
-,{
-  "message": "check",
-  "time": "00:01:00"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:01:13"
-}
-,{
-  "message": "uptime",
-  "time": "00:01:20"
-}
-,{
-  "message": "uptime",
-  "time": "00:01:23"
-}
-,{
-  "message": "uptime",
-  "time": "00:01:25"
 }
 ,{
   "message": "check",
@@ -310,5 +650,185 @@
 ,{
   "message": "check",
   "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "check",
+  "time": "00:08:00"
+}
+,{
+  "message": "check",
+  "time": "00:09:00"
+}
+,{
+  "message": "check",
+  "time": "00:10:00"
+}
+,{
+  "message": "check",
+  "time": "00:11:00"
+}
+,{
+  "message": "check",
+  "time": "00:12:00"
+}
+,{
+  "message": "check",
+  "time": "00:13:00"
+}
+,{
+  "message": "check",
+  "time": "00:14:00"
+}
+,{
+  "message": "check",
+  "time": "00:15:00"
+}
+,{
+  "message": "check",
+  "time": "00:16:00"
+}
+,{
+  "message": "depotlist",
+  "time": "00:16:46"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:45:36"
+}
+,{
+  "message": "depotlist",
+  "time": "00:00:42"
+}
+,{
+  "message": "restart",
+  "time": "00:00:50"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:50"
+}
+,{
+  "message": "Startup",
+  "time": "25.02.2026-10:46:26"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:26"
+}
+,{
+  "message": "check",
+  "time": "00:01:01"
+}
+,{
+  "message": "check",
+  "time": "00:02:01"
+}
+,{
+  "message": "check",
+  "time": "00:03:01"
+}
+,{
+  "message": "check",
+  "time": "00:04:01"
+}
+,{
+  "message": "check",
+  "time": "00:05:01"
+}
+,{
+  "message": "check",
+  "time": "00:06:01"
+}
+,{
+  "message": "check",
+  "time": "00:07:01"
+}
+,{
+  "message": "check",
+  "time": "00:08:01"
+}
+,{
+  "message": "check",
+  "time": "00:09:01"
+}
+,{
+  "message": "check",
+  "time": "00:10:01"
+}
+,{
+  "message": "check",
+  "time": "00:11:01"
+}
+,{
+  "message": "check",
+  "time": "00:12:01"
+}
+,{
+  "message": "check",
+  "time": "00:13:01"
+}
+,{
+  "message": "check",
+  "time": "00:14:01"
+}
+,{
+  "message": "check",
+  "time": "00:15:01"
+}
+,{
+  "message": "check",
+  "time": "00:16:01"
+}
+,{
+  "message": "check",
+  "time": "00:17:01"
+}
+,{
+  "message": "check",
+  "time": "00:18:01"
+}
+,{
+  "message": "check",
+  "time": "00:19:01"
+}
+,{
+  "message": "check",
+  "time": "00:20:01"
+}
+,{
+  "message": "check",
+  "time": "00:21:01"
+}
+,{
+  "message": "check",
+  "time": "00:22:01"
+}
+,{
+  "message": "check",
+  "time": "00:23:01"
+}
+,{
+  "message": "check",
+  "time": "00:24:01"
+}
+,{
+  "message": "check",
+  "time": "00:25:01"
+}
+,{
+  "message": "check",
+  "time": "00:26:01"
+}
+,{
+  "message": "check",
+  "time": "00:27:01"
+}
+,{
+  "message": "check",
+  "time": "00:28:01"
 }
 ]

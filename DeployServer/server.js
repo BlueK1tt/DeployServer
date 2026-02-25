@@ -30,12 +30,13 @@ function startup(){
     compareLog(); //make log entries and replace if different
     thirtyTimer(); //initiate the timer, interval from config
     pm2bussi(); //initiate pm2bus functionality, able to send and receive data
-    exports.timenow = { timenow }; //needs to be just here
+    exports.timenow = { timenow }; //needs to be just here to process
     makelogentry("Startup") //to make log entry to temps.json
     return;
 }
 
 function checkservers(){ // see if any servers are online
+    console.log("checkservers")
     let data = require("./functions/verifyrunning")
     delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
     var sentData = valuesToArray(data); 
@@ -44,11 +45,11 @@ function checkservers(){ // see if any servers are online
     let serverstring = JSON.stringify(runningservers)
     //console.log(serverstring)
     if(serverstring == "[]"){
-        //console.log("No running servers")
+        console.log("No running servers")
         return;
     }
     if(serverstring != "[]"){
-        //console.log("Some server is still running")
+        console.log("Some server is still running")
         pm2stop("all");
         return;
     } else {
@@ -56,7 +57,6 @@ function checkservers(){ // see if any servers are online
         return;
     }
 }
-
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     //console.log("savelog");
@@ -120,6 +120,7 @@ function commandscollection() { //currently not in use, using the above commands
 };
 
 function getfile(msg) { //------ can be made into own file and moved to 'functions'
+    console.log("getfile")
     if(msg == ""){
         return "no specified command";
     }
