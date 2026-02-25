@@ -23,8 +23,43 @@ const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
 };
 
+function startup(){
+    console.log("Server staring up at: " + timenow)
+    console.log('Server running at ' + config.hostname +':' + config.netport);
+    checkservers() //check if servers online even after startup
+    compareLog(); //make log entries and replace if different
+    thirtyTimer(); //initiate the timer, interval from config
+    pm2bussi(); //initiate pm2bus functionality, able to send and receive data
+    exports.timenow = { timenow }; //needs to be just here
+    makelogentry("Startup") //to make log entry to temps.json
+    return;
+}
+
+function checkservers(){ // see if any servers are online
+    let data = require("./functions/verifyrunning")
+    delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
+    var sentData = valuesToArray(data); 
+    depotlist = sentData[0];
+    //console.log(runningservers)
+    let serverstring = JSON.stringify(runningservers)
+    //console.log(serverstring)
+    if(serverstring == "[]"){
+        //console.log("No running servers")
+        return;
+    }
+    if(serverstring != "[]"){
+        //console.log("Some server is still running")
+        pm2stop("all");
+        return;
+    } else {
+        console.log("checkserver error")
+        return;
+    }
+}
+
+
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
-    console.log("savelog");
+    //console.log("savelog");
     var logpromise = isFile("./resources/log.json");
     var depromise = isFile("./depositories/DepositoriesList.JSON");
 
@@ -146,7 +181,7 @@ function msgidentify(msg){
         return "no specified command";
     } 
     if(basecommands.includes(msg)){
-        //console.log("base command");
+        console.log("base command");
         return msg;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
@@ -336,7 +371,7 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
     //console.log("pm2connect")
     pm2.connect(function(err) {
         if (err) {
-            console.error(err)
+            //console.error(err)
             return "error" + err
         }
     })
@@ -397,11 +432,7 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                             msgidentify("stop="+cutexcess[8])
                             let stopfile = cutexcess[8]
                             //pm2stop(stopfile)
-
-                            //console.log("400 stopfile")
-                            //console.log(stopfile)
-                            
-                            //pm2.stop(stopfile)
+                            pm2.stop(stopfile)
                             return;
                         }
                     }
@@ -464,7 +495,7 @@ function pm2check(instance){ //function the check what servers are running
 
     //get list of running pm2 instances
     if(runningservers == null){ //if array is empty
-        let runningserverlist = runningservers.length > 0 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
+        let runningserverlist = runningservers.length > 1 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
         //console.log(runningserverlist)
         return false
     } else { //if array is not empty
@@ -523,10 +554,7 @@ function pm2start(startfile,filename){ //start specific server on command, need 
             repeated = startcondition.startcondition.count
             runningservers.push(startfile)
             pm2.start(`${startfile}`, function(err, apps) {
-            //need to call some counter to check if server is up after while
-            //if not, start again and add +1 to coutner
-            //if counter reaches 3, stop and add error
-      
+            //console.log(apps)
             });
         } else {
             console.log("error with start conditions")
@@ -541,10 +569,9 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     if(stopfile == "all"){
-        //console.log("pm2stop all")
         pm2.list((err, list) => {
-            var id = 0;
-            //console.log("after id")
+            const id = 0;
+            
             list = list.map(item => {
                 return item.id !== id ? item : null;
             }).filter(item => item !== null)
@@ -553,7 +580,6 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             //console.log(list)
 
             const stoplist = [];
-            //console.log("Stoplist")
             list.forEach((Element) => {
                 if(Element.name == "Deployment server"){
                     //main server
@@ -678,7 +704,7 @@ function bussifunctions(appdata){
     }
     else {
         //console.log("appdata" + appdata)
-        console.log("bussi else")
+        //console.log("bussi else")
         const data = require('./functions/outcommand')
         var sentData = valuesToArray(data); 
         asmessage = sentData[0];
@@ -732,7 +758,6 @@ function sendtomaster(destination, data){
         console.log("sendtomaster error")
         return;
     }
-    
 };
 
 function testsend(data){
@@ -780,7 +805,7 @@ const requestListener = function(request, response){
     exports.repeated = { repeated };
 
     needcommand = msgidentify(msg) //command type
-    console.log(needcommand);
+    //console.log(needcommand);
     response.write(JSON.stringify(needcommand) + '\n');
     
     //console.log("start of if listener")
@@ -802,7 +827,7 @@ const requestListener = function(request, response){
         response.end('Restarting...\n');
         pm2stop("all")
         setTimeout(function() {
-            //console.log('Restarting')
+            console.log('Restarting')
             process.exit(128)
         }, 2000);
     }
@@ -837,11 +862,5 @@ const requestListener = function(request, response){
 
 const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
-    console.log("Server staring up at: " + timenow)
-    console.log('Server running at ' + config.hostname +':' + config.netport);
-    compareLog();
-    thirtyTimer();
-    pm2bussi();
-    exports.timenow = { timenow };
-    makelogentry("Startup")
+    startup();
 });

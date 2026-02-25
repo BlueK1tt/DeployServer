@@ -19,4 +19,20 @@
   "message": "check",
   "time": ""
 }
+,{
+  "message": "start=Ticker",
+  "time": ""
+}
+,{
+  "message": "check",
+  "time": ""
+}
+,{
+  "message": "shutdown",
+  "time": ""
+}
+,{
+  "message": "stop=undefined",
+  "time": ""
+}
 ]

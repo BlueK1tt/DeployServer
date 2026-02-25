@@ -1,4 +1,5 @@
 const fs = require('fs');
+var { message } = require('../server');
 
 //uninstall "program" from depositories folder
 //just need to remove the whole name floder, check it after done, and return true when done
@@ -8,6 +9,7 @@ module.exports = {
 };
 
 function uninstall(){
+    let msg = cleanmessage(message)
     filename = msg.slice(10);
     var isfile = checkfile(filename);
 
@@ -39,4 +41,12 @@ function checkfile(filename){ //used 2 times, first to check that file exitst, t
     files = fs.existsSync(filepath);
     //console.log(files)
     return files
+}
+
+function cleanmessage(message){
+    console.log(message)
+    msgstring = JSON.stringify(message)
+    let msg = msgstring.slice(14,-2)
+    console.log(msg)
+    return msg
 }

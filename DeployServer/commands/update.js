@@ -2,8 +2,7 @@ const fs = require('fs'); //filesystem;
 const config = require("../resources/config.json");
 const { stringify } = require('querystring');
 var { message } = require('../server');
-
-let msg = cleanemssage(message)
+let msg = cleanmessage(message)
 
 module.exports = {
     data: update(msg)
@@ -175,9 +174,10 @@ function compareLog(){ //function to happen right after start to compare if anyt
     }
 
 };
-
-function cleanemssage(message){ // > { msgtosend: 'start=Ticker' }
-    let stremssage = JSON.stringify(message)
-    let frontback = stremssage.slice(14,-2)
-    return frontback
+function cleanmessage(message){
+    console.log(message)
+    msgstring = JSON.stringify(message)
+    let msg = msgstring.slice(14,-2)
+    console.log(msg)
+    return msg
 }
