@@ -32,6 +32,7 @@ function startup(){
     pm2bussi(); //initiate pm2bus functionality, able to send and receive data
     exports.timenow = { timenow }; //needs to be just here to process
     makelogentry("Startup") //to make log entry to temps.json
+    getfunction("functions","logservers")
     return;
 }
 
@@ -120,7 +121,7 @@ function commandscollection() { //currently not in use, using the above commands
 };
 
 function getfile(msg) { //------ can be made into own file and moved to 'functions'
-    console.log("getfile")
+    //console.log("getfile")
     if(msg == ""){
         return "no specified command";
     }
@@ -151,6 +152,7 @@ function getfile(msg) { //------ can be made into own file and moved to 'functio
         }else{
             const position = Number(match)
             result = files[position];
+            
             //console.log("getfile" + result);
             fs.close;
             return result
@@ -162,7 +164,8 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
-function getfuntion(folder,filename){
+function getfunction(folder,filename){
+    console.log("getfunction")
     let filePath = "./"+folder+"/"+filename
     //console.log(filePath)
     let data = require(filePath);
