@@ -1,6 +1,98 @@
 [
 {
   "message": "Startup",
-  "time": "26.02.2026-11:47:45"
+  "time": "26.02.2026-12:35:19"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "restart",
+  "time": "00:04:14"
+}
+,{
+  "message": "Startup",
+  "time": "26.02.2026-12:39:35"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "restart",
+  "time": "00:01:44"
+}
+,{
+  "message": "Startup",
+  "time": "26.02.2026-12:41:21"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "restart",
+  "time": "00:04:56"
+}
+,{
+  "message": "Startup",
+  "time": "26.02.2026-12:46:19"
+}
+,{
+  "message": "restart",
+  "time": "00:00:18"
+}
+,{
+  "message": "Startup",
+  "time": "26.02.2026-12:46:39"
+}
+,{
+  "message": "restart",
+  "time": "00:00:05"
+}
+,{
+  "message": "Startup",
+  "time": "26.02.2026-12:46:46"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "shutdown",
+  "time": "00:03:39"
 }
 ]

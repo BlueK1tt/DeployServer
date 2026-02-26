@@ -37,7 +37,7 @@ function startup(){
 }
 
 function checkservers(){ // see if any servers are online
-    console.log("checkservers")
+    //console.log("checkservers")
     let data = require("./functions/verifyrunning")
     delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
     var sentData = valuesToArray(data); 

@@ -5,6 +5,7 @@
 const fs = require('fs');
 const pm2 = require('pm2');
 const config = require('../resources/config.json'); //custom configurations file for secret info
+const logfile = ('../resources/gitsinfo.json')
 
 module.exports =  {
     data: logservers()
@@ -13,6 +14,7 @@ module.exports =  {
 function logservers(){ //the main function, dictating what to do in order
     //"action" variable, what to do
 
+    emptyfile() //check if file exists
     let folders = verifyfolderexists();
     //getstartfile(folder, file);
     getstartfile()
@@ -48,31 +50,77 @@ function getstartfile(){ //get depositories star files in array or string
 }
 
 function emptyfile(){ //if JSON is empty or doesnt exist yet
-    const data = () => fs.readFileSync(require.resolve("../resources/commands.json"), { encoding: "utf8" });
-    let commandslistobj = data()
-    let commandliststr = commandslistobj
+    console.log("emptyfile")
+    let fileexist = filexist("gitsinfo.json")
+    if(fileexist === false){
+        console.log("emptyfile false")
+        //log file doesnt exist, needs to be created
+    }
+    if(fileexist === true){
+        console.log("emptyfile true")
+        const data = () => fs.readFileSync(require.resolve(logfile), { encoding: "utf8" });
+        let commandslistobj = data()
+        let commandliststr = commandslistobj
+        let filecontents = commandliststr != "" ? commandliststr : newdepository();
+        console.log(filecontents)
+
+        console.log(commandliststr)
+        return;
+    } else {
+        console.log("emptyfile error")
+        return;
+    }
+    
 
 }
 
 function newdepository(){ //create completely new depository entry into JSON
     console.log("newdepository")
 
+    //get info from /depositories/ and pm2check to create first data entry
+    //return something else, like "OK" or smth
+
+
+    return "FIRST ENTRY"
+
 }
 
-function deldepositoru(){ //delete some depository from the JSON
+function deldepository(){ //delete some depository from the JSON
     console.log("deldepository")
+
+    //propably command from server "uninstall" and delete that spesific depository gitsinfo entry
 
 }
 
 function updateinfo(){ //update JSON info about the servers
     console.log("updateinfo")
 
-
+    //need to make this proper,
+    //update every time server goes offline or online
+    //update every time  github is pulled or some tile is updated but not deleted
 
 }
 
 function getpm2servers(){ //get list of servers, see if online or offline
     console.log("getpm2servers")
 
+    //need to get current pm2 server instances
+    //possibly need to outsource this, because ASYNC
+}
 
+
+function filexist(filename){
+    let files = fs.readdirSync('./resources/')
+    //filename = "gitsinfo.json"
+    if(files.includes(filename)){
+        console.log("File exists")
+        return true
+    } 
+    if(!files.includes(filename)){
+        console.log("File does not exist")
+        return false
+    } else {
+        console.log("error in file check")
+        return "error"
+    }
 }
