@@ -6,6 +6,7 @@ const fs = require('fs');
 const pm2 = require('pm2');
 const config = require('../resources/config.json'); //custom configurations file for secret info
 const logfile = ('../resources/gitsinfo.json')
+var { runningservers } = require('../server')
 
 module.exports =  {
     data: logservers()
@@ -13,6 +14,8 @@ module.exports =  {
 
 function logservers(){ //the main function, dictating what to do in order
     //"action" variable, what to do
+    console.log("runningservers")
+    console.log(runningservers)
 
     emptyfile() //check if file exists
     let folders = verifyfolderexists();
@@ -53,25 +56,25 @@ function emptyfile(){ //if JSON is empty or doesnt exist yet
     console.log("emptyfile")
     let fileexist = filexist("gitsinfo.json")
     if(fileexist === false){
-        console.log("emptyfile false")
+        console.log("File doesnt exist")
         //log file doesnt exist, needs to be created
+
     }
     if(fileexist === true){
-        console.log("emptyfile true")
+        console.log("File exists 2")
         const data = () => fs.readFileSync(require.resolve(logfile), { encoding: "utf8" });
         let commandslistobj = data()
         let commandliststr = commandslistobj
+        //newdpository needs to be here,incase its created manually
         let filecontents = commandliststr != "" ? commandliststr : newdepository();
         console.log(filecontents)
 
-        console.log(commandliststr)
+        //console.log(commandliststr)
         return;
     } else {
         console.log("emptyfile error")
         return;
     }
-    
-
 }
 
 function newdepository(){ //create completely new depository entry into JSON
@@ -82,7 +85,6 @@ function newdepository(){ //create completely new depository entry into JSON
 
 
     return "FIRST ENTRY"
-
 }
 
 function deldepository(){ //delete some depository from the JSON
@@ -113,7 +115,7 @@ function filexist(filename){
     let files = fs.readdirSync('./resources/')
     //filename = "gitsinfo.json"
     if(files.includes(filename)){
-        console.log("File exists")
+        console.log("File exists 1")
         return true
     } 
     if(!files.includes(filename)){

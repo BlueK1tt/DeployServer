@@ -1,7 +1,11 @@
 [
 {
   "message": "Startup",
-  "time": "26.02.2026-12:35:19"
+  "time": "03.03.2026-12:12:07"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:03"
 }
 ,{
   "message": "check",
@@ -20,24 +24,108 @@
   "time": "00:04:00"
 }
 ,{
-  "message": "restart",
-  "time": "00:04:14"
-}
-,{
-  "message": "Startup",
-  "time": "26.02.2026-12:39:35"
+  "message": "check",
+  "time": "00:05:00"
 }
 ,{
   "message": "check",
-  "time": "00:01:00"
+  "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "check",
+  "time": "00:08:00"
+}
+,{
+  "message": "check",
+  "time": "00:09:00"
+}
+,{
+  "message": "check",
+  "time": "00:10:00"
+}
+,{
+  "message": "check",
+  "time": "00:11:00"
+}
+,{
+  "message": "check",
+  "time": "00:12:00"
+}
+,{
+  "message": "check",
+  "time": "00:13:00"
+}
+,{
+  "message": "check",
+  "time": "00:14:00"
+}
+,{
+  "message": "check",
+  "time": "00:15:00"
+}
+,{
+  "message": "check",
+  "time": "00:16:00"
+}
+,{
+  "message": "check",
+  "time": "00:17:00"
+}
+,{
+  "message": "check",
+  "time": "00:18:00"
+}
+,{
+  "message": "check",
+  "time": "00:19:00"
+}
+,{
+  "message": "check",
+  "time": "00:20:00"
+}
+,{
+  "message": "check",
+  "time": "00:21:00"
+}
+,{
+  "message": "check",
+  "time": "00:22:00"
+}
+,{
+  "message": "check",
+  "time": "00:23:00"
+}
+,{
+  "message": "check",
+  "time": "00:24:00"
+}
+,{
+  "message": "check",
+  "time": "00:25:00"
+}
+,{
+  "message": "check",
+  "time": "00:26:00"
+}
+,{
+  "message": "check",
+  "time": "00:27:00"
 }
 ,{
   "message": "restart",
-  "time": "00:01:44"
+  "time": "00:27:19"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:27:19"
 }
 ,{
   "message": "Startup",
-  "time": "26.02.2026-12:41:21"
+  "time": "03.03.2026-12:39:27"
 }
 ,{
   "message": "check",
@@ -46,53 +134,5 @@
 ,{
   "message": "check",
   "time": "00:02:00"
-}
-,{
-  "message": "check",
-  "time": "00:03:00"
-}
-,{
-  "message": "check",
-  "time": "00:04:00"
-}
-,{
-  "message": "restart",
-  "time": "00:04:56"
-}
-,{
-  "message": "Startup",
-  "time": "26.02.2026-12:46:19"
-}
-,{
-  "message": "restart",
-  "time": "00:00:18"
-}
-,{
-  "message": "Startup",
-  "time": "26.02.2026-12:46:39"
-}
-,{
-  "message": "restart",
-  "time": "00:00:05"
-}
-,{
-  "message": "Startup",
-  "time": "26.02.2026-12:46:46"
-}
-,{
-  "message": "check",
-  "time": "00:01:00"
-}
-,{
-  "message": "check",
-  "time": "00:02:00"
-}
-,{
-  "message": "check",
-  "time": "00:03:00"
-}
-,{
-  "message": "shutdown",
-  "time": "00:03:39"
 }
 ]
