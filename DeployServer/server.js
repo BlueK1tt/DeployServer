@@ -19,6 +19,8 @@ var msgid = 0; //just defult id for messages, gets +1 automatically
 var repeated = 0;
 var msg = " ";
 var message = " ";
+var serverlist = new Array;
+
 
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
@@ -730,19 +732,21 @@ function pm2running(){
             console.log(err)
             return err
         } else {
-            let serverlist = new Array;
             list = list.map(item => {
                 return item.id !== id ? item : null;
             }).filter(item => item !== null)
             list.forEach((Element) => {
-                serverlist.push(Element)
+                console.log(Element.pm_exec_path)
+                serverlist.push(Element.pm_exec_path)
                 //console.log(serverlist)
+                
                 return serverlist;
             });
-            console.log(serverlist)
-            return;
+            //console.log(serverlist)
+            return serverlist;
         }
     });
+    console.log(serverlist)
 }
 
 function pm2packetprocess(packet){

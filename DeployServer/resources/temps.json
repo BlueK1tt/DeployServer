@@ -135,4 +135,268 @@
   "message": "check",
   "time": "00:02:00"
 }
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "check",
+  "time": "00:05:00"
+}
+,{
+  "message": "check",
+  "time": "00:06:00"
+}
+,{
+  "message": "restart",
+  "time": "00:06:54"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:06:54"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:46:21"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:04"
+}
+,{
+  "message": "restart",
+  "time": "00:00:29"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:29"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:46:50"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:02"
+}
+,{
+  "message": "restart",
+  "time": "00:00:21"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:21"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:47:11"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:04"
+}
+,{
+  "message": "restart",
+  "time": "00:00:18"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:18"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:47:29"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:03"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:05"
+}
+,{
+  "message": "restart",
+  "time": "00:00:17"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:17"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:47:47"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:06"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:08"
+}
+,{
+  "message": "restart",
+  "time": "00:00:38"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:38"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:48:25"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:02"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:03"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:16"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:18"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:20"
+}
+,{
+  "message": "restart",
+  "time": "00:00:29"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:29"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:48:54"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:02"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:03"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:27"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "restart",
+  "time": "00:01:03"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:01:03"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:49:57"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:02"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:06"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:46"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:47"
+}
+,{
+  "message": "restart",
+  "time": "00:00:48"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:48"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:50:46"
+}
+,{
+  "message": "restart",
+  "time": "00:00:07"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:07"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:50:53"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:02"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:02"
+}
+,{
+  "message": "restart",
+  "time": "00:00:22"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:22"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:51:16"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:01"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:05"
+}
+,{
+  "message": "restart",
+  "time": "00:00:42"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:42"
+}
+,{
+  "message": "Startup",
+  "time": "03.03.2026-12:51:58"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:02"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:03"
+}
 ]
