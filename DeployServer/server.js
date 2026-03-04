@@ -288,10 +288,12 @@ function msgidentify(msg){
         asmessage = sentData[0];
         delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
         return "disablecommand";
+
     }if(msg.includes("logservers")){
         pm2running();
         getfunction("functions","logservers")
         return;
+        
     }if(msg == "testcommand"){
         consol.log("testcommand")
         //console.log("testcommand")
