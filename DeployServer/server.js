@@ -839,6 +839,7 @@ const requestListener = function(request, response){
 
     exports.message = {msgtosend}; //export msg as variable to use in modules
     exports.repeated = { repeated };
+    
     exports.runningservers = { runningservers };
     
     console.log(repeated)

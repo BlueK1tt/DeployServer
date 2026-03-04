@@ -6,8 +6,8 @@ const fs = require('fs');
 const pm2 = require('pm2');
 const config = require('../resources/config.json'); //custom configurations file for secret info
 const logfile = ('../resources/gitsinfo.json')
-var { runningservers } = require('../server')
-
+//var { runningservers } = require('../server')
+let runningservers = [];
 module.exports =  {
     data: logservers()
 };
