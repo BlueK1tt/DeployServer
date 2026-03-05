@@ -431,4 +431,32 @@
   "message": "check",
   "time": "00:10:00"
 }
+,{
+  "message": "Startup",
+  "time": "05.03.2026-12:03:00"
+}
+,{
+  "message": "start=Ticker",
+  "time": "00:00:10"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "check",
+  "time": "00:05:00"
+}
 ]
