@@ -101,6 +101,9 @@ function updateinfo(){ //update JSON info about the servers
     //update every time server goes offline or online
     //update every time  github is pulled or some tile is updated but not deleted
 
+    //get the name of what repository to update
+    //use same object, delete existing one, add new one in place
+
 }
 
 function getpm2servers(){ //get list of servers, see if online or offline

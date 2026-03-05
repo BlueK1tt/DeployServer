@@ -1,15 +1,11 @@
 [
 {
   "message": "Startup",
-  "time": "04.03.2026-12:39:43"
+  "time": "05.03.2026-09:56:13"
 }
 ,{
   "message": "logservers",
-  "time": "00:00:25"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:35"
+  "time": "00:00:44"
 }
 ,{
   "message": "check",
@@ -44,32 +40,392 @@
   "time": "00:08:00"
 }
 ,{
-  "message": "stop=Ticker",
-  "time": "00:08:28"
+  "message": "check",
+  "time": "00:09:00"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:08:31"
+  "message": "check",
+  "time": "00:10:00"
 }
 ,{
-  "message": "stop=Ticker",
-  "time": "00:08:46"
+  "message": "check",
+  "time": "00:11:00"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:08:49"
+  "message": "check",
+  "time": "00:12:00"
+}
+,{
+  "message": "check",
+  "time": "00:13:00"
+}
+,{
+  "message": "check",
+  "time": "00:14:00"
+}
+,{
+  "message": "check",
+  "time": "00:15:00"
+}
+,{
+  "message": "check",
+  "time": "00:16:00"
+}
+,{
+  "message": "check",
+  "time": "00:17:00"
+}
+,{
+  "message": "check",
+  "time": "00:18:00"
+}
+,{
+  "message": "check",
+  "time": "00:19:00"
+}
+,{
+  "message": "check",
+  "time": "00:20:00"
+}
+,{
+  "message": "check",
+  "time": "00:21:00"
+}
+,{
+  "message": "check",
+  "time": "00:22:00"
+}
+,{
+  "message": "check",
+  "time": "00:23:00"
+}
+,{
+  "message": "check",
+  "time": "00:24:00"
+}
+,{
+  "message": "check",
+  "time": "00:25:00"
+}
+,{
+  "message": "check",
+  "time": "00:26:00"
+}
+,{
+  "message": "check",
+  "time": "00:27:00"
+}
+,{
+  "message": "check",
+  "time": "00:28:00"
+}
+,{
+  "message": "check",
+  "time": "00:29:00"
+}
+,{
+  "message": "check",
+  "time": "00:30:00"
+}
+,{
+  "message": "check",
+  "time": "00:31:00"
+}
+,{
+  "message": "check",
+  "time": "00:32:00"
+}
+,{
+  "message": "check",
+  "time": "00:33:00"
+}
+,{
+  "message": "check",
+  "time": "00:34:00"
+}
+,{
+  "message": "check",
+  "time": "00:35:00"
+}
+,{
+  "message": "check",
+  "time": "00:36:00"
+}
+,{
+  "message": "check",
+  "time": "00:37:00"
+}
+,{
+  "message": "check",
+  "time": "00:38:00"
+}
+,{
+  "message": "check",
+  "time": "00:39:00"
+}
+,{
+  "message": "check",
+  "time": "00:40:00"
+}
+,{
+  "message": "check",
+  "time": "00:41:00"
+}
+,{
+  "message": "check",
+  "time": "00:42:00"
+}
+,{
+  "message": "check",
+  "time": "00:43:00"
+}
+,{
+  "message": "check",
+  "time": "00:44:00"
+}
+,{
+  "message": "check",
+  "time": "00:45:00"
+}
+,{
+  "message": "check",
+  "time": "00:46:00"
+}
+,{
+  "message": "check",
+  "time": "00:47:00"
+}
+,{
+  "message": "check",
+  "time": "00:48:00"
+}
+,{
+  "message": "check",
+  "time": "00:49:00"
+}
+,{
+  "message": "check",
+  "time": "00:50:00"
+}
+,{
+  "message": "check",
+  "time": "00:51:00"
+}
+,{
+  "message": "check",
+  "time": "00:52:00"
+}
+,{
+  "message": "check",
+  "time": "00:53:00"
+}
+,{
+  "message": "check",
+  "time": "00:54:00"
+}
+,{
+  "message": "check",
+  "time": "00:55:00"
+}
+,{
+  "message": "Startup",
+  "time": "05.03.2026-10:57:17"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "check",
+  "time": "00:05:00"
+}
+,{
+  "message": "check",
+  "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "check",
+  "time": "00:08:00"
 }
 ,{
   "message": "check",
   "time": "00:09:00"
 }
 ,{
-  "message": "stop=Ticker",
-  "time": "00:09:27"
+  "message": "check",
+  "time": "00:10:00"
+}
+,{
+  "message": "check",
+  "time": "00:11:00"
+}
+,{
+  "message": "check",
+  "time": "00:12:00"
+}
+,{
+  "message": "check",
+  "time": "00:13:00"
+}
+,{
+  "message": "check",
+  "time": "00:14:00"
+}
+,{
+  "message": "check",
+  "time": "00:15:00"
+}
+,{
+  "message": "check",
+  "time": "00:16:00"
+}
+,{
+  "message": "check",
+  "time": "00:17:00"
+}
+,{
+  "message": "check",
+  "time": "00:18:00"
+}
+,{
+  "message": "check",
+  "time": "00:19:00"
+}
+,{
+  "message": "check",
+  "time": "00:20:00"
+}
+,{
+  "message": "check",
+  "time": "00:21:00"
+}
+,{
+  "message": "check",
+  "time": "00:22:00"
+}
+,{
+  "message": "check",
+  "time": "00:23:00"
+}
+,{
+  "message": "check",
+  "time": "00:24:00"
+}
+,{
+  "message": "check",
+  "time": "00:25:00"
+}
+,{
+  "message": "check",
+  "time": "00:26:00"
+}
+,{
+  "message": "check",
+  "time": "00:27:00"
+}
+,{
+  "message": "check",
+  "time": "00:28:00"
+}
+,{
+  "message": "check",
+  "time": "00:29:00"
+}
+,{
+  "message": "check",
+  "time": "00:30:00"
+}
+,{
+  "message": "check",
+  "time": "00:31:00"
+}
+,{
+  "message": "check",
+  "time": "00:32:00"
+}
+,{
+  "message": "check",
+  "time": "00:33:00"
+}
+,{
+  "message": "check",
+  "time": "00:34:00"
+}
+,{
+  "message": "check",
+  "time": "00:35:00"
+}
+,{
+  "message": "check",
+  "time": "00:36:00"
+}
+,{
+  "message": "restart",
+  "time": "00:36:56"
+}
+,{
+  "message": "Startup",
+  "time": "05.03.2026-11:34:15"
 }
 ,{
   "message": "start=Ticker",
-  "time": "00:09:29"
+  "time": "00:00:04"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "check",
+  "time": "00:05:00"
+}
+,{
+  "message": "logserver",
+  "time": "00:05:26"
+}
+,{
+  "message": "check",
+  "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "check",
+  "time": "00:08:00"
+}
+,{
+  "message": "check",
+  "time": "00:09:00"
 }
 ,{
   "message": "check",
