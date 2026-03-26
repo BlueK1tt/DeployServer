@@ -2,6 +2,8 @@ const fs = require('fs'); //filesystem
 const { message } = require('../server');
 let msg = cleanmessage(message)
 
+//need work, wont update
+
 module.exports = {
     data: depots()
 }

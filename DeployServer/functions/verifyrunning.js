@@ -13,6 +13,11 @@ module.exports = {
 };
 
 function verifyrunning(){
+    pm2.connect(function(err) {
+    if (err) {
+        console.error(err)
+        process.exit(2)
+    }})
     //console.log("verifyrunning")
     //need to pass the server from msg to the function chekc if true or not
     var isrunning = getrunningservers() //return true or false

@@ -1,0 +1,7 @@
+{
+    "hostname":"127.0.0.1",
+    "netport":"3005",
+    "mainfile": "WatcherServer.js",
+    "Serialspeed":"9600",
+    "Serialport":"COM1"
+}

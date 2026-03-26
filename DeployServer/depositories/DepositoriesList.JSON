@@ -2,7 +2,7 @@
   "BluBot": [
     {
       "name": "BluBot",
-      "startfile": "server.js"
+      "startfile": "ecosystem.config.js"
     }
   ],
   "Jorma": [
@@ -15,6 +15,12 @@
     {
       "name": "Ticker",
       "startfile": "main.js"
+    }
+  ],
+  "SerialWatch":[
+    {
+      "name":"SerialWatch",
+      "startfile":"server.js"
     }
   ]
 }

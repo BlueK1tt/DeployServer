@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css"  href="./style.css">
     <title>Ticker</title>
 
     <meta charset="UTF-8"> 
@@ -60,7 +60,7 @@
     .column {
       float: left;
       padding: 10px;
-      flex: 1 0 auto;
+
       height: 100%;
     }
     
@@ -68,7 +68,6 @@
     .column.side {
       width: 25%;
       height: 100%;
-      flex: 1 0 auto;
 
     }
     
@@ -76,7 +75,6 @@
     .column.middle {
       width: 50%;
       height: 100%;
-      flex: 1 0 auto;
 
     }
     
@@ -86,7 +84,6 @@
       display: table;
       clear: both;
       height: 100%;
-      flex: 1 0 auto;
     }
     
     /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -123,10 +120,6 @@
     .call:hover{
         background-color: grey;
     }
-    body {
-    display: flex;
-    flex-direction: column;
-    }
     /* Style the footer */
     .footer {
     background-color: #f1f1f1;
@@ -137,8 +130,6 @@
     width:100%;
     border-style: solid ;
     border-color: black;
-    flex-shrink: 0;
-    position: fixed;
     }
 
     </style>
@@ -194,7 +185,8 @@
         <h2>Side</h2>
         <p>Sample text</p>
         <div class="meat">
-          <p>Meat</p>
+            <button onclick="Test()">The time is?</button>
+            <p id="demo"></p>
         </div>
       </div>
     </div>
