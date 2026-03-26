@@ -5,6 +5,7 @@ var path = require('path');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
+const logservers = require('./functions/logservers');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -18,6 +19,8 @@ var msgid = 0; //just defult id for messages, gets +1 automatically
 var repeated = 0;
 var msg = " ";
 var message = " ";
+var serverlist = new Array;
+
 
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
@@ -30,12 +33,15 @@ function startup(){
     compareLog(); //make log entries and replace if different
     thirtyTimer(); //initiate the timer, interval from config
     pm2bussi(); //initiate pm2bus functionality, able to send and receive data
-    exports.timenow = { timenow }; //needs to be just here
+    exports.timenow = { timenow }; //needs to be just here to process
     makelogentry("Startup") //to make log entry to temps.json
+    getfunction("functions","logservers")
+    pm2connect();
     return;
 }
 
 function checkservers(){ // see if any servers are online
+    //console.log("checkservers")
     let data = require("./functions/verifyrunning")
     delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
     var sentData = valuesToArray(data); 
@@ -48,7 +54,7 @@ function checkservers(){ // see if any servers are online
         return;
     }
     if(serverstring != "[]"){
-        //console.log("Some server is still running")
+        console.log("Some server is still running")
         pm2stop("all");
         return;
     } else {
@@ -56,7 +62,6 @@ function checkservers(){ // see if any servers are online
         return;
     }
 }
-
 
 function saveLog(){ //function to happen before restart and shutdown, take current depositories list and put it into log.JSON
     //console.log("savelog");
@@ -120,6 +125,7 @@ function commandscollection() { //currently not in use, using the above commands
 };
 
 function getfile(msg) { //------ can be made into own file and moved to 'functions'
+    //console.log("getfile")
     if(msg == ""){
         return "no specified command";
     }
@@ -150,6 +156,7 @@ function getfile(msg) { //------ can be made into own file and moved to 'functio
         }else{
             const position = Number(match)
             result = files[position];
+            
             //console.log("getfile" + result);
             fs.close;
             return result
@@ -161,7 +168,8 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
-function getfuntion(folder,filename){
+function getfunction(folder,filename){
+    //console.log("getfunction")
     let filePath = "./"+folder+"/"+filename
     //console.log(filePath)
     let data = require(filePath);
@@ -280,8 +288,14 @@ function msgidentify(msg){
         asmessage = sentData[0];
         delete require.cache[require.resolve(`./commands/disablecommand`)] //clears the cache allowing for new data to be read
         return "disablecommand";
+
+    }if(msg.includes("logservers")){
+        pm2running();
+        getfunction("functions","logservers")
+        return;
+        
     }if(msg == "testcommand"){
-        console.log("testcommand")
+        consol.log("testcommand")
         //console.log("testcommand")
         //let filedata = getfuntion("functions","logtemps.js")
         //console.log(filedata)
@@ -713,6 +727,30 @@ function bussifunctions(appdata){
     };
 };
 
+function pm2running(){
+    let id = 0;
+    pm2.list((err, list) => {
+        if(err){
+            console.log(err)
+            return err
+        } else {
+            list = list.map(item => {
+                return item.id !== id ? item : null;
+            }).filter(item => item !== null)
+            list.forEach((Element) => {
+                console.log(Element.pm_exec_path)
+                serverlist.push(Element.pm_exec_path)
+                //console.log(serverlist)
+                
+                return serverlist;
+            });
+            //console.log(serverlist)
+            return serverlist;
+        }
+    });
+    console.log(serverlist)
+}
+
 function pm2packetprocess(packet){
     //process packets coming in and return data if for this server
     if(packet == "undefined"){
@@ -803,6 +841,11 @@ const requestListener = function(request, response){
 
     exports.message = {msgtosend}; //export msg as variable to use in modules
     exports.repeated = { repeated };
+    
+    exports.runningservers = { runningservers };
+    
+    console.log(repeated)
+    //console.log(runningservers)
 
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);
