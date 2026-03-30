@@ -3,4 +3,16 @@
   "message": "Startup",
   "time": "30.03.2026-14:29:20"
 }
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "shutdown",
+  "time": "00:02:10"
+}
 ]
