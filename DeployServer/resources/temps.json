@@ -1,38 +1,222 @@
 [
 {
   "message": "Startup",
-  "time": "16.02.2026-23:45:41"
+  "time": "26.03.2026-10:32:43"
+}
+,{
+  "message": "restart",
+  "time": "00:00:56"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:56"
+}
+,{
+  "message": "Startup",
+  "time": "26.03.2026-10:33:39"
+}
+,{
+  "message": "install=Test",
+  "time": "00:00:03"
+}
+,{
+  "message": "uninstall=Test",
+  "time": "00:00:06"
+}
+,{
+  "message": "install=Test",
+  "time": "00:00:15"
+}
+,{
+  "message": "install=Testing",
+  "time": "00:00:24"
+}
+,{
+  "message": "uninstall=Test",
+  "time": "00:00:29"
+}
+,{
+  "message": "uninstall=Testing",
+  "time": "00:00:41"
 }
 ,{
   "message": "check",
-  "time": ""
+  "time": "00:01:00"
 }
 ,{
   "message": "check",
-  "time": ""
+  "time": "00:02:00"
 }
 ,{
   "message": "check",
-  "time": ""
+  "time": "00:03:00"
 }
 ,{
   "message": "check",
-  "time": ""
-}
-,{
-  "message": "start=Ticker",
-  "time": ""
+  "time": "00:04:00"
 }
 ,{
   "message": "check",
-  "time": ""
+  "time": "00:05:00"
+}
+,{
+  "message": "check",
+  "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "check",
+  "time": "00:08:00"
+}
+,{
+  "message": "check",
+  "time": "00:09:00"
+}
+,{
+  "message": "check",
+  "time": "00:10:00"
+}
+,{
+  "message": "restart",
+  "time": "00:10:06"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:10:06"
+}
+,{
+  "message": "Startup",
+  "time": "26.03.2026-10:43:46"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
 }
 ,{
   "message": "shutdown",
-  "time": ""
+  "time": "00:03:22"
 }
 ,{
-  "message": "stop=undefined",
-  "time": ""
+  "message": "stop=Ticker",
+  "time": "00:03:22"
+}
+,{
+  "message": "Startup",
+  "time": "26.03.2026-10:47:55"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "00:00:26"
+}
+,{
+  "message": "check",
+  "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "check",
+  "time": "00:05:00"
+}
+,{
+  "message": "check",
+  "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "check",
+  "time": "00:08:00"
+}
+,{
+  "message": "check",
+  "time": "00:09:00"
+}
+,{
+  "message": "check",
+  "time": "00:10:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "00:10:04"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "00:10:07"
+}
+,{
+  "message": "check",
+  "time": "00:11:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "00:11:07"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "00:11:08"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "00:11:42"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "00:11:43"
+}
+,{
+  "message": "check",
+  "time": "00:12:00"
+}
+,{
+  "message": "check",
+  "time": "00:13:00"
+}
+,{
+  "message": "check",
+  "time": "00:14:00"
+}
+,{
+  "message": "check",
+  "time": "00:06:00"
+}
+,{
+  "message": "check",
+  "time": "00:07:00"
+}
+,{
+  "message": "check",
+  "time": "00:08:00"
+}
+,{
+  "message": "check",
+  "time": "00:09:00"
+}
+,{
+  "message": "check",
+  "time": "00:10:00"
 }
 ]
