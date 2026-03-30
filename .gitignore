@@ -4,3 +4,4 @@ DeployServer/commands/yelda.js
 DeployServer/resources/commands.json
 DeployServer/resources/log.JSON
 DeployServer/resources/temps.json
+node_modules/
