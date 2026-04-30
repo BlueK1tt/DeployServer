@@ -1,11 +1,14 @@
 const fs = require('fs'); //filesystem
 const config = require("../resources/config.json");
+var { message } = require('../server');
 
 module.exports = {
     data: findfile()
 }
 
 function findfile(){
+    let msg = cleanmessage(message)
+    //console.log("findfile message" +msg)
     //console.log("findfile")
     if(msg.startsWith("start") || msg.startsWith("stop")){
         //file find not here, beacuse its case spesific and not always same
@@ -52,7 +55,7 @@ function findfile(){
             return error
         }
     } else {
-        console.log("findfile error")
+        //console.log("findfile error")
         return "findfile error"
     }
 
@@ -74,4 +77,12 @@ function verifyfile(filename){
     //console.log(finalcmd)
     return finalcmd
 
+}
+
+function cleanmessage(message){
+    //console.log(message)
+    msgstring = JSON.stringify(message)
+    let msg = msgstring.slice(14,-2)
+    //console.log(msg)
+    return msg
 }

@@ -1,28 +1,31 @@
 const fs = require('fs');
 let { message } = require("../server");
+let msg = cleanmessage(message)
 
 module.exports =  {
     data: mainfunction()
 
 };
 
-function specifymessage(message){
+function specifymessage(msg){
     //need to split message, so get needed data out of it
     //can append and update data
-    console.log(message.msg)
+
+
+    console.log(msg)
     
-    let updatedata = message.msg.split("=") //change to correct variable
+    let updatedata = msg.split("=") //change to correct variable
     return updatedata[1]
 }
 
 function mainfunction(){
     console.log(getdatetime())
 
-    if(message.msg == "appendmain"){
+    if(msg == "appendmain"){
         console.log("appendcomand")
         return "empty update"
     } else {
-        let updatedata = specifymessage(message)
+        let updatedata = specifymessage(msg)
         console.log(updatedata)
         
         //check if server log exists
@@ -81,4 +84,11 @@ function getdatetime(){
     let splitdatetime = cleannewtime.split("T")
     returnstring = splitdatetime[0]+"|"+splitdatetime[1]
     return returnstring;
+}
+function cleanmessage(message){
+    console.log(message)
+    msgstring = JSON.stringify(message)
+    let msg = msgstring.slice(14,-2)
+    console.log(msg)
+    return msg
 }

@@ -149,6 +149,9 @@ function loadwebsite(){
     return html
   })
   fs.close;
+}
+/*
+function loadcss(){  
   css = fs.readFile('./depositories/Ticker/style.css', function(err, css){
     if(err){
       throw err;
@@ -157,7 +160,7 @@ function loadwebsite(){
   })
   fs.close;
 }
-
+*/
 function loadmaintanance(){
   html1 = fs.readFile('./depositories/Ticker/maintanance.html', function(err, html1){
     if(err){

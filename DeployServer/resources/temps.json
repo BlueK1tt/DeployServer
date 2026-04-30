@@ -1,115 +1,19 @@
 [
 {
-  "message": "check",
-  "time": "37 second"
-}
-,{
-  "message": "check",
-  "time": "1 minute, 14 second"
-}
-,{
-  "message": "check",
-  "time": "2 minutes,"
-}
-,{
-  "message": "check",
-  "time": "2 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 42 second"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "5 minutes,"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "7 minutes, 24 second"
-}
-,{
-  "message": "restart",
-  "time": "8 minutes, "
-}
-,{
   "message": "Startup",
-  "time": "22.01.2026-11:39:15"
+  "time": "30.03.2026-14:29:20"
 }
 ,{
   "message": "check",
-  "time": "37 second"
+  "time": "00:01:00"
 }
 ,{
   "message": "check",
-  "time": "1 minute, 14 second"
-}
-,{
-  "message": "check",
-  "time": "2 minutes, "
-}
-,{
-  "message": "check",
-  "time": "2 minutes, 28 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 5 second"
-}
-,{
-  "message": "check",
-  "time": "3 minutes, 42 second"
-}
-,{
-  "message": "check",
-  "time": "4 minutes, 19 second"
-}
-,{
-  "message": "check",
-  "time": "5 minutes, "
-}
-,{
-  "message": "check",
-  "time": "5 minutes, 33 second"
-}
-,{
-  "message": "check",
-  "time": "6 minutes, 10 second"
-}
-,{
-  "message": "check",
-  "time": "7 minutes, "
-}
-,{
-  "message": "check",
-  "time": "7 minutes, 24 second"
-}
-,{
-  "message": "check",
-  "time": "8 minutes, 1 secon"
+  "time": "00:02:00"
 }
 ,{
   "message": "shutdown",
-  "time": "8 minutes, 21 second"
+  "time": "00:02:10"
 }
 ,{
   "message": "check",

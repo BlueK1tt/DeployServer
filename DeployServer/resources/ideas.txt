@@ -139,3 +139,13 @@ Seperate outside function accessible to all servers to save data to JSON file
             - All data is in as "string" Format
             - Can add stricter formats later, like Verion just being a "integer" or "last online" not being able to edited
 
+New server to be installed on default: SerialPort reader
+- Opens and keeps connection to device SerialPort
+    - uses serialPort.io 
+- Has default boilerplate things to send info to Main server
+- Propably need some "sample" or "entry" data to figure out the correct serial port to use
+    - On serial connection or "no connection", assumed connected devices try send repeating data to serialPort
+    - if/while loop to keep trying until success
+    - server propably sends some "accepting data" back to the device, confirming connection
+- Because serial.io, the host device OS has no effect, uses same parameters for all os types
+- When connected device, then can see that data and use it to control some other server
