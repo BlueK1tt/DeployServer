@@ -7,6 +7,7 @@ const pm2 = require('pm2');
 var path = require('path');
 
 const config = require('./config.json'); //custom configurations file for secret info
+const { parse } = require('node:path');
 
 var thisfilename = path.basename(__dirname); //gets this files name
 const hostname = config.hostname;
@@ -89,9 +90,15 @@ function sendtomaster(destination, data){
     }
   })
 };
+const parser = new Readline.ReadlineParser()
+const serport = new SerialPort({
+  path: '/dev/ttyS0',
+  baudRate: 115200,
+  parser: parser
 
-const serport = new SerialPort('/dev/ttyACM0', { baudRate: 9600 });
-const parser = serport.pipe(new Readline({ delimiter: '\n' }));// Read the port data
+});
+//const parser = serport.pipe(new Readline({ delimiter: '\n' }));// Read the port data
+
 
 serport.on("open", () => {
   console.log('serial port open');

@@ -1,9 +1,17 @@
 [
 {
   "message": "stop=SerialWatch",
-  "time": "01:18:13"
+  "time": "01:32:39"
 }
 ]
+,{
+  "message": "start=Ticker",
+  "time": "00:00:18"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "00:00:22"
+}
 ,{
   "message": "check",
   "time": "00:01:00"
@@ -105,10 +113,6 @@
   "time": "00:25:00"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:25:10"
-}
-,{
   "message": "check",
   "time": "00:26:00"
 }
@@ -201,10 +205,6 @@
   "time": "00:48:00"
 }
 ,{
-  "message": "commands",
-  "time": "00:48:21"
-}
-,{
   "message": "check",
   "time": "00:49:00"
 }
@@ -257,10 +257,6 @@
   "time": "01:01:00"
 }
 ,{
-  "message": "start=SerialWatch",
-  "time": "01:01:36"
-}
-,{
   "message": "check",
   "time": "01:02:00"
 }
@@ -293,12 +289,44 @@
   "time": "01:09:00"
 }
 ,{
+  "message": "start=Ticker",
+  "time": "01:09:50"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:09:54"
+}
+,{
   "message": "check",
   "time": "01:10:00"
 }
 ,{
+  "message": "stop=SerialWatch",
+  "time": "01:10:09"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:10:11"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:10:25"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:10:27"
+}
+,{
   "message": "check",
   "time": "01:11:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:11:27"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:11:28"
 }
 ,{
   "message": "check",
@@ -311,6 +339,30 @@
 ,{
   "message": "check",
   "time": "01:14:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:14:02"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:14:03"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:14:20"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:14:21"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:14:56"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:14:57"
 }
 ,{
   "message": "check",
@@ -329,11 +381,99 @@
   "time": "01:18:00"
 }
 ,{
+  "message": "check",
+  "time": "01:19:00"
+}
+,{
+  "message": "check",
+  "time": "01:20:00"
+}
+,{
+  "message": "check",
+  "time": "01:21:00"
+}
+,{
+  "message": "check",
+  "time": "01:22:00"
+}
+,{
+  "message": "check",
+  "time": "01:23:00"
+}
+,{
+  "message": "check",
+  "time": "01:24:00"
+}
+,{
+  "message": "check",
+  "time": "01:25:00"
+}
+,{
+  "message": "check",
+  "time": "01:26:00"
+}
+,{
+  "message": "check",
+  "time": "01:27:00"
+}
+,{
+  "message": "check",
+  "time": "01:28:00"
+}
+,{
+  "message": "check",
+  "time": "01:29:00"
+}
+,{
+  "message": "check",
+  "time": "01:30:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:30:11"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:30:13"
+}
+,{
+  "message": "check",
+  "time": "01:31:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:31:22"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:31:23"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:31:29"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:31:31"
+}
+,{
+  "message": "check",
+  "time": "01:32:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "01:32:14"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "01:32:14"
+}
+,{
   "message": "shutdown",
-  "time": "01:18:13"
+  "time": "01:32:39"
 }
 ,{
   "message": "stop=Ticker",
-  "time": "01:18:13"
+  "time": "01:32:39"
 }
 ]
