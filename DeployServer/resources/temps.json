@@ -1,19 +1,23 @@
 [
 {
   "message": "Startup",
-  "time": "28.05.2026-11:01:08"
-}
-,{
-  "message": "start=Ticker",
-  "time": "00:00:39"
+  "time": "28.05.2026-11:39:59"
 }
 ,{
   "message": "start=SerialWatch",
-  "time": "00:00:43"
+  "time": "00:00:03"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "00:01:30"
+}
+,{
+  "message": "start=SerialWatch",
+  "time": "00:01:32"
 }
 ,{
   "message": "check",
@@ -28,47 +32,11 @@
   "time": "00:04:00"
 }
 ,{
-  "message": "stop=SerialWatch",
-  "time": "00:04:27"
-}
-,{
-  "message": "start=SerialWatch",
-  "time": "00:04:29"
-}
-,{
-  "message": "stop=SerialWatch",
-  "time": "00:04:50"
-}
-,{
-  "message": "start=SerialWatch",
-  "time": "00:04:52"
-}
-,{
   "message": "check",
   "time": "00:05:00"
 }
 ,{
   "message": "check",
   "time": "00:06:00"
-}
-,{
-  "message": "check",
-  "time": "00:07:00"
-}
-,{
-  "message": "check",
-  "time": "00:08:00"
-}
-,{
-  "message": "check",
-  "time": "00:09:00"
-}
-,{
-  "message": "check",
-  "time": "00:10:00"
-}
-,{
-  "message": "check",
-  "time": "00:11:00"
 }
 ]

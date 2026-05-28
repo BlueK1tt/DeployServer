@@ -4,6 +4,7 @@ const Readline = require('@serialport/parser-readline');
 const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
 const pm2 = require('pm2');
+const os = require('node:os')
 var path = require('path');
 
 const config = require('./config.json'); //custom configurations file for secret info
@@ -34,7 +35,7 @@ function pm2packetprocess(packet){ //filter incoming data from pm2 socket
     }
 };
 
-function pm2bussi(){ //pm2launchbus to get data from clien to server
+function pm2bussi(){ //pm2launchbus to get data from client to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
       //console.log("launched bus")
@@ -94,25 +95,44 @@ function sendtomaster(destination, data){
 
 
 function getoperatingsystem(){
-  //function to ge
-
-
+  //function to get the operating system the device is running on, windows, linux, mac etc..
+  //becasue the name of the seriaport and naming convention matters for it
+  console.log(os.platform());
+  return;
 }
 
 
 function setoperatingsystem(){
-    runningos = getoperatingsystem();
+  runningos = getoperatingsystem();
 
   if(runningos = "linux"){
     
     
     return "linux"
   }
-  if(runningos = "windows"){
+  if(runningos = "win32"){
     
     
     
     return "windows"
+  }
+  if(runningos = "aix"){
+
+  }
+  if(runningos = "darwin"){
+
+  }
+  if(runningos = "freebsd"){
+
+  }
+  if(runningos = "openbsd"){
+
+  }
+  if(runningos = "sunos"){
+    
+  }
+  else {
+    
   }
 
 }
@@ -147,4 +167,6 @@ const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
     startup();
     sendtomaster("SerialWatch","online")
+    getoperatingsystem();
+
 });
