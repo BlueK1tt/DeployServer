@@ -117,22 +117,22 @@ function setoperatingsystem(){
     return "windows"
   }
   if(runningos = "aix"){
-
+    return;
   }
   if(runningos = "darwin"){
-
+    return;
   }
   if(runningos = "freebsd"){
-
+    return;
   }
   if(runningos = "openbsd"){
-
+    return;
   }
   if(runningos = "sunos"){
-    
+    return;
   }
   else {
-    
+    return;
   }
 
 }
