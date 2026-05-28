@@ -17,9 +17,9 @@ function startup(){
     console.log('Server running at ' + hostname +':' + port);
     pm2bussi();
     return;
-}
+};
 
-function pm2packetprocess(packet){
+function pm2packetprocess(packet){ //filter incoming data from pm2 socket
     //process packets coming in and return data if for this server
     packetdataapp = JSON.stringify(packet.data.app);
     let destinationsender = packetdataapp.split(":"); //0=to, 1=from
@@ -32,7 +32,7 @@ function pm2packetprocess(packet){
         //console.log("For this server")
         return true
     }
-}
+};
 
 function pm2bussi(){ //pm2launchbus to get data from clien to server
     console.log("bus active");
@@ -60,22 +60,23 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
             return;
         }
     })
-}
+};
 
 function bussifunctions(appdata){
-    if(appdata.includes("button1")){
-        console.log("Server button 1")
+    if(appdata.includes("activate")){
+        console.log("Clicked website button")
 
-        return "button1";
+        return "activate";
     }
     else {
-        console.log("appdata" + appdata)
+        console.log("appdata: " + appdata)
         
         //console.log("Something else")
         return;
         
     };
 };
+
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
 };
@@ -90,8 +91,37 @@ function sendtomaster(destination, data){
     }
   })
 };
+
+
+function getoperatingsystem(){
+  //function to ge
+
+
+}
+
+
+function setoperatingsystem(){
+    runningos = getoperatingsystem();
+
+  if(runningos = "linux"){
+    
+    
+    return "linux"
+  }
+  if(runningos = "windows"){
+    
+    
+    
+    return "windows"
+  }
+
+}
 const parser = new Readline.ReadlineParser()
 const serport = new SerialPort({
+
+  //need way to check what operating system devide is running.
+  //and dependent on it, do if/else and choose correct "path" or serialport identificator
+
   path: '/dev/ttyS0',
   baudRate: 115200,
   parser: parser
@@ -105,13 +135,11 @@ serport.on("open", () => {
 });
 
 parser.on('data', data =>{
-  console.log('got word from arduino:', data);
+  console.log('got word from serialport:', data);
 });
-
 
 const requestListener = function(request, response){
     var message = request.url;
-
 
 }
 

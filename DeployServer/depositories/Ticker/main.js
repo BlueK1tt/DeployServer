@@ -77,7 +77,7 @@ function bussifunctions(appdata){
 
 function filtercommand(appdata){ 
     //console.log("outcommand")
-    console.log("appdata " + appdata); //appdata gives server + the button pressed | Ticker : Test 
+    console.log("appdata: " + appdata); //appdata gives server + the button pressed | Ticker : Test 
     return "end."
 }
 
@@ -117,6 +117,11 @@ function functionloader(msg){
       Test();
       sendtomaster("DeployServer","Test");
       return
+    }
+    if(msg.includes("Serial")){
+      sendtomaster("SerialWatch","activate");
+      console.log("Serial activate")
+      return;
     }
     if(msg.includes("/joulu")){
       sendtomaster("DeployServer","joulu")

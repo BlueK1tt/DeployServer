@@ -16,9 +16,9 @@ var thisfilename = path.basename(__dirname); //gets this files name
 var basecommands = ['shutdown','restart','refresh']; //commands to ignore as "commands"
 var direction = ['start', 'stop']; 
 var msgid = 0; //just defult id for messages, gets +1 automatically
-var repeated = 0;
-var msg = " ";
-var message = " ";
+var repeated = 0; //default int for how many times server has started with errors
+var msg = " "; //set default msh to empty
+var message = " ";  //set  default message to empty 
 var serverlist = new Array;
 
 
@@ -38,7 +38,7 @@ function startup(){
     getfunction("functions","logservers")
     pm2connect();
     return;
-}
+};
 
 function checkservers(){ // see if any servers are online
     //console.log("checkservers")
@@ -49,11 +49,11 @@ function checkservers(){ // see if any servers are online
     //console.log(runningservers)
     let serverstring = JSON.stringify(runningservers)
     //console.log(serverstring)
-    if(serverstring == "[]"){
+    if(serverstring == "[]"){ //if fetched serverlist is object or not empty
         //console.log("No running servers")
         return;
     }
-    if(serverstring != "[]"){
+    if(serverstring != "[]"){//if fetched serverlist is not object nor empty
         console.log("Some server is still running")
         pm2stop("all");
         return;
@@ -168,7 +168,7 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
-function getfunction(folder,filename){
+function getfunction(folder,filename){ //get output of file/script by folder and file
     //console.log("getfunction")
     let filePath = "./"+folder+"/"+filename
     //console.log(filePath)
@@ -177,7 +177,7 @@ function getfunction(folder,filename){
     asmessage = sentData[0];
     delete require.cache[require.resolve(filePath)] //clears the cache allowing for new data to be read
     return asmessage;
-}
+};
 
 function msgidentify(msg){ 
     msgid ++;
@@ -295,7 +295,7 @@ function msgidentify(msg){
         return;
         
     }if(msg == "testcommand"){
-        consol.log("testcommand")
+        console.log("testcommand")
         //console.log("testcommand")
         //let filedata = getfuntion("functions","logtemps.js")
         //console.log(filedata)
@@ -528,6 +528,8 @@ function pm2check(instance){ //function the check what servers are running
 
 function pm2list(){ //to get all running servers as variable
     //console.log("pm2list")
+    //need to try get current servers that are online.
+    
     let mainfile = fs.readFileSync('./resources/log.json', 'utf8')
     fs.close;
     let pm2serverlist = JSON.parse(mainfile)
