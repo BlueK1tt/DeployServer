@@ -97,8 +97,9 @@ function sendtomaster(destination, data){
 function getoperatingsystem(){
   //function to get the operating system the device is running on, windows, linux, mac etc..
   //becasue the name of the seriaport and naming convention matters for it
-  console.log(os.platform());
-  return;
+  runningoperatingsstem = os.platform();
+
+  return runningoperatingsstem;
 }
 
 
@@ -106,30 +107,35 @@ function setoperatingsystem(){
   runningos = getoperatingsystem();
 
   if(runningos = "linux"){
-    
-    
-    return "linux"
+    console.log("linux")
+    //return something tty
+    return "linux" 
   }
   if(runningos = "win32"){
-    
-    
+    //return something COM
+    console.log("windows")
     
     return "windows"
   }
-  if(runningos = "aix"){
-    return;
+  if(runningos = "aix"){ //IBM
+    console.log("IBM Aix")
+    return "aix";
   }
-  if(runningos = "darwin"){
-    return;
+  if(runningos = "darwin"){ //macOS base
+    console.log("MacOS Darwin")
+    return "darwin";
   }
   if(runningos = "freebsd"){
-    return;
+    console.log("FreeBSD")
+    return "freebsd";
   }
   if(runningos = "openbsd"){
-    return;
+    console.log("openBSD")
+    return "openbsd";
   }
-  if(runningos = "sunos"){
-    return;
+  if(runningos = "sunos"){ //SunOS
+    console.log("SunOS")
+    return "sunos";
   }
   else {
     return;
@@ -167,6 +173,5 @@ const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
     startup();
     sendtomaster("SerialWatch","online")
-    getoperatingsystem();
-
+    setoperatingsystem();
 });
