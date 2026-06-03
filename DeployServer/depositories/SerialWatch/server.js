@@ -148,7 +148,7 @@ const serport = new SerialPort({
   //need way to check what operating system devide is running.
   //and dependent on it, do if/else and choose correct "path" or serialport identificator
 
-  path: '/dev/ttyS0',
+  path: '/dev/ttyS0', //need to find way to iterate, but starting with 0
   baudRate: 115200,
   parser: parser
 
@@ -164,14 +164,42 @@ parser.on('data', data =>{
   console.log('got word from serialport:', data);
 });
 
-const requestListener = function(request, response){
-    var message = request.url;
+
+
+function SerialStream(){
+  //need to create open data stream to listen to the seril port after identifying
+
+
+  //constructor SerialPortStream
+
+  
+  //open
+
+
+  //error
+
+
+  //close
+
+  
+  //data
+
+
+  //drain
+
 
 }
 
-const server = http.createServer(requestListener)
-server.listen(port, hostname, () => {
+const requestListener = function(request, response){
+    var message = request.url;
+
+
+}
+  
+  const server = http.createServer(requestListener)
+  server.listen(port, hostname, () => {
     startup();
     sendtomaster("SerialWatch","online")
     setoperatingsystem();
+    console.log(SerialPort.list());
 });
