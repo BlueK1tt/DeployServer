@@ -118,7 +118,12 @@ function functionloader(msg){
       sendtomaster("DeployServer","Test");
       return
     }
-    if(msg.includes("Serial")){
+    if(msg.includes("Serialreboot")){
+      sendtomaster("SerialWatch","restart");
+      console.log("Serial re-try")
+      return;
+    }
+    if(msg.includes("Serial")){ //this need to be last because include "Serial"
       sendtomaster("SerialWatch","activate");
       console.log("Serial activate")
       return;

@@ -69,6 +69,10 @@ function bussifunctions(appdata){
 
         return "activate";
     }
+    if(appdata.includes("restart")){
+      console.log("Serialwatch reboot")
+      return "restart"
+    }
     else {
         console.log("appdata: " + appdata)
         
@@ -164,9 +168,29 @@ parser.on('data', data =>{
   console.log('got word from serialport:', data);
 });
 
+function getopenserial(){
+  //see if serialport is alredy open
+  //get baudrate and port, otherwise return false
+  return "this is serialport"
+}
 
 
 function SerialStream(){
+  var isopen = getopenserial()
+  console.log(isopen)
+  if(isopen == "false" && isopen === "string"){
+    console.log("serial port is not open")
+    return;
+  }
+  if(isopen !== "false" && isopen === "string"){
+    console.log("Serial port is open")
+    console.log(isopen)
+    return;
+  }
+  else{
+    console.log("isopen error");
+    return;
+  }
   //need to create open data stream to listen to the seril port after identifying
 
 
@@ -191,15 +215,14 @@ function SerialStream(){
 }
 
 const requestListener = function(request, response){
-    var message = request.url;
-
-
-}
+  var message = request.url;
   
-  const server = http.createServer(requestListener)
-  server.listen(port, hostname, () => {
-    startup();
-    sendtomaster("SerialWatch","online")
-    setoperatingsystem();
-    console.log(SerialPort.list());
+}
+
+const server = http.createServer(requestListener)
+server.listen(port, hostname, () => {
+  startup();
+  sendtomaster("SerialWatch","online")
+  setoperatingsystem();
+  SerialStream();
 });
