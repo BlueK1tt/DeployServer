@@ -65,7 +65,7 @@ function pm2bussi(){ //pm2launchbus to get data from client to server
 
 function bussifunctions(appdata){
     if(appdata.includes("activate")){
-        console.log("Clicked website button")
+        console.log("'Call serial server', from Ticker")
 
         return "activate";
     }

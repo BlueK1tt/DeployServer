@@ -708,6 +708,7 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
         }
     })
 }
+
 function bussifunctions(appdata){
     if(appdata.includes("button1")){
         console.log("Server button 1")
