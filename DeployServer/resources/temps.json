@@ -1,12 +1,24 @@
 [
 {
   "message": "stop=SerialWatch",
-  "time": "01:44:38"
+  "time": "01:34:55"
 }
 ]
 ,{
+  "message": "start=Ticker",
+  "time": "00:00:02"
+}
+,{
   "message": "start=SerialWatch",
-  "time": "00:00:23"
+  "time": "00:00:06"
+}
+,{
+  "message": "stop=SerialWatch",
+  "time": "00:00:22"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:00:30"
 }
 ,{
   "message": "check",
@@ -67,6 +79,10 @@
 ,{
   "message": "check",
   "time": "00:15:00"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:15:23"
 }
 ,{
   "message": "check",
@@ -385,51 +401,11 @@
   "time": "01:34:00"
 }
 ,{
-  "message": "check",
-  "time": "01:35:00"
-}
-,{
-  "message": "check",
-  "time": "01:36:00"
-}
-,{
-  "message": "check",
-  "time": "01:37:00"
-}
-,{
-  "message": "check",
-  "time": "01:38:00"
-}
-,{
-  "message": "check",
-  "time": "01:39:00"
-}
-,{
-  "message": "check",
-  "time": "01:40:00"
-}
-,{
-  "message": "check",
-  "time": "01:41:00"
-}
-,{
-  "message": "check",
-  "time": "01:42:00"
-}
-,{
-  "message": "check",
-  "time": "01:43:00"
-}
-,{
-  "message": "check",
-  "time": "01:44:00"
-}
-,{
   "message": "shutdown",
-  "time": "01:44:38"
+  "time": "01:34:55"
 }
 ,{
   "message": "stop=Ticker",
-  "time": "01:44:38"
+  "time": "01:34:55"
 }
 ]

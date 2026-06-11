@@ -511,10 +511,11 @@ function thirtyTimer(){
 function pm2check(instance){ //function the check what servers are running
     console.log("pm2chck start")
     console.log(runningservers)
+
     //get list of running pm2 instances
-    if(runningservers == null){ //if array is empty
+    if(runningservers == null || runningservers == ""){ //if array is empty
         let runningserverlist = runningservers.length > 1 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
-        //console.log(runningserverlist)
+        console.log(runningserverlist)
         console.log("no running servers")
         return false
     } else { //if array is not empty
@@ -569,6 +570,7 @@ function pm2start(startfile,filename){ //start specific server on command, need 
         if(countid == 0){
             //console.log(startcondition.startcondition.message + filename)    
             repeated = startcondition.startcondition.count
+            runningservers.push(startfile)
             return startcondition.startcondition.message
         }
         if(countid == 1){
@@ -619,7 +621,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
                         if (err) {
                             console.log(err)
                             pm2.flush(Element.name);
-                        pm2.disconnect();
+                        //pm2.disconnect();
                         }
                         return;
                     });
@@ -642,7 +644,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         var sentData = valuesToArray(data); 
         stopfile = sentData[0];
         delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
-        
+        console.log("pm2stop stopfile:" + stopfile)
         var isstopped = pm2check(stopfile)
         //console.log(isstopped)
 
@@ -654,10 +656,10 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             let itemid = arrayservermatch(stopfile)
             //console.log("itemid"+itemid)
             let removeitem = runningservers[itemid]
-            //console.log(removeitem)
+            console.log(itemid)
             console.log(runningservers)
             runningservers.splice(itemid)
-            console.log(runningservers)
+            console.log(runningservers[0])
             pm2.stop(`${stopfile}`, function(err, apps) {
                 if (err) {
                     console.log(err)
@@ -678,9 +680,17 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
     return;
 };
 function arrayservermatch(stopfile){
-    let servertomatch = (element) => element = stopfile
+    console.log("arrayservermatch");
+    console.log(stopfile)
+
+    var servertomatch = (element) => element = stopfile
+    let matchedserver = servertomatch(stopfile)
+
+    console.log((servertomatch(stopfile)))
+    console.log("runningservers")
+    console.log(runningservers)
     let itemposition = runningservers.findIndex(servertomatch)
-    //console.log(itemposition)
+    console.log(itemposition)
     return itemposition
 }
 
