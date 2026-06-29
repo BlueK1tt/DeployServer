@@ -16,9 +16,9 @@ var thisfilename = path.basename(__dirname); //gets this files name
 var basecommands = ['shutdown','restart','refresh']; //commands to ignore as "commands"
 var direction = ['start', 'stop']; 
 var msgid = 0; //just defult id for messages, gets +1 automatically
-var repeated = 0;
-var msg = " ";
-var message = " ";
+var repeated = 0; //default int for how many times server has started with errors
+var msg = " "; //set default msh to empty
+var message = " ";  //set  default message to empty 
 var serverlist = new Array;
 
 
@@ -38,7 +38,7 @@ function startup(){
     getfunction("functions","logservers")
     pm2connect();
     return;
-}
+};
 
 function checkservers(){ // see if any servers are online
     //console.log("checkservers")
@@ -49,11 +49,11 @@ function checkservers(){ // see if any servers are online
     //console.log(runningservers)
     let serverstring = JSON.stringify(runningservers)
     //console.log(serverstring)
-    if(serverstring == "[]"){
+    if(serverstring == "[]"){ //if fetched serverlist is object or not empty
         //console.log("No running servers")
         return;
     }
-    if(serverstring != "[]"){
+    if(serverstring != "[]"){//if fetched serverlist is not object nor empty
         console.log("Some server is still running")
         pm2stop("all");
         return;
@@ -168,7 +168,7 @@ function valuesToArray(obj) {
     return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
 };
 
-function getfunction(folder,filename){
+function getfunction(folder,filename){ //get output of file/script by folder and file
     //console.log("getfunction")
     let filePath = "./"+folder+"/"+filename
     //console.log(filePath)
@@ -177,7 +177,7 @@ function getfunction(folder,filename){
     asmessage = sentData[0];
     delete require.cache[require.resolve(filePath)] //clears the cache allowing for new data to be read
     return asmessage;
-}
+};
 
 function msgidentify(msg){ 
     msgid ++;
@@ -233,9 +233,13 @@ function msgidentify(msg){
                     //functon to send message to the server about to be stopped
                     //possibly await function to wait for response back, for graceful stop
                     pm2stop(filename);
-                    return "stop " + stopfile;
+                    console.log("msgindentify after pm2stop")
+                    let endstop = "stop" + stopfile
+                    return endstop;
                 }
+                return;
             }
+            return;
         }
         else{
             console.log("msgidentify else")
@@ -295,7 +299,7 @@ function msgidentify(msg){
         return;
         
     }if(msg == "testcommand"){
-        consol.log("testcommand")
+        console.log("testcommand")
         //console.log("testcommand")
         //let filedata = getfuntion("functions","logtemps.js")
         //console.log(filedata)
@@ -450,7 +454,6 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                             return;
                         }
                     }
-
                     //console.log("stop:"+ Element.name)
                     //pm2.stop(Element.name);
                     //console.log("pm2 daemon "+ Element.name + " stopped")
@@ -506,11 +509,14 @@ function thirtyTimer(){
 }
 
 function pm2check(instance){ //function the check what servers are running
+    console.log("pm2chck start")
+    console.log(runningservers)
 
     //get list of running pm2 instances
-    if(runningservers == null){ //if array is empty
+    if(runningservers == null || runningservers == ""){ //if array is empty
         let runningserverlist = runningservers.length > 1 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
-        //console.log(runningserverlist)
+        console.log(runningserverlist)
+        console.log("no running servers")
         return false
     } else { //if array is not empty
         if(runningservers.includes(instance)){ //if include is true
@@ -529,6 +535,8 @@ function pm2check(instance){ //function the check what servers are running
 
 function pm2list(){ //to get all running servers as variable
     //console.log("pm2list")
+    //need to try get current servers that are online.
+    
     let mainfile = fs.readFileSync('./resources/log.json', 'utf8')
     fs.close;
     let pm2serverlist = JSON.parse(mainfile)
@@ -562,6 +570,7 @@ function pm2start(startfile,filename){ //start specific server on command, need 
         if(countid == 0){
             //console.log(startcondition.startcondition.message + filename)    
             repeated = startcondition.startcondition.count
+            runningservers.push(startfile)
             return startcondition.startcondition.message
         }
         if(countid == 1){
@@ -582,7 +591,9 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
+    console.log("pm2stop start")
     if(stopfile == "all"){
+        console.log("pm2 stop all")
         pm2.list((err, list) => {
             const id = 0;
             
@@ -610,7 +621,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
                         if (err) {
                             console.log(err)
                             pm2.flush(Element.name);
-                        pm2.disconnect();
+                        //pm2.disconnect();
                         }
                         return;
                     });
@@ -628,11 +639,12 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
         return;
 
     } else {
+        console.log("pm2 stop else")
         const data = require(`./functions/findfile`);
         var sentData = valuesToArray(data); 
         stopfile = sentData[0];
         delete require.cache[require.resolve(`./functions/findfile`)] //clears the cache allowing for new data to be read
-        
+        console.log("pm2stop stopfile:" + stopfile)
         var isstopped = pm2check(stopfile)
         //console.log(isstopped)
 
@@ -644,9 +656,10 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             let itemid = arrayservermatch(stopfile)
             //console.log("itemid"+itemid)
             let removeitem = runningservers[itemid]
-            //console.log(removeitem)
-
+            console.log(itemid)
+            console.log(runningservers)
             runningservers.splice(itemid)
+            console.log(runningservers[0])
             pm2.stop(`${stopfile}`, function(err, apps) {
                 if (err) {
                     console.log(err)
@@ -659,14 +672,25 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             return;
         }
         else{
+            console.log("pm2s stopping error")
             return "stopping error"
         }
+        return;
     };
+    return;
 };
 function arrayservermatch(stopfile){
-    let servertomatch = (element) => element = stopfile
+    console.log("arrayservermatch");
+    console.log(stopfile)
+
+    var servertomatch = (element) => element = stopfile
+    let matchedserver = servertomatch(stopfile)
+
+    console.log((servertomatch(stopfile)))
+    console.log("runningservers")
+    console.log(runningservers)
     let itemposition = runningservers.findIndex(servertomatch)
-    //console.log(itemposition)
+    console.log(itemposition)
     return itemposition
 }
 
@@ -694,6 +718,7 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
         }
     })
 }
+
 function bussifunctions(appdata){
     if(appdata.includes("button1")){
         console.log("Server button 1")

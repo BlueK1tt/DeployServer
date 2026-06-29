@@ -4,9 +4,11 @@ const Readline = require('@serialport/parser-readline');
 const http = require('node:http'); //http module
 const fs = require('fs'); //filesystem
 const pm2 = require('pm2');
+const os = require('node:os')
 var path = require('path');
 
 const config = require('./config.json'); //custom configurations file for secret info
+const { parse } = require('node:path');
 
 var thisfilename = path.basename(__dirname); //gets this files name
 const hostname = config.hostname;
@@ -16,9 +18,9 @@ function startup(){
     console.log('Server running at ' + hostname +':' + port);
     pm2bussi();
     return;
-}
+};
 
-function pm2packetprocess(packet){
+function pm2packetprocess(packet){ //filter incoming data from pm2 socket
     //process packets coming in and return data if for this server
     packetdataapp = JSON.stringify(packet.data.app);
     let destinationsender = packetdataapp.split(":"); //0=to, 1=from
@@ -31,9 +33,9 @@ function pm2packetprocess(packet){
         //console.log("For this server")
         return true
     }
-}
+};
 
-function pm2bussi(){ //pm2launchbus to get data from clien to server
+function pm2bussi(){ //pm2launchbus to get data from client to server
     console.log("bus active");
     pm2.launchBus(function(err, pm2_bus) {
       //console.log("launched bus")
@@ -59,22 +61,27 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
             return;
         }
     })
-}
+};
 
 function bussifunctions(appdata){
-    if(appdata.includes("button1")){
-        console.log("Server button 1")
+    if(appdata.includes("activate")){
+        console.log("'Call serial server', from Ticker")
 
-        return "button1";
+        return "activate";
+    }
+    if(appdata.includes("restart")){
+      console.log("Serialwatch reboot")
+      return "restart"
     }
     else {
-        console.log("appdata" + appdata)
+        console.log("appdata: " + appdata)
         
         //console.log("Something else")
         return;
         
     };
 };
+
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
 };
@@ -90,26 +97,132 @@ function sendtomaster(destination, data){
   })
 };
 
-const serport = new SerialPort('/dev/ttyACM0', { baudRate: 9600 });
-const parser = serport.pipe(new Readline({ delimiter: '\n' }));// Read the port data
+
+function getoperatingsystem(){
+  //function to get the operating system the device is running on, windows, linux, mac etc..
+  //becasue the name of the seriaport and naming convention matters for it
+  runningoperatingsstem = os.platform();
+
+  return runningoperatingsstem;
+}
+
+
+function setoperatingsystem(){
+  runningos = getoperatingsystem();
+
+  if(runningos = "linux"){
+    console.log("linux")
+    //return something tty
+    return "linux" 
+  }
+  if(runningos = "win32"){
+    //return something COM
+    console.log("windows")
+    
+    return "windows"
+  }
+  if(runningos = "aix"){ //IBM
+    console.log("IBM Aix")
+    return "aix";
+  }
+  if(runningos = "darwin"){ //macOS base
+    console.log("MacOS Darwin")
+    return "darwin";
+  }
+  if(runningos = "freebsd"){
+    console.log("FreeBSD")
+    return "freebsd";
+  }
+  if(runningos = "openbsd"){
+    console.log("openBSD")
+    return "openbsd";
+  }
+  if(runningos = "sunos"){ //SunOS
+    console.log("SunOS")
+    return "sunos";
+  }
+  else {
+    return;
+  }
+
+}
+const parser = new Readline.ReadlineParser()
+const serport = new SerialPort({
+
+  //need way to check what operating system devide is running.
+  //and dependent on it, do if/else and choose correct "path" or serialport identificator
+
+  path: '/dev/ttyS0', //need to find way to iterate, but starting with 0
+  baudRate: 115200,
+  parser: parser
+
+});
+//const parser = serport.pipe(new Readline({ delimiter: '\n' }));// Read the port data
+
 
 serport.on("open", () => {
   console.log('serial port open');
 });
 
 parser.on('data', data =>{
-  console.log('got word from arduino:', data);
+  console.log('got word from serialport:', data);
 });
 
+function getopenserial(){
+  //see if serialport is alredy open
+  //get baudrate and port, otherwise return false
+  return "this is serialport"
+}
 
-const requestListener = function(request, response){
-    var message = request.url;
+
+function SerialStream(){
+  var isopen = getopenserial()
+  console.log(isopen)
+  if(isopen == "false" && isopen === "string"){
+    console.log("serial port is not open")
+    return;
+  }
+  if(isopen !== "false" && isopen === "string"){
+    console.log("Serial port is open")
+    console.log(isopen)
+    return;
+  }
+  else{
+    console.log("isopen error");
+    return;
+  }
+  //need to create open data stream to listen to the seril port after identifying
+
+
+  //constructor SerialPortStream
+
+  
+  //open
+
+
+  //error
+
+
+  //close
+
+  
+  //data
+
+
+  //drain
 
 
 }
 
+const requestListener = function(request, response){
+  var message = request.url;
+  
+}
+
 const server = http.createServer(requestListener)
 server.listen(port, hostname, () => {
-    startup();
-    sendtomaster("SerialWatch","online")
+  startup();
+  sendtomaster("SerialWatch","online")
+  setoperatingsystem();
+  SerialStream();
 });
