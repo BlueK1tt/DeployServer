@@ -16,11 +16,5 @@
       "name": "Ticker",
       "startfile": "main.js"
     }
-  ],
-  "SerialWatch": [
-    {
-      "name": "SerialWatch",
-      "startfile": "server.js"
-    }
   ]
 }
