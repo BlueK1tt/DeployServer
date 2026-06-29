@@ -109,35 +109,36 @@ function getoperatingsystem(){
 
 function setoperatingsystem(){
   runningos = getoperatingsystem();
+  console.log(runningos)
 
-  if(runningos = "linux"){
+  if(runningos == "linux"){
     console.log("linux")
     //return something tty
     return "linux" 
   }
-  if(runningos = "win32"){
+  if(runningos == "win32"){
     //return something COM
     console.log("windows")
     
     return "windows"
   }
-  if(runningos = "aix"){ //IBM
+  if(runningos == "aix"){ //IBM
     console.log("IBM Aix")
     return "aix";
   }
-  if(runningos = "darwin"){ //macOS base
+  if(runningos == "darwin"){ //macOS base
     console.log("MacOS Darwin")
     return "darwin";
   }
-  if(runningos = "freebsd"){
+  if(runningos == "freebsd"){
     console.log("FreeBSD")
     return "freebsd";
   }
-  if(runningos = "openbsd"){
+  if(runningos == "openbsd"){
     console.log("openBSD")
     return "openbsd";
   }
-  if(runningos = "sunos"){ //SunOS
+  if(runningos == "sunos"){ //SunOS
     console.log("SunOS")
     return "sunos";
   }
