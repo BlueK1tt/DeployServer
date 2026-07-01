@@ -10,6 +10,10 @@ var path = require('path');
 const config = require('./config.json'); //custom configurations file for secret info
 const { parse } = require('node:path');
 
+
+const defaultserial = ""; //maybe automated from server or custom per user
+
+
 var thisfilename = path.basename(__dirname); //gets this files name
 const hostname = config.hostname;
 const port = config.netport;
@@ -109,43 +113,48 @@ function getoperatingsystem(){
 
 function setoperatingsystem(){
   runningos = getoperatingsystem();
-  console.log(runningos)
+  //console.log(runningos)
+  if(defaultserial !== ""){
+    console.log(defaultserial)
+    return defaultserial
+  } else {
+    console.log("no custom serial set")
 
-  if(runningos == "linux"){
-    console.log("linux")
-    //return something tty
-    return "linux" 
+    if(runningos == "linux"){
+      console.log("linux")
+      //return something tty
+      return "linux" 
+    }
+    if(runningos == "win32"){
+      //return something COM
+      console.log("windows")
+      
+      return "windows"
+    }
+    if(runningos == "aix"){ //IBM
+      console.log("IBM Aix")
+      return "aix";
+    }
+    if(runningos == "darwin"){ //macOS base
+      console.log("MacOS Darwin")
+      return "darwin";
+    }
+    if(runningos == "freebsd"){
+      console.log("FreeBSD")
+      return "freebsd";
+    }
+    if(runningos == "openbsd"){
+      console.log("openBSD")
+      return "openbsd";
+    }
+    if(runningos == "sunos"){ //SunOS
+      console.log("SunOS")
+      return "sunos";
+    }
+    else {
+      return;
+    }
   }
-  if(runningos == "win32"){
-    //return something COM
-    console.log("windows")
-    
-    return "windows"
-  }
-  if(runningos == "aix"){ //IBM
-    console.log("IBM Aix")
-    return "aix";
-  }
-  if(runningos == "darwin"){ //macOS base
-    console.log("MacOS Darwin")
-    return "darwin";
-  }
-  if(runningos == "freebsd"){
-    console.log("FreeBSD")
-    return "freebsd";
-  }
-  if(runningos == "openbsd"){
-    console.log("openBSD")
-    return "openbsd";
-  }
-  if(runningos == "sunos"){ //SunOS
-    console.log("SunOS")
-    return "sunos";
-  }
-  else {
-    return;
-  }
-
 }
 const parser = new Readline.ReadlineParser()
 const serport = new SerialPort({
@@ -172,6 +181,15 @@ parser.on('data', data =>{
 function getopenserial(){
   //see if serialport is alredy open
   //get baudrate and port, otherwise return false
+
+
+  //need to cycle through serial ports of device, to find correct one
+  //maybe with name or just go from 1>++
+
+
+  //need function to run through all baudrates with the serialport
+  //maybe some boilerplate code in the device too, to send repeated data
+  //till correct baudrate and port is found
   return "this is serialport"
 }
 
@@ -217,7 +235,8 @@ function SerialStream(){
 
 const requestListener = function(request, response){
   var message = request.url;
-  
+  //req res
+  //need to treat like arduino main loop
 }
 
 const server = http.createServer(requestListener)
