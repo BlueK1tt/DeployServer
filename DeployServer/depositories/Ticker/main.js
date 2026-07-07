@@ -138,6 +138,10 @@ function functionloader(msg){
       console.log("call server")
       return
     }
+
+    //need to add callback and function to "get time"
+    //and have it paste time on website and as log on server.
+
     
     if(msg == "/"){
       //just "home"

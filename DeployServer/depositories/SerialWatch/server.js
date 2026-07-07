@@ -68,7 +68,7 @@ function pm2bussi(){ //pm2launchbus to get data from client to server
 };
 
 function bussifunctions(appdata){
-    if(appdata.includes("activate")){
+    if(appdata.includes("activate")){ //the spesified sendtoMaster string
         console.log("'Call serial server', from Ticker")
 
         return "activate";
@@ -95,8 +95,8 @@ function sendtomaster(destination, data){
   process.send({ //this is just example, boiletplate for future apps
     type : 'process:msg',
     data : {
-      app : destinationsender,
-      msg : data
+      app : destinationsender, //will send to 'pool', but it spesifies some server
+      msg : data //the message or command, or name of function to activate
     }
   })
 };
