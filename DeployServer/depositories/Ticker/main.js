@@ -65,13 +65,16 @@ function bussifunctions(appdata){
 
         return "button1";
     }
+    if(appdata.includes("time:")){
+      console.log(appdata)
+      return;
+    }
     else {
         //console.log("appdata" + appdata)
         
         asmessage = filtercommand(appdata)
         //console.log("Something else")
         return asmessage;
-        
     };
 };
 
@@ -138,10 +141,14 @@ function functionloader(msg){
       console.log("call server")
       return
     }
-
+    if(msg.includes("/gettime")){
+      sendtomaster("DeployServer","gettime")
+      console.log("Get time")
+      return;
+    }
+    
     //need to add callback and function to "get time"
     //and have it paste time on website and as log on server.
-
     
     if(msg == "/"){
       //just "home"
@@ -198,23 +205,22 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
     //console.log("sitestatus: " + sitestatus)
     //setsite(sitestatus);
 
-
     if(sitestatus === false){ //if requested and is under maintanance
       loadmaintanance();
       response.writeHead(200, {"Content-Type": "text/html"});  
       console.log("site under maintanance")
       response.end();
       delete(request);
-
     }
+
     if(sitestatus === true){ //requested and all is normal
       loadwebsite()
       response.writeHead(200, {"Content-Type": "text/html"});  
       response.write(html);
       response.end();
       delete(request);
-
     }
+
     response.end();
     msg = " ";
     delete(request);

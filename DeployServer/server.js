@@ -742,6 +742,12 @@ function bussifunctions(appdata){
         let msg = "joulubtn"+":"+asmessage
         sendtomaster("Ticker",msg)
     }
+    if(appdata.includes("gettime")){
+        uptimetime = msgidentify("uptime")
+        timedata = "time:"+uptimetime;
+        sendtomaster("Ticker", timedata)
+        return;
+    }
     else {
         //console.log("appdata" + appdata)
         //console.log("bussi else")

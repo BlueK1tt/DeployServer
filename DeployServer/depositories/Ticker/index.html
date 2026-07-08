@@ -193,12 +193,19 @@
       <div class="column side">
         <h2>Side</h2>
         <p>Sample text</p>
+
+        <form action="gettime" method="GET">
         <div class="meat">
-            <button onclick="Test()">The time is?</button>
+            <button onclick="Test()">Server uptime</button>
             <p id="demo"></p> 
         </div>
-      </div>
-    </div>
+        </form>
+        <input type="text" id="uptime" value="">
+        </div>
+        <div>
+          <button onclick="this.uptime">The time is?</button>
+        </div>
+        </div>
     <div class="footer">
         <p>Created by BlueK1tt</p>
     </div>
