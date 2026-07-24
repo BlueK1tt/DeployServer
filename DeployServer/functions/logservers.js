@@ -4,6 +4,9 @@
 
 const fs = require('fs');
 const pm2 = require('pm2');
+const { timenow } = require('../server');
+const time = timenow
+
 const config = require('../resources/config.json'); //custom configurations file for secret info
 const logfile = ('../resources/gitsinfo.json')
 //var { runningservers } = require('../server')
@@ -13,6 +16,7 @@ module.exports =  {
 };
 
 function logservers(){ //the main function, dictating what to do in order
+    console.log("logserver")
     //"action" variable, what to do
     //console.log("runningservers")
     //console.log(runningservers)
@@ -20,7 +24,7 @@ function logservers(){ //the main function, dictating what to do in order
     emptyfile() //check if file exists
     let folders = verifyfolderexists();
     //getstartfile(folder, file);
-    getstartfile()
+    getstartfile(folders)
 }
 
 function verifyfolderexists(){ //get and verify existing folders in depositories folder
@@ -29,36 +33,38 @@ function verifyfolderexists(){ //get and verify existing folders in depositories
         .filter(dirent => dirent.isDirectory())
         .map(dirent => dirent.name)
     //console.log(folders)
-    return folders;
+    allfolders = folders.toString()
+    //console.log(allfolders)
+    return allfolders;
 }
 
-function getstartfile(){ //get depositories star files in array or string
+function getstartfile(folders){ //get depositories start files in array or string
     //get starter files
-    //console.log("getstartfile")
+    console.log("getstartfile")
     const startfiles = config.mainfiles;
-    //console.log(startfiles)
-
+    console.log(startfiles)
+    console.log(folders)
     let fileexists;
     if(fileexists === true){
         console.log("start file exists")
         return true;
     }
     if(fileexists === false){
-        console.log("start file doesnt exist")
+        console.log("start file doesn't exist")
         return false
     } else {
-        //console.log("getstartfile error")
+        console.log("getstartfile error")
         return;
     }
 }
 
 function emptyfile(){ //if JSON is empty or doesnt exist yet
-    //console.log("emptyfile")
+    console.log("emptyfile")
     let fileexist = filexist("gitsinfo.json")
     if(fileexist === false){
         console.log("File doesnt exist")
         //log file doesnt exist, needs to be created
-
+        return;
     }
     if(fileexist === true){
         //console.log("File exists 2")
@@ -91,19 +97,19 @@ function deldepository(){ //delete some depository from the JSON
     console.log("deldepository")
 
     //propably command from server "uninstall" and delete that spesific depository gitsinfo entry
-
+    return;
 }
 
 function updateinfo(){ //update JSON info about the servers
     console.log("updateinfo")
-
+    console.log(timenow)
     //need to make this proper,
     //update every time server goes offline or online
     //update every time  github is pulled or some tile is updated but not deleted
 
     //get the name of what repository to update
     //use same object, delete existing one, add new one in place
-
+    return;
 }
 
 function getpm2servers(){ //get list of servers, see if online or offline
@@ -111,6 +117,7 @@ function getpm2servers(){ //get list of servers, see if online or offline
 
     //need to get current pm2 server instances
     //possibly need to outsource this, because ASYNC
+    return;
 }
 
 

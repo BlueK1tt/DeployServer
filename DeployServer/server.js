@@ -294,7 +294,7 @@ function msgidentify(msg){
         return "disablecommand";
 
     }if(msg.includes("logservers")){
-        pm2running();
+        //pm2running();
         getfunction("functions","logservers")
         return;
         
@@ -781,6 +781,7 @@ function pm2running(){
         }
     });
     console.log(serverlist)
+    return;
 }
 
 function pm2packetprocess(packet){
@@ -837,7 +838,7 @@ function testsend(data){
     return exampledata
 };
 
-function makelogentry(data){
+function makelogentry(data){ //makes log entry into logtemps json file
     //console.log("makelogentry")
     //console.log(data)
 
@@ -876,7 +877,7 @@ const requestListener = function(request, response){
     
     exports.runningservers = { runningservers };
     
-    console.log(repeated)
+    let restartcount = repeated < 0 ? console.log(repeated) : "";
     //console.log(runningservers)
 
     needcommand = msgidentify(msg) //command type
