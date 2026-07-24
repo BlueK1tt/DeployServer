@@ -4,8 +4,7 @@
 
 const fs = require('fs');
 const pm2 = require('pm2');
-const { timenow } = require('../server');
-const time = timenow
+
 
 const config = require('../resources/config.json'); //custom configurations file for secret info
 const logfile = ('../resources/gitsinfo.json')
@@ -20,7 +19,10 @@ function logservers(){ //the main function, dictating what to do in order
     //"action" variable, what to do
     //console.log("runningservers")
     //console.log(runningservers)
-
+    
+    
+    
+    
     emptyfile() //check if file exists
     let folders = verifyfolderexists();
     //getstartfile(folder, file);
@@ -102,7 +104,6 @@ function deldepository(){ //delete some depository from the JSON
 
 function updateinfo(){ //update JSON info about the servers
     console.log("updateinfo")
-    console.log(timenow)
     //need to make this proper,
     //update every time server goes offline or online
     //update every time  github is pulled or some tile is updated but not deleted
@@ -135,4 +136,19 @@ function filexist(filename){
         //console.log("error in file check")
         return "error"
     }
+}
+
+function datetime(){
+    console.log("datetime")
+    console.log(times)
+    let nowtime = JSON.stringify(times)
+    let newdatetime = nowtime.slice(12,-7) //2026-01-22T09:40:58
+    let splitdatetime = newdatetime.split("T")
+    let splitdate = splitdatetime[0].split("-")
+    let thisdate = splitdate[2]+"."+splitdate[1]+"."+splitdate[0]
+
+    let datentime = thisdate + "-" +splitdatetime[1]
+
+    console.log(datentime)
+    return;
 }

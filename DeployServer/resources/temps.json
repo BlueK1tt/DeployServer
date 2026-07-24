@@ -1,14 +1,18 @@
 [
 {
   "message": "Startup",
-  "time": "24.07.2026-09:14:52"
-}
-,{
-  "message": "logservers",
-  "time": "00:00:01"
+  "time": "24.07.2026-10:46:13"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
+}
+,{
+  "message": "check",
+  "time": "00:02:00"
+}
+,{
+  "message": "shutdown",
+  "time": "00:02:12"
 }
 ]
