@@ -149,3 +149,8 @@ New server to be installed on default: SerialPort reader
     - server propably sends some "accepting data" back to the device, confirming connection
 - Because serial.io, the host device OS has no effect, uses same parameters for all os types
 - When connected device, then can see that data and use it to control some other server
+
+-installer:
+    - make installer for server, or basic package and donwloadable addons
+    - basic would just include server, resources and functions. And then could choose premade commands
+    - Ticker/GUI would be optional,

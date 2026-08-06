@@ -1,7 +1,7 @@
 [
 {
   "message": "Startup",
-  "time": "24.07.2026-10:46:13"
+  "time": "06.08.2026-10:28:18"
 }
 ,{
   "message": "check",
@@ -12,7 +12,15 @@
   "time": "00:02:00"
 }
 ,{
-  "message": "shutdown",
-  "time": "00:02:12"
+  "message": "check",
+  "time": "00:03:00"
+}
+,{
+  "message": "check",
+  "time": "00:04:00"
+}
+,{
+  "message": "check",
+  "time": "00:05:00"
 }
 ]

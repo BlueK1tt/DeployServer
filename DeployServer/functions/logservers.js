@@ -5,8 +5,8 @@
 const fs = require('fs');
 const pm2 = require('pm2');
 
-
 const config = require('../resources/config.json'); //custom configurations file for secret info
+const { cursorTo } = require('readline');
 const logfile = ('../resources/gitsinfo.json')
 //var { runningservers } = require('../server')
 let runningservers = [];
@@ -15,13 +15,11 @@ module.exports =  {
 };
 
 function logservers(){ //the main function, dictating what to do in order
-    console.log("logserver")
+    console.log("logservers function")
+    console.log(datetime())
     //"action" variable, what to do
     //console.log("runningservers")
     //console.log(runningservers)
-    
-    
-    
     
     emptyfile() //check if file exists
     let folders = verifyfolderexists();
@@ -85,7 +83,7 @@ function emptyfile(){ //if JSON is empty or doesnt exist yet
     }
 }
 
-function newdepository(){ //create completely new depository entry into JSON
+function newdepository(depositoryname){ //create completely new depository entry into JSON
     console.log("newdepository")
 
     //get info from /depositories/ and pm2check to create first data entry
@@ -95,7 +93,7 @@ function newdepository(){ //create completely new depository entry into JSON
     return "FIRST ENTRY"
 }
 
-function deldepository(){ //delete some depository from the JSON
+function deldepository(depositoryname){ //delete some depository from the JSON
     console.log("deldepository")
 
     //propably command from server "uninstall" and delete that spesific depository gitsinfo entry
@@ -121,7 +119,6 @@ function getpm2servers(){ //get list of servers, see if online or offline
     return;
 }
 
-
 function filexist(filename){
     let files = fs.readdirSync('./resources/')
     //filename = "gitsinfo.json"
@@ -140,15 +137,25 @@ function filexist(filename){
 
 function datetime(){
     console.log("datetime")
-    console.log(times)
-    let nowtime = JSON.stringify(times)
+
+    var time = new Date().getTime(); // get your number
+    var date = new Date(time); // create Date object
+
+    //console.log(date.toString())
+    var datetime = date.toString();
+  /* //old code
+    let nowtime = JSON.stringify(timenow)
+    //console.log(nowtime)
     let newdatetime = nowtime.slice(12,-7) //2026-01-22T09:40:58
     let splitdatetime = newdatetime.split("T")
+    console.log("splitdatetime" +splitdatetime)
     let splitdate = splitdatetime[0].split("-")
     let thisdate = splitdate[2]+"."+splitdate[1]+"."+splitdate[0]
 
     let datentime = thisdate + "-" +splitdatetime[1]
 
     console.log(datentime)
-    return;
+    */
+
+    return datetime;
 }

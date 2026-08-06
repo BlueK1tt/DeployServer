@@ -21,19 +21,18 @@ var msg = " "; //set default msh to empty
 var message = " ";  //set  default message to empty 
 var serverlist = new Array;
 
-
 const isFile = fileName => { //function to test if file exists
     return fs.lstatSync(fileName).isFile();
 };
 
 function startup(){
+    exports.timenow = { timenow }; //needs to be just here to process
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
     checkservers() //check if servers online even after startup
     compareLog(); //make log entries and replace if different
     thirtyTimer(); //initiate the timer, interval from config
     pm2bussi(); //initiate pm2bus functionality, able to send and receive data
-    exports.timenow = { timenow }; //needs to be just here to process
     makelogentry("Startup") //to make log entry to temps.json
     getfunction("functions","logservers")
     pm2connect();
@@ -169,7 +168,7 @@ function valuesToArray(obj) {
 };
 
 function getfunction(folder,filename){ //get output of file/script by folder and file
-    //console.log("getfunction")
+    console.log("getfunction:"+filename)
     let filePath = "./"+folder+"/"+filename
     //console.log(filePath)
     let data = require(filePath);
@@ -848,17 +847,14 @@ function makelogentry(data){ //makes log entry into logtemps json file
     delete require.cache[require.resolve(`./commands/uptime`)] //clears the cache allowing for new data to be read
     //console.log(servertime)
 
-
     let datatolog = data + ":" + servertime 
     exports.logdata = { datatolog }
-
 
     let logtemps = require('./functions/logtemps')
     let gotdata = valuesToArray(logtemps); 
     let functiondata = gotdata[0];
     delete require.cache[require.resolve(`./functions/logtemps`)] //clears the cache allowing for new data to be read
     //console.log(functiondata)
-
     return;
 }
 
