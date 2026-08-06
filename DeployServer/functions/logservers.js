@@ -8,8 +8,8 @@ const pm2 = require('pm2');
 const config = require('../resources/config.json'); //custom configurations file for secret info
 const { cursorTo } = require('readline');
 const logfile = ('../resources/gitsinfo.json')
-//var { runningservers } = require('../server')
-let runningservers = [];
+//let runningservers = [];
+var { runningservers } = require('../server')
 module.exports =  {
     data: logservers()
 };
@@ -19,7 +19,7 @@ function logservers(){ //the main function, dictating what to do in order
     console.log(datetime())
     //"action" variable, what to do
     //console.log("runningservers")
-    //console.log(runningservers)
+    console.log(runningservers)
     
     emptyfile() //check if file exists
     let folders = verifyfolderexists();

@@ -874,7 +874,7 @@ const requestListener = function(request, response){
     exports.runningservers = { runningservers };
     
     let restartcount = repeated < 0 ? console.log(repeated) : "";
-    //console.log(runningservers)
+    console.log(runningservers)
 
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);
