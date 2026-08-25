@@ -27,6 +27,7 @@ const isFile = fileName => { //function to test if file exists
 
 function startup(){
     exports.timenow = { timenow }; //needs to be just here to process
+    exports.runningservers = { runningservers };
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
     checkservers() //check if servers online even after startup
@@ -45,11 +46,11 @@ function checkservers(){ // see if any servers are online
     delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
     var sentData = valuesToArray(data); 
     depotlist = sentData[0];
-    //console.log(runningservers)
+    console.log(runningservers)
     let serverstring = JSON.stringify(runningservers)
     //console.log(serverstring)
     if(serverstring == "[]"){ //if fetched serverlist is object or not empty
-        //console.log("No running servers")
+        console.log("No running servers")
         return;
     }
     if(serverstring != "[]"){//if fetched serverlist is not object nor empty
@@ -510,13 +511,14 @@ function thirtyTimer(){
 
 function pm2check(instance){ //function the check what servers are running
     console.log("pm2chck start")
-    console.log(runningservers)
+    
 
     //get list of running pm2 instances
     if(runningservers == null || runningservers == ""){ //if array is empty
         let runningserverlist = runningservers.length > 1 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
         console.log(runningserverlist)
         console.log("no running servers")
+        console.log(runningservers)
         return false
     } else { //if array is not empty
         if(runningservers.includes(instance)){ //if include is true

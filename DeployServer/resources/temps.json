@@ -1,32 +1,27 @@
 [
 {
-  "message": "stop=SerialWatch",
-  "time": "00:17:29"
-}
-]
-,{
-  "message": "logservers",
-  "time": "00:00:07"
-}
-,{
-  "message": "start=SerialWatch",
-  "time": "00:00:17"
+  "message": "Startup",
+  "time": "25.08.2026-10:52:47"
 }
 ,{
   "message": "start=Ticker",
-  "time": "00:00:22"
-}
-,{
-  "message": "logservers",
-  "time": "00:00:25"
+  "time": "00:01:00"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
 }
 ,{
+  "message": "logservers",
+  "time": "00:01:10"
+}
+,{
   "message": "check",
   "time": "00:02:00"
+}
+,{
+  "message": "logservers",
+  "time": "00:02:15"
 }
 ,{
   "message": "check",
@@ -35,65 +30,5 @@
 ,{
   "message": "check",
   "time": "00:04:00"
-}
-,{
-  "message": "check",
-  "time": "00:05:00"
-}
-,{
-  "message": "check",
-  "time": "00:06:00"
-}
-,{
-  "message": "check",
-  "time": "00:07:00"
-}
-,{
-  "message": "check",
-  "time": "00:08:00"
-}
-,{
-  "message": "check",
-  "time": "00:09:00"
-}
-,{
-  "message": "check",
-  "time": "00:10:00"
-}
-,{
-  "message": "check",
-  "time": "00:11:00"
-}
-,{
-  "message": "check",
-  "time": "00:12:00"
-}
-,{
-  "message": "check",
-  "time": "00:13:00"
-}
-,{
-  "message": "check",
-  "time": "00:14:00"
-}
-,{
-  "message": "check",
-  "time": "00:15:00"
-}
-,{
-  "message": "check",
-  "time": "00:16:00"
-}
-,{
-  "message": "check",
-  "time": "00:17:00"
-}
-,{
-  "message": "shutdown",
-  "time": "00:17:29"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:17:29"
 }
 ]

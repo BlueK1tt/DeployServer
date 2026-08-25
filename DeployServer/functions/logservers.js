@@ -9,7 +9,7 @@ const config = require('../resources/config.json'); //custom configurations file
 const { cursorTo } = require('readline');
 const logfile = ('../resources/gitsinfo.json')
 //let runningservers = [];
-var { runningservers } = require('../server')
+let { runningservers } = require('../server') //this raises error on startup
 module.exports =  {
     data: logservers()
 };
@@ -18,7 +18,7 @@ function logservers(){ //the main function, dictating what to do in order
     console.log("logservers function")
     console.log(datetime())
     //"action" variable, what to do
-    //console.log("runningservers")
+    console.log("runningservers")
     console.log(runningservers)
     
     emptyfile() //check if file exists
@@ -67,7 +67,7 @@ function emptyfile(){ //if JSON is empty or doesnt exist yet
         return;
     }
     if(fileexist === true){
-        //console.log("File exists 2")
+        console.log("File exists 2")
         const data = () => fs.readFileSync(require.resolve(logfile), { encoding: "utf8" });
         let commandslistobj = data()
         let commandliststr = commandslistobj
