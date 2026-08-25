@@ -233,7 +233,7 @@ function msgidentify(msg){
                     //functon to send message to the server about to be stopped
                     //possibly await function to wait for response back, for graceful stop
                     pm2stop(filename);
-                    console.log("msgindentify after pm2stop")
+                    console.log("pm2stop in end of msgindentify")
                     let endstop = "stop" + stopfile
                     return endstop;
                 }
