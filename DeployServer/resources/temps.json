@@ -1,19 +1,19 @@
 [
 {
   "message": "Startup",
-  "time": "25.08.2026-10:52:47"
+  "time": "28.08.2026-10:53:14"
 }
 ,{
   "message": "start=Ticker",
-  "time": "00:01:00"
+  "time": "00:00:08"
+}
+,{
+  "message": "logservers",
+  "time": "00:00:18"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
-}
-,{
-  "message": "logservers",
-  "time": "00:01:10"
 }
 ,{
   "message": "check",
@@ -21,158 +21,14 @@
 }
 ,{
   "message": "logservers",
-  "time": "00:02:15"
-}
-,{
-  "message": "check",
-  "time": "00:03:00"
-}
-,{
-  "message": "check",
-  "time": "00:04:00"
-}
-,{
-  "message": "check",
-  "time": "00:05:00"
-}
-,{
-  "message": "check",
-  "time": "00:06:00"
-}
-,{
-  "message": "check",
-  "time": "00:07:00"
-}
-,{
-  "message": "check",
-  "time": "00:08:00"
-}
-,{
-  "message": "check",
-  "time": "00:09:00"
-}
-,{
-  "message": "check",
-  "time": "00:10:00"
-}
-,{
-  "message": "check",
-  "time": "00:11:00"
-}
-,{
-  "message": "check",
-  "time": "00:12:00"
-}
-,{
-  "message": "check",
-  "time": "00:13:00"
-}
-,{
-  "message": "check",
-  "time": "00:14:00"
-}
-,{
-  "message": "check",
-  "time": "00:15:00"
-}
-,{
-  "message": "check",
-  "time": "00:16:00"
-}
-,{
-  "message": "check",
-  "time": "00:17:00"
-}
-,{
-  "message": "check",
-  "time": "00:18:00"
-}
-,{
-  "message": "check",
-  "time": "00:19:00"
-}
-,{
-  "message": "check",
-  "time": "00:20:00"
-}
-,{
-  "message": "check",
-  "time": "00:21:00"
-}
-,{
-  "message": "check",
-  "time": "00:22:00"
-}
-,{
-  "message": "check",
-  "time": "00:23:00"
-}
-,{
-  "message": "check",
-  "time": "00:24:00"
-}
-,{
-  "message": "check",
-  "time": "00:25:00"
-}
-,{
-  "message": "check",
-  "time": "00:26:00"
-}
-,{
-  "message": "check",
-  "time": "00:27:00"
-}
-,{
-  "message": "check",
-  "time": "00:28:00"
-}
-,{
-  "message": "check",
-  "time": "00:29:00"
-}
-,{
-  "message": "check",
-  "time": "00:30:00"
-}
-,{
-  "message": "check",
-  "time": "00:31:00"
-}
-,{
-  "message": "check",
-  "time": "00:32:00"
-}
-,{
-  "message": "check",
-  "time": "00:33:00"
-}
-,{
-  "message": "check",
-  "time": "00:34:00"
-}
-,{
-  "message": "check",
-  "time": "00:35:00"
-}
-,{
-  "message": "check",
-  "time": "00:36:00"
-}
-,{
-  "message": "check",
-  "time": "00:37:00"
-}
-,{
-  "message": "check",
-  "time": "00:38:00"
+  "time": "00:02:12"
 }
 ,{
   "message": "shutdown",
-  "time": "00:38:43"
+  "time": "00:02:18"
 }
 ,{
   "message": "stop=Ticker",
-  "time": "00:38:43"
+  "time": "00:02:18"
 }
 ]

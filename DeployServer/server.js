@@ -516,9 +516,9 @@ function pm2check(instance){ //function the check what servers are running
     //get list of running pm2 instances
     if(runningservers == null || runningservers == ""){ //if array is empty
         let runningserverlist = runningservers.length > 1 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
-        console.log(runningserverlist)
+        //console.log(runningserverlist)
         console.log("no running servers")
-        console.log(runningservers)
+        //console.log(runningservers)
         return false
     } else { //if array is not empty
         if(runningservers.includes(instance)){ //if include is true
@@ -572,11 +572,15 @@ function pm2start(startfile,filename){ //start specific server on command, need 
         if(countid == 0){
             //console.log(startcondition.startcondition.message + filename)    
             repeated = startcondition.startcondition.count
+            //var cutservername = startfile.substring(startfile.lastIndexOf("/") + 1);
+            //runningservers.push(cutservername)
             runningservers.push(startfile)
             return startcondition.startcondition.message
         }
         if(countid == 1){
             repeated = startcondition.startcondition.count
+            //var cutservername = startfile.substring(startfile.lastIndexOf("/") + 1);
+            //runningservers.push(cutservername)
             runningservers.push(startfile)
             pm2.start(`${startfile}`, function(err, apps) {
             //console.log(apps)

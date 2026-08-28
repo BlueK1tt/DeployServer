@@ -6,10 +6,11 @@ const fs = require('fs');
 const pm2 = require('pm2');
 
 const config = require('../resources/config.json'); //custom configurations file for secret info
-const { cursorTo } = require('readline');
 const logfile = ('../resources/gitsinfo.json')
+const ignoredepots = ['Jorma','PyPost']
 //let runningservers = [];
-let { runningservers } = require('../server') //this raises error on startup
+let { runningservers } = require('../server'); //this raises error on startup
+
 module.exports =  {
     data: logservers()
 };
@@ -41,9 +42,11 @@ function verifyfolderexists(){ //get and verify existing folders in depositories
 function getstartfile(folders){ //get depositories start files in array or string
     //get starter files
     console.log("getstartfile")
-    const startfiles = config.mainfiles;
-    console.log(startfiles)
-    console.log(folders)
+    let searchfiles = filestosearch();
+    //console.log(searchfiles)
+    //console.log(folders)
+    verifyexistingrepofiles(folders,searchfiles)
+
     let fileexists;
     if(fileexists === true){
         console.log("start file exists")
@@ -111,15 +114,7 @@ function updateinfo(){ //update JSON info about the servers
     return;
 }
 
-function getpm2servers(){ //get list of servers, see if online or offline
-    console.log("getpm2servers")
-
-    //need to get current pm2 server instances
-    //possibly need to outsource this, because ASYNC
-    return;
-}
-
-function filexist(filename){
+function filexist(filename){ //use for new repositories to verify before adding
     let files = fs.readdirSync('./resources/')
     //filename = "gitsinfo.json"
     if(files.includes(filename)){
@@ -133,6 +128,51 @@ function filexist(filename){
         //console.log("error in file check")
         return "error"
     }
+}
+
+function verifyexistingrepofiles(folders, searchfiles){ //send folder name and search through files
+    //called from loop, sending 1 folder per time as variable
+    //all folders exist in /depositories
+    //use files spesified to verify if folder has them
+    //needed files are startrfile and config
+    var allfolders = new Array()
+    allfolders = folders.split(",")
+
+    //console.log(allfolders)
+    allfolders = allfolders.filter( ( el ) => !ignoredepots.includes( el ) );
+    //console.log(allfolders)
+
+    var arrayLength = allfolders.length;
+    for (var i = 0; i < arrayLength; i++) {
+        //console.log(allfolders[i]);
+        //get files in the folder
+        let fetchedfiles = fs.readdirSync('./depositories/'+allfolders[i]);
+        //console.log(fetchedfiles)
+        //console.log(searchfiles)
+        const matchedfile = searchfiles.filter(value => fetchedfiles.includes(value));
+        
+        if(matchedfile == null){//check for match in starterfiles
+            console.log(allfolders[i]+" is missing startfile!");
+        }
+        if(!fetchedfiles.includes("config.json")){//check for config file
+            console.log(allfolders[i]+" is missing config file!");
+        }
+        else{
+            console.log(allfolders[i]+"-OK")
+        }
+    }
+    //return true if ok, return false if some files is missing
+
+
+    return //depotverification
+}
+
+function filestosearch(){ //get variables and make array to use as search filter
+    const startfiles = config.mainfiles; //common filenames defined in config
+    var filenamearray = new Array()
+    filenamearray = startfiles.split(",")
+    //filenamearray.push("") //added filenames to search, seperate by "",
+    return filenamearray
 }
 
 function datetime(){
