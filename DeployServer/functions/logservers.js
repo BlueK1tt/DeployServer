@@ -17,10 +17,10 @@ module.exports =  {
 
 function logservers(){ //the main function, dictating what to do in order
     console.log("logservers function")
-    console.log(datetime())
+    //console.log(datetime())
     //"action" variable, what to do
-    console.log("runningservers")
-    console.log(runningservers)
+    //console.log("runningservers")
+    //console.log(runningservers)
     
     emptyfile() //check if file exists
     let folders = verifyfolderexists();
@@ -176,7 +176,7 @@ function filestosearch(){ //get variables and make array to use as search filter
 }
 
 function datetime(){
-    console.log("datetime")
+    //console.log("datetime")
 
     var time = new Date().getTime(); // get your number
     var date = new Date(time); // create Date object

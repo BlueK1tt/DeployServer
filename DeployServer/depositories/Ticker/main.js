@@ -146,6 +146,11 @@ function functionloader(msg){
       console.log("Get time")
       return;
     }
+     if(msg.includes("/Restart")){
+      sendtomaster("DeployServer","restart")
+      console.log("DeployServer restart")
+      return;
+    }
     
     //need to add callback and function to "get time"
     //and have it paste time on website and as log on server.
