@@ -6,6 +6,7 @@ var path = require('path');
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
 const logservers = require('./functions/logservers');
+const { after } = require('node:test');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -46,7 +47,7 @@ function checkservers(){ // see if any servers are online
     delete require.cache[require.resolve(`./functions/verifyrunning`)] //clears the cache allowing for new data to be read
     var sentData = valuesToArray(data); 
     depotlist = sentData[0];
-    console.log(runningservers)
+    //console.log(runningservers)
     let serverstring = JSON.stringify(runningservers)
     //console.log(serverstring)
     if(serverstring == "[]"){ //if fetched serverlist is object or not empty
@@ -558,6 +559,12 @@ function pm2start(startfile,filename){ //start specific server on command, need 
     
     var isrunningcheck = pm2check(startfile)
     isrunning = isrunningcheck
+
+    //console.log(startfile)
+    var beforename = startfile.split("/")
+    var servername = beforename[2]
+
+
     if(isrunning === true){
         var isrunningtext = startfile + " is already running";
         return isrunningtext;
@@ -574,14 +581,14 @@ function pm2start(startfile,filename){ //start specific server on command, need 
             repeated = startcondition.startcondition.count
             //var cutservername = startfile.substring(startfile.lastIndexOf("/") + 1);
             //runningservers.push(cutservername)
-            runningservers.push(startfile)
+            runningservers.push(servername) //before was startfile
             return startcondition.startcondition.message
         }
         if(countid == 1){
             repeated = startcondition.startcondition.count
             //var cutservername = startfile.substring(startfile.lastIndexOf("/") + 1);
             //runningservers.push(cutservername)
-            runningservers.push(startfile)
+            runningservers.push(servername)
             pm2.start(`${startfile}`, function(err, apps) {
             //console.log(apps)
             });
@@ -598,6 +605,10 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
     console.log("pm2stop start")
+
+    //var aftername = stopfile.split("/")
+    //var servername = aftername[2]
+
     if(stopfile == "all"){
         console.log("pm2 stop all")
         pm2.list((err, list) => {

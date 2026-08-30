@@ -1,34 +1,26 @@
 [
 {
   "message": "Startup",
-  "time": "28.08.2026-10:53:14"
+  "time": "30.08.2026-10:50:34"
 }
 ,{
   "message": "start=Ticker",
-  "time": "00:00:08"
+  "time": "00:00:06"
 }
 ,{
   "message": "logservers",
-  "time": "00:00:18"
+  "time": "00:00:15"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
 }
 ,{
+  "message": "logservers",
+  "time": "00:01:03"
+}
+,{
   "message": "check",
   "time": "00:02:00"
-}
-,{
-  "message": "logservers",
-  "time": "00:02:12"
-}
-,{
-  "message": "shutdown",
-  "time": "00:02:18"
-}
-,{
-  "message": "stop=Ticker",
-  "time": "00:02:18"
 }
 ]
