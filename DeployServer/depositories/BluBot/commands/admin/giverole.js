@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { info, roles } = require('../../server');
+const { info, roles } = require('../../blubot');
 
 
 module.exports = {

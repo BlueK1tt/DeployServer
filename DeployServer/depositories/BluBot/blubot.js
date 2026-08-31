@@ -1,14 +1,13 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const Discord = require('discord.js')
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const bot = new Client({ intents: [GatewayIntentBits.GuildMessages] });
+;
+bot.commands = new Collection();
 
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-
-client.commands = new Collection();
-
-
+const { token } = require('./config.json')
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
@@ -27,22 +26,23 @@ for (const folder of commandFolders) {
 	}
 }
 
-client.on(Events.InteractionCreate, interaction => {
+bot.on(Events.InteractionCreate, interaction => {
 	console.log(interaction);
 });
 
-client.on(Events.InteractionCreate, interaction => {
+bot.on(Events.InteractionCreate, interaction => {
 	if (!interaction.isChatInputCommand()) return;
 	console.log(interaction);
 });
 
-client.once(Events.ClientReady, readyClient => {
+bot.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 	client.channels.cache.get("726591333443174523").send("yo");
 });
 
-client.on("message", message=>{
+bot.on("message", message=>{
 	console.log(message.content);
+	//need to use this as request/respond thing
 });
 // Log in to Discord with your client's token
-client.login(token);
+bot.login(token);
