@@ -22,7 +22,17 @@ function logservers(){ //the main function, dictating what to do in order
     //console.log("runningservers")
     //console.log(runningservers)
     
-    emptyfile() //check if file exists
+    var isfileempty = emptyfile() //check if file exists
+    console.log(isfileempty)
+    if(isfileempty === true){
+        console.log("Creating file....")
+        newdepository();
+    }
+    if(isfileempty === false){
+        console.log("file is not empty")
+    } else{
+        
+    }
     let folders = verifyfolderexists();
     //getstartfile(folder, file);
     getstartfile(folders)
@@ -67,7 +77,7 @@ function emptyfile(){ //if JSON is empty or doesnt exist yet
     if(fileexist === false){
         console.log("File doesnt exist")
         //log file doesnt exist, needs to be created
-        return;
+        return false;
     }
     if(fileexist === true){
         console.log("File exists 2")
@@ -79,7 +89,7 @@ function emptyfile(){ //if JSON is empty or doesnt exist yet
         //console.log(filecontents)
 
         //console.log(commandliststr)
-        return;
+        return true;
     } else {
         console.log("emptyfile error")
         return;
@@ -92,7 +102,15 @@ function newdepository(depositoryname){ //create completely new depository entry
     //get info from /depositories/ and pm2check to create first data entry
     //return something else, like "OK" or smth
 
+    //name, main file, version, last updated, current status online/offline
+    let newDepository = new Object
+    newDepository["name"] = "DepositoryName" //get as passed variable
+    newDepository["file"] = "Server File" //fetch with other function using servername
+    newDepository["version"] = "Server version"  //fetch with other function reading files using servername
+    newDepository["update"] = "Last updated" //read and get information from logfile, update the status when updating
+    newDepository["status"] = "Online/Offline" //just read runningservers, but also update file with runningservers
 
+    console.log(newDepository)
     return "FIRST ENTRY"
 }
 

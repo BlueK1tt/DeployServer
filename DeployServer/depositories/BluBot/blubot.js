@@ -2,8 +2,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 const Discord = require('discord.js')
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const bot = new Client({ intents: [GatewayIntentBits.GuildMessages] });
-;
+const bot = new Client({ intents: [
+	GatewayIntentBits.Guilds, 
+	GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.MessageContent,
+	GatewayIntentBits.GuildMembers,
+]
+});
+
 bot.commands = new Collection();
 
 

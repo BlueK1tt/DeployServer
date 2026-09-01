@@ -1,22 +1,30 @@
 [
 {
   "message": "Startup",
-  "time": "30.08.2026-11:44:32"
+  "time": "01.09.2026-10:55:11"
 }
 ,{
-  "message": "start=Ticker",
-  "time": "00:00:02"
+  "message": "logservers",
+  "time": "00:00:03"
 }
 ,{
   "message": "check",
   "time": "00:01:00"
 }
 ,{
-  "message": "stop=Ticker",
-  "time": "00:01:55"
+  "message": "check",
+  "time": "00:02:00"
 }
 ,{
   "message": "check",
-  "time": "00:02:00"
+  "time": "00:03:00"
+}
+,{
+  "message": "shutdown",
+  "time": "00:03:39"
+}
+,{
+  "message": "stop=Ticker",
+  "time": "00:03:39"
 }
 ]
