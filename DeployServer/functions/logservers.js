@@ -19,16 +19,18 @@ function logservers(){ //the main function, dictating what to do in order
     console.log("logservers function")
     //console.log(datetime())
     //"action" variable, what to do
+
+
     //console.log("runningservers")
     //console.log(runningservers)
     
     var isfileempty = emptyfile() //check if file exists
     console.log(isfileempty)
-    if(isfileempty === true){
+    if(isfileempty === "True"){
         console.log("Creating file....")
         newdepository();
     }
-    if(isfileempty === false){
+    if(isfileempty === "False"){
         console.log("file is not empty")
     } else{
         
@@ -58,26 +60,26 @@ function getstartfile(folders){ //get depositories start files in array or strin
     verifyexistingrepofiles(folders,searchfiles)
 
     let fileexists;
-    if(fileexists === true){
+    if(fileexists === "True"){
         console.log("start file exists")
         return true;
     }
     if(fileexists === false){
         console.log("start file doesn't exist")
-        return false
+        return "False";
     } else {
         console.log("getstartfile error")
         return;
     }
 }
-
+                                            
 function emptyfile(){ //if JSON is empty or doesnt exist yet
     console.log("emptyfile")
     let fileexist = filexist("gitsinfo.json")
     if(fileexist === false){
         console.log("File doesnt exist")
         //log file doesnt exist, needs to be created
-        return false;
+        return "False";
     }
     if(fileexist === true){
         console.log("File exists 2")
@@ -89,7 +91,7 @@ function emptyfile(){ //if JSON is empty or doesnt exist yet
         //console.log(filecontents)
 
         //console.log(commandliststr)
-        return true;
+        return "True";
     } else {
         console.log("emptyfile error")
         return;
