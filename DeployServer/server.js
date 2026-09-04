@@ -673,6 +673,8 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             let itemid = arrayservermatch(stopfile)
             //console.log("itemid"+itemid)
             let removeitem = runningservers[itemid]
+            console.log("removeitem - "+removeitem)
+            console.log("stopfile - "+stopfile)
             console.log(itemid)
             console.log(runningservers)
             runningservers.splice(itemid)

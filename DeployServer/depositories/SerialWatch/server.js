@@ -162,9 +162,13 @@ const serport = new SerialPort({
   //need way to check what operating system devide is running.
   //and dependent on it, do if/else and choose correct "path" or serialport identificator
 
-  path: '/dev/ttyS0', //need to find way to iterate, but starting with 0
+
+  path: 'COM1',
+  //path: '/dev/ttyS0', //need to find way to iterate, but starting with 0
   baudRate: 115200,
   parser: parser
+
+
 
 });
 //const parser = serport.pipe(new Readline({ delimiter: '\n' }));// Read the port data
@@ -235,6 +239,7 @@ function SerialStream(){
 
 const requestListener = function(request, response){
   var message = request.url;
+  console.log("Data: "+message)
   //req res
   //need to treat like arduino main loop
 }
