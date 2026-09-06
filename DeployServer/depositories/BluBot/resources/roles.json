@@ -1,0 +1,17 @@
+[
+    {
+        "rolename":"Dev",
+        "roletype":"all",
+        "roleid":"797189122023489567"
+    },
+    {
+        "rolename":"Bots",
+        "roletyoe":"admin",
+        "roleid":"829806941379231826"
+    },
+    {
+        "rolename":"Pena",
+        "roletype":"Basic",
+        "roleid":"1546226181307764886"
+    }
+]

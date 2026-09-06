@@ -1,13 +1,12 @@
 const Discord = require('discord.js');
-const { info, roles } = require('../../blubot');
-
-
+var { info } = require('../../blubot');
+console.log(info)
 module.exports = {
     data: hello(info)
 };
 
 function hello(info){
-    info = info.info
+    //info = info.info
     console.log(typeof(info))
     targetuser = targetuser(info)
     givenrole = roleuser(info)
@@ -56,11 +55,10 @@ function targetuser(info){
 function cutmessage(info){
     console.log("cutmessage")
     //function to cut the message received to be only command part IE banuser instead of !banuser Jorma
-    console.log(info.message)
-    mesg = info.message
-    console.log(mesg)
-    message = mesg
-
+    console.log(info)
+    msg = " ";
+    console.log(msg)
+    message = msg
     message = msg[1].toString()
     command = message.split(" ")
     target = command[1]
