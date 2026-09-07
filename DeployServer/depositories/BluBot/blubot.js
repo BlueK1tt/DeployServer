@@ -112,7 +112,7 @@ function checkbots(message){
 
 function filtercommand(command){
 	commands = getallcommandnames()
-	console.log(commands[0])
+	//console.log(commands[0])
 	basiccommands = Object.keys(commands)[0]
 	admincommands = Object.keys(commands)[1]
 	if(basiccommands.includes(command)){
@@ -129,19 +129,25 @@ function filtercommand(command){
 
 function checkpermission(message, info){
 	filtercommand(info.message)
-	commands = getallcommandnames()
-	roletype = getuserroles(message)
-	console.log("roletype-"+roletype)
-	if(roletype == "basic"){ //for basic command use, like Pena
-		return commands[0];
+	allcommands = getallcommandnames()
+	console.log(allcommands)
+	usersroles = getuserroles(message)
+	console.log("Usersroles - "+usersroles)
+	roletype = getroletypes(usersroles)
+	//console.log("roletype-"+roletype)
+	if(roletype == "all"){ //for admins
+		console.log("allowed commands admin")
+		return allcommands["all"];
 	}
 	if(roletype == "admin"){ //for bots
-		return commands[1];
-		
+		console.log("allowed commands bot")
+		return allcommands["admin"];
 	}
-	if(roletype == "all"){ //for admins
-		return commands[3];
-	} else{
+	if(roletype == "basic"){ //for basic command use, like Pena
+		console.log("allowed command basic")
+		return allcommands["basic"];
+	}
+	 else{
 		console.log("Checkpermission error!")
 		return;
 	}
@@ -150,15 +156,10 @@ function checkpermission(message, info){
 function getuserroles(message){
 	//get all the roles the user who sent message has
 	var returnroles = []
-
-	const data = () => fs.readFileSync(require.resolve(__dirname+"/resources/roles.json"), { encoding: "utf8" });
-	let rolesobj = data()
-	fs.close;
-	//let roleslist = JSON.parse(rolesobj)
-
 	var rolecount = 0;
 	if (message.member.roles.cache.some(role => role.name == 'ADMINISTRATOR')) {
 		returnroles.push("ADMINSTRATOR")
+		
 		rolecount ++;
 	} 
 	if (message.member.roles.cache.some(role => role.name == 'Dev')) {
@@ -181,6 +182,27 @@ function getuserroles(message){
 	}
 
 	return returnroles;
+}
+function getroletypes(usersroles){
+	const data = () => fs.readFileSync(require.resolve(__dirname+"/resources/roles.json"), { encoding: "utf8" });
+	let rolesobj = data()
+	fs.close;
+	let roleslist = JSON.parse(rolesobj)
+
+	roleslenght = usersroles.length
+	totalroles = roleslist.length
+	//console.log(roleslenght)
+	var test = []
+	for(let i=0; i<roleslenght;i++){
+		spesificrole = usersroles[i]
+		console.log(spesificrole)
+	}
+	console.log(test)
+	return "admin"
+}
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
 }
 
 //bot startup and interractions ---->
