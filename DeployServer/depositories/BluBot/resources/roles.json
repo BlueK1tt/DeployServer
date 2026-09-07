@@ -5,13 +5,18 @@
         "roleid":"797189122023489567"
     },
     {
+        "rolename":"ADMINISTRATOR",
+        "roletype":"all",
+        "roleid":"815323331016392724"
+    },
+    {
         "rolename":"Bots",
-        "roletyoe":"admin",
+        "roletype":"admin",
         "roleid":"829806941379231826"
     },
     {
         "rolename":"Pena",
-        "roletype":"Basic",
+        "roletype":"basic",
         "roleid":"1546226181307764886"
     }
 ]

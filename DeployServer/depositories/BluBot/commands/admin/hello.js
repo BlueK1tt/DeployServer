@@ -6,7 +6,23 @@ module.exports = {
 };
 
 function hello(){
-	msg = "Hello "+ info.info.user
+	msg = "Hello "+ info.username
+    if(authorizecommand(info) === true){
+        return;
+    } 
+    if(authorizecommand(info) === false){
+        return;
+    }
+    else{
+        return;
+    }
     //console.log(msg)
 	return msg
+}
+
+function authorizecommand(info){ //boilerplate function,
+    var secret;
+    console.log(__dirname)
+    
+    return secret
 }
