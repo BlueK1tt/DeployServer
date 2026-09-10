@@ -190,7 +190,7 @@ function msgidentify(msg){
         return "no specified command";
     } 
     if(basecommands.includes(msg)){
-        console.log("base command");
+        //console.log("base command");
         return;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
@@ -397,7 +397,7 @@ function pm2connect(){ //need to call this every first time starting pm2 daemon
 }
 
 function pm2disconnect(pmmsg){ //need to call this whenever shutting down or restarting the main server
-    console.log("pm2disconnect -"+pmmsg)
+    //console.log("pm2disconnect -"+pmmsg)
     try{
         pm2.list((err, list) => {
         const id = 0;
@@ -592,7 +592,8 @@ function pm2start(startfile,filename){ //start specific server on command, need 
             //runningservers.push(cutservername)
             runningservers.push(servername)
             pm2.start(`${startfile}`, function(err, apps) {
-            //console.log(apps)
+                console.log("pm2start apps:")
+                console.log(apps.status)
             });
         } else {
             console.log("error with start conditions")
@@ -791,7 +792,7 @@ function pm2running(){
                 return item.id !== id ? item : null;
             }).filter(item => item !== null)
             list.forEach((Element) => {
-                console.log(Element.pm_exec_path)
+                //console.log(Element.pm_exec_path)
                 serverlist.push(Element.pm_exec_path)
                 //console.log(serverlist)
                 
@@ -801,7 +802,7 @@ function pm2running(){
             return serverlist;
         }
     });
-    console.log(serverlist)
+    //console.log(serverlist)
     return;
 }
 
