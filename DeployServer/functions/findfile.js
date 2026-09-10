@@ -22,30 +22,30 @@ function findfile(){
             //console.log("files:" + files)
             if (Object.keys(files).length !== 0){
 
-                var foudnfile = verifyfile(filename)
-                return foudnfile
+                var startfile = verifyfile(filename)
+                return startfile
             }   
             else {
                 return "directory empty"
             }
         }
         if(msg.startsWith("stop")){
-            console.log("findfile stop")
+            //console.log("findfile stop")
             filename = msg.slice(5);            
             let files = fs.readdirSync(`./depositories/`+ `${filename}`);
             fs.close
             //console.log("files:" + files)
             if (Object.keys(files).length !== 0){
 
-                const foundfile = verifyfile(filename)
+                const stopfile = verifyfile(filename)
                 //console.log("foundfile " +foundfile)
                 
                 //need to find the correct filename from the folder
                 //the above just confirms that the tile exists
                 //array > index?
-                console.log(filename)
-                console.log(foundfile)
-                return foundfile
+                //console.log(filename)
+                //console.log(stopfile)
+                return stopfile
             }   
             else {
                 console.log("findfile stop empty")

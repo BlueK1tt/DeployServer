@@ -53,7 +53,7 @@ function verifyfolderexists(){ //get and verify existing folders in depositories
 
 function getstartfile(folders){ //get depositories start files in array or string
     //get starter files
-    console.log("getstartfile")
+    //console.log("getstartfile")
     let searchfiles = filestosearch();
     //console.log(searchfiles)
     //console.log(folders)
@@ -112,7 +112,8 @@ function newdepository(depositoryname){ //create completely new depository entry
     newDepository["update"] = "Last updated" //read and get information from logfile, update the status when updating
     newDepository["status"] = "Online/Offline" //just read runningservers, but also update file with runningservers
 
-    console.log(newDepository)
+    //console.log(newDepository)
+    
     return "FIRST ENTRY"
 }
 
