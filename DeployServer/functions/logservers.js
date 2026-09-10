@@ -62,11 +62,11 @@ function getstartfile(folders){ //get depositories start files in array or strin
     let fileexists;
     if(fileexists === "True"){
         console.log("start file exists")
-        return true;
+        return "true";
     }
     if(fileexists === false){
         console.log("start file doesn't exist")
-        return "False";
+        return "false";
     } else {
         console.log("getstartfile error")
         return;
@@ -167,20 +167,21 @@ function verifyexistingrepofiles(folders, searchfiles){ //send folder name and s
     for (var i = 0; i < arrayLength; i++) {
         //console.log(allfolders[i]);
         //get files in the folder
-        let fetchedfiles = fs.readdirSync('./depositories/'+allfolders[i]);
-        //console.log(fetchedfiles)
-        //console.log(searchfiles)
+        let fetchedfiles = fs.readdirSync('./depositories/'+allfolders[i],{type:"f", recursive:true});
+        
+        var folderstostring = JSON.stringify(fetchedfiles)
         const matchedfile = searchfiles.filter(value => fetchedfiles.includes(value));
         
         if(matchedfile == null){//check for match in starterfiles
             console.log(allfolders[i]+" is missing startfile!");
         }
-        if(!fetchedfiles.includes("config.json")){//check for config file
+        if(!folderstostring.match("config.json")){//check for config file
             console.log(allfolders[i]+" is missing config file!");
         }
         else{
             console.log(allfolders[i]+"-OK")
         }
+    
     }
     //return true if ok, return false if some files is missing
 

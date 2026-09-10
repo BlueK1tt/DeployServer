@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+const pm2 = require('pm2');
 const path = require('node:path');
 const Discord = require('discord.js')
 const config = require("./resources/config.json")
@@ -37,6 +38,8 @@ for (const folder of commandFolders) {
 */
 
 //server functionality functions--->
+
+
 
 function getallcommandnames(){
 	//fetch all filenames from both basic and admin folders
@@ -97,6 +100,59 @@ function sendmessage(message, info, callcommand){
 	return;
 }
 
+function sendtomaster(destination, data){
+  let destinationsender = destination +":"+ thisfilename
+  process.send({ //this is just example, boiletplate for future apps
+    type : 'process:msg',
+    data : {
+      app : destinationsender, //will send to 'pool', but it spesifies some server
+      msg : data //the message or command, or name of function to activate
+    }
+  })
+};
+
+function pm2bussi(){ //pm2launchbus to get data from client to server
+	console.log("bus active");
+	pm2.launchBus(function(err, pm2_bus) {
+	  //console.log("launched bus")
+		pm2_bus.on('process:msg', function(packet) {
+			processthis = pm2packetprocess(packet) //0 to, 1 from, 2 msg
+			appdata = packet.data.app + " : " + packet.data.msg
+			//console.log("before bus if")
+			if(processthis === true){
+			  //console.log("process this")
+			  bussifunctions(appdata)
+			  return;
+			}
+			if(processthis === false){
+			  //console.log("dont process this")
+			  return
+			} else {
+			  console.log("processthis error")
+			}
+		})
+		if(err){
+		  console.log("bus error")
+			console.log(err);
+			return;
+		}
+	})
+};
+
+function pm2packetprocess(packet){ //filter incoming data from pm2 socket
+    //process packets coming in and return data if for this server
+    packetdataapp = JSON.stringify(packet.data.app);
+    let destinationsender = packetdataapp.split(":"); //0=to, 1=from
+    //console.log(thisfilename)
+    //console.log(destinationsender[0])
+    if(!destinationsender[0].includes(thisfilename)){
+        //console.log("not for this server")
+        return false
+    } else {
+        //console.log("For this server")
+        return true
+    }
+};
 
 //filtering functions--->
 
@@ -219,6 +275,8 @@ bot.on(Events.InteractionCreate, interaction => {
 bot.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 	bot.channels.cache.get("726591333443174523").send("yo");
+	sendtomaster("BluBot","online")
+    pm2bussi();
 });
 
 bot.on("messageCreate", message=>{
