@@ -1,4 +1,29 @@
 {
-    "name": "DeployServer",
-    "lastlog": "none" 
+    "BluBot": [
+        {
+        "name": "BluBot",
+        "startfile": "blubot.js"
+        }
+    ],
+    "Jorma": [
+        {
+        "name": "Jorma",
+        "startfile": "index.js"
+        }
+    ],
+    "Ticker": [
+        {
+        "name": "Ticker",
+        "startfile": "main.js",
+        "version":"1.2",
+        "updatedate":"11.09.2026-12.00",
+        "status":"offline"
+        }
+    ],
+    "SerialWatch":[
+        {
+        "name":"SerialWatch",
+        "startfile":"server.js"
+        }
+    ]
 }
