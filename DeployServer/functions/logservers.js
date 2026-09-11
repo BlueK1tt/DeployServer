@@ -10,7 +10,6 @@ const logfile = ('../resources/gitsinfo.json')
 const ignoredepots = ['Jorma','PyPost']
 //let runningservers = [];
 let { runningservers } = require('../server'); //this raises error on startup
-const { stringify } = require('querystring');
 
 module.exports =  {
     data: logservers()
@@ -59,14 +58,18 @@ function getstartfile(folders){ //get depositories start files in array or strin
     let searchfiles = filestosearch();
     //console.log(searchfiles)
     //console.log(folders)
-    verifyexistingrepofiles(folders,searchfiles)
+    foldersandfiles = verifyexistingrepofiles(folders,searchfiles)
+
+    for (const [key, value] of Object.entries(foldersandfiles)) {
+        console.log(`${key}: ${value}`);
+    }
 
     let fileexists;
-    if(fileexists === "True"){
+    if(fileexists == "true"){
         console.log("start file exists")
         return "true";
     }
-    if(fileexists === false){
+    if(fileexists == "false"){
         console.log("start file doesn't exist")
         return "false";
     } else {
@@ -199,6 +202,7 @@ function verifyexistingrepofiles(folders, searchfiles){ //send folder name and s
     //console.log(allfolders)
 
     var arrayLength = allfolders.length;
+    var foldersandfiles = [];
     for (var i = 0; i < arrayLength; i++) {
         //console.log(allfolders[i]);
         //get files in the folder
@@ -209,19 +213,32 @@ function verifyexistingrepofiles(folders, searchfiles){ //send folder name and s
         
         if(matchedfile == null){//check for match in starterfiles
             console.log(allfolders[i]+" is missing startfile!");
+            foldersandfiles.push(allfolders[i]+"-start file")
+            var allfiles = new Object;
+            allfiles["name"] = allfolders[i]
+            allfiles["missingfile"] = "startup" 
+            foldersandfiles.push(allfiles)
         }
         if(!folderstostring.match("config.json")){//check for config file
             console.log(allfolders[i]+" is missing config file!");
+            //foldersandfiles.push(allfolders[i]+"-config file")
+            var allfiles = new Object; 
+            allfiles["name"] = allfolders[i]
+            allfiles["missingfile"] = "config" 
+            foldersandfiles.push(allfiles)
         }
         else{
             console.log(allfolders[i]+"-OK")
+            //foldersandfiles.push(allfolders[i]+"-ok")
+            var allfiles = new Object;
+            allfiles["name"] = allfolders[i]
+            allfiles["missingfile"] = "" 
+            foldersandfiles.push(allfiles)
         }
-    
     }
     //return true if ok, return false if some files is missing
-
-
-    return //depotverification
+    //console.log(foldersandfiles)
+    return foldersandfiles//depotverification
 }
 
 function filestosearch(){ //get variables and make array to use as search filter
@@ -240,19 +257,5 @@ function datetime(){
 
     //console.log(date.toString())
     var datetime = date.toString();
-  /* //old code
-    let nowtime = JSON.stringify(timenow)
-    //console.log(nowtime)
-    let newdatetime = nowtime.slice(12,-7) //2026-01-22T09:40:58
-    let splitdatetime = newdatetime.split("T")
-    console.log("splitdatetime" +splitdatetime)
-    let splitdate = splitdatetime[0].split("-")
-    let thisdate = splitdate[2]+"."+splitdate[1]+"."+splitdate[0]
-
-    let datentime = thisdate + "-" +splitdatetime[1]
-
-    console.log(datentime)
-    */
-
     return datetime;
 }
