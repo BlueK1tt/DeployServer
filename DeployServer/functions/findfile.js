@@ -65,9 +65,11 @@ function findfile(){
 }
 
 function verifyfile(filename){
-    let files = fs.readdirSync(`./depositories/`+ `${filename}`);
-    fs.close
-    
+    findthisfile = `./depositories/`+ `${filename}`
+
+    let files = fs.readdirSync(findthisfile);
+    fs.close;
+
     mainfiles = config.mainfiles;
     var examplefiles = mainfiles.split(","); //index.js, main,js , server.js etc
     
@@ -76,9 +78,19 @@ function verifyfile(filename){
     const filexist = examplefiles.filter(element => str1.includes(element))
     //console.log("filexist: " + filexist)
 
-    finalcmd = './depositories/'+ `${filename}`+"/"+ filexist
-    //console.log(finalcmd)
-    return finalcmd
+    //find if ecosystem exists
+    if(str1.includes("ecosystem.config.js")){
+        console.log("Ecosystem file found!")
+        finalcmd = './depositories/'+ `${filename}`+"/"+ "ecosystem.config.js"
+        return finalcmd
+    } else{
+        console.log("Normal config")
+        //console.log(filexist)
+        finalcmd = './depositories/'+ `${filename}`+"/"+ filexist
+        //console.log(finalcmd)
+        return finalcmd
+    }
+
 
 }
 

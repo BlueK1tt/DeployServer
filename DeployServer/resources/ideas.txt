@@ -154,3 +154,9 @@ New server to be installed on default: SerialPort reader
     - make installer for server, or basic package and donwloadable addons
     - basic would just include server, resources and functions. And then could choose premade commands
     - Ticker/GUI would be optional,
+
+Starting servers---
+- Need to setup a timer in the pm2start 
+    - waiting 3 seconds for the server to startup
+    - uses the mainbus function to check for "signs of life"
+    - If server has errors or takes longer than 3 seconds, will stop it and show error

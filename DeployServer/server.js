@@ -5,8 +5,6 @@ var path = require('path');
 
 const config = require('./resources/config.json'); //custom configurations file for secret info
 const { stringify } = require('node:querystring');
-const logservers = require('./functions/logservers');
-const { after } = require('node:test');
 
 const hostname = config.hostname;
 const port = config.netport;
@@ -592,8 +590,10 @@ function pm2start(startfile,filename){ //start specific server on command, need 
             //runningservers.push(cutservername)
             runningservers.push(servername)
             pm2.start(`${startfile}`, function(err, apps) {
-                console.log("pm2start apps:")
-                console.log(apps.status)
+                console.log("pm2start apps:"+startfile)
+                //console.log(apps)
+
+
             });
         } else {
             console.log("error with start conditions")
@@ -660,6 +660,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
 
     } else {
         //console.log("pm2 stop else")
+        sendtomaster(stopfile,"shutdown");
         const data = require(`./functions/findfile`);
         var sentData = valuesToArray(data); 
         stopfile = sentData[0];

@@ -27,6 +27,10 @@ function pm2packetprocess(packet){
         return false
     } else {
         //console.log("For this server")
+        if(packetdataapp[1].includes("shutdown")){
+          console.log("shutting down...");
+          process.exit(1)
+        }
         return true
     }
 }

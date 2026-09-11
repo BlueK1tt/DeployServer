@@ -13,6 +13,7 @@ const bot = new Client({ intents: [
 ]
 });
 
+var thisfilename = path.basename(__dirname); //gets this files name
 const commandPrefix = config.prefix
 bot.commands = new Collection();
 
