@@ -623,7 +623,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             
             servcount = Object.keys(list).length
             //console.log(list)
-
+            console.log(pm2.list())
             const stoplist = [];
             list.forEach((Element) => {
                 if(Element.name == "Deployment server"){
@@ -631,21 +631,21 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
                     //console.log("main server")
                     return;
                 }
-                if(Element.name != "Deployment server"){
-                    //console.log(Element.name)
-                    //pm2.delete(Element.name)
+                if(Element.name != "Deployment server" && Element.pm2_env.pm_uptime >= 1){
+                    
                     let servername = Element.name + ".js"
                     //console.log(servername)
                     stoplist.push(servername)
+                    //console.log("Shutting down "+servername+"...")
                     pm2.stop(`${Element.name}`, function(err, apps) {
                         if (err) {
                             console.log(err)
                             pm2.flush(Element.name);
-                        //pm2.disconnect();
+                            //pm2.disconnect();
+                        }else{
                         }
-                        return;
                     });
-                    return;
+                    return false;
                     //push element into array
                     //take the array out of foreach and list to stop each element in array
                 }
@@ -719,7 +719,7 @@ function arrayservermatch(stopfile){
 }
 
 function pm2bussi(){ //pm2launchbus to get data from clien to server
-    console.log("pm2 server bus active");
+    //console.log("pm2 server bus active");
     pm2.launchBus(function(err, pm2_bus) {
         pm2_bus.on('process:msg', function(packet) {
             processthis = pm2packetprocess(packet) //0 to, 1 from, 2 msg

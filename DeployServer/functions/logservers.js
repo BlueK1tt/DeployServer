@@ -10,6 +10,7 @@ const logfile = ('../resources/gitsinfo.json')
 const ignoredepots = ['Jorma','PyPost']
 //let runningservers = [];
 let { runningservers } = require('../server'); //this raises error on startup
+const { stringify } = require('querystring');
 
 module.exports =  {
     data: logservers()
@@ -19,21 +20,22 @@ function logservers(){ //the main function, dictating what to do in order
     console.log("logservers function")
     //console.log(datetime())
     //"action" variable, what to do
-
+    getdepositorydata();
 
     //console.log("runningservers")
     //console.log(runningservers)
     
     var isfileempty = emptyfile() //check if file exists
-    console.log(isfileempty)
-    if(isfileempty === "True"){
+    //console.log(isfileempty)
+    if(isfileempty == "true"){
         console.log("Creating file....")
         newdepository();
     }
-    if(isfileempty === "False"){
+    if(isfileempty == "false"){
         console.log("file is not empty")
+        updateinfo()
     } else{
-        
+
     }
     let folders = verifyfolderexists();
     //getstartfile(folder, file);
@@ -74,24 +76,27 @@ function getstartfile(folders){ //get depositories start files in array or strin
 }
                                             
 function emptyfile(){ //if JSON is empty or doesnt exist yet
-    console.log("emptyfile")
+    //console.log("emptyfile")
     let fileexist = filexist("gitsinfo.json")
-    if(fileexist === false){
+    if(fileexist == "false"){
         console.log("File doesnt exist")
         //log file doesnt exist, needs to be created
-        return "False";
+        return "true";
     }
-    if(fileexist === true){
-        console.log("File exists 2")
+    if(fileexist == "true"){
+        //console.log("File exists 2")
         const data = () => fs.readFileSync(require.resolve(logfile), { encoding: "utf8" });
         let commandslistobj = data()
         let commandliststr = commandslistobj
+        fs.close;
+
         //newdpository needs to be here,incase its created manually
         let filecontents = commandliststr != "" ? commandliststr : newdepository();
+        
         //console.log(filecontents)
 
         //console.log(commandliststr)
-        return "True";
+        return "false";
     } else {
         console.log("emptyfile error")
         return;
@@ -124,6 +129,36 @@ function deldepository(depositoryname){ //delete some depository from the JSON
     return;
 }
 
+function getdepositorydata(){
+    console.log("getdepositorydata")
+    var depositoryname = "Ticker"
+    //fetch the JSON file, and then get all the sections and compare
+    //name is passed from variable
+    //file could be got from foundfile function
+    //version, just some arbitary
+    //update, fs get when file was updated last, update date if new info doesnt match old info
+    //status 
+    const data = () => fs.readFileSync(require.resolve(logfile), { encoding: "utf8" });
+    let commandslistobj = data()
+    depositorydatas = JSON.parse(commandslistobj)
+    fs.close;
+    //console.log(depositorydatas[depositoryname])
+    workingdepots = depositorydatas[depositoryname]
+    stringobj = JSON.stringify(workingdepots)
+    cutobject = stringobj.slice(1,-1)
+    workingdepot = JSON.parse(cutobject)
+    console.log(workingdepot.name)
+
+    let existingdepot = new Object
+    existingdepot["name"] = workingdepot.name 
+    existingdepot["file"] = workingdepot.startfile 
+    existingdepot["version"] = workingdepot.version 
+    existingdepot["update"] = workingdepot.updatedate
+    existingdepot["status"] = workingdepot.status 
+    console.log(existingdepot)
+    return;
+}
+
 function updateinfo(){ //update JSON info about the servers
     console.log("updateinfo")
     //need to make this proper,
@@ -140,11 +175,11 @@ function filexist(filename){ //use for new repositories to verify before adding
     //filename = "gitsinfo.json"
     if(files.includes(filename)){
         //console.log("File exists 1")
-        return true
+        return "true"
     } 
     if(!files.includes(filename)){
         //console.log("File does not exist")
-        return false
+        return "false"
     } else {
         //console.log("error in file check")
         return "error"
