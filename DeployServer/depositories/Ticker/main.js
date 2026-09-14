@@ -66,7 +66,6 @@ function pm2bussi(){ //pm2launchbus to get data from clien to server
 function bussifunctions(appdata){
     if(appdata.includes("button1")){
         console.log("Server button 1")
-
         return "button1";
     }
     if(appdata.includes("time:")){
@@ -75,7 +74,6 @@ function bussifunctions(appdata){
     }
     else {
         //console.log("appdata" + appdata)
-        
         asmessage = filtercommand(appdata)
         //console.log("Something else")
         return asmessage;
@@ -155,7 +153,6 @@ function functionloader(msg){
       console.log("DeployServer restart")
       return;
     }
-    
     //need to add callback and function to "get time"
     //and have it paste time on website and as log on server.
     

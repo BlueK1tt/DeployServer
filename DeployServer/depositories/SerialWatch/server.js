@@ -123,13 +123,13 @@ function setoperatingsystem(){
     if(runningos == "linux"){
       console.log("linux")
       //return something tty
-      return "linux" 
+      return "ttyUSB" //need number after that 
     }
     if(runningos == "win32"){
       //return something COM
       console.log("windows")
       
-      return "windows"
+      return "COM" //need number after that
     }
     if(runningos == "aix"){ //IBM
       console.log("IBM Aix")
@@ -185,6 +185,8 @@ parser.on('data', data =>{
 function getopenserial(){
   //see if serialport is alredy open
   //get baudrate and port, otherwise return false
+  serialportname = setoperatingsystem();
+  
 
 
   //need to cycle through serial ports of device, to find correct one
@@ -197,6 +199,14 @@ function getopenserial(){
   return "this is serialport"
 }
 
+function testserial(serialport){ //this calling from for loop
+  //get serialport from function, 1 at a time of reverse array
+  //connect to the serial provided
+  //send some data to the serial , listen and see if same info sent back
+
+
+
+}
 
 function SerialStream(){
   var isopen = getopenserial()

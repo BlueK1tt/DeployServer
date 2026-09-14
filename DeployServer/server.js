@@ -549,6 +549,7 @@ function pm2list(){ //to get all running servers as variable
     return keys
 }
 
+
 function pm2start(startfile,filename){ //start specific server on command, need to check available ports    
     //console.log("startfile")
     pm2connect();
@@ -592,8 +593,6 @@ function pm2start(startfile,filename){ //start specific server on command, need 
             pm2.start(`${startfile}`, function(err, apps) {
                 console.log("pm2start apps:"+startfile)
                 //console.log(apps)
-
-
             });
         } else {
             console.log("error with start conditions")

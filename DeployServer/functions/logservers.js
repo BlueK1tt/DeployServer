@@ -61,7 +61,8 @@ function getstartfile(folders){ //get depositories start files in array or strin
     foldersandfiles = verifyexistingrepofiles(folders,searchfiles)
 
     for (const [key, value] of Object.entries(foldersandfiles)) {
-        console.log(`${key}: ${value}`);
+        console.log(key); //server name
+        console.log(value); //missingfile 
     }
 
     let fileexists;
