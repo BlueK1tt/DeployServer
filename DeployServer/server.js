@@ -181,7 +181,7 @@ function getfunction(folder,filename){ //get output of file/script by folder and
 
 function msgidentify(msg){ 
     msgid ++;
-    //console.log("id:" + msgid);
+    console.log("id:" + msgid); //this is here for debugging, easy to find lines and errors
     makelogentry(msg);
     //console.log("msgidentify")
     if(msg == ""){

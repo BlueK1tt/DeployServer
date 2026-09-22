@@ -40,7 +40,9 @@ for (const folder of commandFolders) {
 
 //server functionality functions--->
 
-
+function valuesToArray(obj) {
+    return Object.keys(obj).map(function (key) { return obj[key];}); //dont know why i have this here but i know ill need it
+};
 
 function getallcommandnames(){
 	//fetch all filenames from both basic and admin folders
@@ -70,26 +72,28 @@ function getallcommandnames(){
 }
 
 function callacommand(message, info){
+	calledcommand = info.message.slice(1)
 	allowedcommands = checkpermission(message, info)
 	console.log(allowedcommands)
-	if(allowedcommands.includes(info.message)){
-		location = filtercommand(info)
+	if(allowedcommands.includes(calledcommand)){
+		location = filtercommand(calledcommand)
+		console.log(location)
 		if(location == "admin"){
 			 //console.log("custom cmd:" + command)
-			let data = require(__dirname+`/admin/`+ `${info.message}`);
+			let data = require(__dirname+`/commands/admin/`+ `${calledcommand}`);
 			let sentData = valuesToArray(data); 
 			asmessage = sentData[0];
 
-			delete require.cache[require.resolve(__dirname+`/admin/`+ `${info.message}`)]
+			delete require.cache[require.resolve(__dirname+`/commands/admin/`+ `${calledcommand}`)]
 		}
 		else { //basic command
-			let data = require(__dirname+`/basic/`+ `${info.message}`);
+			let data = require(__dirname+`/commands/basic/`+ `${calledcommand}`);
 			let sentData = valuesToArray(data); 
 			asmessage = sentData[0];
 
-			delete require.cache[require.resolve(__dirname+`/basic/`+ `${info.message}`)]
+			delete require.cache[require.resolve(__dirname+`/commands/basic/`+ `${calledcommand}`)]
 		}
-		return "this is command"+asmessage
+		return asmessage
 	}
 	else{
 		console.log("Callcommand error!")
@@ -102,14 +106,15 @@ function sendmessage(message, info, callcommand){
 }
 
 function sendtomaster(destination, data){
-  let destinationsender = destination +":"+ thisfilename
-  process.send({ //this is just example, boiletplate for future apps
-    type : 'process:msg',
-    data : {
-      app : destinationsender, //will send to 'pool', but it spesifies some server
-      msg : data //the message or command, or name of function to activate
-    }
-  })
+	console.log("sendtomaster")
+  	let destinationsender = destination +":"+ thisfilename
+  	process.send({ //this is just example, boiletplate for future apps
+    	type : 'process:msg',
+    	data : {
+      		app : destinationsender, //will send to 'pool', but it spesifies some server
+      		msg : data //the message or command, or name of function to activate
+    	}
+  	})
 };
 
 function pm2bussi(){ //pm2launchbus to get data from client to server
@@ -122,6 +127,7 @@ function pm2bussi(){ //pm2launchbus to get data from client to server
 			//console.log("before bus if")
 			if(processthis === true){
 			  //console.log("process this")
+			  console.log(appdata)
 			  bussifunctions(appdata)
 			  return;
 			}
@@ -139,6 +145,11 @@ function pm2bussi(){ //pm2launchbus to get data from client to server
 		}
 	})
 };
+
+function bussifunctions(appdata){
+	console.log(appdata)
+	return;
+}
 
 function pm2packetprocess(packet){ //filter incoming data from pm2 socket
     //process packets coming in and return data if for this server
@@ -169,9 +180,13 @@ function checkbots(message){
 
 function filtercommand(command){
 	commands = getallcommandnames()
-	//console.log(commands[0])
-	basiccommands = Object.keys(commands)[0]
-	admincommands = Object.keys(commands)[1]
+	//console.log(commands)
+	//console.log(command)
+	basiccommands = commands.basic;
+	//console.log(basiccommands)
+	//admincommands = Object.keys(commands)[1]
+	admincommands = commands.admin;
+	//console.log(admincommands)
 	if(basiccommands.includes(command)){
 		return "basic"
 	}
@@ -179,8 +194,9 @@ function filtercommand(command){
 		return "admin"
 	}
 	else{
-		console.log("Command erro")
-		return "Command error"
+		/*console.log("Command error")
+		return "Command error" */
+		return "all"
 	}
 }
 
@@ -276,7 +292,7 @@ bot.on(Events.InteractionCreate, interaction => {
 bot.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 	bot.channels.cache.get("726591333443174523").send("yo");
-	sendtomaster("BluBot","online")
+	sendtomaster("DeployServer","online")
     pm2bussi();
 });
 
