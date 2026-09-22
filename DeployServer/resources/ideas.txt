@@ -1,15 +1,6 @@
 p2m cluster mode should work same as "basic" node clustering code
 just execute code in pm2 cluster mode.
 
-test out if can generate and read in the same code pm2 logs
-so, pm2 start server, -> pm2 generates log file for the session -> after while in code, read the log file generated
-(could be something like, code reads all files in designated folder).
-
-Need to make websockets for servers, servers send out data and comannds to eachother
-For example have "main" server and discord bot server running on same pm2, -> if discord bot gets some command, 
-process the command and send needed information through websocket to "main" server.
------- this was solved with just pm2 and sending data to and from main
-
 https://github.com/rowanmanning/learning-express-cluster/blob/master/app.js
 
 "Main" server could have running frontend website, with command input "form" available
@@ -70,18 +61,6 @@ Will check que every 10 seconds so
 When downloading github repo, arguments need to include the name of main file
 it will be added to the repo json
 /download=Jorma,index.js
-
---created loop to check interente connection every 60 seconds
-    if not connected, disconnect all pm2 processes automatically
-    --will need to add system to restart them once back online
-    -- also the function doesnt fully work currently, it also shuts down the main server
-
-Disable commands
-- command to disable and enable commands
-- use JSON to store commands and their 'status', enabled/disabled
-- Good to use if some errors with command, so no possibility to use if broken and crashes the server
--...3000:disablecommands=all|s
-
 
 Seperate command client using node Readline
 - Using additional javasript and functions from existing server, pull available commands to use in readline as options
