@@ -27,11 +27,12 @@ const isFile = fileName => { //function to test if file exists
 function startup(){
     exports.timenow = { timenow }; //needs to be just here to process
     exports.runningservers = { runningservers };
+    console.log("----------")
     console.log("Server staring up at: " + timenow)
     console.log('Server running at ' + config.hostname +':' + config.netport);
     checkservers() //check if servers online even after startup
     compareLog(); //make log entries and replace if different
-    thirtyTimer(); //initiate the timer, interval from config
+    thirtyTimer(1); //initiate the timer, interval from config
     pm2bussi(); //initiate pm2bus functionality, able to send and receive data
     makelogentry("Startup") //to make log entry to temps.json
     getfunction("functions","logservers")
@@ -168,7 +169,7 @@ function valuesToArray(obj) {
 };
 
 function getfunction(folder,filename){ //get output of file/script by folder and file
-    console.log("getfunction:"+filename)
+    //console.log("getfunction:"+filename)
     let filePath = "./"+folder+"/"+filename
     //console.log(filePath)
     let data = require(filePath);
@@ -180,7 +181,7 @@ function getfunction(folder,filename){ //get output of file/script by folder and
 
 function msgidentify(msg){ 
     msgid ++;
-    console.log("id:" + msgid);
+    //console.log("id:" + msgid);
     makelogentry(msg);
     //console.log("msgidentify")
     if(msg == ""){
@@ -189,7 +190,8 @@ function msgidentify(msg){
     } 
     if(basecommands.includes(msg)){
         //console.log("base command");
-        return;
+
+        return msg;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
         //console.log("start or stop");
@@ -305,6 +307,16 @@ function msgidentify(msg){
         sendtomaster("all","this is test message")
         return;
     }
+    if(msg == "pause"){
+        console.log("Pausing server...")
+        thirtyTimer(0)
+        return;
+    }
+    if(msg == "unpause"){
+        console.log("Resuming normal duties")
+        thirtyTimer(1);
+        return;
+    }
     else{
         //console.log("custom");
         //need to slice message
@@ -412,12 +424,12 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
                 if(Element.name == 'Deployment server'){
                     if(pmmsg == "0"){
                         console.log("Deployment server shutdown")
-                        return "Deployment server shutdown";
+                        return;
                     }
                     if (pmmsg == "1") {
                         pm2.restart(Element.name)
-                        console.log("Deployment server restart")
-                        return "Deployment server restart";
+                        //console.log("Deployment server restart")
+                        return;
                     }
                     else{
                         console.log("shutdown else")
@@ -488,25 +500,39 @@ function pm2disconnect(pmmsg){ //need to call this whenever shutting down or res
 
     }
 }
-function thirtyTimer(){
-    console.log("Timer is on "+(config.systimer/1000)+" second interval");
-    setInterval(MyTimer, config.systimer); //systimer from config, in milliseconds
-    function MyTimer(){
-        //console.log("myTimer")
-        //makelogentry("thirtytimer")
-        var connected = msgidentify("check"); //will just send "check" like normal command request to function
-        //const messagetosend = "check"
-        //exports.message = { messagetosend }; //export msg as variable to use in modules
-
-        if(connected == "not connected"){
-            console.log("Internet disconnected");
-            pm2disconnect("2");
-            return;
+function thirtyTimer(command){
+    //console.log(command)
+    if(command == 0){
+        console.log("timer 0")
+        clearInterval();
+        console.log("Timer paused")
+        return;
+    }
+    if(command == 1){
+        console.log("timer 1")
+        console.log("Timer is on "+(config.systimer/1000)+" second interval");
+        setInterval(MyTimer, config.systimer); //systimer from config, in milliseconds
+        function MyTimer(){
+            //console.log("myTimer")
+            //makelogentry("thirtytimer")
+            var connected = msgidentify("check"); //will just send "check" like normal command request to function
+            //const messagetosend = "check"
+            //exports.message = { messagetosend }; //export msg as variable to use in modules
+    
+            if(connected == "not connected"){
+                console.log("Internet disconnected");
+                pm2disconnect("2");
+                return;
+            }
+            else{
+                //console.log("all is good")
+                return;
+            }
         }
-        else{
-            //console.log("all is good")
-            return;
-        }
+    }
+    else{
+        console.log("Timer callout error!")
+        return
     }
 }
 
@@ -622,7 +648,7 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             
             servcount = Object.keys(list).length
             //console.log(list)
-            console.log(pm2.list())
+            //console.log(pm2.list())
             const stoplist = [];
             list.forEach((Element) => {
                 if(Element.name == "Deployment server"){
@@ -827,6 +853,7 @@ function pm2packetprocess(packet){
 
 function sendtomaster(destination, data){
     if(destination == "all"){ //send message to all servers
+        //console.log(runningservers)
         let destinationsender = pm2list();
         process.send({ //this is just example, boiletplate for future apps
             type : 'process:msg',
@@ -897,7 +924,7 @@ const requestListener = function(request, response){
     exports.runningservers = { runningservers };
     
     let restartcount = repeated < 0 ? console.log(repeated) : "";
-    console.log(runningservers)
+    //console.log(runningservers)
 
     needcommand = msgidentify(msg) //command type
     //console.log(needcommand);
@@ -922,7 +949,7 @@ const requestListener = function(request, response){
         response.end('Restarting...\n');
         pm2stop("all")
         setTimeout(function() {
-            console.log('Restarting')
+            //console.log('Restarting')
             process.exit(128)
         }, 2000);
     }

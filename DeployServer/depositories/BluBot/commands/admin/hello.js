@@ -1,20 +1,21 @@
 const fs = require('fs'); //filesystem
-const { info } = require('../../server');
+const { info } = require('../../blubot.js');
 
 module.exports = {
     data: hello(info)
 };
 
 function hello(){
+    console.log("hello")
 	msg = "Hello "+ info.username
     if(authorizecommand(info) === true){
-        return;
+        return "Hello";
     } 
     if(authorizecommand(info) === false){
-        return;
+        return "Hello";
     }
     else{
-        return;
+        return "Hello";
     }
     //console.log(msg)
 	return msg

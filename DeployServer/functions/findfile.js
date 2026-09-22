@@ -84,7 +84,7 @@ function verifyfile(filename){
         finalcmd = './depositories/'+ `${filename}`+"/"+ "ecosystem.config.js"
         return finalcmd
     } else{
-        console.log("Normal config")
+        //console.log("Normal config")
         //console.log(filexist)
         finalcmd = './depositories/'+ `${filename}`+"/"+ filexist
         //console.log(finalcmd)

@@ -16,7 +16,7 @@ module.exports =  {
 };
 
 function logservers(){ //the main function, dictating what to do in order
-    console.log("logservers function")
+    //console.log("logservers function")
     //console.log(datetime())
     //"action" variable, what to do
     getdepositorydata();

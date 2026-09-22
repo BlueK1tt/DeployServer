@@ -8,8 +8,6 @@ const os = require('node:os')
 var path = require('path');
 
 const config = require('./config.json'); //custom configurations file for secret info
-const { parse } = require('node:path');
-
 
 const defaultserial = ""; //maybe automated from server or custom per user
 
@@ -163,7 +161,7 @@ const serport = new SerialPort({
   //and dependent on it, do if/else and choose correct "path" or serialport identificator
 
 
-  path: 'COM1',
+  path: 'COM6',
   //path: '/dev/ttyS0', //need to find way to iterate, but starting with 0
   baudRate: 115200,
   parser: parser
@@ -176,6 +174,8 @@ const serport = new SerialPort({
 
 serport.on("open", () => {
   console.log('serial port open');
+
+  serport.write("TEST")
 });
 
 parser.on('data', data =>{
@@ -187,6 +187,7 @@ function getopenserial(){
   //get baudrate and port, otherwise return false
   serialportname = setoperatingsystem();
   
+  testserial(serport)
 
 
   //need to cycle through serial ports of device, to find correct one
@@ -203,9 +204,10 @@ function testserial(serialport){ //this calling from for loop
   //get serialport from function, 1 at a time of reverse array
   //connect to the serial provided
   //send some data to the serial , listen and see if same info sent back
+  const deviceserial = new SerialPort({ path: serialport, baudRate: 115200 })
 
-
-
+  deviceserial.write("TEST")
+  return;
 }
 
 function SerialStream(){

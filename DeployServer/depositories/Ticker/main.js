@@ -236,6 +236,6 @@ app = fs.readFile('./depositories/Ticker/index.html', function (err, html) {
 });
 
 // Console will print the message
-console.log('App running at http://127.0.0.1:3001/');
+console.log('App running at http://127.0.0.1:3002/');
 sendtomaster("DeployServer","online")
 pm2bussi();
