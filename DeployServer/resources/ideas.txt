@@ -139,3 +139,18 @@ Starting servers---
     - waiting 3 seconds for the server to startup
     - uses the mainbus function to check for "signs of life"
     - If server has errors or takes longer than 3 seconds, will stop it and show error
+
+-logservers
+    - Need to update it always when starting or stopping server
+        - Can just send the name of the server to function
+        - Will update only that part of the json
+        - set it online when starting up, set offline when stopped
+    - Need to send server name and thing to changes
+    - if variables are empty, just send back whole json
+    - if sent "all", it updates/checks all 
+        - check startfile, change if need to
+        - NOT YET IMPLEMENTED, size of file
+            - see if size was updated
+        - if new files were added to the depository or the size was changed, update the "last updated" date to this date
+        - status stays untouched - it is update through other means
+    
