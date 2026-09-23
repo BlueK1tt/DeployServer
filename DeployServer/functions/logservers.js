@@ -9,7 +9,7 @@ const config = require('../resources/config.json'); //custom configurations file
 const logfile = ('../resources/gitsinfo.json')
 const ignoredepots = ['Jorma','PyPost']
 //let runningservers = [];
-let { runningservers } = require('../server'); //this raises error on startup
+let { runningservers, message } = require('../server'); //this raises error on startup
 
 module.exports =  {
     data: logservers()
@@ -17,6 +17,29 @@ module.exports =  {
 
 function logservers(){ //the main function, dictating what to do in order
     //console.log("logservers function")
+    let msg = cleanmessage(message)
+    console.log("command = "+msg)
+    if(msg == ""){
+        //return the whole array
+    }
+    if(msg.includes("logservers=")){
+        if(msg.icnludes("logservers=all")){
+            //update all servers
+        }
+        else{
+            //cut the message after = and update only specified server
+
+        }
+    }
+    else{
+        return;
+    }
+
+
+
+
+
+
     //console.log(datetime())
     //"action" variable, what to do
     getdepositorydata();
@@ -259,4 +282,17 @@ function datetime(){
     //console.log(date.toString())
     var datetime = date.toString();
     return datetime;
+}
+
+function cleanmessage(message){
+    //console.log(message)
+    if(message == null || message == ""){
+        console.log("empty message")
+        return "";
+    } else {
+        msgstring = JSON.stringify(message)
+        let msg = msgstring.slice(14,-2)
+        //console.log(msg)
+        return msg
+    }
 }
