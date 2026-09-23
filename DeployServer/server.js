@@ -84,9 +84,11 @@ function saveLog(){ //function to happen before restart and shutdown, take curre
         });
         fs.close
         //console.log("Log save done.")
+        return;
     }
     else{
         console.log("Error | One or more files do not exist");
+        return;
     }
 };
 
@@ -190,7 +192,6 @@ function msgidentify(msg){
     } 
     if(basecommands.includes(msg)){
         //console.log("base command");
-
         return msg;
     }
     if (msg.startsWith("start") || msg.startsWith("stop") || direction.includes(msg, -2)){
@@ -301,9 +302,6 @@ function msgidentify(msg){
         
     }if(msg == "testcommand"){
         console.log("testcommand")
-        //console.log("testcommand")
-        //let filedata = getfuntion("functions","logtemps.js")
-        //console.log(filedata)
         sendtomaster("all","this is test message")
         return;
     }
@@ -346,11 +344,6 @@ function msgidentify(msg){
         } 
         else {
             //console.log("custom command else")
-
-            //here need to check disabledcommands JSON first.
-            //commands status are read on server start
-            //let commandsjson = require(`./resources/commands.json`); //need to convert into fs.readfile
-
             let commandsliststr = fs.readFileSync('./resources/commands.json')
             let findcommand = msg
             let commandsjson = JSON.parse(commandsliststr)
@@ -367,11 +360,6 @@ function msgidentify(msg){
                 let data = require(`./commands/`+ `${command}`);
                 let sentData = valuesToArray(data); 
                 asmessage = sentData[0];
-    
-                //need to seperate "fancy commands" from regular commands
-                    //so "update" and "update=BluBot"
-
-                //need to flush the custom command
                 delete require.cache[require.resolve(`./commands/`+`${command}`)] //clears the cache allowing for new data to be read
                 //console.log("cache cleared");
                 try {
@@ -537,9 +525,6 @@ function thirtyTimer(command){
 }
 
 function pm2check(instance){ //function the check what servers are running
-    //console.log("pm2chck start")
-    
-
     //get list of running pm2 instances
     if(runningservers == null || runningservers == ""){ //if array is empty
         let runningserverlist = runningservers.length > 1 ? ("Currently running servers:"+runningservers.toString()) : "No running servers";
@@ -599,25 +584,19 @@ function pm2start(startfile,filename){ //start specific server on command, need 
     if(isrunning === "false") {
         let startcondition = require(`./functions/internetcheck`);
         countid = startcondition.startcondition.count
-        //console.log("first"+startcondition.startcondition.count)
         delete require.cache[require.resolve(`./functions/internetcheck`)] //clears the cache allowing for new data to be read
-        //console.log(startcondition)
-
         if(countid == 0){
             //console.log(startcondition.startcondition.message + filename)    
             repeated = startcondition.startcondition.count
-            //var cutservername = startfile.substring(startfile.lastIndexOf("/") + 1);
-            //runningservers.push(cutservername)
             runningservers.push(servername) //before was startfile
             return startcondition.startcondition.message
         }
         if(countid == 1){
             repeated = startcondition.startcondition.count
-            //var cutservername = startfile.substring(startfile.lastIndexOf("/") + 1);
-            //runningservers.push(cutservername)
             runningservers.push(servername)
+            //console.log(servername)
             pm2.start(`${startfile}`, function(err, apps) {
-                console.log("pm2start apps:"+startfile)
+                console.log(servername+" starting...");
                 //console.log(apps)
             });
         } else {
@@ -632,11 +611,6 @@ function pm2start(startfile,filename){ //start specific server on command, need 
 };
 
 function pm2stop(stopfile){ //need to stop specific server gracefully,
-    //fconsole.log("pm2stop start")
-
-    //var aftername = stopfile.split("/")
-    //var servername = aftername[2]
-
     if(stopfile == "all"){
         //console.log("pm2 stop all")
         pm2.list((err, list) => {
@@ -702,10 +676,6 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
             let itemid = arrayservermatch(stopfile)
             //console.log("itemid"+itemid)
             let removeitem = runningservers[itemid]
-            //console.log("removeitem - "+removeitem)
-            //console.log("stopfile - "+stopfile)
-            //console.log(itemid)
-            //console.log(runningservers)
             runningservers.splice(itemid)
             //console.log(runningservers[0])
             pm2.stop(`${stopfile}`, function(err, apps) {
@@ -729,15 +699,9 @@ function pm2stop(stopfile){ //need to stop specific server gracefully,
     return;
 };
 function arrayservermatch(stopfile){
-    //console.log("arrayservermatch");
-    //console.log(stopfile)
 
     var servertomatch = (element) => element = stopfile
     let matchedserver = servertomatch(stopfile)
-
-    //console.log((servertomatch(stopfile)))
-    //console.log("runningservers")
-    //console.log(runningservers)
     let itemposition = runningservers.findIndex(servertomatch)
     //console.log(itemposition)
     return itemposition
@@ -819,9 +783,7 @@ function pm2running(){
             }).filter(item => item !== null)
             list.forEach((Element) => {
                 //console.log(Element.pm_exec_path)
-                serverlist.push(Element.pm_exec_path)
-                //console.log(serverlist)
-                
+                serverlist.push(Element.pm_exec_path)             
                 return serverlist;
             });
             //console.log(serverlist)
@@ -978,7 +940,7 @@ const requestListener = function(request, response){
     }
     delete(request); //empties the "incoming" request
     msg = " "; //sets msg to basically empty
-    message = " ";
+    message = " ";//reset message to empty
     return;
 };
 
