@@ -2,13 +2,19 @@
     "BluBot": [
         {
         "name": "BluBot",
-        "startfile": "blubot.js"
+        "startfile": "blubot.js",
+        "version":"0,9",
+        "updatedate":"11.09.2026-12.00",
+        "status":"offline"
         }
     ],
     "Jorma": [
         {
         "name": "Jorma",
-        "startfile": "index.js"
+        "startfile": "index.js",
+        "version":"1.0",
+        "updatedate":"11.09.2026-12.00",
+        "status":"offline"
         }
     ],
     "Ticker": [
@@ -23,7 +29,10 @@
     "SerialWatch":[
         {
         "name":"SerialWatch",
-        "startfile":"server.js"
+        "startfile":"server.js",
+        "version":"0,2",
+        "updatedate":"11.09.2026-12.00",
+        "status":"offline"
         }
     ]
 }
